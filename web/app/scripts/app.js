@@ -41,7 +41,7 @@ angular
                 controller: 'ViewcompanyCtrl',
                 controllerAs: 'viewcompany'
             })
-            .when('/project', {
+            .when('/projects', {
                 templateUrl: 'views/projects.html',
                 controller: 'ProjectsCtrl',
                 controllerAs: 'projects'
