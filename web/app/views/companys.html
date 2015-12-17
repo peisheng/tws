@@ -1,19 +1,19 @@
 <div>
     <div class="row">
-    <form class="sform">
-        <div class="input-group" style="margin:0 10px;">
-            <input type="text" class="form-control" placeholder="搜索公司
+        <form class="sform">
+            <div class="input-group" style="margin:0 10px;">
+                <input type="text" class="form-control" placeholder="搜索公司
 /地区/项目/类型" aria-describedby="basic-addon1"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        </div>
-    </form>
-</div>
-
+            </div>
+        </form>
+    </div>
     <div class="row">
         <div id="content">
             <div id="scroller">
-                <div id="pullDown" class="ub ub-pc c-gra">
+                <div class="hide remark-text">下滑刷新</div>
+                <div id="pullDown" class=" hide ub ub-pc c-gra">
                     <div class="pullDownIcon"></div>
-                    <div class="pullDownLabel">下拉刷新</div>
+                    <div class="pullDownLabel hide">下滑刷新</div>
                 </div>
                 <ul id="add" class="ul">
                     <li class="li clearfix m15">
@@ -126,10 +126,11 @@
                         </div>
                     </li>
                 </ul>
-                <div id="pullUp" class="ub ub-pc c-gra">
+                <div id="pullUp" class="hide ub ub-pc c-gra">
                     <div class="pullUpIcon"></div>
-                    <div class="pullUpLabel">上更多...</div>
+                    <div class="pullUpLabel hide"></div>
                 </div>
+                <div class="hide remark-text">上滑加载更多...</div>
             </div>
         </div>
     </div>

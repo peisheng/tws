@@ -18,22 +18,13 @@ angular.module('webappApp')
             var loadingStep = 0; //加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
             function pullDownAction() { //下拉事件  
                 setTimeout(function() {
-                    // var el, li, i;
-                    // el = $('#add');
-                    // for (i = 0; i < 3; i++) {
-                    //     li = $("<li></li>");
-                    //     Downcount++;
-                    //     li.text('new Add ' + Downcount + " ！");
-                    //     el.prepend(li);
-                    // }
-                    console.log("ssss")
 
-
+                    console.log("pull down");
                     pullDownEl.removeClass('loading');
-                    pullDownL.html('下拉显示更多...');
+                    // pullDownL.html('下拉显示更多...');
                     pullDownEl['class'] = pullDownEl.attr('class');
                     pullDownEl.attr('class', '').hide();
-                    myScroll.refresh();
+                    //  myScroll.refresh();
                     loadingStep = 0;
                 }, 1000); //1秒  
             }
@@ -51,10 +42,10 @@ angular.module('webappApp')
                     console.log("eee");
 
                     pullUpEl.removeClass('loading');
-                    pullUpL.html('上拉显示更多...');
+                    //pullUpL.html('上拉显示更多...');
                     pullUpEl['class'] = pullUpEl.attr('class');
                     pullUpEl.attr('class', '').hide();
-                    myScroll.refresh();
+                    //myScroll.refresh();
                     loadingStep = 0;
                 }, 1000);
             }
@@ -69,7 +60,6 @@ angular.module('webappApp')
                 pullUpL = pullUpEl.find('.pullUpLabel');
                 pullUpEl['class'] = pullUpEl.attr('class');
                 pullUpEl.attr('class', '').hide();
-
                 myScroll = new IScroll('#content', {
                     probeType: 2, //probeType：1对性能没有影响。在滚动事件被触发时，滚动轴是不是忙着做它的东西。probeType：2总执行滚动，除了势头，反弹过程中的事件。这类似于原生的onscroll事件。probeType：3发出的滚动事件与到的像素精度。注意，滚动被迫requestAnimationFrame（即：useTransition：假）。  
                     scrollbars: true, //有滚动条  
@@ -84,7 +74,7 @@ angular.module('webappApp')
                 });
                 //滚动时  
                 myScroll.on('scroll', function() {
-                    console.log(this.y);
+
                     if (loadingStep == 0 && !pullDownEl.attr('class').match('flip|loading') && !pullUpEl.attr('class').match('flip|loading')) {
                         if (this.y > 5) {
                             //下拉刷新效果  
@@ -92,7 +82,7 @@ angular.module('webappApp')
                             pullDownEl.show();
                             myScroll.refresh();
                             pullDownEl.addClass('flip');
-                            pullDownL.html('准备刷新...');
+                            // pullDownL.html('准备刷新...');
                             loadingStep = 1;
                         } else if (this.y < (this.maxScrollY - 5)) {
                             //上拉刷新效果  
@@ -100,14 +90,14 @@ angular.module('webappApp')
                             pullUpEl.show();
                             myScroll.refresh();
                             pullUpEl.addClass('flip');
-                            pullUpL.html('准备刷新...');
+                            // pullUpL.html('准备刷新...');
                             loadingStep = 1;
                         }
                     }
                 });
                 //滚动完毕  
                 myScroll.on('scrollEnd', function() {
-                    console.log(this.y);
+
                     if (loadingStep == 1) {
                         if (pullUpEl.attr('class').match('flip|loading')) {
                             pullUpEl.removeClass('flip').addClass('loading');
@@ -122,6 +112,14 @@ angular.module('webappApp')
                         }
                     }
                 });
+                // setTimeout(function() {
+
+                //     angular.element("#pullDown").css({
+                //         "display": "none"
+                //     });
+                // }, 100);
+
+
             }
             angular.element("#colntent").ready(loaded);
 

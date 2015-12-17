@@ -29,12 +29,12 @@ angular.module('webappApp')
                     //     el.prepend(li);
                     // }
 
-
+                    console.log("project down");
                     pullDownEl.removeClass('loading');
                     pullDownL.html('下拉显示更多...');
                     pullDownEl['class'] = pullDownEl.attr('class');
                     pullDownEl.attr('class', '').hide();
-                    myScroll.refresh();
+                    //   myScroll.refresh();
                     loadingStep = 0;
                 }, 1000); //1秒  
             }
@@ -50,11 +50,12 @@ angular.module('webappApp')
                     //         el.append(li);
                     //     }
 
+                    console.log("project up");
                     pullUpEl.removeClass('loading');
                     pullUpL.html('上拉显示更多...');
                     pullUpEl['class'] = pullUpEl.attr('class');
                     pullUpEl.attr('class', '').hide();
-                    myScroll.refresh();
+                    //  myScroll.refresh();
                     loadingStep = 0;
                 }, 1000);
             }
@@ -122,9 +123,16 @@ angular.module('webappApp')
                         }
                     }
                 });
+                // setTimeout(function() {
+ //     angular.element("#pullDown").css({
+ //         "display": "none"
+ //     });
+ // }, 100);
+
             }
 
             angular.element("#project-content").ready(loaded);
+
         })();
 
 
