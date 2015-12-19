@@ -14,9 +14,15 @@ angular.module('webappApp')
         var page_size = 20;
         var max_size = 300;
         $scope.items = [];
+        $scope.keyword = "";
+        $scope.ckSearch = function() {
+            $scope.items = [];
+            ReadyData(1);
+
+        };
 
         function ReadyData(index) {
-            var url = "/api/company/list?" + "page_index=" + index + "&page_size=" + page_size;
+            var url = "/api/company/list?" + "page_index=" + index + "&page_size=" + page_size + "&keyword=" + $scope.keyword;
 
             $scope.totalRecord = 0;
             $scope.currentPage = 0;

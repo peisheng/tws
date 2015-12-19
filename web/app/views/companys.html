@@ -2,8 +2,7 @@
     <div class="row">
         <form class="sform">
             <div class="input-group" style="margin:0 10px;">
-                <input type="text" class="form-control" placeholder="搜索公司
-/地区/项目/类型" aria-describedby="basic-addon1"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+                <input type="text" class="form-control" ng-model="keyword" placeholder="搜索公司名称" aria-describedby="basic-addon1"><span class="input-group-addon" style="cursor:pointer;" id="basic-addon1"><span class="glyphicon glyphicon-search" ng-click="ckSearch()"></span></span>
             </div>
         </form>
     </div>
