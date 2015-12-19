@@ -8,10 +8,9 @@
  * Controller of the webappApp
  */
 angular.module('webappApp')
-  .controller('ViewcompanyCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('ViewcompanyCtrl', function($scope, $http, $timeout, $routeParams, $location) {
+        if (!!$routeParams.id) {
+
+        }
+
+    });

@@ -30,12 +30,12 @@ angular
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl',
                 controllerAs: 'about'
-            })          
+            })
             .when('/companys', {
                 templateUrl: 'views/companys.html',
                 controller: 'CompanysCtrl',
                 controllerAs: 'companys'
-            })            
+            })
             .when('/view-company/:id', {
                 templateUrl: 'views/view-company.html',
                 controller: 'ViewcompanyCtrl',
@@ -52,6 +52,6 @@ angular
                 controllerAs: 'viewproject'
             })
             .otherwise({
-                redirectTo: '404.html'
+                redirectTo: '/'
             });
     });

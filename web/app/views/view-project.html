@@ -1,1 +1,47 @@
-view-project
+<div>
+    <div class="jumbotron" style="padding:15px 0;background-color: #fff;">
+        <div>
+            <img ng-src="{{project.main_image_path}}" style="width:100%" alt="{{project.title}}">
+            <div class="lead" style="filter:alpha(opacity=50); margin-top:-30px;  -moz-opacity:0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;background-color:gray; width:100%; min-height:30px;">
+                <p ng-bind="project.title"></p>
+            </div>
+        </div>
+        <p class="h6" ng-bind="project.descript">
+        </p>
+        <br />
+        <p ng-bind-html="project.content">
+        </p>
+        <p>
+            <img src="images/contact.png" style="width:100%;" />
+        </p>
+    </div>
+    <div class="row text-center" style="background-color:#555;filter:alpha(opacity=50);  -moz-opacity:0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9; width:100%;margin-left:auto;margin-right: auto;margin-top:-60px;">
+        <div style="min-width:320px;">
+            <div class="fl">
+                <img ng-src="{{company.logo_path}}" style="width:76px;height:76px; margin:30px 10px;float: right;clear:both;
+            " class="img-circle">
+            </div>
+            <div class="fl text-left">
+                <div class="h3" style="color:rgb(0, 159, 143);font-weight: bold;" ng-bind="project.user_name">
+                </div>
+                <div class="h5">
+                    <span class="glyphicon glyphicon-home" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp; {{company.name}}</span></span>
+                </div>
+                <div class="h5">
+                    <span class="glyphicon glyphicon-earphone" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp;{{company.phone}}</span></span>
+                </div>
+                <div class="h5">
+                    <span class="glyphicon glyphicon-map-marker" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp;{{company.address}}</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px;">
+        <img src="images/contact_b.png" style="width:100%;" />
+        <button class="btn btn-danger btn-lg">分享到朋友圈</button>
+    </div>
+</div>

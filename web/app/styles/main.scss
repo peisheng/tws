@@ -161,10 +161,15 @@ body {
         .title {
             font-size: 15px;
             font-weight: bold;
+            display: block;
+            white-space: nowrap;
+            width: 190px;
+            overflow: hidden;
+            text-overflow: clip;
         }
         .prop {
             color: rgb(0, 159, 143);
-            padding: 10px;
+            padding: 10px 0;
             > span {
                 margin-left: 20px;
                 padding-left: 3px;
@@ -223,6 +228,13 @@ body {
     text-size-adjust: none;
 }
 
+.remark-text {
+    position: absoulte;
+    top: 100px;
+    z-index: 999;
+    margin-left: 50px;
+}
+
 #pullDown,
 #pullUp {
     height: 40px;
@@ -275,7 +287,7 @@ body {
 
 .-webkit-keyframes loading {
     from {
-        -webkit-transform: rotate(0deg)translateZ(0);
+        -webkit-transform: rotate(0deg) translateZ(0);
     }
     .to {
         -webkit-transform: rotate(360deg) translateZ(0);

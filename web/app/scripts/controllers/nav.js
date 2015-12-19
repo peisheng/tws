@@ -12,9 +12,10 @@ angular.module('webappApp')
         var projectListPath = "/projects";
         var companyListPath = "/companys";
         $scope.$on('$routeChangeStart', function(next, current) {
-          changeScope();
-          
+            changeScope();
+
         });
+
         function changeScope() {
             var path = $.trim($location.path()).toLowerCase();
             if (path == "/projects") {
@@ -23,7 +24,7 @@ angular.module('webappApp')
                 $scope.isProjectList = false;
             }
             $scope.isCompanyList = !$scope.isProjectList;
-            if (path == projectListPath || path == companyListPath) {
+            if (path == projectListPath || path == companyListPath || path == "/") {
                 $scope.isShowHead = true;
             } else {
                 $scope.isShowHead = false;
@@ -33,13 +34,13 @@ angular.module('webappApp')
 
 
         $scope.ckProjects = function() {
-           var path = $.trim($location.path()).toLowerCase();
+            var path = $.trim($location.path()).toLowerCase();
             if (path != projectListPath) {
                 $location.path(projectListPath);
             }
         }
         $scope.ckCompanys = function() {
-           var path = $.trim($location.path()).toLowerCase();
+            var path = $.trim($location.path()).toLowerCase();
             if (path != companyListPath) {
                 $location.path(companyListPath);
             }
