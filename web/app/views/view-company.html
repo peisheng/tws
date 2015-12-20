@@ -1,26 +1,38 @@
-<div class="jumbotron">
-    <div>
-        <img src="images/yeoman.png" style="width:100%" alt="I'm Yeoman">
+<div style="background-color:#fff; ">
+    <div class="row" style="background-color: #fff; max-height: 290px;">
+        <div>
+            <img ng-src="{{company.introduce_page.main_image_path}}" style="width:100%; max-height: 276px;" alt="{{company.name}}">
+            <div class="lead text-center h4" style="filter:alpha(opacity=50); margin-top:-50px; padding-top:15px; font-weight:bold; -moz-opacity:0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;background-color:gray; width:100%; height:50px;">
+                <p ng-bind="company.name"></p>
+            </div>
+        </div>
     </div>
-    <div style="filter:alpha(opacity=50); margin-top:-40px;
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;background-color:gray; width:100%;">我是中国人</div>
-    <p class="lead">
-        <img src="images/yeoman.png" alt="I'm Yeoman">
-        <br> Always a pleasure scaffolding your apps.
-    </p>
-    <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-<div class="row marketing">
-    <h4>HTML5 Boilerplate</h4>
-    <p>
-        HTML5 Boilerplate is a professionalprofessionalprofessionalprofessional front-end template for building fast, robust, and adaptable web ap ps or sites .
-    </p>
-    <h4>Angular</h4>
-    <p>
-        AngularJS is a toolset for building the framework most suited to your application development.
-    </p>
-    <h4>Karma</h4>
-    <p>Spectacular Test RunnerRunnerRunnerRunner for JavaScript.</p>
+    <ul class="nav nav-tabs" style="font-weight:bold;">
+        <li class="{{prjActive}}" style="width:50%;"><a ng-click="ckShow(1)">项目案例</a></li>
+        <li style="width:50%; " class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
+    </ul>
+    <div class="row" style="padding:15px;background-color: #fff;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
+    </div>
+    <div class="row" ng-show="showList" style="background-color: #F0EFF4;">
+        <ul id="add" class="ul">
+            <li class="li clearfix m15" ng-repeat="item in items">
+                <div class="fl">
+                    <div class="m15" style="text-align:center;">
+                        <div class="title">
+                            <a href="#/view-project/{{item.id}}" ng-bind="item.title"></a>
+                        </div>
+                        <div class="prop"><span class="glyphicon glyphicon-plus-sign" ng-bind="{{item.type_name}}"></span><span class="glyphicon glyphicon-map-marker" style="margin-left:5px;">{{item.view_count}}人阅读</span></div>
+                    </div>
+                </div>
+                <div class="fr"><img class="img" src="http://dummyimage.com/96x62/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></div>
+            </li>
+        </ul>
+        <div class="remark-text text-center" ng-click="loadNext()" ng-show="showMore" style="width: 100%; margin:30px; cursor:pointer;">点击加载更多</div>
+    </div>
+    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px; display: none; ">
+        <img src="images/contact_b.png " style="width:100%; " />
+        <button class="btn btn-danger btn-lg ">分享到朋友圈</button>
+    </div>
 </div>

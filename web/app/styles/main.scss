@@ -133,7 +133,8 @@ body {
 }
 
 .pagebg {
-    background-color: rgb(240, 240, 240);
+    background-color: #fff;
+    /* rgb(240, 240, 240);*/
 }
 
 .search {
@@ -194,7 +195,8 @@ body {
 }
 
 #content,
-#project-content {
+#project-content,
+#company-list-content {
     position: absolute;
     z-index: 1;
     top: 100px;
