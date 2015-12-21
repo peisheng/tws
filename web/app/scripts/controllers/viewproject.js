@@ -21,4 +21,16 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
             $scope.company.phone = $scope.company.mobile;
         }
     });
+
+    var _url = "/api/project/setviewcount?id" + id;
+    setTimeout(function() {
+        var c = $http({
+            method: "GET",
+            url: _url
+        });
+        c.success(function() {
+            console.log("update sucess");
+        });
+
+    }, 3000);
 });

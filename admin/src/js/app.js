@@ -1,6 +1,4 @@
 'use strict';
-
-
 angular.module('app', [
     'ngAnimate',
     'ngCookies',
@@ -14,5 +12,6 @@ angular.module('app', [
     'ui.load',
     'ui.jq',
     'oc.lazyLoad',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'tm.pagination'
 ]);

@@ -1,1 +1,44 @@
-list.html
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">企业管理</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="CompanysCtrl">
+    <div class="input-group" style="width: 500px;">
+        <input type="text" ng-model="keyword" class="form-control" placeholder="搜索企业名称" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2" ng-click="ckSearch()">搜索</span>
+        <button type="button" class="btn btn-primary pull-right">新建企业</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr align="center">
+                <td style="width:50px;">ID</td>
+                <td>名称</td>
+                <td style="width:90px;">公司类型</td>
+                <td style="width:80px;">创建人</td>
+                <td style="width:90px;">文章数量</td>
+                <td style="width:80px;">阅读量</td>
+                <td style="width:90px;">企业成员</td>
+                <td style="width:200px;">操作</td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr ng-repeat="item in items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.type_name}}</td>
+                <td>{{item.author_name}}</td>
+                <td>{{item.article_count}}</td>
+                <td>{{item.view_count}}</td>
+                <td>{{item.member_count}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" onclick="ckView()">查看
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
+                    <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>

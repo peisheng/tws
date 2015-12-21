@@ -17,7 +17,24 @@ angular.module('webappApp')
         });
         q.success(function(data) {
             $scope.company = data;
+            if (!!$scope.company.introduce_page) {
+                var _url = "/api/project/setviewcount?id" + $scope.company.introduce_page.id;
+                setTimeout(function() {
+                    var c = $http({
+                        method: "GET",
+                        url: _url
+                    });
+                    c.success(function() {
+                        console.log("update sucess");
+                    });
+
+                }, 3000);
+            }
+
         });
+
+
+
 
         $scope.conActive = "active";
         $scope.prjActive = "";

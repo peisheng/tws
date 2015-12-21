@@ -3,7 +3,7 @@
     "version": "2.0.1",
     "description": "Admin web application template with Bootstrap 3 and AngularJS.",
     "scripts": {
-        "start": "node node_modules/http-server/bin/http-server -p 8888 -o"
+        "start": "node node_modules/http-server/bin/http-server -p 8888 -o -P http://192.168.1.105:4696 -d false"
     },
     "keywords": [
         "AngularJS",
@@ -46,7 +46,7 @@
         "grunt-recess": "^1.0.0",
         "grunt-swig": "^0.2.1",
         "gruntfile-gtx": "^0.3.0",
-        "http-server": "^0.6.1",
+        "http-server": "^0.8.5",
         "require-directory": "^2.0.0"
     }
 }
