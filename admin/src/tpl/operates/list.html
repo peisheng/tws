@@ -1,1 +1,41 @@
-list.html
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">操作日志</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="OperatesCtrl">
+    <!-- <div class="input-group" style="width: 500px;">
+    <input type="text" ng-model="keyword" class="form-control" placeholder="搜索企业名称" aria-describedby="basic-addon2">
+    <span class="input-group-addon" id="basic-addon2" ng-click="ckSearch()">搜索</span>
+    <button type="button" class="btn btn-primary pull-right">新建企业</button>
+</div>
+ -->
+    <table class="table table-striped">
+        <thead>
+            <tr align="center">
+                <td style="width:50px;">ID</td>
+                <td>操作名称</td>
+                <td style="width:90px;">说明</td>
+                <td style="width:80px;">操作人</td>
+                <td style="width:80px;">结果</td>
+                <td style="width:90px;">时间</td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr ng-repeat="item in items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.descript}}</td>
+                <td>{{item.user_name}}</td>
+                <td>{{item.result}}</td>
+                <td>{{item.result}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" onclick="ckView()">查看</button>
+                    <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
+                    <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>
