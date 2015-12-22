@@ -18,7 +18,7 @@ angular.module('webappApp')
         q.success(function(data) {
             $scope.company = data;
             if (!!$scope.company.introduce_page) {
-                var _url = "/api/project/setviewcount?id" + $scope.company.introduce_page.id;
+                var _url = "/api/project/setviewcount?id=" + $scope.company.introduce_page.id;
                 setTimeout(function() {
                     var c = $http({
                         method: "GET",

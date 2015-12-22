@@ -22,7 +22,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
         }
     });
 
-    var _url = "/api/project/setviewcount?id" + id;
+    var _url = "/api/project/setviewcount?id=" + id;
     setTimeout(function() {
         var c = $http({
             method: "GET",
