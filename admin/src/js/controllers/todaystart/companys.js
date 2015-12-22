@@ -1,12 +1,12 @@
-app.controller('CompanysCtrl', ['$scope', "$http", function($scope, $http) {
+app.controller('CompanysCtrl', ['$scope', "$http", "$state", function($scope, $http, $state) {
     var page_size = 15;
     $scope.keyword = "";
+    $scope.showList = true;
     var getDataList = function() {
         var params = {
             page_index: $scope.paginationConf.currentPage,
             page_size: $scope.paginationConf.itemsPerPage,
             keyword: $scope.keyword
-
         }
 
         var q = $http({
@@ -22,22 +22,25 @@ app.controller('CompanysCtrl', ['$scope', "$http", function($scope, $http) {
         });
     }
 
+
     $scope.ckSearch = function() {
         $scope.paginationConf.currentPage = 1;
         getDataList();
     }
 
-    $scope.ckView = function() {
+    $scope.ckView = function(id) {
+        $state.go("app.companys-edit");
+
+    }
+    $scope.ckEdit = function(id) {
         throw "";
     }
 
-
-    $scope.ckEdit = function() {
+    $scope.ckDelete = function(id) {
         throw "";
     }
-
-    $scope.ckDelete = function() {
-        throw "";
+    $scope.ckAdd = function() {
+        $state.go("app.companys-edit");
     }
 
     $scope.paginationConf = {
@@ -51,6 +54,9 @@ app.controller('CompanysCtrl', ['$scope', "$http", function($scope, $http) {
 
     $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
         getDataList();
-
     });
 }]);
+app.controller('CompanysEditCtrl', ['$scope', "$http", function($scope, $http) {
+
+
+}])

@@ -57,6 +57,23 @@ angular.module('app')
                             ]
                         }
                     })
+                    .state('app.companys-edit', {
+                        url: "/companys/edit",
+                        templateUrl: "tpl/companys/edit.html",
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('angularFileUpload').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+
+
 
 
                 .state('app.projects', {
