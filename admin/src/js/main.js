@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window',
-        function($scope, $translate, $localStorage, $window) {
+    .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$state', '$translate', '$localStorage', '$window',
+        function($scope, $rootScope, $http, $state, $translate, $localStorage, $window) {
             // add 'ie' classes to html
             var isIE = !!navigator.userAgent.match(/MSIE/i);
             isIE && angular.element($window.document.body).addClass('ie');
@@ -52,24 +52,27 @@ angular.module('app')
                 // save to local storage
                 $localStorage.settings = $scope.app.settings;
             }, true);
+            if (!!$localStorage.username) {
+                $scope.app.currentUserName = $localStorage.username;
+            }
 
             // angular translate
             // $scope.lang = {
- //     isopen: true
- // };
- // $scope.langs = {
- //     en: 'English',
- //     de_DE: 'German',
- //     it_IT: 'Italian'
- // };
- // $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "English";
- // $scope.setLang = function(langKey, $event) {
- //     // set the current lang
- //     $scope.selectLang = $scope.langs[langKey];
- //     // You can change the language during runtime
- //     $translate.use(langKey);
- //     $scope.lang.isopen = !$scope.lang.isopen;
- // };
+            //     isopen: true
+            // };
+            // $scope.langs = {
+            //     en: 'English',
+            //     de_DE: 'German',
+            //     it_IT: 'Italian'
+            // };
+            // $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "English";
+            // $scope.setLang = function(langKey, $event) {
+            //     // set the current lang
+            //     $scope.selectLang = $scope.langs[langKey];
+            //     // You can change the language during runtime
+            //     $translate.use(langKey);
+            //     $scope.lang.isopen = !$scope.lang.isopen;
+            // };
 
 
             function isSmartDevice($window) {
@@ -78,6 +81,29 @@ angular.module('app')
                 // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
                 return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
             }
+
+            $rootScope.$on('$stateChangeStart',
+                function(event, toState, toParams, fromState, fromParams) {
+
+                    if (toState != "access.signin") {
+                        $http({
+                            method: "GET",
+                            url: _Api + "/admin/account/checklogin"
+                        }).success(function(data) {
+                            if (!data.result) {
+                                event.preventDefault();
+                                $state.go('access.signin');
+                            } else {
+
+                            }
+                        });
+                    }
+
+
+
+                    // transitionTo() promise will be rejected with 
+                    // a 'transition prevented' error
+                })
 
         }
     ]);

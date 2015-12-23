@@ -5,10 +5,11 @@
     <div class="panel panel-default">
         <div class="panel-heading font-bold">
             企业信息
+            <div class="pull-right" style="font-size:24px;" ng-show="" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit">&nbsp;</span></div>
         </div>
         <div class="panel-body">
             <form class="form-horizontal" id="companyForm" method="get">
-                <fieldset>
+                <fieldset ng-disabled="isView">
                     <div class="form-group">
                         <!-- Text input-->
                         <label class="col-sm-2 control-label" for="input01">名称</label>

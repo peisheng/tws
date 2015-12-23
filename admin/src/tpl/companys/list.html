@@ -18,7 +18,7 @@
                     <td style="width:90px;">文章数量</td>
                     <td style="width:80px;">阅读量</td>
                     <td style="width:90px;">企业成员</td>
-                    <td style="width:200px;">操作</td>
+                    <td style="width:250px;">操作</td>
                 </tr>
             </thead>
             <tbody align="center">
@@ -31,11 +31,9 @@
                     <td>{{item.view_count}}</td>
                     <td>{{item.member_count}}</td>
                     <td>
-                        <div class="input-group" style="width: 500px;">
-                            <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看</button>
-                            <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
-                            <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
-                        </div>
+                        <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看</button>
+                        <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
+                        <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
                     </td>
                 </tr>
             </tbody>
