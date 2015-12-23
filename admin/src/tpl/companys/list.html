@@ -31,10 +31,11 @@
                     <td>{{item.view_count}}</td>
                     <td>{{item.member_count}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
-                        <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
+                        <div class="input-group" style="width: 500px;">
+                            <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看</button>
+                            <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
+                            <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -47,8 +48,7 @@
         <div id="editForm">
         </div>
     </div>
-   <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
-
+    <a class="btn btn-primary" data-toggle="modal" href='#modal-id'>Trigger modal</a>
     <div class="modal fade" id="modal-id">
         <div class="modal-dialog">
             <div class="modal-content">

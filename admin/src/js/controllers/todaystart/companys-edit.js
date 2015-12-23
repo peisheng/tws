@@ -1,4 +1,21 @@
- app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", function($scope, $http, FileUploader) {
+ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", function($scope, $http, FileUploader, $timeout) {
+
+
+     $scope.companyTypeList = [];
+     $scope.provinceList = [];
+     $scope.cityList = [];
+
+     $scope.form = {
+         name: "",
+         type: "",
+         city_id: "",
+         province: "",
+         address: "",
+         site_url: "",
+         logo_path: ""
+     };
+
+     //上传
 
      var uploader = $scope.uploader = new FileUploader({
          url: _Api + '/file/upload'
@@ -12,10 +29,9 @@
      });
 
      $scope.ckUpload = function() {
-         $("#myUpload").click();
-     }
-
-     // CALLBACKS
+             $("#myUpload").click();
+         }
+         // CALLBACKS
 
      uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
          console.info('onWhenAddingFileFailed', item, filter, options);
@@ -26,34 +42,145 @@
 
      };
      uploader.onAfterAddingAll = function(addedFileItems) {
-         console.info('onAfterAddingAll', addedFileItems);
+         // console.info('onAfterAddingAll', addedFileItems);
      };
      uploader.onBeforeUploadItem = function(item) {
-         console.info('onBeforeUploadItem', item);
+         // console.info('onBeforeUploadItem', item);
      };
      uploader.onProgressItem = function(fileItem, progress) {
-         console.info('onProgressItem', fileItem, progress);
+         // console.info('onProgressItem', fileItem, progress);
      };
      uploader.onProgressAll = function(progress) {
-         console.info('onProgressAll', progress);
+         // console.info('onProgressAll', progress);
      };
      uploader.onSuccessItem = function(fileItem, response, status, headers) {
+         $scope.logo_path = response.file_path;
+         $scope.form.logo_path = $scope.logo_path;
+         $("#logo_path").val($scope.logo_path);
+         $scope.$apply();
 
-         console.info('onSuccessItem', fileItem, response, status, headers);
+         // console.info('onSuccessItem', fileItem, response, status, headers);
      };
      uploader.onErrorItem = function(fileItem, response, status, headers) {
-         console.info('onErrorItem', fileItem, response, status, headers);
+         // console.info('onErrorItem', fileItem, response, status, headers);
      };
      uploader.onCancelItem = function(fileItem, response, status, headers) {
-         console.info('onCancelItem', fileItem, response, status, headers);
+         // console.info('onCancelItem', fileItem, response, status, headers);
      };
      uploader.onCompleteItem = function(fileItem, response, status, headers) {
-         console.info('onCompleteItem', fileItem, response, status, headers);
+         // console.info('onCompleteItem', fileItem, response, status, headers);
      };
      uploader.onCompleteAll = function() {
-         console.info('onCompleteAll');
+         // console.info('onCompleteAll');
      };
 
+     //绑定下拉列表
+     (function() {
+
+         function readyCompanyList() {
+             $http({
+                 method: "GET",
+                 url: _Api + "/admin/dictionary/GetCompanyTypeList"
+             }).success(function(data) {
+                 $scope.companyTypeList = data;
+             });
+         }
+
+         function provinceList() {
+             $http({
+                 method: "GET",
+                 url: _Api + "/admin/city/getprovinces"
+             }).success(function(data) {
+                 $scope.provinceList = data;
+
+             });
+         }
+
+         function cityList() {
+             $http({
+                 method: "GET",
+                 url: _Api + "/admin/city/getcitys"
+             }).success(function(data) {
+                 $scope.cityList = data;
+             });
+         }
+         readyCompanyList();
+         provinceList();
+         cityList();
+     })();
 
 
- }])
+     var $form = $("#companyForm");
+     $form.validator({
+         stopOnError: false,
+         timely: true,
+         fields: {
+             'name': 'required;length[4~14];',
+             'type': "required;",
+             'province': "required;",
+             'city': "required;",
+             'address': "required;",
+             'logo_path': "required;",
+         }
+     });
+
+
+     $scope.ckSave = function() {
+
+         // var login = $http({
+         //     method: "POST",
+         //     url: _Api + "/admin/account/login",
+         //     params: {
+         //         username: "admin",
+         //         password: "admin",
+         //         return_url: ""
+         //     }
+         // });
+         // login.success(function(data) {
+         //     if (data.result) {
+         //         layer.msg("保存成功", {
+         //             time: 1000
+         //         });
+         //     } else {
+         //         layer.msg("保存失败", {
+         //             time: 1000
+         //         });
+         //     }
+
+         // });
+         // return;
+
+
+         $form.isValid(function(v) {
+             if (v) {
+                 var postData = $scope.form;
+
+                 var q = $http({
+                     method: "POST",
+                     url: _Api + "/admin/company/save",
+                     data: {
+                         "jsonCom": JSON.stringify(postData)
+                     }
+                 });
+                 q.success(function(data) {
+                     if (data.result) {
+                         layer.msg("保存成功", {
+                             time: 1000
+                         });
+                         $scope.form.id = data.company_id;
+                     } else {
+                         layer.msg("保存失败", {
+                             time: 1000
+                         });
+                     }
+
+                 });
+             }
+
+
+         });
+     }
+
+
+
+ }]);

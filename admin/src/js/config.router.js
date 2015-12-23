@@ -73,9 +73,6 @@ angular.module('app')
                         }
                     })
 
-
-
-
                 .state('app.projects', {
                     url: "/projects",
                     templateUrl: "tpl/projects/list.html",
