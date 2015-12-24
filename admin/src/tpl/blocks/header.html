@@ -43,11 +43,12 @@
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
-                    <a ui-sref="app.page.profile">修改密码</a>
+                    <!--  <a ui-sref="app.page.profile">修改密码</a> -->
+                    <a ui-sref="app.changepassword">修改密码</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a ui-sref="access.signin">退出登录</a>
+                    <a ng-click="ckLogout()">退出登录</a>
                 </li>
             </ul>
             <!-- / dropdown -->

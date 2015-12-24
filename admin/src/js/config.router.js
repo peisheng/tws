@@ -110,17 +110,27 @@ angular.module('app')
                 })
 
                 .state('app.operates', {
-                    url: "/operates",
-                    templateUrl: "tpl/operates/list.html",
-                    resolve: {
-                        deps: ['uiLoad',
-                            function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/operates.js');
-                            }
-                        ]
-                    }
-                })
-
+                        url: "/operates",
+                        templateUrl: "tpl/operates/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/operates.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state("app.changepassword", {
+                        url: "/changepassword",
+                        templateUrl: "tpl/changepassword.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/changepassword.js');
+                                }
+                            ]
+                        }
+                    })
 
                 .state('app.ui', {
                         url: '/ui',

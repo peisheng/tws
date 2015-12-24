@@ -4,7 +4,8 @@
      $scope.companyTypeList = [];
      $scope.provinceList = [];
      $scope.cityList = [];
-
+     $scope.projectItems = [];
+     $scope.userItems = [];
      $scope.form = {
          name: "",
          type: "",
@@ -14,7 +15,6 @@
          site_url: "",
          logo_path: ""
      };
-
      //上传
 
      var uploader = $scope.uploader = new FileUploader({
@@ -92,7 +92,6 @@
                  url: _Api + "/admin/city/getprovinces"
              }).success(function(data) {
                  $scope.provinceList = data;
-
              });
          }
 
@@ -110,8 +109,7 @@
      })();
 
 
-     var $form = $("#companyForm");
-     $form.validator({
+     $("#companyForm").validator({
          stopOnError: false,
          timely: true,
          fields: {
@@ -123,35 +121,8 @@
              'logo_path': "required;",
          }
      });
-
-
      $scope.ckSave = function() {
-
-         // var login = $http({
-         //     method: "POST",
-         //     url: _Api + "/admin/account/login",
-         //     params: {
-         //         username: "admin",
-         //         password: "admin",
-         //         return_url: ""
-         //     }
-         // });
-         // login.success(function(data) {
-         //     if (data.result) {
-         //         layer.msg("保存成功", {
-         //             time: 1000
-         //         });
-         //     } else {
-         //         layer.msg("保存失败", {
-         //             time: 1000
-         //         });
-         //     }
-
-         // });
-         // return;
-
-
-         $form.isValid(function(v) {
+         $("#companyForm").isValid(function(v) {
              if (v) {
                  var postData = $scope.form;
 
@@ -176,10 +147,115 @@
 
                  });
              }
+         });
+     }
 
+
+
+     $scope.tabArticle = function() {
+         if (!$scope.isShowArticle) {
+             $scope.articeActive = "active";
+             $scope.userActive = "";
+             $scope.isShowArticle = true;
+             $scope.isShowUser = false;
+             $scope.paginationConf.currentPage = 1;
+             $scope.project_keyword = "";
+             if (!!$scope.form.id) {
+                 getProjectDataList();
+             }
+         }
+
+     }
+
+     $scope.tabUser = function() {
+         if (!$scope.isShowUser) {
+             $scope.articeActive = "";
+             $scope.userActive = "active";
+             $scope.isShowArticle = false;
+             $scope.isShowUser = true;
+             $scope.paginationConf.currentPage = 1;
+             $scope.user_keyword = "";
+             if (!!$scope.form.id) {
+                 getUserDataList();
+             }
+         }
+     }
+
+
+
+     var page_size = 15;
+     $scope.user_keyword = "";
+     $scope.company_id = ""
+     var getUserDataList = function() {
+         var params = {
+             page_index: $scope.paginationConf.currentPage,
+             page_size: $scope.paginationConf.itemsPerPage,
+             keyword: $scope.keyword,
+             company_id: $scope.form.id
+         };
+         var q = $http({
+             method: "GET",
+             url: _Api + "/admin/company/getusers",
+             params: params
+         });
+         q.success(function(data) {
+             $scope.paginationConf.totalItems = data.total_count;
+             $scope.userItems = data.items;
 
          });
      }
+
+     $scope.ckUserSearch = function() {
+         $scope.paginationConf.currentPage = 1;
+         getUserDataList();
+     }
+
+     $scope.paginationConf = {
+         currentPage: 1,
+         totalItems: 0,
+         itemsPerPage: page_size,
+         pagesLength: 10,
+         perPageOptions: [10, 20, 50],
+         onChange: function(e) {}
+     };
+     $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
+         if ($scope.isShowUser) {
+             getUserDataList();
+         }
+         if ($scope.isShowArticle) {
+             getProjectDataList();
+         }
+     });
+
+
+
+     $scope.project_keyword = "";
+     var getProjectDataList = function() {
+         var params = {
+             page_index: $scope.paginationConf.currentPage,
+             page_size: $scope.paginationConf.itemsPerPage,
+             keyword: $scope.project_keyword,
+             company_id: $scope.form.id
+         };
+         var q = $http({
+             method: "GET",
+             url: _Api + "/admin/project/list",
+             params: params
+         });
+
+         q.success(function(data) {
+             $scope.paginationConf.totalItems = data.total_count;
+             $scope.projectItems = data.items;
+         });
+     }
+
+     $scope.ckProjectSearch = function() {
+         $scope.paginationConf.currentPage = 1;
+         getProjectDataList();
+     }
+
+
+
 
 
 

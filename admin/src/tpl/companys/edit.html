@@ -13,8 +13,7 @@
                     <div class="form-group">
                         <!-- Text input-->
                         <label class="col-sm-2 control-label" for="input01">名称</label>
-                        <div class="col-sm-8
-">
+                        <div class="col-sm-8">
                             <input type="text" name="name" ng-model="form.name" placeholder="名称" class="form-control rounded">
                         </div>
                     </div>
@@ -116,6 +115,100 @@
                     </div>
                 </fieldset>
             </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-title">
+            <ul class="nav nav-tabs nav-pills nav-justified">
+                <li class="{{articeActive}}">
+                    <a ng-click="tabArticle()">文章信息</a>
+                </li>
+                <li class="{{userActive}}">
+                    <a href ng-click="tabUser()">用户信息</a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="text-center" ng-show="isShowArticle">
+                <div class="input-group" style="width: 500px;">
+                    <input type="text" ng-model="keyword" class="form-control" placeholder="搜索文章名称" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2" ng-click="ckProjectSearch()">搜索</span>
+                    <button type="button" class="btn btn-primary pull-right">新建文章</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr align="center">
+                            <td style="width:50px;">ID</td>
+                            <td>标题</td>
+                            <td style="width:90px;">描述标题</td>
+                            <td style="width:80px;">发布时间</td>
+                            <td style="width:80px;">阅读量</td>
+                            <td style="width:80px;">是否为公司简介</td>
+                            <td style="width:250px;">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr ng-repeat="item in projectItems">
+                            <td>{{item.id}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.descript}}</td>
+                            <td>{{item.publish_time}}</td>
+                            <td>{{item.view_count}}</td>
+                            <td>{{item.is_company_intro}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="ckView()">查看
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
+                                <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <tm-pagination conf="paginationConf"></tm-pagination>
+                </div>
+            </div>
+            <div class="text-center" ng-show="isShowUser">
+                <div class="input-group" style="width: 500px;">
+                    <input type="text" ng-model="user_keyword" class="form-control" placeholder="搜索用户名称" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2" ng-click="ckUserSearch()">搜索</span>
+                    <button type="button" class="btn btn-primary pull-right">新建用户</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr align="center">
+                            <td style="width:50px;">ID</td>
+                            <td>用户名称</td>
+                            <td style="width:90px;">真实姓名</td>
+                            <td style="width:80px;">QQ号码</td>
+                            <td style="width:90px;">电话</td>
+                            <td style="width:80px;">手机</td>
+                            <td style="width:90px;">Email</td>
+                            <td style="width:250px;">操作</td>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr ng-repeat="item in userItems">
+                            <td>{{item.id}}</td>
+                            <td>{{item.user_name}}</td>
+                            <td>{{item.real_name}}</td>
+                            <td>{{item.qq_number}}</td>
+                            <td>{{item.phone}}</td>
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.email}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="ckView()">查看
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
+                                <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <tm-pagination conf="paginationConf"></tm-pagination>
+                </div>
+            </div>
         </div>
     </div>
 </div>

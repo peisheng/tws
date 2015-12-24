@@ -98,12 +98,16 @@ angular.module('app')
                             }
                         });
                     }
+                });
+            $scope.ckLogout = function() {
+                $http({
+                    method: "GET",
+                    url: _Api + "/admin/account/Logout"
+                }).success(function(data) {
+                    $state.go('access.signin');
+                });
 
-
-
-                    // transitionTo() promise will be rejected with 
-                    // a 'transition prevented' error
-                })
+            }
 
         }
     ]);
