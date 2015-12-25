@@ -58,7 +58,13 @@ angular.module('app')
                         }
                     })
                     .state('app.companys-edit', {
-                        url: "/companys/edit",
+                        url: "/companys/edit/:id",
+                        // params: [{
+            //     id: {
+            //         default: "0"
+            //     }
+            // }],
+
                         templateUrl: "tpl/companys/edit.html",
                         resolve: {
                             deps: ['$ocLazyLoad',

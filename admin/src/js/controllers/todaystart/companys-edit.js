@@ -1,5 +1,4 @@
- app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", function($scope, $http, FileUploader, $timeout) {
-
+ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", function($scope, $http, FileUploader, $timeout, $stateParams) {
 
      $scope.companyTypeList = [];
      $scope.provinceList = [];
@@ -15,7 +14,18 @@
          site_url: "",
          logo_path: ""
      };
+
+
+
      //上传
+     $scope.paginationConf = {
+         currentPage: 1,
+         totalItems: 0,
+         itemsPerPage: page_size,
+         pagesLength: 10,
+         perPageOptions: [10, 20, 50],
+         onChange: function(e) {}
+     };
 
      var uploader = $scope.uploader = new FileUploader({
          url: _Api + '/file/upload'
@@ -92,6 +102,26 @@
                  url: _Api + "/admin/city/getprovinces"
              }).success(function(data) {
                  $scope.provinceList = data;
+                 if (!!$stateParams.id) {
+                     $http({
+                         method: "GET",
+                         url: _Api + "/admin/company/get",
+                         params: {
+                             id: $stateParams.id
+                         }
+                     }).success(function(data) {
+                         $scope.form = {
+                             id: data.id,
+                             name: data.name,
+                             type: data.type_id,
+                             city_id: data.city_id,
+                             province: data.province,
+                             address: data.address,
+                             site_url: data.site_url,
+                             logo_path: data.logo_path
+                         };
+                     });
+                 }
              });
          }
 
@@ -210,14 +240,6 @@
          getUserDataList();
      }
 
-     $scope.paginationConf = {
-         currentPage: 1,
-         totalItems: 0,
-         itemsPerPage: page_size,
-         pagesLength: 10,
-         perPageOptions: [10, 20, 50],
-         onChange: function(e) {}
-     };
      $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
          if ($scope.isShowUser) {
              getUserDataList();
