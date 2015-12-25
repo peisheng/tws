@@ -6,7 +6,7 @@ angular.module('tm.pagination', []).directive('tmPagination', [function() {
     return {
         restrict: 'EA',
         template: '<div class="page-list">' +
-            '<ul class="pagination" ng-show="conf.totalItems > 0">' +
+            '<ul class="pagination pagination-lg" ng-show="conf.totalItems > 0">' +
             '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>上一页</span></li>' +
             '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
             'ng-click="changeCurrentPage(item)">' +
