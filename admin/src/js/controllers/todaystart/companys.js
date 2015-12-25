@@ -1,4 +1,4 @@
-app.controller('CompanysCtrl', ['$scope', "$http", "$state", function($scope, $http, $state) {
+app.controller('CompanysCtrl', ['$scope', "$http", "$state", "$localStorage", function($scope, $http, $state, $localStorage) {
     var page_size = 15;
     $scope.keyword = "";
     $scope.showList = true;
@@ -29,11 +29,17 @@ app.controller('CompanysCtrl', ['$scope', "$http", "$state", function($scope, $h
     }
 
     $scope.ckView = function(id) {
-        $state.go("app.companys-edit");
+        $state.go("app.companys-edit", {
+            id: id
+        });
+        $localStorage.edit = false;
 
     }
     $scope.ckEdit = function(id) {
-        throw "";
+        $state.go("app.companys-edit", {
+            id: id
+        });
+        $localStorage.edit = true;
     }
 
     $scope.ckDelete = function(id) {

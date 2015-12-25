@@ -1,5 +1,6 @@
  app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", function($scope, $http, FileUploader, $timeout, $stateParams) {
 
+
      $scope.companyTypeList = [];
      $scope.provinceList = [];
      $scope.cityList = [];

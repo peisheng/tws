@@ -59,19 +59,14 @@ angular.module('app')
                     })
                     .state('app.companys-edit', {
                         url: "/companys/edit/:id",
-                        // params: [{
-            //     id: {
-            //         default: "0"
-            //     }
-            // }],
-
-                        templateUrl: "tpl/companys/edit.html",
+                        templateUrl: "tpl/companys/edit.html?id=" + (new Date()).toString(),
                         resolve: {
-                            deps: ['$ocLazyLoad',
-                                function($ocLazyLoad) {
+                            deps: ['$ocLazyLoad', 'uiLoad',
+                                function($ocLazyLoad, uiLoad) {
                                     return $ocLazyLoad.load('angularFileUpload').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                            //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                            return uiLoad.load("js/controllers/todaystart/companys-edit.js");
                                         }
                                     );
                                 }

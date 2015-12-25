@@ -98,7 +98,7 @@
                     <div class="form-group">
                         <div>
                             <img ng-src="{{form.logo_path}}" style="width:400px;" ng-init="form.logo_path='http://dummyimage.com/400x200/4d494d/686a82.gif&text=placeholder+image'" alt="Logo Image">
-                            <input type="hidden" id="logo_path" name="logo_path" ng-model="form.logo_path">
+                            <input type="text" id="logo_path" name="logo_path" style="width:0px;height: 0px; overflow: hidden" ng-model="form.logo_path">
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,7 +110,6 @@
                     </div>
                     <div class="form-group">
                         <button type="button" ng-click="ckSave()" class="btn btn-success">保存</button>
-                        <button type="button" ng-click="ckSave()" class="btn btn-success">继续</button>
                         <a class="btn btn-default" ui-sref="app.companys">返回</a>
                     </div>
                 </fieldset>
@@ -164,9 +163,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="text-center">
-                    <tm-pagination conf="paginationConf"></tm-pagination>
-                </div>
             </div>
             <div class="text-center" ng-show="isShowUser">
                 <div class="input-group" style="width: 500px;">
@@ -205,9 +201,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="text-center">
-                    <tm-pagination conf="paginationConf"></tm-pagination>
-                </div>
+            </div>
+            <div class="text-center">
+                <tm-pagination conf="paginationConf"></tm-pagination>
             </div>
         </div>
     </div>
