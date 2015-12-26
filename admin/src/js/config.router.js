@@ -92,9 +92,8 @@ angular.module('app')
                     resolve: {
                         deps: ['$ocLazyLoad', 'uiLoad',
                             function($ocLazyLoad, uiLoad) {
-                                return $ocLazyLoad.load('angularFileUpload').then(
+                                return $ocLazyLoad.load(['angularFileUpload', 'textAngular']).then(
                                     function() {
-                                        //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
                                         return uiLoad.load("js/controllers/todaystart/projects-edit.js");
                                     }
                                 );

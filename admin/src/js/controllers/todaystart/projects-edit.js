@@ -1,8 +1,18 @@
-app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window", function($scope, $http, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
+app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window", function($scope, $http, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
 
 
     $scope.articleTypeList = [];
-
+    $scope.imgList = [];
+    $scope.form = {
+        'title': '',
+        'descript': "",
+        'type_id': "",
+        'content': "",
+        'main_image_path': "",
+        'company_id': $localStorage.company_id,
+        'is_company_intro': "0",
+        "id": null
+    };
     $scope.isView = !$localStorage.edit;
 
 
@@ -44,11 +54,14 @@ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
         // console.info('onProgressAll', progress);
     };
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
-        $scope.logo_path = response.file_path;
-        $scope.form.logo_path = $scope.logo_path;
-        $("#logo_path").val($scope.logo_path);
-        $scope.$apply();
-
+        if (response.length > 0) {
+            $scope.imgList.push(response[0]);
+            $scope.$apply();
+        }
+        // $scope.logo_path = response.file_path;
+        // $scope.form.logo_path = $scope.logo_path;
+        // $("#logo_path").val($scope.logo_path);
+        // $scope.$apply();
         // console.info('onSuccessItem', fileItem, response, status, headers);
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -73,41 +86,55 @@ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                 url: _Api + "/admin/dictionary/GetArticleTypeList"
             }).success(function(data) {
                 $scope.articleTypeList = data;
+                if (!!$stateParams.id) {
+                    $http({
+                        method: "GET",
+                        url: _Api + "/admin/project/get",
+                        params: {
+                            id: $stateParams.id
+                        }
+                    }).success(function(data) {
+                        $scope.form = {
+                            "id": data.id,
+                            'title': data.title,
+                            'descript': data.descript,
+                            'type_id': data.type_id,
+                            'content': data.content,
+                            'main_image_path': data.main_image_path,
+                            'company_id': data.company_id,
+                            'is_company_intro': data.is_company_intro
+                        };
+                    });
+                }
             });
-        }
+        };
         readyArticleList();
 
     })();
 
 
-    $("#companyForm").validator({
+    $("#projectForm").validator({
         stopOnError: false,
         timely: true,
         fields: {
-            'name': 'required;length[4~14];',
-            'type': "required;",
-            'province': "required;",
-            'city': "required;",
-            'address': "required;",
-            'logo_path': "required;",
+            'title': 'required;length[4~14];',
+            'descript': "required;",
+            'type_id': "required;",
+            'content': "required;length[20~]",
+            'main_image_path': "required;"
         }
     });
 
-
-
-
-
-
     $scope.ckSave = function() {
-        $("#companyForm").isValid(function(v) {
+        $("#projectForm").isValid(function(v) {
             if (v) {
                 var postData = $scope.form;
 
                 var q = $http({
                     method: "POST",
-                    url: _Api + "/admin/company/save",
+                    url: _Api + "/admin/project/save",
                     data: {
-                        "jsonCom": JSON.stringify(postData)
+                        "proj": JSON.stringify(postData)
                     }
                 });
                 q.success(function(data) {
@@ -125,7 +152,41 @@ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                 });
             }
         });
+
     }
+
+    $scope.setMainPath = function(path) {
+        $scope.form.main_image_path = path;
+    }
+
+    function addSplitToField($t, myValue) {
+        if (document.selection) {
+            $t.focus();
+            sel = document.selection.createRange();
+            sel.text = myValue;
+            $t.focus();
+        } else if ($t.selectionStart || $t.selectionStart == '0') {
+            var startPos = $t.selectionStart;
+            var endPos = $t.selectionEnd;
+            var scrollTop = $t.scrollTop;
+            $t.value = $t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length);
+            this.focus();
+            $t.selectionStart = startPos + myValue.length;
+            $t.selectionEnd = startPos + myValue.length;
+            $t.scrollTop = scrollTop;
+        } else {
+            $t.value += myValue;
+            $t.focus();
+        }
+    }
+
+    $scope.addImg = function(imgpath) {
+        var img = "<p><img  src='" + imgpath + "'/></p>";
+
+        $scope.form.content += img;
+
+    }
+
 
 
 

@@ -14,6 +14,7 @@ angular.module('app', [
     'oc.lazyLoad',
     'pascalprecht.translate',
     'tm.pagination'
+
 ]);
 
-var _Api = ""; //when realse to server change it to : /api
+var _Api = "/api"; //when realse to server change it to : /api

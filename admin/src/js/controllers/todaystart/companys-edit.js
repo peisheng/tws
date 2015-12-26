@@ -156,21 +156,23 @@
 
      $scope.ckProjectAdd = function() {
          $localStorage.edit = true;
+         $localStorage.company_id = $scope.form.id;
          $state.go("app.projects-edit");
 
      }
 
      $scope.ckProjectEdit = function(id) {
          $localStorage.edit = true;
+         $localStorage.company_id = $scope.form.id;
          $state.go("app.projects-edit", {
              id: id
          });
-
      }
 
 
      $scope.ckProjectView = function(id) {
          $localStorage.edit = true;
+         $localStorage.company_id = $scope.form.id;
          $state.go("app.projects-edit", {
              id: id
          });
@@ -201,8 +203,6 @@
              });
 
          }
-
-
      }
 
      $scope.ckUserAdd = function() {

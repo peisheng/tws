@@ -155,10 +155,10 @@
                             <td>{{item.view_count}}</td>
                             <td>{{item.is_company_intro}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="ckProjectView(item.id)">查看
+                                <button type="button" class="btn btn-primary" ng-click="ckProjectView(item.id)">查看
                                 </button>
-                                <button type="button" class="btn btn-primary" onclick="ckProjectEdit(item.id)">编辑</button>
-                                <button type="button" class="btn btn-danger" onclick="ckProjectDelete(item.id)">删除</button>
+                                <button type="button" class="btn btn-primary" ng-click="ckProjectEdit(item.id)">编辑</button>
+                                <button type="button" class="btn btn-danger" ng-click="ckProjectDelete(item.id)">删除</button>
                             </td>
                         </tr>
                     </tbody>

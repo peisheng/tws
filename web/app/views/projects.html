@@ -11,12 +11,12 @@
                     <div class="fl">
                         <div class="m15" style="text-align:center;">
                             <div class="title">
-                                <a href="#/view-project/{{item.id}}" ng-bind="item.title"></a>
+                                <a href="/web/index.html#/view-project/{{item.id}}" ng-bind="item.title"></a>
                             </div>
                             <div class="prop"><span class="glyphicon glyphicon-plus-sign" ng-bind="{{item.type_name}}"></span><span class="glyphicon glyphicon-map-marker" style="margin-left:5px;">{{item.view_count}}人阅读</span></div>
                         </div>
                     </div>
-                    <div class="fr"><img class="img" src="http://dummyimage.com/96x62/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></div>
+                    <div class="fr"><img class="img" ng-src="{{item.main_image_path}}" style="width:96px; height:62px; " alt="{{item.title}}图片"></div>
                 </li>
             </ul>
             <div id="pullUp" class="hide ub ub-pc c-gra">
