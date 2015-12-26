@@ -18,6 +18,8 @@ module.exports = {
             'bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
             'bower_components/angular-translate-storage-local/angular-translate-storage-local.js',
             'bower_components/angular-file-upload/angular-file-upload.js',
+            "src/js/vendor/layer/layer.js",
+            'src/js/vendor/layer/extend/layer.ext.js',
             'src/js/*.js',
             'src/js/directives/*.js',
             'src/js/services/*.js',
@@ -25,8 +27,7 @@ module.exports = {
             'src/js/vendor/nice-validator/jquery.validator.js',
             "src/js/vendor/nice-validator/local/zh-Cn.js",
             'src/js/controllers/bootstrap.js',
-            'src/js/vendor/tm.pagination.js',
-            "src/js/vendor/layer/layer.js"
+            'src/js/vendor/tm.pagination.js'
         ],
         dest: 'angular/js/app.src.js'
     },

@@ -8,7 +8,7 @@
             <div class="pull-right" style="font-size:24px;" ng-show="isView" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit">&nbsp;</span></div>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" id="companyForm" method="get">
+            <div class="form-horizontal" id="companyForm">
                 <fieldset ng-disabled="isView">
                     <div class="form-group">
                         <!-- Text input-->
@@ -113,7 +113,7 @@
                         <a class="btn btn-default" onclick="history.back()">返回</a>
                     </div>
                 </fieldset>
-            </form>
+            </div>
         </div>
     </div>
     <div class="panel panel-default">
@@ -132,7 +132,7 @@
                 <div class="input-group" style="width: 500px;">
                     <input type="text" ng-model="keyword" class="form-control" placeholder="搜索文章名称" aria-describedby="basic-addon2">
                     <span class="input-group-addon" id="basic-addon2" ng-click="ckProjectSearch()">搜索</span>
-                    <button type="button" class="btn btn-primary pull-right">新建文章</button>
+                    <button type="button" class="btn btn-primary pull-right" ng-click="ckProjectAdd()">新建文章</button>
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -155,10 +155,10 @@
                             <td>{{item.view_count}}</td>
                             <td>{{item.is_company_intro}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="ckView()">查看
+                                <button type="button" class="btn btn-primary" onclick="ckProjectView(item.id)">查看
                                 </button>
-                                <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
-                                <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                                <button type="button" class="btn btn-primary" onclick="ckProjectEdit(item.id)">编辑</button>
+                                <button type="button" class="btn btn-danger" onclick="ckProjectDelete(item.id)">删除</button>
                             </td>
                         </tr>
                     </tbody>

@@ -1,4 +1,4 @@
-app.controller('ProjectsCtrl', ['$scope', "$http", function($scope, $http) {
+app.controller('ProjectsCtrl', ['$scope', "$http", "$state", "$localStorage", function($scope, $http, $state, $localStorage) {
     var page_size = 15;
     $scope.keyword = "";
     var getDataList = function() {
@@ -37,4 +37,9 @@ app.controller('ProjectsCtrl', ['$scope', "$http", function($scope, $http) {
     $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
         getDataList();
     });
+
+    $scope.ckAddProject = function() {
+        $localStorage.edit = true;
+        $state.go("app.projects-edit");
+    }
 }]);

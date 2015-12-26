@@ -86,6 +86,23 @@ angular.module('app')
                     }
                 })
 
+                .state('app.projects-edit', {
+                    url: "/projects/edit/:id",
+                    templateUrl: "tpl/projects/edit.html",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function($ocLazyLoad, uiLoad) {
+                                return $ocLazyLoad.load('angularFileUpload').then(
+                                    function() {
+                                        //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                        return uiLoad.load("js/controllers/todaystart/projects-edit.js");
+                                    }
+                                );
+                            }
+                        ]
+                    }
+                })
+
                 .state('app.users', {
                         url: "/users",
                         templateUrl: "tpl/users/list.html",

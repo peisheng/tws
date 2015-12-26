@@ -65,11 +65,12 @@
          // console.info('onProgressAll', progress);
      };
      uploader.onSuccessItem = function(fileItem, response, status, headers) {
-         $scope.logo_path = response.file_path;
-         $scope.form.logo_path = $scope.logo_path;
-         $("#logo_path").val($scope.logo_path);
-         $scope.$apply();
-
+         if (response.length > 0) {
+             $scope.logo_path = response[0].file_path;
+             $scope.form.logo_path = $scope.logo_path;
+             $("#logo_path").val($scope.logo_path);
+             $scope.$apply();
+         }
          // console.info('onSuccessItem', fileItem, response, status, headers);
      };
      uploader.onErrorItem = function(fileItem, response, status, headers) {
@@ -153,9 +154,60 @@
          }
      });
 
+     $scope.ckProjectAdd = function() {
+         $localStorage.edit = true;
+         $state.go("app.projects-edit");
+
+     }
+
+     $scope.ckProjectEdit = function(id) {
+         $localStorage.edit = true;
+         $state.go("app.projects-edit", {
+             id: id
+         });
+
+     }
+
+
+     $scope.ckProjectView = function(id) {
+         $localStorage.edit = true;
+         $state.go("app.projects-edit", {
+             id: id
+         });
+
+     }
+
+     $scope.ckProjectDelete = function(id) {
+         if (!!id) {
+             layer.confirm("确定要删除当前的文章吗？", {
+                 btn: ["确定", "取消"]
+             }, function() {
+                 $http({
+                     method: "POST",
+                     url: _Api + "/admin/project/delete",
+                     data: {
+                         id: id
+                     }
+                 }).success(function(data) {
+                     if (data.result) {
+                         layer.msg("删除成功");
+                         getProjectDataList();
+                     } else {
+                         layer.msg("删除失败，请联系管理员");
+                     }
+                 });
+             }, function() {
+                 layer.closeAll();
+             });
+
+         }
+
+
+     }
 
      $scope.ckUserAdd = function() {
          $localStorage.company_id = $scope.form.id;
+         $localStorage.edit = true;
          $state.go("app.users-edit");
      }
 
