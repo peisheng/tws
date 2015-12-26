@@ -17,6 +17,7 @@ module.exports = {
                 'bower_components/font-awesome/css/font-awesome.css',
                 'bower_components/simple-line-icons/css/simple-line-icons.css',
                 'src/js/vendor/layer/skin/layer.css',
+                'src/js/vendor/nice-validator/jquery.validator.css',
                 'src/css/*.css'
             ]
         },

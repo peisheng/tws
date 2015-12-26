@@ -1,65 +1,72 @@
-edit.html
-<form class="form-horizontal">
-    <fieldset>
-        <div id="legend" class="">
-            <legend class="">用户信息</legend>
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">用户添加</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="UsersEditCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            用户信息
+            <div class="pull-right" style="font-size:24px;" ng-show="isView" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit">&nbsp;</span></div>
         </div>
-        <div class="control-group">
-            <!-- Text input-->
-            <label class="control-label" for="input01">用户名</label>
-            <div class="controls">
-                <input type="text" placeholder="用户名" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
+        <div class="panel-body">
+            <form class="form-horizontal" id="UserForm" method="get">
+                <fieldset ng-disabled="isView">
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2 control-label" for="input01">用户名</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="用户名" name="user_name" ng-model="form.user_name" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Search input-->
+                        <label class="col-sm-2 control-label">真实姓名</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="真实姓名" name="real_name" ng-model="form.real_name" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Search input-->
+                        <label class="col-sm-2 control-label">QQ号码</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="QQ号码" name="qq_number" ng-model="form.qq_number" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2 control-label" for="input01">电话号码</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="电话号码" name="phone" ng-model="form.phone" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2 control-label" for="input01">手机号码</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="手机号码" name="mobile" ng-model="form.mobile" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2 control-label" for="input01">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="Email" name="email" ng-model="form.email" class="form-control rounded">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">设为公司联系人</label>
+                        <div class="col-sm-8">
+                            <!-- Multiple Checkboxes -->
+                            <label class="checkbox">
+                                <input type="checkbox" ng-true-value="1" ng-false-value="0" name="isAdmin" ng-model="form.is_admin"> 是
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" ng-click="ckSave()" class="btn btn-success">保存</button>
+                        <a class="btn btn-default" ui-sref="app.users">返回</a>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-        <div class="control-group">
-            <!-- Search input-->
-            <label class="control-label">真实姓名</label>
-            <div class="controls">
-                <input type="text" placeholder="真实姓名" class="input-xlarge search-query">
-                <p class="help-block"></p>
-            </div>
-        </div>
-        <div class="control-group">
-            <!-- Search input-->
-            <label class="control-label">QQ号码</label>
-            <div class="controls">
-                <input type="text" placeholder="QQ号码" class="input-xlarge search-query">
-                <p class="help-block">Supporting help text</p>
-            </div>
-        </div>
-        <div class="control-group">
-            <!-- Text input-->
-            <label class="control-label" for="input01">电话号码</label>
-            <div class="controls">
-                <input type="text" placeholder="电话号码" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
-        </div>
-        <div class="control-group">
-            <!-- Text input-->
-            <label class="control-label" for="input01">手机号码</label>
-            <div class="controls">
-                <input type="text" placeholder="手机号码" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
-        </div>
-        <div class="control-group">
-            <!-- Text input-->
-            <label class="control-label" for="input01">Email</label>
-            <div class="controls">
-                <input type="text" placeholder="Email" class="input-xlarge">
-                <p class="help-block"></p>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">设为公司联系人</label>
-            <div class="controls">
-                <!-- Multiple Checkboxes -->
-                <label class="checkbox">
-                    <input type="checkbox" value="是"> 是
-                </label>
-            </div>
-        </div>
-    </fieldset>
-</form>
+    </div>
+</div>

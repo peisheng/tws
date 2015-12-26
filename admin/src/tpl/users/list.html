@@ -5,7 +5,6 @@
     <div class="input-group" style="width: 500px;">
         <input type="text" ng-model="keyword" class="form-control" placeholder="搜索用户名称" aria-describedby="basic-addon2">
         <span class="input-group-addon" id="basic-addon2" ng-click="ckSearch()">搜索</span>
-        <button type="button" class="btn btn-primary pull-right">新建用户</button>
     </div>
     <table class="table table-striped">
         <thead>
@@ -30,10 +29,9 @@
                 <td>{{item.mobile}}</td>
                 <td>{{item.email}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" onclick="ckView()">查看
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
-                    <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                    <button type="button" class="btn btn-primary" ng-click="ckUserView(item.id)">查看</button>
+                    <button type="button" class="btn btn-primary" ng-click="ckUserEdit(item.id)">编辑</button>
+                    <button type="button" class="btn btn-danger" ng-click="ckUserDelete(item.id)">删除</button>
                 </td>
             </tr>
         </tbody>

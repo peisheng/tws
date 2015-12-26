@@ -59,7 +59,7 @@ angular.module('app')
                     })
                     .state('app.companys-edit', {
                         url: "/companys/edit/:id",
-                        templateUrl: "tpl/companys/edit.html?id=" + (new Date()).toString(),
+                        templateUrl: "tpl/companys/edit.html",
                         resolve: {
                             deps: ['$ocLazyLoad', 'uiLoad',
                                 function($ocLazyLoad, uiLoad) {
@@ -87,16 +87,27 @@ angular.module('app')
                 })
 
                 .state('app.users', {
-                    url: "/users",
-                    templateUrl: "tpl/users/list.html",
-                    resolve: {
-                        deps: ['uiLoad',
-                            function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/users.js');
-                            }
-                        ]
-                    }
-                })
+                        url: "/users",
+                        templateUrl: "tpl/users/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/users.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.users-edit', {
+                        url: "/users/edit/:id",
+                        templateUrl: "tpl/users/edit.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/users-edit.js');
+                                }
+                            ]
+                        }
+                    })
 
                 .state('app.systems', {
                     url: "/systems",

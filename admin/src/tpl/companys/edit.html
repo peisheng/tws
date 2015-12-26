@@ -5,7 +5,7 @@
     <div class="panel panel-default">
         <div class="panel-heading font-bold">
             企业信息
-            <div class="pull-right" style="font-size:24px;" ng-show="" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit">&nbsp;</span></div>
+            <div class="pull-right" style="font-size:24px;" ng-show="isView" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit">&nbsp;</span></div>
         </div>
         <div class="panel-body">
             <form class="form-horizontal" id="companyForm" method="get">
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <button type="button" ng-click="ckSave()" class="btn btn-success">保存</button>
-                        <a class="btn btn-default" ui-sref="app.companys">返回</a>
+                        <a class="btn btn-default" onclick="history.back()">返回</a>
                     </div>
                 </fieldset>
             </form>
@@ -168,7 +168,7 @@
                 <div class="input-group" style="width: 500px;">
                     <input type="text" ng-model="user_keyword" class="form-control" placeholder="搜索用户名称" aria-describedby="basic-addon2">
                     <span class="input-group-addon" id="basic-addon2" ng-click="ckUserSearch()">搜索</span>
-                    <button type="button" class="btn btn-primary pull-right">新建用户</button>
+                    <button type="button" class="btn btn-primary pull-right" ng-click="ckUserAdd()">新建用户</button>
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -193,10 +193,9 @@
                             <td>{{item.mobile}}</td>
                             <td>{{item.email}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="ckView()">查看
-                                </button>
-                                <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
-                                <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                                <button type="button" class="btn btn-primary" ng-click="ckUserView(item.id)">查看</button>
+                                <button type="button" class="btn btn-primary" ng-click="ckUserEdit(item.id)">编辑</button>
+                                <button type="button" class="btn btn-danger" ng-click="ckUserDelete(item.id)">删除</button>
                             </td>
                         </tr>
                     </tbody>

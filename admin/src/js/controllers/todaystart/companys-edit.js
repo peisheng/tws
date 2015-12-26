@@ -1,4 +1,4 @@
- app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", function($scope, $http, FileUploader, $timeout, $stateParams) {
+ app.controller('CompanysEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window", function($scope, $http, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
 
 
      $scope.companyTypeList = [];
@@ -14,9 +14,9 @@
          address: "",
          site_url: "",
          logo_path: ""
+
      };
-
-
+     $scope.isView = !$localStorage.edit;
 
      //上传
      $scope.paginationConf = {
@@ -152,6 +152,59 @@
              'logo_path': "required;",
          }
      });
+
+
+     $scope.ckUserAdd = function() {
+         $localStorage.company_id = $scope.form.id;
+         $state.go("app.users-edit");
+     }
+
+     $scope.ckUserView = function(id) {
+         $localStorage.company_id = $scope.form.id;
+         $localStorage.edit = false;
+         $state.go("app.users-edit", {
+             id: id
+         });
+     }
+
+     $scope.ckUserEdit = function(id) {
+         $localStorage.company_id = $scope.form.id;
+         $localStorage.edit = true;
+         $state.go("app.users-edit", {
+             id: id
+         });
+     }
+     $scope.ckUserDelete = function(id) {
+         var user_id = id;
+         if (!!user_id) {
+             layer.confirm("确定要删除当前的用户吗？", {
+                 btn: ["确定", "取消"]
+             }, function() {
+                 $http({
+                     method: "POST",
+                     url: _Api + "/admin/user/delete",
+                     data: {
+                         id: user_id
+                     }
+                 }).success(function(data) {
+                     if (data.result) {
+                         layer.msg("删除成功");
+                         getUserDataList();
+                     } else {
+                         layer.msg("删除失败，请联系管理员");
+                     }
+                 });
+
+
+             }, function() {
+                 layer.closeAll();
+             });
+
+         }
+
+     }
+
+
      $scope.ckSave = function() {
          $("#companyForm").isValid(function(v) {
              if (v) {

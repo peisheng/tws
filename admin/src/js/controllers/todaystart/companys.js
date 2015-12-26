@@ -29,6 +29,7 @@ app.controller('CompanysCtrl', ['$scope', "$http", "$state", "$localStorage", fu
     }
 
     $scope.ckView = function(id) {
+        $localStorage.edit = false;
         $state.go("app.companys-edit", {
             id: id
         });
@@ -36,6 +37,7 @@ app.controller('CompanysCtrl', ['$scope', "$http", "$state", "$localStorage", fu
 
     }
     $scope.ckEdit = function(id) {
+        $localStorage.edit = true;
         $state.go("app.companys-edit", {
             id: id
         });
@@ -43,9 +45,35 @@ app.controller('CompanysCtrl', ['$scope', "$http", "$state", "$localStorage", fu
     }
 
     $scope.ckDelete = function(id) {
-        throw "";
+        if (!!id) {
+            layer.confirm("确定要删除这个企业吗？", {
+                btn: ["确定", "取消"]
+            }, function() {
+                $http({
+                    method: "GET",
+                    url: _Api + "/admin/company/delete",
+                    params: {
+                        id: id
+                    }
+                }).success(function(data) {
+                    if (data.result) {
+                        layer.msg("删除成功");
+                        getDataList();
+                    } else {
+                        layer.msg("删除失败,已被别的表引用，请联系管理员");
+                    }
+                });
+
+
+            }, function() {
+                layer.closeAll();
+            });
+
+        }
+
     }
     $scope.ckAdd = function() {
+        $localStorage.edit = true;
         $state.go("app.companys-edit");
     }
 
