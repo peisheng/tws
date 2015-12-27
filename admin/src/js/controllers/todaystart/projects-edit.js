@@ -129,6 +129,9 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
         $("#projectForm").isValid(function(v) {
             if (v) {
                 var postData = $scope.form;
+                if (!!$stateParams.id) {
+                    postData.id = $stateParams.id;
+                }
 
                 var q = $http({
                     method: "POST",
@@ -142,7 +145,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                         layer.msg("保存成功", {
                             time: 1000
                         });
-                        $scope.form.id = data.company_id;
+                        $scope.form.id = data.project_id;
                     } else {
                         layer.msg("保存失败", {
                             time: 1000

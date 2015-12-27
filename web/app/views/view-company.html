@@ -13,7 +13,7 @@
         <li class="{{prjActive}}" style="width:50%;"><a ng-click="ckShow(1)">项目案例</a></li>
         <li style="width:50%; " class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
     </ul>
-    <div class="row" style="padding:15px;background-color: #fff;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
+    <div class="row" id="project-desc" style="padding:15px;background-color: #fff;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
     </div>
     <div class="row" ng-show="showList" style="background-color: #F0EFF4;">
         <ul id="add" class="ul">

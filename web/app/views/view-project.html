@@ -11,10 +11,10 @@
         <p class="h6" ng-bind="project.descript">
         </p>
         <br />
-        <p ng-bind-html="project.content">
+        <p id="project-desc" ng-bind-html="project.content">
         </p>
         <p>
-            <img src="images/contact.png" style="width:100%;" />
+            <img src="/web/images/contact.png" style="width:100%;" />
         </p>
     </div>
     <div class="row text-center" style="background-color:#555;filter:alpha(opacity=50);  -moz-opacity:0.9;
@@ -40,8 +40,12 @@
             </div>
         </div>
     </div>
-    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px;">
-        <img src="images/contact_b.png" style="width:100%;" />
-        <button class="btn btn-danger btn-lg">分享到朋友圈</button>
+    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px;margin-bottom: 30px; background-color: #fff;">
+        <img src="/web/images/contact_b.png" style="width:100%;" />
+    </div>
+    <div class="navbar-fixed-bottom" style="clear:both;text-align: center;width:100%;padding-bottom: 30px; background-color: #fff;">
+        <button class="btn btn-danger btn-lg" id="btnShareToFriends" ng-click="ckShareToFriends()" style="margin-top:20px;">分享到朋友圈</button>
+        <a class="btn btn-danger btn-lg" href="weixin://addfriend/wuzhou360" style="margin-top:20px;">点击关注</a>
     </div>
 </div>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
