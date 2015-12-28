@@ -3,6 +3,7 @@ app.controller('UsersEditCtrl', ['$scope', "$http", "$timeout",
     function($scope, $http, $timeout, $stateParams, $state, $localStorage, $window) {
 
         $scope.form = {
+            "id": 0,
             'user_name': '',
             'real_name': "",
             'qq_number': "",
@@ -37,7 +38,7 @@ app.controller('UsersEditCtrl', ['$scope', "$http", "$timeout",
                 }
             }).success(function(data) {
                 $scope.form = {
-                    id: data.Id,
+                    id: data.id,
                     user_name: data.user_name,
                     real_name: data.real_name,
                     phone: data.phone,

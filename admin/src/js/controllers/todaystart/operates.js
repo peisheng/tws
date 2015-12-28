@@ -33,6 +33,7 @@ app.controller('OperatesCtrl', ['$scope', "$http", function($scope, $http) {
                     layer.msg("操作成功", {
                         time: 1000
                     });
+                    getDataList();
                 } else {
                     layer.msg("操作失败", {
                         time: 1000

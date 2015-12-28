@@ -135,7 +135,19 @@ angular.module('app')
                             }
                         ]
                     }
+                }).
+                state('app.systems-edit', {
+                    url: "/systems/edit/:id",
+                    templateUrl: "tpl/systems/edit.html",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/systems-edit.js');
+                            }
+                        ]
+                    }
                 })
+
 
                 .state('app.operates', {
                         url: "/operates",

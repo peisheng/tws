@@ -3,15 +3,18 @@
 </div>
 <div class="wrapper-md text-center" ng-controller="SystemsCtrl">
     <div class="input-group" style="width: 500px;">
-        <button type="button" class="btn btn-primary pull-right">新建配置</button>
+        <label>请选择字典分类：</label>
+        <select ng-options="item as item for item in groupList" ng-model="group" ng-change="ckSearch()">
+        </select>
+        <button type="button" ng-click="ckAdd()" class="btn btn-primary pull-right">新建配置</button>
     </div>
     <table class="table table-striped">
         <thead>
             <tr align="center">
                 <td style="width:50px;">ID</td>
                 <td>名称</td>
-                <td style="width:90px;">值</td>
-                <td style="width:80px;">分组</td>
+                <td>值</td>
+                <td>分组</td>
                 <td style="width:200px;">操作</td>
             </tr>
         </thead>
@@ -22,10 +25,9 @@
                 <td>{{item.value}}</td>
                 <td>{{item.group}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" onclick="ckView()">查看
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="ckEdit()">编辑</button>
-                    <button type="button" class="btn btn-danger" onclick="ckDelete()">删除</button>
+                    <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看</button>
+                    <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
+                    <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
                 </td>
             </tr>
         </tbody>

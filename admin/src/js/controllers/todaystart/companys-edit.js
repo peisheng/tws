@@ -7,6 +7,7 @@
      $scope.projectItems = [];
      $scope.userItems = [];
      $scope.form = {
+         id: 0,
          name: "",
          type: "",
          city_id: "",

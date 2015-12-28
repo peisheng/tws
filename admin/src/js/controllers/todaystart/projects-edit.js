@@ -11,8 +11,13 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
         'main_image_path': "",
         'company_id': $localStorage.company_id,
         'is_company_intro': "0",
-        "id": null
+        "id": 0,
+        "view_count": 0,
+        "is_publish": 0
     };
+
+    $scope.showPublishBtn = false;
+    $scope.showNoPublishBtn = false;
     $scope.isView = !$localStorage.edit;
 
 
@@ -102,8 +107,18 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                             'content': data.content,
                             'main_image_path': data.main_image_path,
                             'company_id': data.company_id,
-                            'is_company_intro': data.is_company_intro
+                            'is_company_intro': data.is_company_intro,
+                            "view_count": data.view_count,
+                            "is_publish": data.is_publish
                         };
+                        if (data.is_publish == 0) {
+                            $scope.showPublishBtn = true;
+                            $scope.showNoPublishBtn = false;
+                        }
+                        if (data.is_publish == 1) {
+                            $scope.showPublishBtn = false;
+                            $scope.showNoPublishBtn = true;
+                        }
                     });
                 }
             });
@@ -112,6 +127,31 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
 
     })();
 
+
+    $scope.ckPublish = function(type) {
+        var params = {
+            id: $scope.form.id,
+            type: type
+        };
+        $http({
+            method: "GET",
+            url: _Api + "/admin/project/setpublish",
+            params: params
+        }).success(function(data) {
+            $scope.form.is_publish = type;
+            if (type > 0) {
+                $scope.showPublishBtn = false;
+                $scope.showNoPublishBtn = true;
+                layer.msg("发布成功");
+            } else if (type == 0) {
+                $scope.showPublishBtn = true;
+                $scope.showNoPublishBtn = false;
+                layer.msg("撤消成功");
+            }
+
+
+        });
+    }
 
     $("#projectForm").validator({
         stopOnError: false,
@@ -131,8 +171,9 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                 var postData = $scope.form;
                 if (!!$stateParams.id) {
                     postData.id = $stateParams.id;
+                } else {
+                    var isAdd = true;
                 }
-
                 var q = $http({
                     method: "POST",
                     url: _Api + "/admin/project/save",
@@ -146,6 +187,10 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                             time: 1000
                         });
                         $scope.form.id = data.project_id;
+                        if (isAdd) {
+                            $scope.showPublishBtn = true;
+                            $scope.showNoPublishBtn = false;
+                        }
                     } else {
                         layer.msg("保存失败", {
                             time: 1000
@@ -156,7 +201,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
             }
         });
 
-    }
+    };
 
     $scope.setMainPath = function(path) {
         $scope.form.main_image_path = path;

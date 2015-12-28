@@ -55,7 +55,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
         }
     });
     ticket.success(function(data) {
-        //  readyWeiXinConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
+        readyWeiXinConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
     });
 
 
@@ -108,50 +108,52 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
 
     $scope.ckShareToFriends = function() {
 
-        // if (!!WeixinJSBridge) {
-        //     WeixinJSBridge.invoke("shareTimeline", {
-        //         "img_url": $scope.shareData.imgUrl,
-        //         "link": $scope.shareData.link,
-        //         "desc": $scope.shareData.desc,
-        //         "title": $scope.shareData.title
-        //     });
-        // }
-        // // console.log(shareData);
-        // wx.onMenuShareTimeline({
-        //     title: shareData.title,
-        //     link: shareData.link,
-        //     imgUrl: shareData.imgUrl,
-        //     trigger: function(res) {
-        //         // alert("用户点击分享到朋友圈");
-        //         //console.log("用户点击分享到朋友圈");
-        //     },
-        //     success: function(res) {
-        //         //  alert("已分享");
-        //         // console.log("已分享");
-        //     },
-        //     cancel: function(res) {
-        //         //alert('已取消');
-        //         //console.log("已取消");
-        //     },
-        //     fail: function(res) {
-        //         //alert('失败');
-        //         //alert(JSON.stringify(res));
-        //     }
-        // });
+        if (!!WeixinJSBridge) {
+            WeixinJSBridge.invoke("shareTimeline", {
+                "img_url": $scope.shareData.imgUrl,
+                "link": $scope.shareData.link,
+                "desc": $scope.shareData.desc,
+                "title": $scope.shareData.title
+            });
+        }
+        // console.log(shareData);
+        wx.onMenuShareTimeline({
+            title: shareData.title,
+            link: shareData.link,
+            imgUrl: shareData.imgUrl,
+            trigger: function(res) {
+                // alert("用户点击分享到朋友圈");
+                //console.log("用户点击分享到朋友圈");
+            },
+            success: function(res) {
+                //  alert("已分享");
+                // console.log("已分享");
+            },
+            cancel: function(res) {
+                //alert('已取消');
+                //console.log("已取消");
+            },
+            fail: function(res) {
+                //alert('失败');
+                //alert(JSON.stringify(res));
+            }
+        });
 
 
         // title: $scope.project.descript,
-        //            link: location.href,
-        //            imgUrl: "http://" + location.host + "/" + $scope.project.main_image_path,
-        //            desc: $scope.project.descript
+        //     link: location.href,
+        //     imgUrl: "http://" + location.host + "/" + $scope.project.main_image_path,
+        //     desc: $scope.project.descript
 
-        alert("click send contact");
-        //weixinShareTimeline($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
-        // weixinSendAppMessage($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
 
-        // weixinShareWeibo($scope.shareData.title, $scope.shareData.link);
-        weixinAddContact("szwzscom");
-        alert("after click");
+        // alert("click send contact");
+  // //weixinShareTimeline($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
+  // // weixinSendAppMessage($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
+
+  // // weixinShareWeibo($scope.shareData.title, $scope.shareData.link);
+  // weixinAddContact("szwzscom");
+  // alert("after click");
+
     };
 
 
