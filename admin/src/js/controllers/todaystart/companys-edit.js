@@ -10,6 +10,7 @@
          id: 0,
          name: "",
          type: "",
+         type_id: "",
          city_id: "",
          province: "",
          address: "",
@@ -116,7 +117,7 @@
                          $scope.form = {
                              id: data.id,
                              name: data.name,
-                             type: data.type_id,
+                             type_id: data.type_id,
                              city_id: data.city_id,
                              province: data.province,
                              address: data.address,

@@ -13,37 +13,48 @@
         <br />
         <p id="project-desc" ng-bind-html="project.content">
         </p>
-        <p>
+        <p ng-show="hasCompany">
             <img src="/web/images/contact.png" style="width:100%;" />
         </p>
     </div>
-    <div class="row text-center" style="background-color:#555;filter:alpha(opacity=50);  -moz-opacity:0.9;
+    <div class="row text-center" ng-show="hasCompany" style="background-color:#555;filter:alpha(opacity=50);  -moz-opacity:0.9;
     -khtml-opacity: 0.9;
     opacity: 0.9; width:100%;margin-left:auto;margin-right: auto;margin-top:-60px;">
-        <div style="min-width:320px;">
-            <div class="fl">
-                <img ng-src="{{company.logo_path}}" style="width:76px;height:76px; margin:30px 10px;float: right;clear:both;
+        <div class="row" style="margin-left:0;margin-right: 0;">
+            <div class="col-xs-2" style="margin:0;padding:0">
+                <img ng-src="{{company.logo_path}}" style="width:60px;height:60px; margin:30px 10px;
             " class="img-circle">
             </div>
-            <div class="fl text-left">
-                <div class="h3" style="color:rgb(0, 159, 143);font-weight: bold;" ng-bind="project.user_name">
+            <div class="col-xs-10" style="margin:0;padding:0">
+                <div class="row text-center" style="margin:0;padding:0">
+                    <div class="h3 row" style="color:rgb(0, 159, 143);font-weight: bold;margin:0;padding:0;margin-top:15px;">
+                        <div class="col-xs-1" style="margin:0;padding:0"></div>
+                        <div class="col-xs-1" style="margin:0;padding:0"></div>
+                        <div class="col-xs-10  text-left" style="margin:0;padding:0" ng-bind="project.user_name"></div>
+                    </div>
                 </div>
-                <div class="h5">
-                    <span class="glyphicon glyphicon-home" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp; {{company.name}}</span></span>
+                <div class="row" style="margin:0;padding:0">
+                    <div class="col-xs-1" style="margin:0;padding:0"></div>
+                    <div class="col-xs-1" style="margin:0;padding:0"> <span class="glyphicon glyphicon-home" style="color:rgb(0, 159, 143);"></span></div>
+                    <div class="col-xs-10  text-left" style="margin:0;padding:0"><span style="color:#fff;">{{company.name}}</span></div>
                 </div>
-                <div class="h5">
-                    <span class="glyphicon glyphicon-earphone" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp;{{company.phone}}</span></span>
+                <div class="row" style="margin:0;padding:0">
+                    <div class="col-xs-1" style="margin:0;padding:0"></div>
+                    <div class="col-xs-1" style="margin:0;padding:0"> <span class="glyphicon glyphicon-earphone" style="color:rgb(0, 159, 143);"></span></div>
+                    <div class="col-xs-10  text-left" style="margin:0;padding:0"><span style="color:#fff;">{{company.phone}}</span></div>
                 </div>
-                <div class="h5">
-                    <span class="glyphicon glyphicon-map-marker" style="color:rgb(0, 159, 143);"><span style="color:#fff;">&nbsp;{{company.address}}</span></span>
+                <div class="row" style="margin:0;padding:0">
+                    <div class="col-xs-1" style="margin:0;padding:0"></div>
+                    <div class="col-xs-1" style="margin:0;padding:0"> <span class="glyphicon glyphicon-map-marker" style="color:rgb(0, 159, 143);"></span></div>
+                    <div class="col-xs-10  text-left" style="margin:0;padding:0"><span style="color:#fff;">{{company.address}}</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px;margin-bottom: 30px; background-color: #fff;">
+    <div ng-show="hasCompany" style="clear:both;text-align: center;width:100%;padding-bottom: 30px;margin-bottom: 30px; background-color: #fff;">
         <img src="/web/images/contact_b.png" style="width:100%;" />
     </div>
-    <div class="navbar-fixed-bottom" style="clear:both;text-align: center;width:100%;padding-bottom: 30px; background-color: #fff;display: none;">
+    <div class="navbar-fixed-bottom" ng-show="isShowShare" style="clear:both;text-align: center;width:100%;padding-bottom: 30px; background-color: #fff;">
         <button class="btn btn-danger btn-lg" id="btnShareToFriends" ng-click="ckShareToFriends()" style="margin-top:20px;">分享到朋友圈</button>
         <a class="btn btn-danger btn-lg" href="weixin://addfriend/wuzhou360" style="margin-top:20px;">点击关注</a>
     </div>

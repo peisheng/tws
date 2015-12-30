@@ -39,6 +39,12 @@ app.controller('ProjectsCtrl', ['$scope', "$http", "$state", "$localStorage", fu
         });
     }
 
+    $scope.ckAdd = function() {
+        $localStorage.edit = true;
+        $localStorage.company_id = 0;
+        $state.go("app.projects-edit");
+    }
+
     $scope.ckDelete = function(id) {
         if (!!id) {
             layer.confirm("确定要删除当前的文章吗？", {

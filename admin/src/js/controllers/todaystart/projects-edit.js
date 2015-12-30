@@ -118,7 +118,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout
                         if (data.is_publish == 1) {
                             $scope.showPublishBtn = false;
                             $scope.showNoPublishBtn = true;
-                        }
+                        };
                     });
                 }
             });

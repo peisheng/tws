@@ -9,6 +9,7 @@
  */
 angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $routeParams, $http) {
     var id = $routeParams.id;
+    $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;
     var q = $http({
         method: "GET",
@@ -20,6 +21,9 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
         if (!$scope.company.phone) {
             $scope.company.phone = $scope.company.mobile;
         }
+        if (!!$scope.company.name) {
+            $scope.hasCompany = true;
+        }
 
         $scope.shareData = {
             title: $scope.project.descript,
@@ -28,6 +32,8 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
             desc: $scope.project.descript
         };
     });
+
+    $scope.isShowShare = false;
 
     var _url = "/api/project/setviewcount?id=" + id;
     setTimeout(function() {
@@ -38,7 +44,6 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
         c.success(function() {
             console.log("update sucess");
         });
-
     }, 3000);
 
 
@@ -46,22 +51,24 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
     var shareUrl = location.href;
 
 
+    setTimeout(function() {
+        var ticket = $http({
+            method: "GET",
+            url: shareApiUrl,
+            params: {
+                shareUrl: shareUrl
+            }
+        });
+        ticket.success(function(data) {
+            readyWeiXinConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
+        });
+    }, 500);
 
-    var ticket = $http({
-        method: "GET",
-        url: shareApiUrl,
-        params: {
-            shareUrl: shareUrl
-        }
-    });
-    ticket.success(function(data) {
-        readyWeiXinConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
-    });
 
 
     function readyWeiXinConfig(appId, timestamp, nonceStr, signature) {
         wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: appId, // 必填，公众号的唯一标识
             timestamp: timestamp, // 必填，生成签名的时间戳
             nonceStr: nonceStr, // 必填，生成签名的随机串
@@ -107,7 +114,6 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
 
 
     $scope.ckShareToFriends = function() {
-
         if (!!WeixinJSBridge) {
             WeixinJSBridge.invoke("shareTimeline", {
                 "img_url": $scope.shareData.imgUrl,
@@ -140,19 +146,6 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
         });
 
 
-        // title: $scope.project.descript,
-        //     link: location.href,
-        //     imgUrl: "http://" + location.host + "/" + $scope.project.main_image_path,
-        //     desc: $scope.project.descript
-
-
-        // alert("click send contact");
-  // //weixinShareTimeline($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
-  // // weixinSendAppMessage($scope.shareData.title, $scope.shareData.desc, $scope.shareData.link, $scope.shareData.imgUrl);
-
-  // // weixinShareWeibo($scope.shareData.title, $scope.shareData.link);
-  // weixinAddContact("szwzscom");
-  // alert("after click");
 
     };
 
