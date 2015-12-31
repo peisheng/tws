@@ -102,7 +102,7 @@ body {
 }
 
 .headTab {
-    background-color: #555;
+    background: -webkit-linear-gradient(top, #393A3F, #666);
     color: rgb(0, 159, 143);
     height: 52px;
     float: left;
@@ -113,7 +113,7 @@ body {
     > span {
         margin-top: 18px;
         display: block;
-        height: 37px;
+        height: 35px;
         width: 100%;
         font-size: 20px;
     }
@@ -155,26 +155,21 @@ body {
         background-color: #fff;
         .img {
             border: none;
-            margin: 15px 15px 0 15px;
-            width: 96px;
-            height: 62px;
+            margin: 15px 15px 0 9px;
+            width: 68px;
+            height: 68px;
         }
         .title {
             font-size: 15px;
             font-weight: bold;
             display: block;
             white-space: nowrap;
-            width: 190px;
             overflow: hidden;
             text-overflow: clip;
         }
         .prop {
             color: rgb(0, 159, 143);
             padding: 10px 0;
-            > span {
-                margin-left: 20px;
-                padding-left: 3px;
-            }
         }
     }
     padding: 0px;
@@ -298,4 +293,34 @@ body {
 
 #project-desc img {
     width: 100%;
+}
+
+.nav-tabs > li {
+    .active {
+        border: 0px;
+    }
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide {
+    display: none !important;
+}
+
+ng\:form {
+    display: block;
+}
+
+.ng-animate-start {
+    clip: rect(0, auto, auto, 0);
+    -ms-zoom: 1.0001;
+}
+
+.ng-animate-active {
+    clip: rect(-1px, auto, auto, 0);
+    -ms-zoom: 1;
 }

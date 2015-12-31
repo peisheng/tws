@@ -321,7 +321,7 @@
 
 
 
-     var page_size = 15;
+     var page_size = 10;
      $scope.user_keyword = "";
      $scope.company_id = ""
      var getUserDataList = function() {

@@ -24,14 +24,14 @@
     <![endif]-->
     <!-- Add your site or application content here -->
     <div class="container" ng-controller="navCtrl">
-        <div class="row" ng-show="isShowHead">
+        <div class="row" ng-cloak ng-show="isShowHead">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp0" ng-click="ckProjects()">
-                <div class="headTab" ng-if="isProjectList"><span class="glyphicon glyphicon-thumbs-up active" aria-hidden="true"></span></div>
-                <div class="headTab" ng-if="!isProjectList"><span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span></div>
+                <div class="headTab" ng-if="isProjectList"><span class="glyphicon glyphicon-thumbs-u-p active " aria-hidden="true">项目</span></div>
+                <div class="headTab" ng-if="!isProjectList"><span class="glyphicon glyphicon-thumbs-u-p " aria-hidden="true">项目</span></div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 mp0" ng-click="ckCompanys()">
-                <div class="headTab" ng-if="isCompanyList"><span class="glyphicon glyphicon-eye-open active" aria-hidden="true"></span></div>
-                <div class="headTab" ng-if="!isCompanyList"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></div>
+                <div class="headTab" ng-if="isCompanyList"><span class="glyphicon glyphicon-eye-ope-n active " aria-hidden="true">公司</span></div>
+                <div class="headTab" ng-if="!isCompanyList"><span class="glyphicon glyphicon-eye-ope-n " aria-hidden="true">公司</span></div>
             </div>
         </div>
     </div>
@@ -80,10 +80,12 @@
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/viewcompany.js"></script>
     <script src="scripts/controllers/viewproject.js"></script>
+    <script src="scripts/controllers/viewprojecttest.js"></script>
     <script src="scripts/controllers/companys.js"></script>
     <script src="scripts/controllers/projects.js"></script>
     <script src="scripts/directives/tabhead.js"></script>
     <!-- endbuild -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 
 </html>

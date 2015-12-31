@@ -1,5 +1,5 @@
 app.controller('OperatesCtrl', ['$scope', "$http", function($scope, $http) {
-    var page_size = 15;
+    var page_size = 10;
     var getDataList = function() {
         var params = {
             page_index: $scope.paginationConf.currentPage,

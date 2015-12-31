@@ -6,17 +6,19 @@
                 <div class="pullDownIcon"></div>
                 <div class="pullDownLabel hide">下滑刷新</div>
             </div>
-            <ul id="add" class="ul">
-                <li class="li clearfix m15" ng-repeat="item in items">
-                    <div class="fl">
-                        <div class="m15" style="text-align:center;">
-                            <div class="title">
-                                <a href="/web/index.html#/view-project/{{item.id}}" ng-bind="item.title"></a>
+            <ul id="add" class="ul" style="margin-top: -15px;">
+                <li class="li clearfix m15 row" style="margin-right: 0;margin-left: 0" ng-repeat="item in items">
+                    <div class="col-xs-9" style="margin-right: 0px;padding: 0;">
+                        <div class="m15 row" style="text-align:left;">
+                            <div class="title col-xs-12" style="margin: 0px;padding: 0;margin-left: 10px;margin-top: 5px;">
+                                <a href="/web/index.html#/view-project/{{item.id}}" style="color:#000;font-size: 15px;" ng-bind="item.title"></a>
                             </div>
-                            <div class="prop"><span class="glyphicon glyphicon-plus-sign" ng-bind="{{item.type_name}}"></span><span class="glyphicon glyphicon-map-marker" style="margin-left:5px;">{{item.view_count}}人阅读</span></div>
+                            <div class="prop col-xs-12" style="font-weight: bold;font-size:13px;">
+                                <span style="margin-left:12px;">{{item.type_name}}</span> <span style="margin-left:25px;">{{item.view_count}}人阅读</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="fr"><img class="img" ng-src="{{item.main_image_path}}" style="width:96px; height:62px; " alt="{{item.title}}图片"></div>
+                    <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:88px; height:62px;margin-left: -18px; " alt="{{item.title}}图片" /></div>
                 </li>
             </ul>
             <div id="pullUp" class="hide ub ub-pc c-gra">

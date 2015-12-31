@@ -7,7 +7,7 @@
  * # ViewprojectCtrl
  * Controller of the webappApp
  */
-angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $routeParams, $http) {
+angular.module('webappApp').controller('ViewprojecttestCtrl', function($scope, $routeParams, $http) {
     var id = $routeParams.id;
     $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;

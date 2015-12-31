@@ -18,4 +18,4 @@ angular.module('app', [
 ]);
 
 // var _Api = "/api"; //when realse to server change it to : /api
-var _Api = "/api";
+var _Api = "";

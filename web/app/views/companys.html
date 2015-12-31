@@ -15,15 +15,16 @@
                     <div class="pullDownLabel hide">下滑刷新</div>
                 </div>
                 <ul id="add" class="ul">
-                    <li class="li clearfix m15" ng-repeat="item in items">
-                        <div class="fl"><img class="img" ng-src="{{item.logo_path}}" src="http://dummyimage.com/96x62/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></div>
-                        <div class="fl">
-                            <div class="m15">
-                                <div class="title">
-                                    <a href="/web/index.html#/view-company/{{item.id}}" ng-bind="item.name"></a>
+                    <li class="li clearfix m15
+ row" style="padding-bottom: 10px;" ng-repeat="item in items">
+                        <div class=" col-xs-3"><img class="img" ng-src="{{item.logo_path}}" src="http://dummyimage.com/96x62/4d494d/686a82.gif&text=placeholder+image" alt="placeholder+image"></div>
+                        <div class="col-xs-9">
+                            <div class="m15 row">
+                                <div class="title col-xs-12" style="margin-top: 6px;">
+                                    <a href="/web/index.html#/view-company/{{item.id}}" style="color: #000;font-size:15px;" ng-bind="item.name"></a>
                                 </div>
-                                <div class="prop"><span class="glyphicon glyphicon-map-marker" ng-bind="item.city_name"></span><span class="glyphicon glyphicon-plus-sign" ng-bind="item.type_name"></span></div>
                             </div>
+                            <div class="prop row" style="margin:0 ;padding: 0;margin-top: -6px;font-weight: bold;font-size:13px;"><span class="glyphicon glyphicon-map-marker" style="margin-right: 5px; margin-left: 15px;"></span><span ng-bind="item.city_name"></span><span class="glyphicon glyphicon-plus-sign" style="margin-right: 5px;margin-left: 30px;"></span><span ng-bind="item.type_name"></span></div>
                         </div>
                     </li>
                 </ul>

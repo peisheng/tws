@@ -1,5 +1,5 @@
 app.controller('UsersCtrl', ['$scope', "$http", "$state", "$localStorage", function($scope, $http, $state, $localStorage) {
-    var page_size = 15;
+    var page_size = 10;
     $scope.keyword = "";
     $scope.company_id = ""
     var getDataList = function() {
