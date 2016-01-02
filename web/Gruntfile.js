@@ -79,21 +79,39 @@ module.exports = function(grunt) {
                 proxies: [{
                     context: '/api',
                     host: '192.168.1.105',
-                    port: 4696,
+                    port: 8090,
                     https: false,
                     rewrite: {
-                        '^/api': ''
-                            // '^/changingcontext': '/anothercontext'
-                            //                      '^/updating(context)': function(match, p1) {
-                            //     return '/new' + p1;
-                            // }
+                        //'^/api': ''
+                        // '^/changingcontext': '/anothercontext'
+                        //                      '^/updating(context)': function(match, p1) {
+                        //     return '/new' + p1;
+                        // }
                     }
                     // xforward: false,
                     // headers: {
                     //     "x-custom-added-header": value
                     // },
                     // hideHeaders: ['x-removed-header']
-                }]
+                }, {
+                    context: '/Uploads',
+                    host: '192.168.1.105',
+                    port: 8090,
+                    https: false,
+                    rewrite: {
+                        '^/Uploads': '/api/uploads'
+
+                        // '^/changingcontext': '/anothercontext'
+                        //                      '^/updating(context)': function(match, p1) {
+                        //     return '/new' + p1;
+                        // }
+                    }
+                    // xforward: false,
+                    // headers: {
+                    //     "x-custom-added-header": value
+                    // },
+                    // hideHeaders: ['x-removed-header']
+                }, ]
             },
             livereload: {
                 options: {

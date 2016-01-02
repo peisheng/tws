@@ -1,247 +1,307 @@
-app.controller('ProjectsEditCtrl', ['$scope', "$http", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window", function($scope, $http, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
+app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window",
+    function($scope, $http, taSelection, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
 
 
-    $scope.articleTypeList = [];
-    $scope.imgList = [];
-    $scope.form = {
-        'title': '',
-        'descript': "",
-        'type_id': "",
-        'content': "",
-        'main_image_path': "",
-        'company_id': $localStorage.company_id,
-        'is_company_intro': "0",
-        "id": 0,
-        "view_count": 0,
-        "is_publish": 0
-    };
+        $scope.articleTypeList = [];
+        $scope.imgList = [];
+        $scope.showMore = false;
+        $scope.form = {
+            'title': '',
+            'descript': "",
+            'type_id': "",
+            'content': "",
+            'project_contact_phone': "",
+            'project_address': '',
+            'project_action_company': "",
+            'project_design_company': '',
+            'project_type': "",
+            'project_name': "",
+            'project_area': "",
+            'main_image_path': "",
+            'company_id': $localStorage.company_id,
+            'is_company_intro': "0",
+            "id": 0,
+            "view_count": 0,
+            "is_publish": 0
+        };
 
-    $scope.showPublishBtn = false;
-    $scope.showNoPublishBtn = false;
-    $scope.isView = !$localStorage.edit;
+        $scope.showPublishBtn = false;
+        $scope.showNoPublishBtn = false;
+        $scope.isView = !$localStorage.edit;
 
 
 
-    var uploader = $scope.uploader = new FileUploader({
-        url: _Api + '/file/upload'
-    });
+        var uploader = $scope.uploader = new FileUploader({
+            url: _Api + '/file/upload'
+        });
 
-    uploader.filters.push({
-        name: 'customFilter',
-        fn: function(item /*{File|FileLikeObject}*/ , options) {
-            return this.queue.length < 10;
-        }
-    });
+        uploader.filters.push({
+            name: 'customFilter',
+            fn: function(item /*{File|FileLikeObject}*/ , options) {
+                return this.queue.length < 10;
+            }
+        });
 
-    $scope.ckUpload = function() {
-            $("#myUpload").click();
-        }
-        // CALLBACKS
+        $scope.ckUpload = function() {
+                $("#myUpload").click();
+            }
+            // CALLBACKS
 
-    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
-        console.info('onWhenAddingFileFailed', item, filter, options);
-    };
-    uploader.onAfterAddingFile = function(fileItem) {
-        // console.info('onAfterAddingFile', fileItem);
-        uploader.uploadAll();
+        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
+            console.info('onWhenAddingFileFailed', item, filter, options);
+        };
+        uploader.onAfterAddingFile = function(fileItem) {
+            // console.info('onAfterAddingFile', fileItem);
+            uploader.uploadAll();
 
-    };
-    uploader.onAfterAddingAll = function(addedFileItems) {
-        // console.info('onAfterAddingAll', addedFileItems);
-    };
-    uploader.onBeforeUploadItem = function(item) {
-        // console.info('onBeforeUploadItem', item);
-    };
-    uploader.onProgressItem = function(fileItem, progress) {
-        // console.info('onProgressItem', fileItem, progress);
-    };
-    uploader.onProgressAll = function(progress) {
-        // console.info('onProgressAll', progress);
-    };
-    uploader.onSuccessItem = function(fileItem, response, status, headers) {
-        if (response.length > 0) {
-            $scope.imgList.push(response[0]);
-            $scope.$apply();
-        }
-        // $scope.logo_path = response.file_path;
-        // $scope.form.logo_path = $scope.logo_path;
-        // $("#logo_path").val($scope.logo_path);
-        // $scope.$apply();
-        // console.info('onSuccessItem', fileItem, response, status, headers);
-    };
-    uploader.onErrorItem = function(fileItem, response, status, headers) {
-        // console.info('onErrorItem', fileItem, response, status, headers);
-    };
-    uploader.onCancelItem = function(fileItem, response, status, headers) {
-        // console.info('onCancelItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
-        // console.info('onCompleteItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteAll = function() {
-        // console.info('onCompleteAll');
-    };
+        };
+        uploader.onAfterAddingAll = function(addedFileItems) {
+            // console.info('onAfterAddingAll', addedFileItems);
+        };
+        uploader.onBeforeUploadItem = function(item) {
+            // console.info('onBeforeUploadItem', item);
+        };
+        uploader.onProgressItem = function(fileItem, progress) {
+            // console.info('onProgressItem', fileItem, progress);
+        };
+        uploader.onProgressAll = function(progress) {
+            // console.info('onProgressAll', progress);
+        };
+        uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            if (response.length > 0) {
+                $scope.imgList.push(response[0]);
+                $scope.$apply();
+            }
+            // $scope.logo_path = response.file_path;
+            // $scope.form.logo_path = $scope.logo_path;
+            // $("#logo_path").val($scope.logo_path);
+            // $scope.$apply();
+            // console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+        uploader.onErrorItem = function(fileItem, response, status, headers) {
+            // console.info('onErrorItem', fileItem, response, status, headers);
+        };
+        uploader.onCancelItem = function(fileItem, response, status, headers) {
+            // console.info('onCancelItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            // console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+        uploader.onCompleteAll = function() {
+            // console.info('onCompleteAll');
+        };
 
-    //绑定下拉列表
-    (function() {
+        //绑定下拉列表
+        (function() {
 
-        function readyArticleList() {
+            function readyArticleList() {
+                $http({
+                    method: "GET",
+                    url: _Api + "/admin/dictionary/GetArticleTypeList"
+                }).success(function(data) {
+                    $scope.articleTypeList = data;
+                    if (!!$stateParams.id) {
+                        $http({
+                            method: "GET",
+                            url: _Api + "/admin/project/get",
+                            params: {
+                                id: $stateParams.id
+                            }
+                        }).success(function(data) {
+                            $scope.form = {
+                                "id": data.id,
+                                'title': data.title,
+                                'descript': data.descript,
+                                'project_contact_phone': data.project_contact_phone,
+                                'project_address': data.project_address,
+                                'project_action_company': data.project_action_company,
+                                'project_design_company': data.project_design_company,
+                                'project_type': data.project_type,
+                                'project_name': data.project_name,
+                                'project_area': data.project_area,
+                                'type_id': data.type_id,
+                                'content': data.content,
+                                'main_image_path': data.main_image_path,
+                                'company_id': data.company_id,
+                                'is_company_intro': data.is_company_intro,
+                                "view_count": data.view_count,
+                                "is_publish": data.is_publish
+                            };
+
+                            $scope.showMore = true;
+                            if (data.is_publish == 0) {
+                                $scope.showPublishBtn = true;
+                                $scope.showNoPublishBtn = false;
+                            }
+                            if (data.is_publish == 1) {
+                                $scope.showPublishBtn = false;
+                                $scope.showNoPublishBtn = true;
+                            };
+                        });
+                    }
+                });
+            };
+            readyArticleList();
+
+        })();
+
+
+        $scope.ckPublish = function(type) {
+            var params = {
+                id: $scope.form.id,
+                type: type
+            };
             $http({
                 method: "GET",
-                url: _Api + "/admin/dictionary/GetArticleTypeList"
+                url: _Api + "/admin/project/setpublish",
+                params: params
             }).success(function(data) {
-                $scope.articleTypeList = data;
-                if (!!$stateParams.id) {
-                    $http({
-                        method: "GET",
-                        url: _Api + "/admin/project/get",
-                        params: {
-                            id: $stateParams.id
+                $scope.form.is_publish = type;
+                if (type > 0) {
+                    $scope.showPublishBtn = false;
+                    $scope.showNoPublishBtn = true;
+                    layer.msg("发布成功");
+                } else if (type == 0) {
+                    $scope.showPublishBtn = true;
+                    $scope.showNoPublishBtn = false;
+                    layer.msg("撤消成功");
+                }
+
+
+            });
+        }
+
+        $scope.changeShowMore = function() {
+            $scope.showMore = true;
+        }
+
+        $("#projectForm").validator({
+            stopOnError: false,
+            timely: true,
+            fields: {
+                'title': 'required;length[4~14];',
+                'descript': "required;length[2~200]",
+                'type_id': "required;",
+                'content': "required;length[20~]",
+                'main_image_path': "required;",
+                'view_count': "digits;",
+                'project_contact_phone': 'length[6~13]',
+                'project_address': 'length[~20]',
+                'project_action_company': 'length[~20]',
+                'project_design_company': 'length[~20]',
+                'project_type': 'length[~10]',
+                'project_name': 'length[~20]',
+                'project_area': 'digits;'
+            }
+        });
+
+
+        $scope.ckChangeCheck = function($event) {
+            if (!!$scope.form.id > 0) {
+                if ($scope.form.is_company_intro == 1) {
+                    var msg = "确定设内容简介吗？";
+                } else {
+                    var msg = "确定修改为非内容简介吗？";
+                }
+                layer.confirm(msg, {
+                        btn: ['确定', '取消']
+                    },
+                    function() {
+                        layer.closeAll();
+
+                    },
+                    function() {
+                        if ($scope.form.is_company_intro == 1) {
+                            $scope.form.is_company_intro = 0;
+                        } else {
+                            $scope.form.is_company_intro = 1;
                         }
-                    }).success(function(data) {
-                        $scope.form = {
-                            "id": data.id,
-                            'title': data.title,
-                            'descript': data.descript,
-                            'type_id': data.type_id,
-                            'content': data.content,
-                            'main_image_path': data.main_image_path,
-                            'company_id': data.company_id,
-                            'is_company_intro': data.is_company_intro,
-                            "view_count": data.view_count,
-                            "is_publish": data.is_publish
-                        };
-                        if (data.is_publish == 0) {
-                            $scope.showPublishBtn = true;
-                            $scope.showNoPublishBtn = false;
+                        $scope.$apply();
+                        layer.closeAll();
+                    });
+
+            }
+
+        };
+        $scope.ckSave = function() {
+            $("#projectForm").isValid(function(v) {
+                if (v) {
+                    var postData = $scope.form;
+                    if (!!$stateParams.id) {
+                        postData.id = $stateParams.id;
+                    } else {
+                        var isAdd = true;
+                    }
+                    var q = $http({
+                        method: "POST",
+                        url: _Api + "/admin/project/save",
+                        data: {
+                            "proj": JSON.stringify(postData)
                         }
-                        if (data.is_publish == 1) {
-                            $scope.showPublishBtn = false;
-                            $scope.showNoPublishBtn = true;
-                        };
+                    });
+                    q.success(function(data) {
+                        if (data.result) {
+                            layer.msg("保存成功", {
+                                time: 1000
+                            });
+                            $scope.form.id = data.project_id;
+                            if (isAdd) {
+                                $scope.showPublishBtn = true;
+                                $scope.showNoPublishBtn = false;
+                            }
+                        } else {
+                            layer.msg("保存失败", {
+                                time: 1000
+                            });
+                        }
+
                     });
                 }
             });
+
         };
-        readyArticleList();
 
-    })();
-
-
-    $scope.ckPublish = function(type) {
-        var params = {
-            id: $scope.form.id,
-            type: type
-        };
-        $http({
-            method: "GET",
-            url: _Api + "/admin/project/setpublish",
-            params: params
-        }).success(function(data) {
-            $scope.form.is_publish = type;
-            if (type > 0) {
-                $scope.showPublishBtn = false;
-                $scope.showNoPublishBtn = true;
-                layer.msg("发布成功");
-            } else if (type == 0) {
-                $scope.showPublishBtn = true;
-                $scope.showNoPublishBtn = false;
-                layer.msg("撤消成功");
-            }
-
-
-        });
-    }
-
-    $("#projectForm").validator({
-        stopOnError: false,
-        timely: true,
-        fields: {
-            'title': 'required;length[4~14];',
-            'descript': "required;",
-            'type_id': "required;",
-            'content': "required;length[20~]",
-            'main_image_path': "required;"
+        $scope.setMainPath = function(path) {
+            $scope.form.main_image_path = path;
         }
-    });
 
-    $scope.ckSave = function() {
-        $("#projectForm").isValid(function(v) {
-            if (v) {
-                var postData = $scope.form;
-                if (!!$stateParams.id) {
-                    postData.id = $stateParams.id;
-                } else {
-                    var isAdd = true;
+
+
+        function insertTextAtCursor(text) {
+            var sel, range;
+            if (window.getSelection) {
+                sel = window.getSelection();
+                if (sel.getRangeAt && sel.rangeCount) {
+                    range = sel.getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode(document.createTextNode(text));
                 }
-                var q = $http({
-                    method: "POST",
-                    url: _Api + "/admin/project/save",
-                    data: {
-                        "proj": JSON.stringify(postData)
-                    }
-                });
-                q.success(function(data) {
-                    if (data.result) {
-                        layer.msg("保存成功", {
-                            time: 1000
-                        });
-                        $scope.form.id = data.project_id;
-                        if (isAdd) {
-                            $scope.showPublishBtn = true;
-                            $scope.showNoPublishBtn = false;
-                        }
-                    } else {
-                        layer.msg("保存失败", {
-                            time: 1000
-                        });
-                    }
-
-                });
+            } else if (document.selection && document.selection.createRange) {
+                document.selection.createRange().text = text;
             }
-        });
+        };
 
-    };
+        $scope.addImg = function(imgpath) {
+            var img = "<p><img  src='" + imgpath + "'/></p>";
+            // var element = $(img);
 
-    $scope.setMainPath = function(path) {
-        $scope.form.main_image_path = path;
-    }
 
-    function addSplitToField($t, myValue) {
-        if (document.selection) {
-            $t.focus();
-            sel = document.selection.createRange();
-            sel.text = myValue;
-            $t.focus();
-        } else if ($t.selectionStart || $t.selectionStart == '0') {
-            var startPos = $t.selectionStart;
-            var endPos = $t.selectionEnd;
-            var scrollTop = $t.scrollTop;
-            $t.value = $t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length);
-            this.focus();
-            $t.selectionStart = startPos + myValue.length;
-            $t.selectionEnd = startPos + myValue.length;
-            $t.scrollTop = scrollTop;
-        } else {
-            $t.value += myValue;
-            $t.focus();
+            //  taSelection.insertHTML(img);
+            //insertTextAtCursor(img);
+
+
+            $scope.form.content += img;
+
         }
+
+
+
+
+
+
+
+
+
+
     }
-
-    $scope.addImg = function(imgpath) {
-        var img = "<p><img  src='" + imgpath + "'/></p>";
-
-        $scope.form.content += img;
-
-    }
-
-
-
-
-
-
-
-
-
-
-}]);
+]);

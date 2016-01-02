@@ -18,7 +18,6 @@ app.controller('UsersCtrl', ['$scope', "$http", "$state", "$localStorage", funct
         q.success(function(data) {
             $scope.paginationConf.totalItems = data.total_count;
             $scope.items = data.items;
-
         });
     }
 

@@ -295,12 +295,6 @@ body {
     width: 100%;
 }
 
-.nav-tabs > li {
-    .active {
-        border: 0px;
-    }
-}
-
 [ng\:cloak],
 [ng-cloak],
 [data-ng-cloak],
@@ -323,4 +317,32 @@ ng\:form {
 .ng-animate-active {
     clip: rect(-1px, auto, auto, 0);
     -ms-zoom: 1;
+}
+
+.mytab {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 -15px;
+    padding: 0;
+    >li {
+        list-style: none;
+        display: inline-block;
+        margin: 0;
+        padding: 5px 0;
+        width: 49%;
+        text-align: center;
+        >a {
+            width: 100%;
+            margin: 5px 0;
+            text-decoration: none;
+            color: rgb(0, 159, 143);
+        }
+    }
+    .iactive {
+        border-bottom: 3px solid #777;
+        color: #333;
+        >a {
+            color: #333;
+        }
+    }
 }

@@ -2,14 +2,28 @@
     <div class="row" style="background-color: #fff; max-height: 290px;">
         <div>
             <img ng-src="{{company.introduce_page.main_image_path}}" style="width:100%; max-height: 276px;" alt="{{company.name}}">
-            <div class="lead text-center h2" style="filter:alpha(opacity=50); margin-top:-60px; padding-top:15px; font-weight:bold; -moz-opacity:0.5;-khtml-opacity: 0.5; background-color:#555; width:100%; height:50px;color:#fff" ng-bind="company.name">
+            <div class="lead text-center h2" style="filter:alpha(opacity=50); margin-top:-60px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.5;-khtml-opacity: 0.5;opacity:0.5; background-color:#555; width:100%; height:50px;color:#fff" ng-bind="company.name">
             </div>
         </div>
     </div>
-    <ul class="nav nav-tabs" style="font-weight:bold;">
-        <li class="{{prjActive}}" style="width:50%;"><a ng-click="ckShow(1)">项目案例</a></li>
-        <li style="width:50%; " class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
+    <ul class="mytab">
+        <li class="{{prjActive}}"><a ng-click="ckShow(1)">项目案例</a></li>
+        <li class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
     </ul>
+    <div class="row" style="padding:10px 0;background-color: #eee;" ng-show="!showList&&(!!company.introduce_page.project_type||!!company.introduce_page.project_address||!!company.introduce_page.project_contact_phone)">
+        <div style="padding:10px 0; background-color: #fff;">
+            <span class="glyphicon glyphicon-star" style="margin-left:10px;padding:5px 0" ng-show="!!company.introduce_page.project_type">
+                <span ng-bind="company.introduce_page.project_type" ></span>
+            </span>
+            <br/>
+            <span class="glyphicon glyphicon-map-marker" style="margin-left:10px;padding:5px 0;" ng-show="!!company.introduce_page.project_address"> 
+             <span ng-bind="company.introduce_page.project_address" ></span></span>
+            <br/>
+            <span class="glyphicon glyphicon-earphone" style="margin-left:10px;padding:5px 0;" ng-show="!!company.introduce_page.project_contact_phone">  
+            <span ng-bind="company.introduce_page.project_contact_phone"></span></span>
+            <br/>
+        </div>
+    </div>
     <div class="row" id="project-desc" style="padding:15px;background-color: #fff;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
     </div>
     <div class="row" ng-show="showList" style="background-color: #F0EFF4;">

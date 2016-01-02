@@ -36,17 +36,17 @@ angular.module('webappApp')
 
 
 
-        $scope.conActive = "active";
+        $scope.conActive = "iactive";
         $scope.prjActive = "";
         $scope.showList = false;
         $scope.ckShow = function(type) {
             if (type == 1) {
                 $scope.showList = true;
                 $scope.conActive = "";
-                $scope.prjActive = "active";
+                $scope.prjActive = "iactive";
             } else if (type == 2) {
                 $scope.showList = false;
-                $scope.conActive = "active";
+                $scope.conActive = "iactive";
                 $scope.prjActive = "";
             }
         };

@@ -18,6 +18,8 @@ module.exports = {
             'bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
             'bower_components/angular-translate-storage-local/angular-translate-storage-local.js',
             'bower_components/angular-file-upload/angular-file-upload.js',
+            'bower_components/textAngular/dist/textAngular-sanitize.min.js',
+            'bower_components/textAngular/dist/textAngular.min.js',
             "src/js/vendor/layer/layer.js",
             'src/js/vendor/layer/extend/layer.ext.js',
             'src/js/*.js',

@@ -13,9 +13,12 @@ angular.module('app', [
     'ui.jq',
     'oc.lazyLoad',
     'pascalprecht.translate',
-    'tm.pagination'
+    'tm.pagination',
+    'angularFileUpload',
+    'textAngular'
+
 
 ]);
 
 // var _Api = "/api"; //when realse to server change it to : /api
-var _Api = "";
+var _Api = "/api";

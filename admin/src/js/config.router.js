@@ -15,7 +15,6 @@ angular.module('app')
     .config(
         ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
             function($stateProvider, $urlRouterProvider, JQ_CONFIG) {
-
                 $urlRouterProvider
                     .otherwise('/app/dashboard-v1');
                 $stateProvider
@@ -63,12 +62,12 @@ angular.module('app')
                         resolve: {
                             deps: ['$ocLazyLoad', 'uiLoad',
                                 function($ocLazyLoad, uiLoad) {
-                                    return $ocLazyLoad.load('angularFileUpload').then(
-                                        function() {
-                                            //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
-                                            return uiLoad.load("js/controllers/todaystart/companys-edit.js");
-                                        }
-                                    );
+                                    // return $ocLazyLoad.load('angularFileUpload').then(
+                                    //function() {
+                                    //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                    return uiLoad.load("js/controllers/todaystart/companys-edit.js");
+                                    //}
+                                    // );
                                 }
                             ]
                         }
@@ -92,11 +91,11 @@ angular.module('app')
                     resolve: {
                         deps: ['$ocLazyLoad', 'uiLoad',
                             function($ocLazyLoad, uiLoad) {
-                                return $ocLazyLoad.load(['angularFileUpload', 'textAngular']).then(
-                                    function() {
-                                        return uiLoad.load("js/controllers/todaystart/projects-edit.js");
-                                    }
-                                );
+                                //    return $ocLazyLoad.load(['angularFileUpload', 'textAngular']).then(
+                                //   function() {
+                                return uiLoad.load("js/controllers/todaystart/projects-edit.js");
+                                //  }
+                                //   );
                             }
                         ]
                     }
