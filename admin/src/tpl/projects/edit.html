@@ -130,52 +130,98 @@
                         </div>
                     </div>
                     <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">工程名称</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_name" placeholder="工程名称" ng-model="form.project_name" class="form-control rounded">
+                        <div class="form-group">
+                            <!-- Select Basic -->
+                            <label class="col-sm-3 control-label">
+                                <input type="checkbox" name="is_product" ng-true-value="1" ng-false-value="0" value="是否为产品介绍" ng-model="form.is_product">是否为产品</label>
+                            <div class="col-sm-7  ">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">工程联系电话</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_contact_phone" placeholder="联系电话" ng-model="form.project_contact_phone" class="form-control rounded">
+                        <div class="form-group hide">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">工程名称</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_name" placeholder="工程名称" ng-model="form.project_name" class="form-control rounded">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">工程地址</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_address" placeholder="工程地址" ng-model="form.project_address" class="form-control rounded">
+                        <div class="form-group hide">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">工程联系电话</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_contact_phone" placeholder="联系电话" ng-model="form.project_contact_phone" class="form-control rounded">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">施工单位名称</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_action_company" placeholder="施工单位名称" ng-model="form.project_action_company" class="form-control rounded">
+                        <div class="form-group" ng-show="form.is_product==0">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">工程地址</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_address" placeholder="工程地址" ng-model="form.project_address" class="form-control rounded">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">设计单位名称</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_design_company" placeholder="设计单位名称" ng-model="form.project_design_company" class="form-control rounded">
+                        <div class="form-group" ng-show="form.is_product==0">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">施工单位</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_action_company" placeholder="施工单位" ng-model="form.project_action_company" class="form-control rounded">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">工程面积</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_area" placeholder="工程面积（平方米）" ng-model="form.project_area" class="form-control rounded">
+                        <div class="form-group" ng-show="form.is_product==0">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">设计单位</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_design_company" placeholder="设计单位" ng-model="form.project_design_company" class="form-control rounded">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" ng-show="showMore">
-                        <!-- Select Basic -->
-                        <label class="col-sm-2 control-label">工程类型</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="project_type" placeholder="工程类型" ng-model="form.project_type" class="form-control rounded">
+                        <div class="form-group" ng-show="form.is_product==0">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">工程面积</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="project_area" placeholder="工程面积（平方米）" ng-model="form.project_area" class="form-control rounded">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==0">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">工程类型</label>
+                            <div class="col-sm-8">
+                                <!-- <input type="text" name="project_type" placeholder="工程类型" ng-model="form.project_type" class="form-control rounded">
+ -->
+                                <select name='project_type' ng-model="form.project_type" class="form-control rounded" ng-options="it as it for it in project_type_list"></select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==1">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">产品材质</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="product_metal" placeholder="产品材质" ng-model="form.product_metal" class="form-control rounded">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==1">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">产品规格</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="product_ruler" placeholder="产品规格" ng-model="form.product_ruler" class="form-control rounded">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==1">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">适用场景</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="product_cence" placeholder="适用场景" ng-model="form.product_cence" class="form-control rounded">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==1">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">价格</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="product_price" placeholder="价格" ng-model="form.product_price" class="form-control rounded">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="form.is_product==1">
+                            <!-- Select Basic -->
+                            <label class="col-sm-2 control-label">产地</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="product_address" placeholder="产地" ng-model="form.product_address" class="form-control rounded">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

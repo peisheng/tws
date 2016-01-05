@@ -1,10 +1,10 @@
 app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploader", "$timeout", "$stateParams", "$state", "$localStorage", "$window",
     function($scope, $http, taSelection, FileUploader, $timeout, $stateParams, $state, $localStorage, $window) {
 
-
         $scope.articleTypeList = [];
         $scope.imgList = [];
         $scope.showMore = false;
+        $scope.project_type_list = ['住宅', '办公', '商业', '酒店', '客厅', '别墅', '公共', '其它'];
         $scope.form = {
             'title': '',
             'descript': "",
@@ -17,6 +17,12 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             'project_type': "",
             'project_name': "",
             'project_area': "",
+            'product_metal': "",
+            "product_ruler": "",
+            "product_cence": "",
+            "product_price": "",
+            "product_address": "",
+            'is_product': 0,
             'main_image_path': "",
             'company_id': $localStorage.company_id,
             'is_company_intro': "0",
@@ -28,6 +34,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         $scope.showPublishBtn = false;
         $scope.showNoPublishBtn = false;
         $scope.isView = !$localStorage.edit;
+
 
 
 
@@ -119,6 +126,12 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                                 'project_type': data.project_type,
                                 'project_name': data.project_name,
                                 'project_area': data.project_area,
+                                'product_metal': data.product_metal,
+                                "product_ruler": data.product_ruler,
+                                "product_cence": data.product_cence,
+                                "product_price": data.product_price,
+                                "product_address": data.product_address,
+                                'is_product': data.is_product,
                                 'type_id': data.type_id,
                                 'content': data.content,
                                 'main_image_path': data.main_image_path,
@@ -191,7 +204,12 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                 'project_design_company': 'length[~20]',
                 'project_type': 'length[~10]',
                 'project_name': 'length[~20]',
-                'project_area': 'digits;'
+                'project_area': 'digits;',
+                'product_metal': 'length[~20]',
+                "product_ruler": 'length[~20]',
+                "product_cence": 'length[~20]',
+                "product_price": 'length[~20]',
+                "product_address": 'length[~20]'
             }
         });
 

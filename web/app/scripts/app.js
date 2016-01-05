@@ -10,14 +10,14 @@
  */
 angular
     .module('webappApp', [
-        'ngAnimate',
-        'ngAria',
-        'ngCookies',
-        'ngMessages',
-        'ngResource',
+        // 'ngAnimate',
+        // 'ngAria',
+        // 'ngCookies',
+        // 'ngMessages',
+        // 'ngResource',
         'ngRoute',
-        'ngSanitize',
-        'ngTouch'
+        'ngSanitize'
+        // 'ngTouch'
     ])
     .config(function($routeProvider) {
         $routeProvider
