@@ -7,7 +7,7 @@
  * # ViewprojectCtrl
  * Controller of the webappApp
  */
-angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $routeParams, $http) {
+angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce, $routeParams, $http) {
     var id = $routeParams.id;
     $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;
@@ -32,6 +32,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
             imgUrl: "http://" + location.host + "/" + $scope.project.main_image_path,
             desc: $scope.project.descript
         };
+        $scope.project.content = $sce.trustAsHtml($scope.project.content);
 
     });
 
@@ -183,7 +184,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $rout
 
     $scope.ckShareToFriends = function() {
         // console.log(shareData);
-        $scope.showMark = true;
+        $scope.showMark = !$scope.showMark;
 
 
     };

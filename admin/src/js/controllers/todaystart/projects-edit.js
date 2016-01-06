@@ -311,15 +311,5 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             $scope.form.content += img;
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 ]);

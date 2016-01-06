@@ -8,7 +8,7 @@
  * Controller of the webappApp
  */
 angular.module('webappApp')
-    .controller('ViewcompanyCtrl', function($scope, $routeParams, $http, $timeout) {
+    .controller('ViewcompanyCtrl', function($scope, $sce, $routeParams, $http, $timeout) {
         var id = $routeParams.id;
         var url = "/api/company/get?id=" + id;
         var q = $http({
@@ -17,6 +17,7 @@ angular.module('webappApp')
         });
         q.success(function(data) {
             $scope.company = data;
+
             if (!!$scope.company.introduce_page) {
                 var _url = "/api/project/setviewcount?id=" + $scope.company.introduce_page.id;
                 setTimeout(function() {
@@ -27,14 +28,12 @@ angular.module('webappApp')
                     c.success(function() {
                         console.log("update sucess");
                     });
-
                 }, 3000);
             }
+            $scope.company.phone = $scope.company.phone || $scope.company.mobile;
+            $scope.company.introduce_page.content = $sce.trustAsHtml($scope.company.introduce_page.content);
 
         });
-
-
-
 
         $scope.conActive = "iactive";
         $scope.prjActive = "";
@@ -53,7 +52,6 @@ angular.module('webappApp')
         $scope.loadNext = function() {
             ReadyData($scope.nextPage);
         }
-
 
         $scope.totalRecord = 0;
         $scope.currentPage = 0;

@@ -3,80 +3,65 @@
         <img style="width:100%;position: fixed;top:0;left:0;z-index: 9999" src="/web/images/wechat.jpg" />
     </div>
     <div class="jumbotron" style="padding:15px 0;background-color: #fff;">
-        <div>
+        <div style="margin:-15px;">
             <img ng-src="{{project.main_image_path}}" style="width:100%" alt="{{project.title}}">
-            <div class="lead  text-center h2" style="filter:alpha(opacity=50); margin-top:-51px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.5;-khtml-opacity: 0.5;opacity:0.5; background-color:#555; width:100%; height:50px;color:#fff" ng-bind="project.title">
+            <div class="lead  text-center h2" style="filter:alpha(opacity=50); margin-top:-65px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.5;-khtml-opacity: 0.5;opacity:0.5; background-color:#555; width:100%; height:65px;color:#fff">
             </div>
+            <p style="color:#fff !important;position:relative;width:100%;text-align:center;top:-64px;font-size: 19px;font-weight: 700;" ng-bind="project.descript">
+            </p>
         </div>
-        <p class="h6" ng-bind="project.descript">
+        <p style="font-size: 18px; font-weight: 700; margin-top:-53px; padding-top: 0;margin-bottom: -15px;color:#000;" ng-bind="project.title">
         </p>
         <br />
-        <div class="row" style="padding:10px 0;background-color: #eee; text-align: left;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
-            <div style="padding:0px 0; ">
-                <span class=" glyphicon glyphicon-triangle-right" style="margin-left:10px;padding:3x 0 " ng-show="!!project.project_name ">
-                <span ng-bind="project.project_name" ></span>
+        <div class="row" style="padding:10px 0;background-color: #eee;  text-align: left; margin:0 -15px; font-size:16px;font-weight: 200;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
+            <div style="padding:0px 0; margin:0 auto;text-align: left;padding-left:18px; ">
+                <span style="padding:3px 0; " ng-show="!!project.project_address "> 
+                  <span ng-bind="'地址：'+project.project_address" ></span>
+                <br/>
                 </span>
+                <span style="padding:3px 0 " ng-show="!!project.project_type ">
+                <span ng-bind="'类型：'+project.project_type" ></span>
                 <br/>
-                <span class=" glyphicon glyphicon-triangle-right " style="margin-left:10px;padding:3px 0 " ng-show="!!project.project_type ">
-                <span ng-bind="project.project_type" ></span>
                 </span>
-                <span class="glyphicon glyphicon-triangle-right " style="margin-left:10px;padding:3x 0 " ng-show="!!project.project_area ">
-                <span ng-bind="project.project_area" ></span><span>M<sup>2</sup></span>
+                <span style="padding:3x 0 " ng-show="!!project.project_area ">
+                <span ng-bind="'面积：'+project.project_area+'平方米'" ></span>
+                <br />
                 </span>
+                <span style="padding:3px 0; " ng-show="!!project.project_design_company "> 
+                <span ng-bind=" '设计：'+project.project_design_company" ></span>
                 <br/>
-                <span class="glyphicon glyphicon-triangle-right " style="margin-left:10px;padding:3px 0; " ng-show="!!project.project_address "> 
-             <span ng-bind="project.project_address" ></span></span>
+                </span>
+                <span style="padding:3px 0; " ng-show="!!project.project_action_company "> 
+             <span ng-bind=" '施工：'+project.project_action_company " ></span>
                 <br/>
-                <span class="glyphicon glyphicon-triangle-right " style="margin-left:10px;padding:3px 0; " ng-show="!!project.project_design_company "> 
-             <span ng-bind=" '设计：'+project.project_design_company " ></span></span>
-                <br/>
-                <span class="glyphicon glyphicon-triangle-right " style="margin-left:10px;padding:3px 0; " ng-show="!!project.project_action_company "> 
-             <span ng-bind=" '施工：'+project.project_action_company " ></span></span>
-                <br/>
-                <span class="glyphicon glyphicon-triangle-right" style="margin-left:10px;padding:3px 0; " ng-show="!!project.project_contact_phone ">  
-            <span ng-bind="'联系：'+project.project_contact_phone"></span></span>
-                <br/>
+                </span>
             </div>
         </div>
-        <p id="project-desc" ng-bind-html="project.content">
-        </p>
-        <p ng-show="hasCompany ">
-            <img src="/web/images/contact.png" style="width:100%; " />
+        <p id="project-desc" style="font-size:15px;font-weight: 600;" ng-bind-html="project.content">
         </p>
     </div>
-    <div class="row text-center " ng-show="hasCompany" style="background: url(/web/images/card.png);background-size: cover; max-height:120px;width:100%;margin-left:auto;margin-right: auto;margin-top:-60px; ">
+    <div class="row text-center " ng-show="hasCompany" style="background-color:#eee;width:100%;margin-left:auto;margin-right: auto;margin-top:-30px;">
         <div class="row " style="margin-left:0;margin-right: 0; ">
             <div class="col-xs-2 " style="margin:0;padding:0 ">
-                <img ng-src="{{company.logo_path}} " style="width:60px;height:60px; margin:30px 10px; " class="img-circle ">
+                <img ng-src="{{company.logo_path}} " style="width:50px;height:50px; margin:15px;border:none;">
             </div>
-            <div class="col-xs-10 " style="margin:0;padding:0 ">
-                <div class="row text-center " style="margin:0;padding:0 ">
-                    <div class="h5 row " style="color:#00BFE4;font-weight: bold;margin:0;padding:0;margin-top:30px; ">
-                        <div class="col-xs-1 " style="margin:0;padding:0 "></div>
-                        <div class="col-xs-1 " style="margin:0;padding:0 "></div>
-                        <div class="col-xs-10 text-left " style="margin:0;padding:0 " ng-bind="project.user_name "></div>
-                    </div>
+            <div class="col-xs-10 " style="margin:15px 0;padding:0 10px; ">
+                <div class="row " style="margin:0;padding:0;font-size: 10px; ">
+                    <div class="col-xs-1 " style="margin:0;padding:0 "></div>
+                    <div class="col-xs-11 text-left " style="margin:0;padding:0 "><span style="color:#000; ">{{company.name}}</span></div>
                 </div>
                 <div class="row " style="margin:0;padding:0;font-size: 10px; ">
                     <div class="col-xs-1 " style="margin:0;padding:0 "></div>
-                    <div class="col-xs-1 " style="margin:0;padding:0 "> <span class="glyphicon glyphicon-home " style="color:#00BFE4; "></span></div>
-                    <div class="col-xs-10 text-left " style="margin:0;padding:0 "><span style="color:#fff; ">{{company.name}}</span></div>
+                    <div class="col-xs-11 text-left " style="margin:0;padding:0 "><span style="color:#000; ">{{company.address}}</span></div>
                 </div>
                 <div class="row " style="margin:0;padding:0 ;font-size: 10px;">
                     <div class="col-xs-1 " style="margin:0;padding:0 "></div>
-                    <div class="col-xs-1 " style="margin:0;padding:0 "> <span class="glyphicon glyphicon-earphone " style="color:#00BFE4; "></span></div>
-                    <div class="col-xs-10 text-left " style="margin:0;padding:0 "><span style="color:#fff; ">{{company.phone}}</span></div>
-                </div>
-                <div class="row " style="margin:0;padding:0;font-size: 10px; ">
-                    <div class="col-xs-1 " style="margin:0;padding:0 "></div>
-                    <div class="col-xs-1 " style="margin:0;padding:0 "> <span class="glyphicon glyphicon-map-marker " style="color:#00BFE4; "></span></div>
-                    <div class="col-xs-10 text-left " style="margin:0;padding:0 "><span style="color:#fff; ">{{company.address}}</span></div>
+                    <div class="col-xs-11 text-left " style="margin:0;padding:0 "><span style="color:#000; ">{{company.phone}}</span></div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="min-height: 50px;"></div>
-    <div class="navbar-fixed-bottom " ng-show="isShowShare " style="clear:both;text-align: center;width:100%; background-color: #fff; border-top: 1px solid #555; ">
-        <button class="btn btn-danger btn-lg " id="btnShareToFriends " ng-click="ckShareToFriends() " style="border-radius: 0px; ">分享到朋友圈</button>
+    <div ng-show="isShowShare " style="clear:both;text-align: center;width:100%; background-color: #fff;margin:4px 0; ">
+        <button class="btn btn-primary btn-lg btn-block " id="btnShareToFriends " ng-click="ckShareToFriends() " style="border-radius: 5px; ">分享到朋友圈</button>
     </div>
 </div>
