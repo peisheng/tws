@@ -101,26 +101,36 @@ body {
     color: rgb(0, 159, 143);
 }
 
+.focusbg {
+    background: url("images/focush.png") no-repeat;
+    width: 100%;
+    height: 120px;
+}
+
 .headTab {
-    background: -webkit-linear-gradient(top, #393A3F, #666);
-    color: rgb(0, 159, 143);
-    height: 52px;
+    background-color: #00DAC6;
+    color: #000;
+    height: 30px;
     float: left;
-    padding-top: 15px;
-    padding: 0;
     text-align: center;
     width: 100%;
+    padding-top: 4px;
     > span {
-        margin-top: 18px;
         display: block;
-        height: 35px;
+        height: 30px;
         width: 100%;
-        font-size: 20px;
+        font-size: 16px;
     }
-    .active {
-        border-bottom: thick solid #fff;
-        color: #fff;
-    }
+}
+
+.tactive {
+    color: #000;
+    font-weight: bold;
+    /*background-color: #e0ede6*/
+}
+
+.tabbl {
+    border-right: 2px solid #fff
 }
 
 .mp0 {
@@ -194,7 +204,7 @@ body {
 #company-list-content {
     position: absolute;
     z-index: 1;
-    top: 100px;
+    top: 132px;
     bottom: 0px;
     width: 100%;
     min-width: 320px;

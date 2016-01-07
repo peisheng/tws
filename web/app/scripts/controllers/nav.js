@@ -15,6 +15,7 @@ angular.module('webappApp')
             changeScope();
 
         });
+        $scope.showQbar = false;
 
         function changeScope() {
             var path = $.trim($location.path()).toLowerCase();
@@ -45,7 +46,13 @@ angular.module('webappApp')
                 $location.path(companyListPath);
             }
         }
+        $scope.ckShowQbar = function() {
+            $scope.showQbar = true;
+        }
 
+        $scope.ckHideQbar = function() {
+            $scope.showQbar = false;
+        }
 
 
 
