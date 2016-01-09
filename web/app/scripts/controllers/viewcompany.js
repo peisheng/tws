@@ -63,6 +63,12 @@ angular.module('webappApp')
 
         function ReadyData(index) {
             var url = "/api/project/list?" + "page_index=" + index + "&page_size=" + page_size + "&keyword=&company_id=" + id;
+            if (window.localStorage) {
+                var prj_v_ids = localStorage.getItem("prj_visits");
+                if (prj_v_ids != null) {
+                    prj_v_ids = JSON.parse(prj_v_ids);
+                }
+            }
 
             var p = $http({
                 method: "GET",
@@ -71,6 +77,21 @@ angular.module('webappApp')
             p.success(function(data) {
                 $scope.totalRecord = data.total_count;
                 $scope.nextPage = data.current_page + 1;
+
+                if (!!prj_v_ids) {
+                    for (var i = 0, j = data.items.length; i < j; i++) {
+                        if (!_.contains(prj_v_ids, data.items[i].id)) {
+                            data.items[i].color = "color:#000;";
+                        } else {
+                            data.items[i].color = "color:#bbb;";
+                        }
+                    }
+                } else {
+                    for (var i = 0, j = data.items.length; i < j; i++) {
+                        data.items[i].color = "color:#000;";
+                    }
+                }
+
                 if ($scope.items.length == 0) {
                     $scope.items = data.items;
                 } else if ($scope.items.length <= 1000) {
@@ -97,6 +118,29 @@ angular.module('webappApp')
             });
         }
         ReadyData(1);
+
+        $scope.ckVisit = function(id) {
+            if (!window.localStorage) {
+                console.log("not support the localStorage");
+                return;
+            }
+            var prj_visits = localStorage.getItem("prj_visits");
+            if (prj_visits == null) {
+                prj_visits = [];
+            } else {
+                prj_visits = JSON.parse(prj_visits);
+            }
+
+            prj_visits.push(id);
+            if (prj_visits.length > 100) {
+                _.sortBy(prj_visits);
+                while (prj_visits.length > 100) {
+                    prj_visits.shift(0);
+                }
+            }
+            prj_visits = JSON.stringify(_.uniq(prj_visits));
+            localStorage.setItem("prj_visits", prj_visits);
+        }
 
 
     });

@@ -26,19 +26,20 @@
     <div class="row" id="project-desc" style="padding:15px;background-color: #fff;font-size:14px;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
     </div>
     <div class="row" ng-show="showList" style="background-color: #F0EFF4;">
-        <ul id="add" class="ul">
-            <li class="li clearfix m15 row" style="margin-right: 0;margin-left: 0;margin-top: 15px;" ng-repeat="item in items">
+        <ul id="add" class="ul" style="margin-top: -15px;background:#F0EFF4;padding-left: 15px;">
+            <li class="li clearfix m15
+ row" style="margin-right: 0;margin-left: 0" ng-repeat="item in items">
                 <div class="col-xs-9" style="margin-right: 0px;padding: 0;">
-                    <div class="m15 row" style="text-align:left;">
-                        <div class="title col-xs-12" style="margin: 0px;padding: 0;margin-left: 10px;margin-top: 5px;">
-                            <a href="/web/index.html#/view-project/{{item.id}}" style="color:#000;font-size: 15px;" ng-bind="item.title"></a>
+                    <div class="m15 row" style="text-align:left; margin: 10px 0 0px 0;">
+                        <div class="title col-xs-12" style="margin: 0px;padding: 0;margin-left: 10px;margin-top: 0px;">
+                            <a href="/web/index.html#/view-project/{{item.id}}" style="{{item.color}}font-size: 15px;" ng-bind="item.title" ng-click="ckVisit(item.id)"></a>
                         </div>
                         <div class="prop col-xs-12" style="font-weight: bold;font-size:13px;">
                             <span style="margin-left:12px;">{{item.view_count}}人阅读</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:88px; height:62px;margin-left: -18px; " alt="{{item.title}}图片" /></div>
+                <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:68px; height:50px;margin-left:0px;    margin-right: 5px; " alt="{{item.title}}图片" /></div>
             </li>
         </ul>
         <div class="remark-text text-center" ng-click="loadNext()" ng-show="showMore" style="width: 100%; margin:30px; cursor:pointer;">点击加载更多</div>
