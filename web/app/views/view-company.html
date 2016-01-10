@@ -1,50 +1,55 @@
-<div class="row" style="background-color: #fff; max-height: 290px;marign-left: 0;">
-    <div> <img style="width:100%; max-height: 233px" alt="厦门市永特新装修工程有限公司" ng-src="/Uploads/2015-12-30/11-26-00-57343a7_450_300.jpg" src="/Uploads/2015-12-30/11-26-00-57343a7_450_300.jpg">
-        <div class="lead text-center h2" style="filter:alpha(opacity=65); margin-top:-65px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.65;-khtml-opacity: 0.65;opacity:0.65; background-color:#555; width:100%; height:65px"> </div>
-        <p style="color:#fff !important;position:relative;width:100%;text-align:center;top:-64px;font-size: 19px;font-weight: 700" ng-bind="company.name" class="ng-binding">厦门市永特新装修工程有限公司</p>
-    </div>
-</div>
-<div style="   width:100%;height:34px;">
-    <ul class="mytab">
-        <li class="{{prjActive}}"><a ng-click="ckShow(1)" style="">项目案例</a></li>
-        <li class="{{conActive}}" style="position: relative;
-    left: 50%;
-    top: -32px;"><a ng-click="ckShow(2)">联系我们</a></li>
-    </ul>
-</div>
-<div style="background-color:#fff;">
-    <div class="row" style="padding:10px 0 10px 16px;background-color: #eee;" ng-show="!showList&&(!!company.address||!!company.phone||!!company.mobile)">
-        <div style="padding:11px 0; background-color: #fff;">
-            <span class="glyphicon glyphicon-map-marker" style="margin-left:10px;padding:5px 0" ng-show="!!company.address">
-                <span ng-bind="company.address" ></span>
-            </span>
-            <br/>
-            <span class="glyphicon glyphicon-earphone" style="margin-left:10px;padding:5px 0;" ng-show="!!company.phone||!!company.mobile">  
-            <span ng-bind="company.phone"></span></span>
-            <br/>
+<div>
+    <div class="row" style="background-color: #fff; marign-left: 0;">
+        <div>
+            <img style="width:100%;" alt="{{company.name}}" ng-src="{{company.introduce_page.main_image_path}}">
+            <div class="lead text-center h2 " style="filter:alpha(opacity=65); margin-top:-65px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.65;-khtml-opacity: 0.65;opacity:0.65; background-color:#555; width:100%; height:65px "> </div>
+            <p style="color:#fff !important;position:relative;width:100%;text-align:center;top:-64px;font-size: 19px;font-weight: 700 " ng-bind="company.name " class="ng-binding "></p>
         </div>
     </div>
-    <div class="row" id="project-desc" style="background-color: #fff;font-size:16px;font-weight: 200;    padding: 5px 7px 0 22px;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
+    <div style=" width:100%;height:34px;margin-top: -54px; ">
+        <ul class="mytab ">
+            <li class="{{prjActive}} "><a ng-click="ckShow(1) " style=" ">项目案例</a></li>
+            <li class="{{conActive}} " style="position: relative; float:right;left: 0; top: -32px; "><a ng-click="ckShow(2) ">联系我们</a></li>
+        </ul>
     </div>
-    <div class="row" ng-show="showList" style="background-color: #F0EFF4;">
-        <ul id="add" class="ul" style="margin-top: 0px;background:#F0EFF4;padding-left: 15px;">
-            <li class="li clearfix row" style="margin:10px 0;" ng-repeat="item in items">
-                <div class="col-xs-9" style="margin-right: 0px;padding: 0;min-height:79px;">
-                    <div class="m15 row" style="text-align:left;margin: 10px 0 11px 0;">
-                        <div class="title col-xs-12" style="margin: 0 0px 0 8px; padding: 0 26px 0 0;">
-                            <a href="/web/index.html#/view-project/{{item.id}}" style="{{item.color}}font-size: 15px;" ng-bind="item.title" ng-click="ckVisit(item.id)"></a>
-                        </div>
-                        <div class="prop col-xs-12" style="font-weight: bold;font-size:13px;padding: 0;">
-                            <span style="margin-left:12px;">{{item.view_count}}人阅读</span>
+    <div style="background-color:#fff; ">
+        <div class="row " style="padding:10px 0 10px 16px;background-color: #eee; " ng-show="!showList&&(!!company.address||!!company.phone||!!company.mobile) ">
+            <div style="padding:11px 0; background-color: #fff;    clear: both;
+    position: relative;
+    top: -26px; ">
+                <span class="glyphicon glyphicon-map-marker " style="margin-left:10px;padding:5px 0 " ng-show="!!company.address ">
+                <span ng-bind="company.address " ></span>
+                <br/> </span>
+                <span class="glyphicon glyphicon-earphone " style="margin-left:10px;padding:5px 0; " ng-show="!!company.phone||!!company.mobile ">  
+            <span ng-bind="company.phone "></span>
+                <br/>
+                </span>
+            </div>
+        </div>
+        <div class="row " id="project-desc" style="background-color: #fff;font-size:16px;font-weight: 600; padding: 5px 7px 0 22px;    clear: both;
+    position: relative;
+    top: -28px; " ng-show="!showList " ng-bind-html="company.introduce_page.content ">
+        </div>
+    </div>
+    <div>
+        <div class="row " ng-show="showList " style="background-color: #F0EFF4; clear:both;     position: relative;
+    top: -34px;">
+            <ul class="ul" style="margin-top: 0px;background:#F0EFF4;padding-left: 15px; ">
+                <li class="li clearfix " style="margin:10px 0;clear:both; " ng-repeat="item in items ">
+                    <div class="col-xs-9 " style="margin-right: 0px;padding: 0;min-height:79px; ">
+                        <div class="m15 row " style="text-align:left;margin: 10px 0 11px 0; ">
+                            <div class="title col-xs-12 " style="margin: 0 0px 0 8px; padding: 0 26px 0 0; ">
+                                <a href="/web/index.html#/view-project/{{item.id}} " style="{{item.color}}font-size: 15px; " ng-bind="item.title " ng-click="ckVisit(item.id)"></a>
+                            </div>
+                            <div class="prop col-xs-12 " style="font-weight: bold;font-size:13px;padding: 0; ">
+                                <span style="margin-left:12px; ">{{item.view_count}}人阅读</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:83px; height:59px;margin-right: 14px; float: right " alt="{{item.title}}图片" /></div>
-            </li>
-        </ul>
-        <div class="remark-text text-center" ng-click="loadNext()" ng-show="showMore" style="width: 100%; margin:30px; cursor:pointer;">点击加载更多</div>
-    </div>
-    <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px; display: none; ">
-        <button class="btn btn-danger btn-lg ">分享到朋友圈</button>
+                    <div class="col-xs-3 " style="margin: 0px;padding: 0; "><img class="img " ng-src="{{item.main_image_path}} " style="width:83px; height:59px;margin-right: 14px; float: right " alt="{{item.title}}图片 " /></div>
+                </li>
+            </ul>
+            <div class="remark-text text-center " ng-click="loadNext()" ng-show="showMore " style="width: 100%; margin:30px; cursor:pointer; ">点击加载更多</div>
+        </div>
     </div>
 </div>

@@ -11,10 +11,9 @@
     white-space: nowrap;text-overflow:ellipsis;padding: 0 0 0 17px;" ng-bind="project.descript">
             </div>
         </div>
-        <p style="font-size: 18px; font-weight: 700; margin-top:-27px; padding-top: 0;margin-bottom: 0px;color:#000;" ng-bind="project.title">
+        <p style="font-size: 18px; font-weight: 700; margin-top:-37px; padding-top: 0;margin-bottom: 9px;color:#000;" ng-bind="project.title">
         </p>
-        <br />
-        <div class="row" style="padding:10px 0;background-color: #eee;  text-align: left; margin:0 -15px; font-size:16px;font-weight: 200;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
+        <div class="row" style="padding:10px 0;background-color: #eee;  text-align: left; margin:10px -15px; font-size:16px;font-weight: 600;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
             <div style="padding:0px 0; margin:0 auto;text-align: left;padding-left:24px; ">
                 <span style="padding:3px 0; " ng-show="!!project.project_address "> 
                   <span ng-bind="'地址：'+project.project_address" ></span>
@@ -63,6 +62,6 @@
         </div>
     </div>
     <div ng-show="isShowShare " style="clear:both;text-align: center;width:100%; background-color: #fff;    margin: 1px 0 11px 6px; ">
-        <button class="btn btn-primary btn-lg btn-block " id="btnShareToFriends " ng-click="ckShareToFriends() " style="border-radius: 5px; ">分享到朋友圈</button>
+        <button class="btn btn-primary btn-lg btn-block " id="btnShareToFriends " ng-click="ckShareToFriends() " style="border-radius: 5px; background:#7490FD;border:0; ">分享到朋友圈</button>
     </div>
 </div>
