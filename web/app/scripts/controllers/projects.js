@@ -124,6 +124,9 @@ angular.module('webappApp')
 
                 $timeout(function() {
                     //  myScroll.refresh();
+                    $("#navbar").sticky({
+                        topSpacing: 20
+                    });
                     $(".remark-text").addClass("hide")
                 });
             });
@@ -262,11 +265,7 @@ angular.module('webappApp')
             $scope.nextPage = $scope.nextPage + 1;
             ReadyData($scope.nextPage);
         }
-        setTimeout(function() {
-            $("#navbar").sticky({
-                topSpacing: 20
-            });
-        }, 1000);
+
 
 
         // angular.element("#project-colntent").ready(loaded);

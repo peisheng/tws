@@ -22,14 +22,9 @@ angular
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl',
-                controllerAs: 'main'
-            })
-            .when('/about', {
-                templateUrl: 'views/about.html',
-                controller: 'AboutCtrl',
-                controllerAs: 'about'
+                templateUrl: 'views/companys.html',
+                controller: 'CompanysCtrl',
+                controllerAs: 'companys'
             })
             .when('/companys', {
                 templateUrl: 'views/companys.html',
@@ -50,11 +45,6 @@ angular
                 templateUrl: 'views/view-project.html',
                 controller: 'ViewprojectCtrl',
                 controllerAs: 'viewproject'
-            })
-            .when('/view-project-test/:id', {
-                templateUrl: 'views/view-project-test.html',
-                controller: 'ViewprojecttestCtrl',
-                controllerAs: 'viewprojecttest'
             })
             .otherwise({
                 redirectTo: '/'

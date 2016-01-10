@@ -1,18 +1,17 @@
-<div style="background-color:#fff; ">
-    <div class="row" style="background-color: #fff; max-height: 290px;">
-        <div>
-            <img ng-src="{{company.introduce_page.main_image_path}}" style="width:100%; max-height: 276px;" alt="{{company.name}}">
-            <div class="lead text-center h2" style="filter:alpha(opacity=65); margin-top:-65px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.65;-khtml-opacity: 0.65;opacity:0.65; background-color:#555; width:100%; height:65px;">
-            </div>
-            <p style="color:#fff !important;position:relative;width:100%;text-align:center;top:-64px;font-size: 19px;font-weight: 700;" ng-bind="company.name">
-            </p>
-        </div>
+<div class="row" style="background-color: #fff; max-height: 290px;marign-left: 0;">
+    <div> <img style="width:100%; max-height: 233px" alt="厦门市永特新装修工程有限公司" ng-src="/Uploads/2015-12-30/11-26-00-57343a7_450_300.jpg" src="/Uploads/2015-12-30/11-26-00-57343a7_450_300.jpg">
+        <div class="lead text-center h2" style="filter:alpha(opacity=65); margin-top:-65px; padding-top:15px; font-weight:bold;font-size:16px; -moz-opacity:0.65;-khtml-opacity: 0.65;opacity:0.65; background-color:#555; width:100%; height:65px"> </div>
+        <p style="color:#fff !important;position:relative;width:100%;text-align:center;top:-64px;font-size: 19px;font-weight: 700" ng-bind="company.name" class="ng-binding">厦门市永特新装修工程有限公司</p>
     </div>
-    <ul class="mytab">
-        <li class="{{prjActive}}"><a ng-click="ckShow(1)">项目案例</a></li>
-        <li class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
-    </ul>
-    <div class="row" style="padding:10px 0;background-color: #eee;" ng-show="!showList&&(!!company.address||!!company.phone||!!company.mobile)">
+</div>
+<div style="background-color:#fff;">
+    <div style="   margin: -50px 0 -11px 0;padding-left: 15px;">
+        <ul class="mytab">
+            <li class="{{prjActive}}"><a ng-click="ckShow(1)">项目案例</a></li>
+            <li class="{{conActive}}"><a ng-click="ckShow(2)">联系我们</a></li>
+        </ul>
+    </div>
+    <div class="row" style="padding:5px 0 5px 16px;background-color: #eee;" ng-show="!showList&&(!!company.address||!!company.phone||!!company.mobile)">
         <div style="padding:10px 0; background-color: #fff;">
             <span class="glyphicon glyphicon-map-marker" style="margin-left:10px;padding:5px 0" ng-show="!!company.address">
                 <span ng-bind="company.address" ></span>
@@ -23,7 +22,7 @@
             <br/>
         </div>
     </div>
-    <div class="row" id="project-desc" style="padding:15px;background-color: #fff;font-size:14px;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
+    <div class="row" id="project-desc" style="background-color: #fff;font-size:16px;font-weight: 200;    padding: 5px 7px 0 22px;" ng-show="!showList" ng-bind-html="company.introduce_page.content ">
     </div>
     <div class="row" ng-show="showList" style="background-color: #F0EFF4;">
         <ul id="add" class="ul" style="margin-top: -15px;background:#F0EFF4;padding-left: 15px;">
@@ -45,7 +44,6 @@
         <div class="remark-text text-center" ng-click="loadNext()" ng-show="showMore" style="width: 100%; margin:30px; cursor:pointer;">点击加载更多</div>
     </div>
     <div style="clear:both;text-align: center;width:100%;padding-bottom: 30px; display: none; ">
-        <img src="images/contact_b.png " style="width:100%; " />
         <button class="btn btn-danger btn-lg ">分享到朋友圈</button>
     </div>
 </div>

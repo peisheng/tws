@@ -64,6 +64,7 @@ angular.module('webappApp')
         var max_size = 300;
         $scope.items = [];
         $scope.showLoadMore = true;
+        $scope.showNotResult = false;
 
         $scope.keyword = "";
         $scope.ckSearch = function() {
@@ -108,6 +109,11 @@ angular.module('webappApp')
 
                 if ($scope.items.length == 0) {
                     $scope.items = data.items;
+                    if ($scope.keyword.length > 0) {
+                        $scope.showNotResult = true;
+                    } else {
+                        $scope.showNotResult = false;
+                    }
                 } else if ($scope.items.length <= max_size) {
                     _.each(data.items, function(it) {
                         $scope.items.push(it);
@@ -131,6 +137,9 @@ angular.module('webappApp')
                 }
 
                 $timeout(function() {
+                    $("#navbar_com").sticky({
+                        topSpacing: 20
+                    });
                     // myScroll.refresh();
                     $(".remark-text").addClass("hide")
                 });
@@ -268,9 +277,5 @@ angular.module('webappApp')
             $scope.nextPage = $scope.nextPage + 1;
             ReadyData($scope.nextPage);
         }
-        setTimeout(function() {
-            $("#navbar_com").sticky({
-                topSpacing: 20
-            });
-        }, 1000);
+
     }]);
