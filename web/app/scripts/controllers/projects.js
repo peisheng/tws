@@ -63,6 +63,7 @@ angular.module('webappApp')
         var max_size = 300;
         $scope.items = [];
         $scope.showLoadMore = true;
+        $scope.isactive = false;
 
         function ReadyData(index) {
             var url = "/api/project/list?" + "page_index=" + index + "&page_size=" + page_size;
@@ -124,9 +125,14 @@ angular.module('webappApp')
 
                 $timeout(function() {
                     //  myScroll.refresh();
-                    $("#navbar").sticky({
-                        topSpacing: 20
-                    });
+
+
+                    if (!$scope.isactive) {
+                        $("#navbar").sticky({
+                            topSpacing: 20
+                        });
+                        $scope.isactive = true;
+                    }
                     $(".remark-text").addClass("hide")
                 });
             });

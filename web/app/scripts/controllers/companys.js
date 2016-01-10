@@ -73,6 +73,8 @@ angular.module('webappApp')
 
         };
 
+        $scope.isactive = false;
+
         function ReadyData(index) {
             var url = "/api/company/list?" + "page_index=" + index + "&page_size=" + page_size + "&keyword=" + $scope.keyword;
 
@@ -137,9 +139,12 @@ angular.module('webappApp')
                 }
 
                 $timeout(function() {
-                    $("#navbar_com").sticky({
-                        topSpacing: 20
-                    });
+                    if (!$scope.isactive) {
+                        $("#navbar_com").sticky({
+                            topSpacing: 20
+                        });
+                        $scope.isactive = true;
+                    }
                     // myScroll.refresh();
                     $(".remark-text").addClass("hide")
                 });
