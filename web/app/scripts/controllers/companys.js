@@ -76,6 +76,7 @@ angular.module('webappApp')
         $scope.isactive = false;
 
         function ReadyData(index) {
+            $scope.showNotResult = false;
             var url = "/api/company/list?" + "page_index=" + index + "&page_size=" + page_size + "&keyword=" + $scope.keyword;
 
             if (window.localStorage) {
@@ -141,7 +142,7 @@ angular.module('webappApp')
                 $timeout(function() {
                     if (!$scope.isactive) {
                         $("#navbar_com").sticky({
-                            topSpacing: 20
+                            topSpacing: 15
                         });
                         $scope.isactive = true;
                     }
@@ -151,27 +152,33 @@ angular.module('webappApp')
             });
         }
         $scope.ckVisit = function(id) {
-            if (!window.localStorage) {
-                console.log("not support the localStorage");
-                return;
-            }
-            var prj_visits = localStorage.getItem("com_visits");
-            if (prj_visits == null) {
-                prj_visits = [];
-            } else {
-                prj_visits = JSON.parse(prj_visits);
-            }
-            prj_visits.push(id);
-            if (prj_visits.length > 100) {
-                _.sortBy(prj_visits);
-                while (prj_visits.length > 100) {
-                    prj_visits.shift(0);
-                }
-            }
-            prj_visits = JSON.stringify(_.uniq(prj_visits));
-            localStorage.setItem("com_visits", prj_visits);
-        }
+            // if (!window.localStorage) {
+            //     console.log("not support the localStorage");
+            //     return;
+            // }
+            // var prj_visits = localStorage.getItem("com_visits");
+            // if (prj_visits == null) {
+            //     prj_visits = [];
+            // } else {
+            //     prj_visits = JSON.parse(prj_visits);
+            // }
+            // prj_visits.push(id);
+            // if (prj_visits.length > 100) {
+            //     _.sortBy(prj_visits);
+            //     while (prj_visits.length > 100) {
+            //         prj_visits.shift(0);
+            //     }
+            // }
+            // prj_visits = JSON.stringify(_.uniq(prj_visits));
+            // localStorage.setItem("com_visits", prj_visits);
 
+            $location.path("view-company/" + id);
+        }
+        $scope.ckKeyPress = function($event) {
+            if ($event.keyCode == 13) {
+                $scope.ckSearch();
+            }
+        }
         ReadyData(1);
         // var myScroll;
         // var pullDownEl, pullDownL;

@@ -11,7 +11,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
     var id = $routeParams.id;
     $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;
-
+    $scope.opacity = "0.75";
     var q = $http({
         method: "GET",
         url: url
@@ -33,6 +33,11 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             desc: $scope.project.descript
         };
         $scope.project.content = $sce.trustAsHtml($scope.project.content);
+        if (!$scope.project.descript) {
+            $scope.opacity = "0";
+            $scope.project.descript = $sce.trustAsHtml("&nbsp;");
+        }
+
 
     });
 
@@ -83,6 +88,9 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             }
             if (!!$scope.company.name) {
                 $scope.hasCompany = true;
+            }
+            if (!$scope.project.descript) {
+                $scope.project.descript = $scope.project.title;
             }
 
             $scope.shareData = {

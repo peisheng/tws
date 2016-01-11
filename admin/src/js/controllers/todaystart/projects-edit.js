@@ -193,7 +193,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             timely: true,
             fields: {
                 'title': 'required;length[4~14];',
-                'descript': "required;length[2~200]",
+                'descript': "length[2~200]",
                 'type_id': "required;",
                 'content': "required;length[20~]",
                 'main_image_path': "required;",

@@ -15,7 +15,8 @@
          province: "",
          address: "",
          site_url: "",
-         logo_path: ""
+         logo_path: "",
+         company_phone: ""
 
      };
      $scope.isView = !$localStorage.edit;
@@ -122,7 +123,8 @@
                              province: data.province,
                              address: data.address,
                              site_url: data.site_url,
-                             logo_path: data.logo_path
+                             logo_path: data.logo_path,
+                             company_phone: data.company_phone
                          };
                      });
                  }
@@ -153,6 +155,7 @@
              'city': "required;",
              'address': "required;",
              'logo_path': "required;",
+             'company_phone': "require;digits"
          }
      });
 
@@ -349,13 +352,14 @@
      }
 
      $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
-         if ($scope.isShowUser) {
-             getUserDataList();
-         }
-         if ($scope.isShowArticle) {
-             getProjectDataList();
-         }
-     });
+     if ($scope.isShowUser) {
+         getUserDataList();
+     }
+     if ($scope.isShowArticle) {
+         getProjectDataList();
+     }
+ });
+
 
 
 

@@ -129,7 +129,7 @@ angular.module('webappApp')
 
                     if (!$scope.isactive) {
                         $("#navbar").sticky({
-                            topSpacing: 20
+                            topSpacing: 15
                         });
                         $scope.isactive = true;
                     }
@@ -160,6 +160,7 @@ angular.module('webappApp')
             }
             prj_visits = JSON.stringify(_.uniq(prj_visits));
             localStorage.setItem("prj_visits", prj_visits);
+            $location.path("view-project/" + id);
         }
         ReadyData(1);
         // var myScroll;

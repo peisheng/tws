@@ -8,7 +8,7 @@
  * Controller of the webappApp
  */
 angular.module('webappApp')
-    .controller('ViewcompanyCtrl', function($scope, $sce, $routeParams, $http, $timeout) {
+    .controller('ViewcompanyCtrl', function($scope, $sce, $routeParams, $http, $timeout, $location) {
         var id = $routeParams.id;
         var url = "/api/company/get?id=" + id;
         var q = $http({
@@ -35,9 +35,9 @@ angular.module('webappApp')
 
         });
 
-        $scope.conActive = "iactive";
-        $scope.prjActive = "";
-        $scope.showList = false;
+        $scope.conActive = "";
+        $scope.prjActive = "iactive";
+        $scope.showList = true;
         $scope.ckShow = function(type) {
             if (type == 1) {
                 $scope.showList = true;
@@ -120,26 +120,27 @@ angular.module('webappApp')
         ReadyData(1);
 
         $scope.ckVisit = function(id) {
-            if (!window.localStorage) {
-                console.log("not support the localStorage");
-                return;
-            }
-            var prj_visits = localStorage.getItem("prj_visits");
-            if (prj_visits == null) {
-                prj_visits = [];
-            } else {
-                prj_visits = JSON.parse(prj_visits);
-            }
+            // if (!window.localStorage) {
+            //     console.log("not support the localStorage");
+            //     return;
+            // }
+            // var prj_visits = localStorage.getItem("prj_visits");
+            // if (prj_visits == null) {
+            //     prj_visits = [];
+            // } else {
+            //     prj_visits = JSON.parse(prj_visits);
+            // }
 
-            prj_visits.push(id);
-            if (prj_visits.length > 100) {
-                _.sortBy(prj_visits);
-                while (prj_visits.length > 100) {
-                    prj_visits.shift(0);
-                }
-            }
-            prj_visits = JSON.stringify(_.uniq(prj_visits));
-            localStorage.setItem("prj_visits", prj_visits);
+            // prj_visits.push(id);
+            // if (prj_visits.length > 100) {
+            //     _.sortBy(prj_visits);
+            //     while (prj_visits.length > 100) {
+            //         prj_visits.shift(0);
+            //     }
+            // }
+            // prj_visits = JSON.stringify(_.uniq(prj_visits));
+            // localStorage.setItem("prj_visits", prj_visits);
+            $location.path("view-project/" + id);
         }
 
 
