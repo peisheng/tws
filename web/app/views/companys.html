@@ -46,7 +46,7 @@
                         <div class="headTab" ng-if="!isProjectList"><span style="margin-left: -7px;">项目与产品</span></div>
                     </div>
                 </div>
-                <div class="row" style="background-color: #F0EFF4;padding:0 10px;">
+                <div class="row" style="background-color: #F0EFF4;padding: 0 17px 0 15px;">
                     <form class="sform" style="margin-bottom: -2px;">
                         <div class="input-group" style=" width: 100%;margin-left:20px;">
                             <input type="text" style="margin-top: -3px; border-radius: 4px;" ng-keypress="ckKeyPress($event)" class="form-control" ng-model="keyword" placeholder="搜索公司名称" aria-describedby="basic-addon1"><span class="input-group-addon" style="cursor:pointer;border: none;" id="basic-addon1">
@@ -67,10 +67,17 @@
                         <div class="col-xs-9" style="margin:0;padding:0;">
                             <div class="row" style=" margin: 9px 0 14px 5px;">
                                 <div class="title col-xs-12" style="margin-top: 2px;">
-                                    <a style="color:#000;font-size:14px; margin-left: 0px;" ng-bind="item.name" ng-click="ckVisit(item.id)"></a>
+                                    <a style="color:#000;font-size:17px; margin-left: 0px;text-align: left;
+    line-height: 1.5em;
+    font-weight: normal;
+    font-style: normal;
+    color: rgb(16, 16, 16);" ng-bind="item.name" ng-click="ckVisit(item.id)"></a>
                                 </div>
                             </div>
-                            <div class="prop row" style="margin:-6px 0 0 18px;padding: 0;font-weight: bold;font-size:13px;"><span class="glyphicon glyphicon-map-marker" style="margin-right: 5px; margin-left: 0px;"></span><span ng-bind="item.city_name"></span><span class="glyphicon glyphicon-grain" style="margin-right: 5px;margin-left: 30px;"></span><span ng-bind="item.type_name"></span></div>
+                            <div class="prop row" style="margin:-6px 0 0 18px;padding: 0;font-size: 14px;
+    text-align: left;
+    line-height: 20px;
+    font-weight: normal;"><span class="glyphicon glyphicon-map-marker" style="margin-right: 5px; margin-left: 0px;"></span><span ng-bind="item.city_name"></span><span class="glyphicon glyphicon-grain" style="margin-right: 5px;margin-left: 30px;"></span><span ng-bind="item.type_name"></span></div>
                         </div>
                     </li>
                 </ul>

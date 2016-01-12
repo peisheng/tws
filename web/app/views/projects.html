@@ -54,15 +54,18 @@
                 <li class="li clearfix row" style="margin:10px 0;" ng-repeat="item in items">
                     <div class="col-xs-9" style="margin-right: 0px;padding: 0;min-height:79px;">
                         <div class="m15 row" style="text-align:left;margin: 10px 0 11px 0;">
-                            <div class="title col-xs-12" style="margin: 0 0px 0 8px; padding: 0 26px 0 0;">
-                                <a style="{{item.color}}font-size: 15px;" ng-bind="item.title" ng-click="ckVisit(item.id)"></a>
+                            <div class="title col-xs-12" style="margin: 0 4px 0 8px; padding: 0 33px 0 4px;">
+                                <a style="{{item.color}}font-size: 17px; font-weight: normal; line-height: 1.5em;
+                                  color: rgb(16, 16, 16);
+    box-shadow: rgb(170, 170, 170) 0px 0px 0px;
+    transform: rotate(0deg); " ng-bind="item.title" ng-click="ckVisit(item.id)"></a>
                             </div>
-                            <div class="prop col-xs-12" style="font-weight: bold;font-size:13px;padding: 0;">
+                            <div class="prop col-xs-12" style="font-weight: normal;font-size:14px;line-height: 20px;padding: 0;">
                                 <span style="margin-left:12px;">{{item.type_name}}</span> <span style="margin-left:25px;">{{item.view_count}}人阅读</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:83px; height:59px;margin-right: 14px; float: right " ng-click="ckVisit(item.id)" alt="{{item.title}}图片" /></div>
+                    <div class="col-xs-3" style="margin: 0px;padding: 0;"><img class="img" ng-src="{{item.main_image_path}}" style="width:90px; height:60px;margin-right: 14px; float: right " ng-click="ckVisit(item.id)" alt="{{item.title}}图片" /></div>
                 </li>
             </ul>
             <div id="pullUp" class="hide ub ub-pc c-gra">
