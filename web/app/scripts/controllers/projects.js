@@ -129,7 +129,7 @@ angular.module('webappApp')
 
                     if (!$scope.isactive) {
                         $("#navbar").sticky({
-                            topSpacing: 15
+                            topSpacing: 10
                         });
                         $scope.isactive = true;
                     }

@@ -142,7 +142,7 @@ angular.module('webappApp')
                 $timeout(function() {
                     if (!$scope.isactive) {
                         $("#navbar_com").sticky({
-                            topSpacing: 15
+                            topSpacing: 10
                         });
                         $scope.isactive = true;
                     }
