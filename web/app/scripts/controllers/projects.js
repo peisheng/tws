@@ -85,7 +85,7 @@ angular.module('webappApp')
                 if (!!prj_v_ids) {
                     for (var i = 0, j = data.items.length; i < j; i++) {
                         if (!_.contains(prj_v_ids, data.items[i].id)) {
-                            data.items[i].color = "color:#000;";
+                            data.items[i].color = "color: rgb(16, 16, 16);";
                         } else {
                             data.items[i].color = "color:#bbb;";
                         }
