@@ -63,7 +63,7 @@
                 <ul id="add" class="ul">
                     <li class="li clearfix m15
  row" style="padding-bottom: 10px;margin:10px 0;" ng-repeat="item in items">
-                        <div class=" col-xs-3"><img class="img" ng-src="{{item.logo_path}}" ng-click="ckVisit(item.id)" alt=""></div>
+                        <div class=" col-xs-3"><img class="img" ng-src="{{item.logo_path|smallpath}}" ng-click="ckVisit(item.id)" alt=""></div>
                         <div class="col-xs-9" style="margin:0;padding:0;">
                             <div class="row" style=" margin: 9px 0 0 -2px;">
                                 <div class="title col-xs-12" style="margin-top: 2px;max-height: 46px;">
