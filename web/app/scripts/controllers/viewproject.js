@@ -7,7 +7,7 @@
  * # ViewprojectCtrl
  * Controller of the webappApp
  */
-angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce, $routeParams, $http) {
+angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce, $routeParams, $http, $location) {
     var id = $routeParams.id;
     $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;
@@ -37,10 +37,11 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             $scope.opacity = "0";
             $scope.project.descript = $sce.trustAsHtml("&nbsp;");
         }
-
-
     });
 
+    $scope.ckCompany = function(com_id) {
+        $location.path("view-company/" + com_id);
+    }
 
     $scope.isShowShare = true;
     $scope.showMark = false;
@@ -55,7 +56,6 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             console.log("update sucess");
         });
     }, 3000);
-
 
     var shareApiUrl = "/api/jssdk/jsapi";
     var shareUrl = location.href;
@@ -81,6 +81,8 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             url: url
         });
         q.success(function(data) {
+            var descript = "";
+            var descript_title = "";
             $scope.project = data;
             $scope.company = data.company;
             if (!$scope.company.phone) {
@@ -90,7 +92,11 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
                 $scope.hasCompany = true;
             }
             if (!$scope.project.descript) {
-                $scope.project.descript = $scope.project.title;
+                descript = $scope.project.title;
+                descript_title = $scope.project.title;
+            } else {
+                descript = $scope.project.descript;
+                descript_title = descript + "-" + $scope.project.title;
             }
 
             $scope.shareData = {
@@ -101,11 +107,16 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             };
 
             var title = $scope.shareData.title + '';
+            var app_title = $scope.company.name + '';
+            if (!app_title) {
+                app_title = title;
+            }
+
             var desc = $scope.shareData.desc + '';
             var link = $scope.shareData.link + '';
             var imgUrl = $scope.shareData.imgUrl + '';
             wx.onMenuShareTimeline({
-                title: title, // $scope.shareData.title, // 分享标题
+                title: descript_title, // $scope.shareData.title, // 分享标题
                 imgUrl: imgUrl, //$scope.shareData.desc, // 分享描述
                 link: link,
                 trigger: function(res) {},
@@ -121,8 +132,8 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
                 }
             });
             wx.onMenuShareAppMessage({
-                title: title, // $scope.shareData.title, // 分享标题
-                desc: desc, //$scope.shareData.desc, // 分享描述
+                title: app_title, // $scope.shareData.title, // 分享标题
+                desc: descript_title, //$scope.shareData.desc, // 分享描述
                 link: link, //$scope.shareData.link, // 分享链接
                 imgUrl: imgUrl, //$scope.shareData.imgUrl, // 分享图标
                 type: 'link', // 分享类型,music、video或link，不填默认为link

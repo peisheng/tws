@@ -155,7 +155,7 @@
              'city': "required;",
              'address': "required;",
              'logo_path': "required;",
-             'company_phone': "require;digits"
+             'company_phone': "require;"
          }
      });
 
@@ -352,13 +352,13 @@
      }
 
      $scope.$watch('paginationConf.currentPage + paginationConf.itemsPerPage', function() {
-     if ($scope.isShowUser) {
-         getUserDataList();
-     }
-     if ($scope.isShowArticle) {
-         getProjectDataList();
-     }
- });
+         if ($scope.isShowUser) {
+             getUserDataList();
+         }
+         if ($scope.isShowArticle) {
+             getProjectDataList();
+         }
+     });
 
 
 

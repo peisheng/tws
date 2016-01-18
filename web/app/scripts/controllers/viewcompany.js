@@ -33,6 +33,110 @@ angular.module('webappApp')
             $scope.company.phone = $scope.company.phone || $scope.company.mobile;
             $scope.company.introduce_page.content = $sce.trustAsHtml($scope.company.introduce_page.content);
 
+
+
+            var shareApiUrl = "/api/jssdk/jsapi";
+            var shareUrl = location.href;
+            setTimeout(function() {
+                var ticket = $http({
+                    method: "GET",
+                    url: shareApiUrl,
+                    params: {
+                        shareUrl: shareUrl
+                    }
+                });
+                ticket.success(function(data) {
+                    readyWeiXinConfig(data.appId, data.timestamp, data.nonceStr, data.signature);
+                });
+            }, 500);
+
+            wx.ready(function() {
+                var desc = $scope.company.name + '的主页';
+                var link = shareUrl;
+                var imgUrl = 'http://' + location.host + $scope.company.logo_path;
+                wx.onMenuShareTimeline({
+                    title: desc, // $scope.shareData.title, // 分享标题
+                    imgUrl: imgUrl, //$scope.shareData.desc, // 分享描述
+                    link: link,
+                    trigger: function(res) {},
+                    success: function(res) {},
+                    cancel: function(res) {
+                        //alert('已取消');
+                        //console.log("已取消");
+
+                    },
+                    fail: function(res) {
+                        //alert('失败');
+                        //alert(JSON.stringify(res));
+                    }
+                });
+                wx.onMenuShareAppMessage({
+                    title: desc, // $scope.shareData.title, // 分享标题
+                    desc: desc, //$scope.shareData.desc, // 分享描述
+                    link: link, //$scope.shareData.link, // 分享链接
+                    imgUrl: imgUrl, //$scope.shareData.imgUrl, // 分享图标
+                    type: 'link', // 分享类型,music、video或link，不填默认为link
+                    // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function() {
+                        // 用户确认分享后执行的回调函数
+
+                    },
+                    cancel: function() {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+
+            });
+
+            function readyWeiXinConfig(appId, timestamp, nonceStr, signature) {
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: appId, // 必填，公众号的唯一标识
+                    timestamp: timestamp, // 必填，生成签名的时间戳
+                    nonceStr: nonceStr, // 必填，生成签名的随机串
+                    signature: signature, // 必填，签名，
+                    jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'hideMenuItems',
+                        'showMenuItems',
+                        'hideAllNonBaseMenuItem',
+                        'showAllNonBaseMenuItem',
+                        'translateVoice',
+                        'startRecord',
+                        'stopRecord',
+                        'onRecordEnd',
+                        'playVoice',
+                        'pauseVoice',
+                        'stopVoice',
+                        'uploadVoice',
+                        'downloadVoice',
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage',
+                        'getNetworkType',
+                        'openLocation',
+                        'getLocation',
+                        'hideOptionMenu',
+                        'showOptionMenu',
+                        'closeWindow',
+                        'scanQRCode',
+                        'chooseWXPay',
+                        'openProductSpecificView',
+                        'addCard',
+                        'chooseCard',
+                        'openCard'
+                    ]
+                });
+
+
+
+            };
+
         });
 
         $scope.conActive = "";
@@ -142,6 +246,9 @@ angular.module('webappApp')
             // localStorage.setItem("prj_visits", prj_visits);
             $location.path("view-project/" + id);
         }
+
+
+
 
 
     });

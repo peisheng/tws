@@ -29,9 +29,9 @@
                 </table>
             </div>
         </div>
-        <p style="font-size: 18px; font-weight:normal; margin-top:-51px; padding-top: 0;margin-bottom: 9px;color:#000;" ng-bind="project.title">
+        <p style="font-size: 18px; font-weight:normal; margin-top:-54px; marign-left:-5px; padding-top: 0;margin-bottom: 9px;color:#000;" ng-bind="project.title">
         </p>
-        <div class="row" style="padding:10px 0;background-color: #eee;  text-align: left; margin:10px -15px; font-size:17px;font-weight: normal;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
+        <div class="row" style="padding:10px 0;background-color: #eee;  text-align: left; margin:10px -15px; font-size:16px;font-weight: normal;" ng-show="!showList&&(!!project.project_type||!!project.project_address||!!project.project_contact_phone||!!project.project_contact_name||!!project.project_contact_action_company||!!project.project_design_company||!!project.project_contact_area)">
             <div style="padding:0px 0; margin:0 auto;text-align: left;padding-left:28px; ">
                 <span style="padding:3px 0 ;display: block;" ng-show="!!project.project_type ">
                 <span ng-bind="'类型：'+project.project_type" ></span>
@@ -56,7 +56,7 @@
     <div class="row text-center " ng-show="hasCompany" style="background-color:#eee;width:100%;margin-left:6px;margin-right: -6px;margin-bottom: 10px;margin-top: -50px;">
         <div class="row " style="margin-left:0;margin-right: 0;padding:10px 0 ">
             <div class="col-xs-2 " style="margin:0;padding:0 ">
-                <img ng-src="{{company.logo_path}} " style="width:58px;height:58px; margin:10px;border:none;">
+                <img ng-src="{{company.logo_path}} " ng-click="ckCompany(company.id)" style="width:58px;height:58px; margin:10px;border:none;">
             </div>
             <div class="col-xs-10 " style="margin: 12px 0 10px 0;padding:0 5px; ">
                 <div class="row " style="margin:0;padding:0;font-size: 15px; font-weight: normal;line-height: 19px; ">
