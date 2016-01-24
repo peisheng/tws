@@ -11,7 +11,7 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
     var id = $routeParams.id;
     $scope.hasCompany = false;
     var url = "/api/project/get?id=" + id;
-    $scope.opacity = "0.75";
+    $scope.opacity = "0.5";
     var q = $http({
         method: "GET",
         url: url

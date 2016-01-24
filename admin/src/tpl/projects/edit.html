@@ -84,16 +84,19 @@
                         <!-- Textarea -->
                         <label class="col-sm-2 control-label">内容</label>
                         <div class="col-sm-5">
-                            <div lazy-load="textAngular">
-                                <div text-angular ng-model="form.content" id="Mytext" class="btn-groups"></div>
-                            </div>
+                            <!-- <div lazy-load="textAngular">
+    <div text-angular ng-model="form.content" id="Mytext" class="btn-groups"></div>
+</div>
+ -->
+                            <script id="container" name="content" type="text/plain" style="width:450px;height:100%;min-height:400px;">
+                            </script>
                         </div>
                         <div class="col-sm-5">
                             <ul style="list-style: none; ">
                                 <li style="clear: both;">
                                     <div>
                                         <div style="float: left; ">设为主图</div>
-                                        <div style="float: left; margin-left:30px;">点击图片添加</div>
+                                        <div style="float: left; margin-left:30px;">文章所有图片</div>
                                         <input type="text" style="width:0px;height: 0px;" name="main_image_path" ng-model="form.main_image_path" />
                                     </div>
                                 </li>

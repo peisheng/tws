@@ -4,7 +4,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         $scope.articleTypeList = [];
         $scope.imgList = [];
         $scope.showMore = false;
-        $scope.project_type_list = ['住宅', '办公', '商业', '酒店', '客厅', '别墅', '公共', '其它'];
+        $scope.project_type_list = ['住宅', '办公', '商业', '酒店', '餐厅', '别墅', '公共', '其它'];
         $scope.form = {
             'title': '',
             'descript': "",
@@ -45,7 +45,8 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         uploader.filters.push({
             name: 'customFilter',
             fn: function(item /*{File|FileLikeObject}*/ , options) {
-                return this.queue.length < 10;
+                $scope.currentImageList = [];
+                return this.queue.length < 30;
             }
         });
 
@@ -77,7 +78,9 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         uploader.onSuccessItem = function(fileItem, response, status, headers) {
             if (response.length > 0) {
                 $scope.imgList.push(response[0]);
+                $scope.currentImageList.push(response[0]);
                 $scope.$apply();
+
             }
             // $scope.logo_path = response.file_path;
             // $scope.form.logo_path = $scope.logo_path;
@@ -96,6 +99,17 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         };
         uploader.onCompleteAll = function() {
             // console.info('onCompleteAll');
+
+            var html = "";
+            $.each($scope.currentImageList, function(i, item) {
+                // umEditor.execCommand("insertimage", [{
+                //     src: item.small_path
+                // }]);
+                html = html + "<p><img src='" + item.small_path + "' /></p>";
+
+            });
+            umEditor.execCommand("inserthtml", html);
+
         };
 
         //绑定下拉列表
@@ -140,7 +154,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                                 "view_count": data.view_count,
                                 "is_publish": data.is_publish
                             };
-
+                            umEditor.setContent(data.content);
                             $scope.showMore = true;
                             if (data.is_publish == 0) {
                                 $scope.showPublishBtn = true;
@@ -188,11 +202,22 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             $scope.showMore = true;
         }
 
+
+        UM.getEditor('container', {
+            //传入配置参数,可配参数列表看umeditor.config.js 
+
+        }).destroy();
+        var umEditor = UM.getEditor('container', {
+            //传入配置参数,可配参数列表看umeditor.config.js 
+
+        });
+
+
         $("#projectForm").validator({
             stopOnError: false,
             timely: true,
             fields: {
-                'title': 'required;length[4~14];',
+                'title': 'required;length[1~14];',
                 'descript': "length[2~200]",
                 'type_id': "required;",
                 'content': "required;length[20~]",
@@ -245,6 +270,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             $("#projectForm").isValid(function(v) {
                 if (v) {
                     var postData = $scope.form;
+                    postData.content = umEditor.getContent();
                     if (!!$stateParams.id) {
                         postData.id = $stateParams.id;
                     } else {
@@ -285,19 +311,6 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
 
 
 
-        function insertTextAtCursor(text) {
-            var sel, range;
-            if (window.getSelection) {
-                sel = window.getSelection();
-                if (sel.getRangeAt && sel.rangeCount) {
-                    range = sel.getRangeAt(0);
-                    range.deleteContents();
-                    range.insertNode(document.createTextNode(text));
-                }
-            } else if (document.selection && document.selection.createRange) {
-                document.selection.createRange().text = text;
-            }
-        };
 
         $scope.addImg = function(imgpath) {
             var img = "<p><img  src='" + imgpath + "'/></p>";
@@ -306,10 +319,11 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
 
             //  taSelection.insertHTML(img);
             //insertTextAtCursor(img);
+            umEditor.execCommand("inserthtml", img);
 
 
-            $scope.form.content += img;
 
         }
+
     }
 ]);

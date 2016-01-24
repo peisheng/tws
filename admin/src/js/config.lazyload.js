@@ -63,6 +63,11 @@ angular.module('app')
         nicevalidator: [
             "js/vendor/nice-validator/jquery.validator.js",
             "js/vendor/nice-validator/local/zh-Cn.js"
+        ],
+        umeditor: [
+            "../bower_components/umeditor/umeditor.config.js",
+            // "../bower_components/umeditor/_examples/editor_api.js",
+            "../bower_components/umeditor/lang/zh-cn/zh-cn.js"
         ]
     })
     // oclazyload config

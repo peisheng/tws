@@ -71,7 +71,7 @@ angular.module('webappApp')
                     }
                 });
                 wx.onMenuShareAppMessage({
-                    title: desc, // $scope.shareData.title, // 分享标题
+                    title: "来自公众号：今日开工", // $scope.shareData.title, // 分享标题
                     desc: desc, //$scope.shareData.desc, // 分享描述
                     link: link, //$scope.shareData.link, // 分享链接
                     imgUrl: imgUrl, //$scope.shareData.imgUrl, // 分享图标

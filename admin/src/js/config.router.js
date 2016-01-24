@@ -91,11 +91,9 @@ angular.module('app')
                     resolve: {
                         deps: ['$ocLazyLoad', 'uiLoad',
                             function($ocLazyLoad, uiLoad) {
-                                //    return $ocLazyLoad.load(['angularFileUpload', 'textAngular']).then(
-                                //   function() {
-                                return uiLoad.load("js/controllers/todaystart/projects-edit.js");
-                                //  }
-                                //   );
+                                return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
+                                    return $ocLazyLoad.load("js/controllers/todaystart/projects-edit.js");
+                                });
                             }
                         ]
                     }

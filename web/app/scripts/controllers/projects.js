@@ -16,6 +16,7 @@ angular.module('webappApp')
             changeScope();
         });
         $scope.showQbar = false;
+        $scope.moreText = "正在加载";
 
         function changeScope() {
             var path = $.trim($location.path()).toLowerCase();
@@ -66,6 +67,7 @@ angular.module('webappApp')
         $scope.isactive = false;
 
         function ReadyData(index) {
+            $scope.moreText = "正在加载";
             var url = "/api/project/list?" + "page_index=" + index + "&page_size=" + page_size;
             if (window.localStorage) {
                 var prj_v_ids = localStorage.getItem("prj_visits");
@@ -133,7 +135,8 @@ angular.module('webappApp')
                         });
                         $scope.isactive = true;
                     }
-                    $(".remark-text").addClass("hide")
+                    $(".remark-text").addClass("hide");
+                    $scope.moreText = "上滑加载更多";
                 });
             });
         }
@@ -170,6 +173,14 @@ angular.module('webappApp')
             $scope.nextPage = $scope.nextPage + 1;
             ReadyData($scope.nextPage);
         }
+
+        $(window).scroll(function() {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+                if ($scope.showLoadMore) {
+                    $scope.ckLoadMore();
+                }
+            }
+        });
 
 
 
