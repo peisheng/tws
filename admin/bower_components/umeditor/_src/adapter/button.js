@@ -3,17 +3,18 @@ UM.registerUI('bold italic redo undo underline strikethrough superscript subscri
     function(name) {
         var me = this;
         var $btn = $.eduibutton({
-            icon: name,
-            click: function() {
+            icon : name,
+            click : function(){
                 me.execCommand(name);
             },
             title: this.getLang('labelMap')[name] || ''
         });
 
-        this.addListener('selectionchange', function() {
+        this.addListener('selectionchange',function(){
             var state = this.queryCommandState(name);
-            //  $btn.edui().disabled(state == -1).active(state == 1)
+            $btn.edui().disabled(state == -1).active(state == 1)
         });
         return $btn;
     }
 );
+

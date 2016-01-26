@@ -45,8 +45,7 @@ UM.plugins['autoupload'] = function () {
     me.addListener('ready', function () {
         if (window.FormData && window.FileReader) {
             var autoUploadHandler = function (e) {
-                var hasImg = false,
-                    items;
+                var items;
                 //获取粘贴板文件列表或者拖放文件列表
                 items = e.type == 'paste' ? getPasteImage(e.originalEvent) : getDropImage(e.originalEvent);
                 if (items) {
@@ -57,10 +56,8 @@ UM.plugins['autoupload'] = function () {
                         if (file.getAsFile) file = file.getAsFile();
                         if (file && file.size > 0 && /image\/\w+/i.test(file.type)) {
                             sendAndInsertImage(file, me);
-                            hasImg = true;
                         }
                     }
-                    if (hasImg) return false;
                 }
 
             };
@@ -70,10 +67,48 @@ UM.plugins['autoupload'] = function () {
             //取消拖放图片时出现的文字光标位置提示
             me.$body.on('dragover', function (e) {
                 if (e.originalEvent.dataTransfer.types[0] == 'Files') {
-                    return false;
+                    e.preventDefault();
                 }
             });
         }
     });
+
+    // 转存 base64 图片
+    me.addListener('transferBase64Image', function () {
+        utils.each(me.document.getElementsByTagName('img'), function (img, i){
+            var options = {}, base64, id;
+            if (base64 = getBase64ImageData(img)) {
+                id = img.id = 'base64img_' + (+new Date());
+                options['base64'] = true;
+                options[me.getOpt('imageFieldName')] = base64;
+                $.post(me.getOpt('imageUrl'), options, function(r){
+                    var json = eval('('+r+')'),
+                        $img = $('#' + id),
+                        link;
+                    if (json.state == 'SUCCESS' && json.url) {
+                        link = me.getOpt('imagePath') + json.url;
+                        $img.attr('src', link);
+                        $img.attr('_src', link);
+                    }
+                });
+            }
+        });
+    });
+
+    me.addListener('ready', function () {
+        function transferHandler(){
+            setTimeout(function (){
+                me.fireEvent('transferBase64Image');
+            });
+        }
+        me.$body.on('paste drop', transferHandler);
+    });
+
+    function getBase64ImageData(img){
+        var src = img.src, arr;
+        if (src.length > 60 && (arr = src.match(/^(data:[^;]*;base64,)/))) {
+            return src.substring(arr[1].length);
+        }
+    }
 
 };

@@ -3,7 +3,7 @@
     "version": "2.0.1",
     "description": "Admin web application template with Bootstrap 3 and AngularJS.",
     "scripts": {
-        "start": "node node_modules/http-server/bin/http-server -p 8888 -o -P http://192.168.1.105:8090 -d false"
+        "start": "node node_modules/http-server/bin/http-server -p 8888 -o -P http://www.ikgong.com:80 -d false"
     },
     "keywords": [
         "AngularJS",
