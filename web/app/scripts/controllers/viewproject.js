@@ -17,6 +17,12 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
         url: url
     });
     q.success(function(data) {
+
+        var content = data.content;
+        var p = "<div style='font-size:17px;'></div>";
+        var obj = $.parseHTML(p);
+        p = $(p).html(content);
+        var contentOK = $(p).prop("outerHTML");
         $scope.project = data;
         $scope.company = data.company;
         if (!$scope.company.phone) {
@@ -26,13 +32,16 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             $scope.hasCompany = true;
         }
 
+
         $scope.shareData = {
             title: $scope.project.descript,
             link: location.href,
             imgUrl: "http://" + location.host + "/" + $scope.project.main_image_path,
             desc: $scope.project.descript
         };
-        $scope.project.content = $sce.trustAsHtml($scope.project.content);
+
+        $scope.project.content = $sce.trustAsHtml(contentOK.replace(/font-family/ig, "fon2t-fa-mily"));
+
         if (!$scope.project.descript) {
             $scope.opacity = "0";
             $scope.project.descript = $sce.trustAsHtml("&nbsp;");
@@ -81,9 +90,16 @@ angular.module('webappApp').controller('ViewprojectCtrl', function($scope, $sce,
             url: url
         });
         q.success(function(data) {
+            var content = data.content;
+            var p = "<div style='font-size:17px;'></div>";
+            var obj = $.parseHTML(p);
+            p = $(p).html(content);
+            var contentOK = $(p).prop("outerHTML");
             var descript = "";
             var descript_title = "";
             $scope.project = data;
+            $scope.project.content = $sce.trustAsHtml(contentOK.replace(/font-family/ig, "fon2t-fa-mily"));
+
             $scope.company = data.company;
             if (!$scope.company.phone) {
                 $scope.company.phone = $scope.company.mobile;

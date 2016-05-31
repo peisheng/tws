@@ -149,7 +149,7 @@
          stopOnError: false,
          timely: true,
          fields: {
-             'name': 'required;length[2~14];',
+             'name': 'required;',
              'type': "required;",
              'province': "required;",
              'city': "required;",

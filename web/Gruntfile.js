@@ -78,8 +78,10 @@ module.exports = function(grunt) {
             server2: {
                 proxies: [{
                         context: '/api',
-                        host: '192.168.1.105',
-                        port: 8090,
+                        // host: '192.168.1.105',
+                        // port: 8090,
+                        host: "www.ikgong.com",
+                        port: 80,
                         https: false,
                         rewrite: {
                             //'^/api': ''

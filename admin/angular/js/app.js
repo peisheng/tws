@@ -1,6 +1,4 @@
 'use strict';
-
-
 angular.module('app', [
     'ngAnimate',
     'ngCookies',
@@ -14,5 +12,13 @@ angular.module('app', [
     'ui.load',
     'ui.jq',
     'oc.lazyLoad',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'tm.pagination',
+    'angularFileUpload',
+    'textAngular'
+
+
 ]);
+
+// var _Api = "/api"; //when realse to server change it to : /api
+var _Api = "/api";

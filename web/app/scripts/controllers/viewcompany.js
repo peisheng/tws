@@ -31,7 +31,7 @@ angular.module('webappApp')
                 }, 3000);
             }
             $scope.company.phone = $scope.company.phone || $scope.company.mobile;
-            $scope.company.introduce_page.content = $sce.trustAsHtml($scope.company.introduce_page.content);
+            $scope.company.introduce_page.content = $sce.trustAsHtml($scope.company.introduce_page.content.replace(/font-family/ig, "fon2t-fa-mily"));
 
 
 

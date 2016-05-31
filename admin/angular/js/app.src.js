@@ -4,7 +4,7 @@
 },removeAttr:function(a,b){var c,d,e=0,f=b&&b.match(E);if(f&&1===a.nodeType)while(c=f[e++])d=n.propFix[c]||c,n.expr.match.bool.test(c)&&(a[d]=!1),a.removeAttribute(c)},attrHooks:{type:{set:function(a,b){if(!k.radioValue&&"radio"===b&&n.nodeName(a,"input")){var c=a.value;return a.setAttribute("type",b),c&&(a.value=c),b}}}}}),Zb={set:function(a,b,c){return b===!1?n.removeAttr(a,c):a.setAttribute(c,c),c}},n.each(n.expr.match.bool.source.match(/\w+/g),function(a,b){var c=$b[b]||n.find.attr;$b[b]=function(a,b,d){var e,f;return d||(f=$b[b],$b[b]=e,e=null!=c(a,b,d)?b.toLowerCase():null,$b[b]=f),e}});var _b=/^(?:input|select|textarea|button)$/i;n.fn.extend({prop:function(a,b){return J(this,n.prop,a,b,arguments.length>1)},removeProp:function(a){return this.each(function(){delete this[n.propFix[a]||a]})}}),n.extend({propFix:{"for":"htmlFor","class":"className"},prop:function(a,b,c){var d,e,f,g=a.nodeType;if(a&&3!==g&&8!==g&&2!==g)return f=1!==g||!n.isXMLDoc(a),f&&(b=n.propFix[b]||b,e=n.propHooks[b]),void 0!==c?e&&"set"in e&&void 0!==(d=e.set(a,c,b))?d:a[b]=c:e&&"get"in e&&null!==(d=e.get(a,b))?d:a[b]},propHooks:{tabIndex:{get:function(a){return a.hasAttribute("tabindex")||_b.test(a.nodeName)||a.href?a.tabIndex:-1}}}}),k.optSelected||(n.propHooks.selected={get:function(a){var b=a.parentNode;return b&&b.parentNode&&b.parentNode.selectedIndex,null}}),n.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){n.propFix[this.toLowerCase()]=this});var ac=/[\t\r\n\f]/g;n.fn.extend({addClass:function(a){var b,c,d,e,f,g,h="string"==typeof a&&a,i=0,j=this.length;if(n.isFunction(a))return this.each(function(b){n(this).addClass(a.call(this,b,this.className))});if(h)for(b=(a||"").match(E)||[];j>i;i++)if(c=this[i],d=1===c.nodeType&&(c.className?(" "+c.className+" ").replace(ac," "):" ")){f=0;while(e=b[f++])d.indexOf(" "+e+" ")<0&&(d+=e+" ");g=n.trim(d),c.className!==g&&(c.className=g)}return this},removeClass:function(a){var b,c,d,e,f,g,h=0===arguments.length||"string"==typeof a&&a,i=0,j=this.length;if(n.isFunction(a))return this.each(function(b){n(this).removeClass(a.call(this,b,this.className))});if(h)for(b=(a||"").match(E)||[];j>i;i++)if(c=this[i],d=1===c.nodeType&&(c.className?(" "+c.className+" ").replace(ac," "):"")){f=0;while(e=b[f++])while(d.indexOf(" "+e+" ")>=0)d=d.replace(" "+e+" "," ");g=a?n.trim(d):"",c.className!==g&&(c.className=g)}return this},toggleClass:function(a,b){var c=typeof a;return"boolean"==typeof b&&"string"===c?b?this.addClass(a):this.removeClass(a):this.each(n.isFunction(a)?function(c){n(this).toggleClass(a.call(this,c,this.className,b),b)}:function(){if("string"===c){var b,d=0,e=n(this),f=a.match(E)||[];while(b=f[d++])e.hasClass(b)?e.removeClass(b):e.addClass(b)}else(c===U||"boolean"===c)&&(this.className&&L.set(this,"__className__",this.className),this.className=this.className||a===!1?"":L.get(this,"__className__")||"")})},hasClass:function(a){for(var b=" "+a+" ",c=0,d=this.length;d>c;c++)if(1===this[c].nodeType&&(" "+this[c].className+" ").replace(ac," ").indexOf(b)>=0)return!0;return!1}});var bc=/\r/g;n.fn.extend({val:function(a){var b,c,d,e=this[0];{if(arguments.length)return d=n.isFunction(a),this.each(function(c){var e;1===this.nodeType&&(e=d?a.call(this,c,n(this).val()):a,null==e?e="":"number"==typeof e?e+="":n.isArray(e)&&(e=n.map(e,function(a){return null==a?"":a+""})),b=n.valHooks[this.type]||n.valHooks[this.nodeName.toLowerCase()],b&&"set"in b&&void 0!==b.set(this,e,"value")||(this.value=e))});if(e)return b=n.valHooks[e.type]||n.valHooks[e.nodeName.toLowerCase()],b&&"get"in b&&void 0!==(c=b.get(e,"value"))?c:(c=e.value,"string"==typeof c?c.replace(bc,""):null==c?"":c)}}}),n.extend({valHooks:{option:{get:function(a){var b=n.find.attr(a,"value");return null!=b?b:n.trim(n.text(a))}},select:{get:function(a){for(var b,c,d=a.options,e=a.selectedIndex,f="select-one"===a.type||0>e,g=f?null:[],h=f?e+1:d.length,i=0>e?h:f?e:0;h>i;i++)if(c=d[i],!(!c.selected&&i!==e||(k.optDisabled?c.disabled:null!==c.getAttribute("disabled"))||c.parentNode.disabled&&n.nodeName(c.parentNode,"optgroup"))){if(b=n(c).val(),f)return b;g.push(b)}return g},set:function(a,b){var c,d,e=a.options,f=n.makeArray(b),g=e.length;while(g--)d=e[g],(d.selected=n.inArray(d.value,f)>=0)&&(c=!0);return c||(a.selectedIndex=-1),f}}}}),n.each(["radio","checkbox"],function(){n.valHooks[this]={set:function(a,b){return n.isArray(b)?a.checked=n.inArray(n(a).val(),b)>=0:void 0}},k.checkOn||(n.valHooks[this].get=function(a){return null===a.getAttribute("value")?"on":a.value})}),n.each("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(a,b){n.fn[b]=function(a,c){return arguments.length>0?this.on(b,null,a,c):this.trigger(b)}}),n.fn.extend({hover:function(a,b){return this.mouseenter(a).mouseleave(b||a)},bind:function(a,b,c){return this.on(a,null,b,c)},unbind:function(a,b){return this.off(a,null,b)},delegate:function(a,b,c,d){return this.on(b,a,c,d)},undelegate:function(a,b,c){return 1===arguments.length?this.off(a,"**"):this.off(b,a||"**",c)}});var cc=n.now(),dc=/\?/;n.parseJSON=function(a){return JSON.parse(a+"")},n.parseXML=function(a){var b,c;if(!a||"string"!=typeof a)return null;try{c=new DOMParser,b=c.parseFromString(a,"text/xml")}catch(d){b=void 0}return(!b||b.getElementsByTagName("parsererror").length)&&n.error("Invalid XML: "+a),b};var ec=/#.*$/,fc=/([?&])_=[^&]*/,gc=/^(.*?):[ \t]*([^\r\n]*)$/gm,hc=/^(?:about|app|app-storage|.+-extension|file|res|widget):$/,ic=/^(?:GET|HEAD)$/,jc=/^\/\//,kc=/^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,lc={},mc={},nc="*/".concat("*"),oc=a.location.href,pc=kc.exec(oc.toLowerCase())||[];function qc(a){return function(b,c){"string"!=typeof b&&(c=b,b="*");var d,e=0,f=b.toLowerCase().match(E)||[];if(n.isFunction(c))while(d=f[e++])"+"===d[0]?(d=d.slice(1)||"*",(a[d]=a[d]||[]).unshift(c)):(a[d]=a[d]||[]).push(c)}}function rc(a,b,c,d){var e={},f=a===mc;function g(h){var i;return e[h]=!0,n.each(a[h]||[],function(a,h){var j=h(b,c,d);return"string"!=typeof j||f||e[j]?f?!(i=j):void 0:(b.dataTypes.unshift(j),g(j),!1)}),i}return g(b.dataTypes[0])||!e["*"]&&g("*")}function sc(a,b){var c,d,e=n.ajaxSettings.flatOptions||{};for(c in b)void 0!==b[c]&&((e[c]?a:d||(d={}))[c]=b[c]);return d&&n.extend(!0,a,d),a}function tc(a,b,c){var d,e,f,g,h=a.contents,i=a.dataTypes;while("*"===i[0])i.shift(),void 0===d&&(d=a.mimeType||b.getResponseHeader("Content-Type"));if(d)for(e in h)if(h[e]&&h[e].test(d)){i.unshift(e);break}if(i[0]in c)f=i[0];else{for(e in c){if(!i[0]||a.converters[e+" "+i[0]]){f=e;break}g||(g=e)}f=f||g}return f?(f!==i[0]&&i.unshift(f),c[f]):void 0}function uc(a,b,c,d){var e,f,g,h,i,j={},k=a.dataTypes.slice();if(k[1])for(g in a.converters)j[g.toLowerCase()]=a.converters[g];f=k.shift();while(f)if(a.responseFields[f]&&(c[a.responseFields[f]]=b),!i&&d&&a.dataFilter&&(b=a.dataFilter(b,a.dataType)),i=f,f=k.shift())if("*"===f)f=i;else if("*"!==i&&i!==f){if(g=j[i+" "+f]||j["* "+f],!g)for(e in j)if(h=e.split(" "),h[1]===f&&(g=j[i+" "+h[0]]||j["* "+h[0]])){g===!0?g=j[e]:j[e]!==!0&&(f=h[0],k.unshift(h[1]));break}if(g!==!0)if(g&&a["throws"])b=g(b);else try{b=g(b)}catch(l){return{state:"parsererror",error:g?l:"No conversion from "+i+" to "+f}}}return{state:"success",data:b}}n.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:oc,type:"GET",isLocal:hc.test(pc[1]),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset=UTF-8",accepts:{"*":nc,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/xml/,html:/html/,json:/json/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":n.parseJSON,"text xml":n.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(a,b){return b?sc(sc(a,n.ajaxSettings),b):sc(n.ajaxSettings,a)},ajaxPrefilter:qc(lc),ajaxTransport:qc(mc),ajax:function(a,b){"object"==typeof a&&(b=a,a=void 0),b=b||{};var c,d,e,f,g,h,i,j,k=n.ajaxSetup({},b),l=k.context||k,m=k.context&&(l.nodeType||l.jquery)?n(l):n.event,o=n.Deferred(),p=n.Callbacks("once memory"),q=k.statusCode||{},r={},s={},t=0,u="canceled",v={readyState:0,getResponseHeader:function(a){var b;if(2===t){if(!f){f={};while(b=gc.exec(e))f[b[1].toLowerCase()]=b[2]}b=f[a.toLowerCase()]}return null==b?null:b},getAllResponseHeaders:function(){return 2===t?e:null},setRequestHeader:function(a,b){var c=a.toLowerCase();return t||(a=s[c]=s[c]||a,r[a]=b),this},overrideMimeType:function(a){return t||(k.mimeType=a),this},statusCode:function(a){var b;if(a)if(2>t)for(b in a)q[b]=[q[b],a[b]];else v.always(a[v.status]);return this},abort:function(a){var b=a||u;return c&&c.abort(b),x(0,b),this}};if(o.promise(v).complete=p.add,v.success=v.done,v.error=v.fail,k.url=((a||k.url||oc)+"").replace(ec,"").replace(jc,pc[1]+"//"),k.type=b.method||b.type||k.method||k.type,k.dataTypes=n.trim(k.dataType||"*").toLowerCase().match(E)||[""],null==k.crossDomain&&(h=kc.exec(k.url.toLowerCase()),k.crossDomain=!(!h||h[1]===pc[1]&&h[2]===pc[2]&&(h[3]||("http:"===h[1]?"80":"443"))===(pc[3]||("http:"===pc[1]?"80":"443")))),k.data&&k.processData&&"string"!=typeof k.data&&(k.data=n.param(k.data,k.traditional)),rc(lc,k,b,v),2===t)return v;i=n.event&&k.global,i&&0===n.active++&&n.event.trigger("ajaxStart"),k.type=k.type.toUpperCase(),k.hasContent=!ic.test(k.type),d=k.url,k.hasContent||(k.data&&(d=k.url+=(dc.test(d)?"&":"?")+k.data,delete k.data),k.cache===!1&&(k.url=fc.test(d)?d.replace(fc,"$1_="+cc++):d+(dc.test(d)?"&":"?")+"_="+cc++)),k.ifModified&&(n.lastModified[d]&&v.setRequestHeader("If-Modified-Since",n.lastModified[d]),n.etag[d]&&v.setRequestHeader("If-None-Match",n.etag[d])),(k.data&&k.hasContent&&k.contentType!==!1||b.contentType)&&v.setRequestHeader("Content-Type",k.contentType),v.setRequestHeader("Accept",k.dataTypes[0]&&k.accepts[k.dataTypes[0]]?k.accepts[k.dataTypes[0]]+("*"!==k.dataTypes[0]?", "+nc+"; q=0.01":""):k.accepts["*"]);for(j in k.headers)v.setRequestHeader(j,k.headers[j]);if(k.beforeSend&&(k.beforeSend.call(l,v,k)===!1||2===t))return v.abort();u="abort";for(j in{success:1,error:1,complete:1})v[j](k[j]);if(c=rc(mc,k,b,v)){v.readyState=1,i&&m.trigger("ajaxSend",[v,k]),k.async&&k.timeout>0&&(g=setTimeout(function(){v.abort("timeout")},k.timeout));try{t=1,c.send(r,x)}catch(w){if(!(2>t))throw w;x(-1,w)}}else x(-1,"No Transport");function x(a,b,f,h){var j,r,s,u,w,x=b;2!==t&&(t=2,g&&clearTimeout(g),c=void 0,e=h||"",v.readyState=a>0?4:0,j=a>=200&&300>a||304===a,f&&(u=tc(k,v,f)),u=uc(k,u,v,j),j?(k.ifModified&&(w=v.getResponseHeader("Last-Modified"),w&&(n.lastModified[d]=w),w=v.getResponseHeader("etag"),w&&(n.etag[d]=w)),204===a||"HEAD"===k.type?x="nocontent":304===a?x="notmodified":(x=u.state,r=u.data,s=u.error,j=!s)):(s=x,(a||!x)&&(x="error",0>a&&(a=0))),v.status=a,v.statusText=(b||x)+"",j?o.resolveWith(l,[r,x,v]):o.rejectWith(l,[v,x,s]),v.statusCode(q),q=void 0,i&&m.trigger(j?"ajaxSuccess":"ajaxError",[v,k,j?r:s]),p.fireWith(l,[v,x]),i&&(m.trigger("ajaxComplete",[v,k]),--n.active||n.event.trigger("ajaxStop")))}return v},getJSON:function(a,b,c){return n.get(a,b,c,"json")},getScript:function(a,b){return n.get(a,void 0,b,"script")}}),n.each(["get","post"],function(a,b){n[b]=function(a,c,d,e){return n.isFunction(c)&&(e=e||d,d=c,c=void 0),n.ajax({url:a,type:b,dataType:e,data:c,success:d})}}),n._evalUrl=function(a){return n.ajax({url:a,type:"GET",dataType:"script",async:!1,global:!1,"throws":!0})},n.fn.extend({wrapAll:function(a){var b;return n.isFunction(a)?this.each(function(b){n(this).wrapAll(a.call(this,b))}):(this[0]&&(b=n(a,this[0].ownerDocument).eq(0).clone(!0),this[0].parentNode&&b.insertBefore(this[0]),b.map(function(){var a=this;while(a.firstElementChild)a=a.firstElementChild;return a}).append(this)),this)},wrapInner:function(a){return this.each(n.isFunction(a)?function(b){n(this).wrapInner(a.call(this,b))}:function(){var b=n(this),c=b.contents();c.length?c.wrapAll(a):b.append(a)})},wrap:function(a){var b=n.isFunction(a);return this.each(function(c){n(this).wrapAll(b?a.call(this,c):a)})},unwrap:function(){return this.parent().each(function(){n.nodeName(this,"body")||n(this).replaceWith(this.childNodes)}).end()}}),n.expr.filters.hidden=function(a){return a.offsetWidth<=0&&a.offsetHeight<=0},n.expr.filters.visible=function(a){return!n.expr.filters.hidden(a)};var vc=/%20/g,wc=/\[\]$/,xc=/\r?\n/g,yc=/^(?:submit|button|image|reset|file)$/i,zc=/^(?:input|select|textarea|keygen)/i;function Ac(a,b,c,d){var e;if(n.isArray(b))n.each(b,function(b,e){c||wc.test(a)?d(a,e):Ac(a+"["+("object"==typeof e?b:"")+"]",e,c,d)});else if(c||"object"!==n.type(b))d(a,b);else for(e in b)Ac(a+"["+e+"]",b[e],c,d)}n.param=function(a,b){var c,d=[],e=function(a,b){b=n.isFunction(b)?b():null==b?"":b,d[d.length]=encodeURIComponent(a)+"="+encodeURIComponent(b)};if(void 0===b&&(b=n.ajaxSettings&&n.ajaxSettings.traditional),n.isArray(a)||a.jquery&&!n.isPlainObject(a))n.each(a,function(){e(this.name,this.value)});else for(c in a)Ac(c,a[c],b,e);return d.join("&").replace(vc,"+")},n.fn.extend({serialize:function(){return n.param(this.serializeArray())},serializeArray:function(){return this.map(function(){var a=n.prop(this,"elements");return a?n.makeArray(a):this}).filter(function(){var a=this.type;return this.name&&!n(this).is(":disabled")&&zc.test(this.nodeName)&&!yc.test(a)&&(this.checked||!T.test(a))}).map(function(a,b){var c=n(this).val();return null==c?null:n.isArray(c)?n.map(c,function(a){return{name:b.name,value:a.replace(xc,"\r\n")}}):{name:b.name,value:c.replace(xc,"\r\n")}}).get()}}),n.ajaxSettings.xhr=function(){try{return new XMLHttpRequest}catch(a){}};var Bc=0,Cc={},Dc={0:200,1223:204},Ec=n.ajaxSettings.xhr();a.attachEvent&&a.attachEvent("onunload",function(){for(var a in Cc)Cc[a]()}),k.cors=!!Ec&&"withCredentials"in Ec,k.ajax=Ec=!!Ec,n.ajaxTransport(function(a){var b;return k.cors||Ec&&!a.crossDomain?{send:function(c,d){var e,f=a.xhr(),g=++Bc;if(f.open(a.type,a.url,a.async,a.username,a.password),a.xhrFields)for(e in a.xhrFields)f[e]=a.xhrFields[e];a.mimeType&&f.overrideMimeType&&f.overrideMimeType(a.mimeType),a.crossDomain||c["X-Requested-With"]||(c["X-Requested-With"]="XMLHttpRequest");for(e in c)f.setRequestHeader(e,c[e]);b=function(a){return function(){b&&(delete Cc[g],b=f.onload=f.onerror=null,"abort"===a?f.abort():"error"===a?d(f.status,f.statusText):d(Dc[f.status]||f.status,f.statusText,"string"==typeof f.responseText?{text:f.responseText}:void 0,f.getAllResponseHeaders()))}},f.onload=b(),f.onerror=b("error"),b=Cc[g]=b("abort");try{f.send(a.hasContent&&a.data||null)}catch(h){if(b)throw h}},abort:function(){b&&b()}}:void 0}),n.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/(?:java|ecma)script/},converters:{"text script":function(a){return n.globalEval(a),a}}}),n.ajaxPrefilter("script",function(a){void 0===a.cache&&(a.cache=!1),a.crossDomain&&(a.type="GET")}),n.ajaxTransport("script",function(a){if(a.crossDomain){var b,c;return{send:function(d,e){b=n("<script>").prop({async:!0,charset:a.scriptCharset,src:a.url}).on("load error",c=function(a){b.remove(),c=null,a&&e("error"===a.type?404:200,a.type)}),l.head.appendChild(b[0])},abort:function(){c&&c()}}}});var Fc=[],Gc=/(=)\?(?=&|$)|\?\?/;n.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var a=Fc.pop()||n.expando+"_"+cc++;return this[a]=!0,a}}),n.ajaxPrefilter("json jsonp",function(b,c,d){var e,f,g,h=b.jsonp!==!1&&(Gc.test(b.url)?"url":"string"==typeof b.data&&!(b.contentType||"").indexOf("application/x-www-form-urlencoded")&&Gc.test(b.data)&&"data");return h||"jsonp"===b.dataTypes[0]?(e=b.jsonpCallback=n.isFunction(b.jsonpCallback)?b.jsonpCallback():b.jsonpCallback,h?b[h]=b[h].replace(Gc,"$1"+e):b.jsonp!==!1&&(b.url+=(dc.test(b.url)?"&":"?")+b.jsonp+"="+e),b.converters["script json"]=function(){return g||n.error(e+" was not called"),g[0]},b.dataTypes[0]="json",f=a[e],a[e]=function(){g=arguments},d.always(function(){a[e]=f,b[e]&&(b.jsonpCallback=c.jsonpCallback,Fc.push(e)),g&&n.isFunction(f)&&f(g[0]),g=f=void 0}),"script"):void 0}),n.parseHTML=function(a,b,c){if(!a||"string"!=typeof a)return null;"boolean"==typeof b&&(c=b,b=!1),b=b||l;var d=v.exec(a),e=!c&&[];return d?[b.createElement(d[1])]:(d=n.buildFragment([a],b,e),e&&e.length&&n(e).remove(),n.merge([],d.childNodes))};var Hc=n.fn.load;n.fn.load=function(a,b,c){if("string"!=typeof a&&Hc)return Hc.apply(this,arguments);var d,e,f,g=this,h=a.indexOf(" ");return h>=0&&(d=n.trim(a.slice(h)),a=a.slice(0,h)),n.isFunction(b)?(c=b,b=void 0):b&&"object"==typeof b&&(e="POST"),g.length>0&&n.ajax({url:a,type:e,dataType:"html",data:b}).done(function(a){f=arguments,g.html(d?n("<div>").append(n.parseHTML(a)).find(d):a)}).complete(c&&function(a,b){g.each(c,f||[a.responseText,b,a])}),this},n.each(["ajaxStart","ajaxStop","ajaxComplete","ajaxError","ajaxSuccess","ajaxSend"],function(a,b){n.fn[b]=function(a){return this.on(b,a)}}),n.expr.filters.animated=function(a){return n.grep(n.timers,function(b){return a===b.elem}).length};var Ic=a.document.documentElement;function Jc(a){return n.isWindow(a)?a:9===a.nodeType&&a.defaultView}n.offset={setOffset:function(a,b,c){var d,e,f,g,h,i,j,k=n.css(a,"position"),l=n(a),m={};"static"===k&&(a.style.position="relative"),h=l.offset(),f=n.css(a,"top"),i=n.css(a,"left"),j=("absolute"===k||"fixed"===k)&&(f+i).indexOf("auto")>-1,j?(d=l.position(),g=d.top,e=d.left):(g=parseFloat(f)||0,e=parseFloat(i)||0),n.isFunction(b)&&(b=b.call(a,c,h)),null!=b.top&&(m.top=b.top-h.top+g),null!=b.left&&(m.left=b.left-h.left+e),"using"in b?b.using.call(a,m):l.css(m)}},n.fn.extend({offset:function(a){if(arguments.length)return void 0===a?this:this.each(function(b){n.offset.setOffset(this,a,b)});var b,c,d=this[0],e={top:0,left:0},f=d&&d.ownerDocument;if(f)return b=f.documentElement,n.contains(b,d)?(typeof d.getBoundingClientRect!==U&&(e=d.getBoundingClientRect()),c=Jc(f),{top:e.top+c.pageYOffset-b.clientTop,left:e.left+c.pageXOffset-b.clientLeft}):e},position:function(){if(this[0]){var a,b,c=this[0],d={top:0,left:0};return"fixed"===n.css(c,"position")?b=c.getBoundingClientRect():(a=this.offsetParent(),b=this.offset(),n.nodeName(a[0],"html")||(d=a.offset()),d.top+=n.css(a[0],"borderTopWidth",!0),d.left+=n.css(a[0],"borderLeftWidth",!0)),{top:b.top-d.top-n.css(c,"marginTop",!0),left:b.left-d.left-n.css(c,"marginLeft",!0)}}},offsetParent:function(){return this.map(function(){var a=this.offsetParent||Ic;while(a&&!n.nodeName(a,"html")&&"static"===n.css(a,"position"))a=a.offsetParent;return a||Ic})}}),n.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(b,c){var d="pageYOffset"===c;n.fn[b]=function(e){return J(this,function(b,e,f){var g=Jc(b);return void 0===f?g?g[c]:b[e]:void(g?g.scrollTo(d?a.pageXOffset:f,d?f:a.pageYOffset):b[e]=f)},b,e,arguments.length,null)}}),n.each(["top","left"],function(a,b){n.cssHooks[b]=yb(k.pixelPosition,function(a,c){return c?(c=xb(a,b),vb.test(c)?n(a).position()[b]+"px":c):void 0})}),n.each({Height:"height",Width:"width"},function(a,b){n.each({padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){var f=arguments.length&&(c||"boolean"!=typeof d),g=c||(d===!0||e===!0?"margin":"border");return J(this,function(b,c,d){var e;return n.isWindow(b)?b.document.documentElement["client"+a]:9===b.nodeType?(e=b.documentElement,Math.max(b.body["scroll"+a],e["scroll"+a],b.body["offset"+a],e["offset"+a],e["client"+a])):void 0===d?n.css(b,c,g):n.style(b,c,d,g)},b,f?d:void 0,f,null)}})}),n.fn.size=function(){return this.length},n.fn.andSelf=n.fn.addBack,"function"==typeof define&&define.amd&&define("jquery",[],function(){return n});var Kc=a.jQuery,Lc=a.$;return n.noConflict=function(b){return a.$===n&&(a.$=Lc),b&&a.jQuery===n&&(a.jQuery=Kc),n},typeof b===U&&(a.jQuery=a.$=n),n});
 //# sourceMappingURL=jquery.min.map
 /**
- * @license AngularJS v1.3.11
+ * @license AngularJS v1.3.20
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -59,7 +59,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.3.11/' +
+    message = message + '\nhttp://errors.angularjs.org/1.3.20/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i - 2) + '=' +
@@ -154,6 +154,7 @@ function minErr(module, ErrorConstructor) {
   createMap: true,
 
   NODE_TYPE_ELEMENT: true,
+  NODE_TYPE_ATTRIBUTE: true,
   NODE_TYPE_TEXT: true,
   NODE_TYPE_COMMENT: true,
   NODE_TYPE_DOCUMENT: true,
@@ -265,7 +266,9 @@ function isArrayLike(obj) {
     return false;
   }
 
-  var length = obj.length;
+  // Support: iOS 8.2 (not reproducible in simulator)
+  // "length" in obj used to prevent JIT error (gh-11508)
+  var length = "length" in Object(obj) && obj.length;
 
   if (obj.nodeType === NODE_TYPE_ELEMENT && length) {
     return true;
@@ -386,8 +389,7 @@ function nextUid() {
 function setHashKey(obj, h) {
   if (h) {
     obj.$$hashKey = h;
-  }
-  else {
+  } else {
     delete obj.$$hashKey;
   }
 }
@@ -552,6 +554,12 @@ function isString(value) {return typeof value === 'string';}
  * @description
  * Determines if a reference is a `Number`.
  *
+ * This includes the "special" numbers `NaN`, `+Infinity` and `-Infinity`.
+ *
+ * If you wish to exclude these then you can use the native
+ * [`isFinite'](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite)
+ * method.
+ *
  * @param {*} value Reference to check.
  * @returns {boolean} True if `value` is a `Number`.
  */
@@ -696,7 +704,7 @@ function isElement(node) {
 function makeMap(str) {
   var obj = {}, items = str.split(","), i;
   for (i = 0; i < items.length; i++)
-    obj[ items[i] ] = true;
+    obj[items[i]] = true;
   return obj;
 }
 
@@ -920,10 +928,11 @@ function equals(o1, o2) {
       } else if (isDate(o1)) {
         if (!isDate(o2)) return false;
         return equals(o1.getTime(), o2.getTime());
-      } else if (isRegExp(o1) && isRegExp(o2)) {
-        return o1.toString() == o2.toString();
+      } else if (isRegExp(o1)) {
+        return isRegExp(o2) ? o1.toString() == o2.toString() : false;
       } else {
-        if (isScope(o1) || isScope(o2) || isWindow(o1) || isWindow(o2) || isArray(o2)) return false;
+        if (isScope(o1) || isScope(o2) || isWindow(o1) || isWindow(o2) ||
+          isArray(o2) || isDate(o2) || isRegExp(o2)) return false;
         keySet = {};
         for (key in o1) {
           if (key.charAt(0) === '$' || isFunction(o1[key])) continue;
@@ -1041,8 +1050,8 @@ function toJsonReplacer(key, value) {
  * stripped since angular uses this notation internally.
  *
  * @param {Object|Array|Date|string|number} obj Input to be serialized into JSON.
- * @param {boolean|number=} pretty If set to true, the JSON output will contain newlines and whitespace.
- *    If set to an integer, the JSON output will contain that many spaces per indentation (the default is 2).
+ * @param {boolean|number} [pretty=2] If set to true, the JSON output will contain newlines and whitespace.
+ *    If set to an integer, the JSON output will contain that many spaces per indentation.
  * @returns {string|undefined} JSON-ified string representing `obj`.
  */
 function toJson(obj, pretty) {
@@ -1477,8 +1486,12 @@ function bootstrap(element, modules, config) {
     forEach(extraModules, function(module) {
       modules.push(module);
     });
-    doBootstrap();
+    return doBootstrap();
   };
+
+  if (isFunction(angular.resumeDeferredBootstrap)) {
+    angular.resumeDeferredBootstrap();
+  }
 }
 
 /**
@@ -1670,6 +1683,7 @@ function createMap() {
 }
 
 var NODE_TYPE_ELEMENT = 1;
+var NODE_TYPE_ATTRIBUTE = 2;
 var NODE_TYPE_TEXT = 3;
 var NODE_TYPE_COMMENT = 8;
 var NODE_TYPE_DOCUMENT = 9;
@@ -1906,10 +1920,17 @@ function setupModuleLoader(window) {
            * @ngdoc method
            * @name angular.Module#filter
            * @module ng
-           * @param {string} name Filter name.
+           * @param {string} name Filter name - this must be a valid angular expression identifier
            * @param {Function} filterFactory Factory function for creating new instance of filter.
            * @description
            * See {@link ng.$filterProvider#register $filterProvider.register()}.
+           *
+           * <div class="alert alert-warning">
+           * **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+           * Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+           * your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+           * (`myapp_subsection_filterx`).
+           * </div>
            */
           filter: invokeLater('$filterProvider', 'register'),
 
@@ -2123,11 +2144,11 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.3.11',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.3.20',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 3,
-  dot: 11,
-  codeName: 'spiffy-manatee'
+  dot: 20,
+  codeName: 'shallow-translucence'
 };
 
 
@@ -2264,6 +2285,17 @@ function publishExternalAPI(angular) {
   ]);
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 /* global JQLitePrototype: true,
   addEventListenerFn: true,
   removeEventListenerFn: true,
@@ -2292,7 +2324,7 @@ function publishExternalAPI(angular) {
  * Angular to manipulate the DOM in a cross-browser compatible way. **jqLite** implements only the most
  * commonly needed functionality with the goal of having a very small footprint.</div>
  *
- * To use jQuery, simply load it before `DOMContentLoaded` event fired.
+ * To use `jQuery`, simply ensure it is loaded before the `angular.js` file.
  *
  * <div class="alert">**Note:** all element references in Angular are always wrapped with jQuery or
  * jqLite; they are never raw DOM references.</div>
@@ -2308,7 +2340,7 @@ function publishExternalAPI(angular) {
  * - [`children()`](http://api.jquery.com/children/) - Does not support selectors
  * - [`clone()`](http://api.jquery.com/clone/)
  * - [`contents()`](http://api.jquery.com/contents/)
- * - [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`
+ * - [`css()`](http://api.jquery.com/css/) - Only retrieves inline-styles, does not call `getComputedStyle()`. As a setter, does not convert numbers to strings or append 'px'.
  * - [`data()`](http://api.jquery.com/data/)
  * - [`detach()`](http://api.jquery.com/detach/)
  * - [`empty()`](http://api.jquery.com/empty/)
@@ -2851,6 +2883,10 @@ forEach({
   },
 
   attr: function(element, name, value) {
+    var nodeType = element.nodeType;
+    if (nodeType === NODE_TYPE_TEXT || nodeType === NODE_TYPE_ATTRIBUTE || nodeType === NODE_TYPE_COMMENT) {
+      return;
+    }
     var lowercasedName = lowercase(name);
     if (BOOLEAN_ATTR[lowercasedName]) {
       if (isDefined(value)) {
@@ -3541,7 +3577,7 @@ function annotate(fn, strictDi, name) {
  * Return an instance of the service.
  *
  * @param {string} name The name of the instance to retrieve.
- * @param {string} caller An optional string to provide the origin of the function call for error messages.
+ * @param {string=} caller An optional string to provide the origin of the function call for error messages.
  * @return {*} The instance.
  */
 
@@ -3552,8 +3588,8 @@ function annotate(fn, strictDi, name) {
  * @description
  * Invoke the method and supply the method arguments from the `$injector`.
  *
- * @param {!Function} fn The function to invoke. Function parameters are injected according to the
- *   {@link guide/di $inject Annotation} rules.
+ * @param {Function|Array.<string|Function>} fn The injectable function to invoke. Function parameters are
+ *   injected according to the {@link guide/di $inject Annotation} rules.
  * @param {Object=} self The `this` for the invoked method.
  * @param {Object=} locals Optional object. If preset then any argument names are read from this
  *                         object first, before the `$injector` is consulted.
@@ -3820,8 +3856,8 @@ function annotate(fn, strictDi, name) {
  * configure your service in a provider.
  *
  * @param {string} name The name of the instance.
- * @param {function()} $getFn The $getFn for the instance creation. Internally this is a short hand
- *                            for `$provide.provider(name, {$get: $getFn})`.
+ * @param {Function|Array.<string|Function>} $getFn The injectable $getFn for the instance creation.
+ *                      Internally this is a short hand for `$provide.provider(name, {$get: $getFn})`.
  * @returns {Object} registered provider instance
  *
  * @example
@@ -3856,7 +3892,8 @@ function annotate(fn, strictDi, name) {
  * as a type/class.
  *
  * @param {string} name The name of the instance.
- * @param {Function} constructor A class (constructor function) that will be instantiated.
+ * @param {Function|Array.<string|Function>} constructor An injectable class (constructor function)
+ *     that will be instantiated.
  * @returns {Object} registered provider instance
  *
  * @example
@@ -3955,7 +3992,7 @@ function annotate(fn, strictDi, name) {
  * object which replaces or wraps and delegates to the original service.
  *
  * @param {string} name The name of the service to decorate.
- * @param {function()} decorator This function will be invoked when the service needs to be
+ * @param {Function|Array.<string|Function>} decorator This function will be invoked when the service needs to be
  *    instantiated and should return the decorated service instance. The function is called using
  *    the {@link auto.$injector#invoke injector.invoke} method and is therefore fully injectable.
  *    Local injection arguments:
@@ -4162,7 +4199,7 @@ function createInjector(modulesToLoad, strictDi) {
       }
 
       var args = [],
-          $inject = annotate(fn, strictDi, serviceName),
+          $inject = createInjector.$$annotate(fn, strictDi, serviceName),
           length, i,
           key;
 
@@ -4201,7 +4238,7 @@ function createInjector(modulesToLoad, strictDi) {
       invoke: invoke,
       instantiate: instantiate,
       get: getService,
-      annotate: annotate,
+      annotate: createInjector.$$annotate,
       has: function(name) {
         return providerCache.hasOwnProperty(name + providerSuffix) || cache.hasOwnProperty(name);
       }
@@ -4687,6 +4724,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        * @return {Promise} the animation callback promise
        */
       leave: function(element, options) {
+        applyStyles(element, options);
         element.remove();
         return asyncPromise();
       },
@@ -4921,7 +4959,7 @@ function Browser(window, document, $log, $sniffer) {
 
   function getHash(url) {
     var index = url.indexOf('#');
-    return index === -1 ? '' : url.substr(index + 1);
+    return index === -1 ? '' : url.substr(index);
   }
 
   /**
@@ -5048,7 +5086,7 @@ function Browser(window, document, $log, $sniffer) {
         // Do the assignment again so that those two variables are referentially identical.
         lastHistoryState = cachedState;
       } else {
-        if (!sameBase) {
+        if (!sameBase || reloadLocation) {
           reloadLocation = url;
         }
         if (replace) {
@@ -5091,11 +5129,19 @@ function Browser(window, document, $log, $sniffer) {
     fireUrlChange();
   }
 
+  function getCurrentState() {
+    try {
+      return history.state;
+    } catch (e) {
+      // MSIE can reportedly throw when there is no state (UNCONFIRMED).
+    }
+  }
+
   // This variable should be used *only* inside the cacheState function.
   var lastCachedState = null;
   function cacheState() {
     // This should be the only place in $browser where `history.state` is read.
-    cachedState = window.history.state;
+    cachedState = getCurrentState();
     cachedState = isUndefined(cachedState) ? null : cachedState;
 
     // Prevent callbacks fo fire twice if both hashchange & popstate were fired.
@@ -5692,7 +5738,7 @@ function $CacheFactoryProvider() {
  * the document, but it must be a descendent of the {@link ng.$rootElement $rootElement} (IE,
  * element with ng-app attribute), otherwise the template will be ignored.
  *
- * Adding via the $templateCache service:
+ * Adding via the `$templateCache` service:
  *
  * ```js
  * var myApp = angular.module('myApp', []);
@@ -5719,6 +5765,17 @@ function $TemplateCacheProvider() {
     return $cacheFactory('templates');
   }];
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /* ! VARIABLE/FUNCTION NAMING CONVENTIONS THAT APPLY TO THIS FILE!
  *
@@ -5784,7 +5841,8 @@ function $TemplateCacheProvider() {
  *       templateNamespace: 'html',
  *       scope: false,
  *       controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
- *       controllerAs: 'stringAlias',
+ *       controllerAs: 'stringIdentifier',
+ *       bindToController: false,
  *       require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
  *       compile: function compile(tElement, tAttrs, transclude) {
  *         return {
@@ -5931,7 +5989,8 @@ function $TemplateCacheProvider() {
  * Require another directive and inject its controller as the fourth argument to the linking function. The
  * `require` takes a string name (or array of strings) of the directive(s) to pass in. If an array is used, the
  * injected argument will be an array in corresponding order. If no such directive can be
- * found, or if the directive does not have a controller, then an error is raised. The name can be prefixed with:
+ * found, or if the directive does not have a controller, then an error is raised (unless no link function
+ * is specified, in which case error checking is skipped). The name can be prefixed with:
  *
  * * (no prefix) - Locate the required controller on the current element. Throw an error if not found.
  * * `?` - Attempt to locate the required controller or pass `null` to the `link` fn if not found.
@@ -6102,9 +6161,15 @@ function $TemplateCacheProvider() {
  *   * `iAttrs` - instance attributes - Normalized list of attributes declared on this element shared
  *     between all directive linking functions.
  *
- *   * `controller` - a controller instance - A controller instance if at least one directive on the
- *     element defines a controller. The controller is shared among all the directives, which allows
- *     the directives to use the controllers as a communication channel.
+ *   * `controller` - the directive's required controller instance(s) - Instances are shared
+ *     among all directives, which allows the directives to use the controllers as a communication
+ *     channel. The exact value depends on the directive's `require` property:
+ *       * `string`: the controller instance
+ *       * `array`: array of controller instances
+ *       * no controller(s) required: `undefined`
+ *
+ *     If a required controller cannot be found, and it is optional, the instance is `null`,
+ *     otherwise the {@link error:$compile:ctreq Missing Required Controller} error is thrown.
  *
  *   * `transcludeFn` - A transclude linking function pre-bound to the correct transclusion scope.
  *     This is the same as the `$transclude`
@@ -6130,7 +6195,7 @@ function $TemplateCacheProvider() {
  *
  * ### Transclusion
  *
- * Transclusion is the process of extracting a collection of DOM element from one part of the DOM and
+ * Transclusion is the process of extracting a collection of DOM elements from one part of the DOM and
  * copying them to another part of the DOM, while maintaining their connection to the original AngularJS
  * scope from where they were taken.
  *
@@ -7875,8 +7940,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           afterTemplateChildLinkFn,
           beforeTemplateCompileNode = $compileNode[0],
           origAsyncDirective = directives.shift(),
-          // The fact that we have to copy and patch the directive seems wrong!
-          derivedSyncDirective = extend({}, origAsyncDirective, {
+          derivedSyncDirective = inherit(origAsyncDirective, {
             templateUrl: null, transclude: null, replace: null, $$originalDirective: origAsyncDirective
           }),
           templateUrl = (isFunction(origAsyncDirective.templateUrl))
@@ -7886,7 +7950,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
       $compileNode.empty();
 
-      $templateRequest($sce.getTrustedResourceUrl(templateUrl))
+      $templateRequest(templateUrl)
         .then(function(content) {
           var compileNode, tempTemplateAttrs, $template, childBoundTranscludeFn;
 
@@ -8329,6 +8393,8 @@ function removeComments(jqNodes) {
   return jqNodes;
 }
 
+var $controllerMinErr = minErr('$controller');
+
 /**
  * @ngdoc provider
  * @name $controllerProvider
@@ -8416,7 +8482,12 @@ function $ControllerProvider() {
       }
 
       if (isString(expression)) {
-        match = expression.match(CNTRL_REG),
+        match = expression.match(CNTRL_REG);
+        if (!match) {
+          throw $controllerMinErr('ctrlfmt',
+            "Badly formed controller string '{0}'. " +
+            "Must match `__name__ as __id__` or `__name__`.", expression);
+        }
         constructor = match[1],
         identifier = identifier || match[3];
         expression = controllers.hasOwnProperty(constructor)
@@ -8926,7 +8997,7 @@ function $HttpProvider() {
      *  headers: {
      *    'Content-Type': undefined
      *  },
-     *  data: { test: 'test' },
+     *  data: { test: 'test' }
      * }
      *
      * $http(req).success(function(){...}).error(function(){...});
@@ -9361,6 +9432,8 @@ function $HttpProvider() {
       }
 
       promise.success = function(fn) {
+        assertArgFn(fn, 'fn');
+
         promise.then(function(response) {
           fn(response.data, response.status, response.headers, config);
         });
@@ -9368,6 +9441,8 @@ function $HttpProvider() {
       };
 
       promise.error = function(fn) {
+        assertArgFn(fn, 'fn');
+
         promise.then(null, function(response) {
           fn(response.data, response.status, response.headers, config);
         });
@@ -9661,8 +9736,8 @@ function $HttpProvider() {
        * Resolves the raw $http promise.
        */
       function resolvePromise(response, status, headers, statusText) {
-        // normalize internal statuses to 0
-        status = Math.max(status, 0);
+        //status: HTTP response status code, 0, -1 (aborted by timeout / promise)
+        status = status >= -1 ? status : 0;
 
         (isSuccess(status) ? deferred.resolve : deferred.reject)({
           data: response,
@@ -9769,7 +9844,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
       xhr.onload = function requestLoaded() {
         var statusText = xhr.statusText || '';
 
-        // responseText is the old-school way of retrieving response (supported by IE8 & 9)
+        // responseText is the old-school way of retrieving response (supported by IE9)
         // response/responseType properties were introduced in XHR Level2 spec (supported by IE10)
         var response = ('response' in xhr) ? xhr.response : xhr.responseText;
 
@@ -9848,7 +9923,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
   };
 
   function jsonpReq(url, callbackId, done) {
-    // we can't use jQuery/jqLite here because jQuery does crazy shit with script elements, e.g.:
+    // we can't use jQuery/jqLite here because jQuery does crazy stuff with script elements, e.g.:
     // - fetches local scripts via XHR and evals them
     // - adds and immediately removes script elements from the document
     var script = rawDocument.createElement('script'), callback = null;
@@ -10475,7 +10550,15 @@ function $LocaleProvider() {
         mediumDate: 'MMM d, y',
         shortDate: 'M/d/yy',
         mediumTime: 'h:mm:ss a',
-        shortTime: 'h:mm a'
+        shortTime: 'h:mm a',
+        ERANAMES: [
+          "Before Christ",
+          "Anno Domini"
+        ],
+        ERAS: [
+          "BC",
+          "AD"
+        ]
       },
 
       pluralCat: function(num) {
@@ -10577,12 +10660,12 @@ function serverBase(url) {
  *
  * @constructor
  * @param {string} appBase application base URL
+ * @param {string} appBaseNoFile application base URL stripped of any filename
  * @param {string} basePrefix url path prefix
  */
-function LocationHtml5Url(appBase, basePrefix) {
+function LocationHtml5Url(appBase, appBaseNoFile, basePrefix) {
   this.$$html5 = true;
   basePrefix = basePrefix || '';
-  var appBaseNoFile = stripFile(appBase);
   parseAbsoluteUrl(appBase, this);
 
 
@@ -10656,10 +10739,10 @@ function LocationHtml5Url(appBase, basePrefix) {
  *
  * @constructor
  * @param {string} appBase application base URL
+ * @param {string} appBaseNoFile application base URL stripped of any filename
  * @param {string} hashPrefix hashbang prefix
  */
-function LocationHashbangUrl(appBase, hashPrefix) {
-  var appBaseNoFile = stripFile(appBase);
+function LocationHashbangUrl(appBase, appBaseNoFile, hashPrefix) {
 
   parseAbsoluteUrl(appBase, this);
 
@@ -10673,7 +10756,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
     var withoutBaseUrl = beginsWith(appBase, url) || beginsWith(appBaseNoFile, url);
     var withoutHashUrl;
 
-    if (withoutBaseUrl.charAt(0) === '#') {
+    if (!isUndefined(withoutBaseUrl) && withoutBaseUrl.charAt(0) === '#') {
 
       // The rest of the url starts with a hash so we have
       // got either a hashbang path or a plain hash fragment
@@ -10687,7 +10770,15 @@ function LocationHashbangUrl(appBase, hashPrefix) {
       // There was no hashbang path nor hash fragment:
       // If we are in HTML5 mode we use what is left as the path;
       // Otherwise we ignore what is left
-      withoutHashUrl = this.$$html5 ? withoutBaseUrl : '';
+      if (this.$$html5) {
+        withoutHashUrl = withoutBaseUrl;
+      } else {
+        withoutHashUrl = '';
+        if (isUndefined(withoutBaseUrl)) {
+          appBase = url;
+          this.replace();
+        }
+      }
     }
 
     parseAppUrl(withoutHashUrl, this);
@@ -10760,13 +10851,12 @@ function LocationHashbangUrl(appBase, hashPrefix) {
  *
  * @constructor
  * @param {string} appBase application base URL
+ * @param {string} appBaseNoFile application base URL stripped of any filename
  * @param {string} hashPrefix hashbang prefix
  */
-function LocationHashbangInHtml5Url(appBase, hashPrefix) {
+function LocationHashbangInHtml5Url(appBase, appBaseNoFile, hashPrefix) {
   this.$$html5 = true;
   LocationHashbangUrl.apply(this, arguments);
-
-  var appBaseNoFile = stripFile(appBase);
 
   this.$$parseLinkUrl = function(url, relHref) {
     if (relHref && relHref[0] === '#') {
@@ -10797,7 +10887,7 @@ function LocationHashbangInHtml5Url(appBase, hashPrefix) {
         hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
 
     this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    // include hashPrefix in $$absUrl when $$url is empty so IE8 & 9 do not reload page because of removal of '#'
+    // include hashPrefix in $$absUrl when $$url is empty so IE9 does not reload page because of removal of '#'
     this.$$absUrl = appBase + hashPrefix + this.$$url;
   };
 
@@ -10901,11 +10991,19 @@ var locationPrototype = {
    *
    * Return host of current url.
    *
+   * Note: compared to the non-angular version `location.host` which returns `hostname:port`, this returns the `hostname` portion only.
+   *
    *
    * ```js
    * // given url http://example.com/#/some/path?foo=bar&baz=xoxo
    * var host = $location.host();
    * // => "example.com"
+   *
+   * // given url http://user:password@example.com:8080/#/some/path?foo=bar&baz=xoxo
+   * host = $location.host();
+   * // => "example.com"
+   * host = location.host;
+   * // => "example.com:8080"
    * ```
    *
    * @return {string} host of current url.
@@ -11295,7 +11393,9 @@ function $LocationProvider() {
       appBase = stripHash(initialUrl);
       LocationMode = LocationHashbangUrl;
     }
-    $location = new LocationMode(appBase, '#' + hashPrefix);
+    var appBaseNoFile = stripFile(appBase);
+
+    $location = new LocationMode(appBase, appBaseNoFile, '#' + hashPrefix);
     $location.$$parseLinkUrl(initialUrl, initialUrl);
 
     $location.$$state = $browser.state();
@@ -11367,7 +11467,7 @@ function $LocationProvider() {
 
 
     // rewrite hashbang url <> html5 url
-    if ($location.absUrl() != initialUrl) {
+    if (trimEmptyHash($location.absUrl()) != trimEmptyHash(initialUrl)) {
       $browser.url($location.absUrl(), true);
     }
 
@@ -11375,6 +11475,13 @@ function $LocationProvider() {
 
     // update $location when $browser url changes
     $browser.onUrlChange(function(newUrl, newState) {
+
+      if (isUndefined(beginsWith(appBaseNoFile, newUrl))) {
+        // If we are navigating outside of the app then force a reload
+        $window.location.href = newUrl;
+        return;
+      }
+
       $rootScope.$evalAsync(function() {
         var oldUrl = $location.absUrl();
         var oldState = $location.$$state;
@@ -11483,6 +11590,7 @@ function $LocationProvider() {
          <button ng-click="$log.warn(message)">warn</button>
          <button ng-click="$log.info(message)">info</button>
          <button ng-click="$log.error(message)">error</button>
+         <button ng-click="$log.debug(message)">debug</button>
        </div>
      </file>
    </example>
@@ -11613,6 +11721,17 @@ function $LogProvider() {
   }];
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 var $parseMinErr = minErr('$parse');
 
 // Sandboxing Angular Expressions
@@ -11645,6 +11764,25 @@ function ensureSafeMemberName(name, fullExpression) {
       || name === "__proto__") {
     throw $parseMinErr('isecfld',
         'Attempting to access a disallowed field in Angular expressions! '
+        + 'Expression: {0}', fullExpression);
+  }
+  return name;
+}
+
+function getStringValue(name, fullExpression) {
+  // From the JavaScript docs:
+  // Property names must be strings. This means that non-string objects cannot be used
+  // as keys in an object. Any non-string object, including a number, is typecasted
+  // into a string via the toString method.
+  //
+  // So, to ensure that we are checking the same `name` that JavaScript would use,
+  // we cast it to a string, if possible.
+  // Doing `name + ''` can cause a repl error if the result to `toString` is not a string,
+  // this is, this will handle objects that misbehave.
+  name = name + '';
+  if (!isString(name)) {
+    throw $parseMinErr('iseccst',
+        'Cannot convert object to primitive value! '
         + 'Expression: {0}', fullExpression);
   }
   return name;
@@ -12291,7 +12429,7 @@ Parser.prototype = {
 
     return extend(function $parseObjectIndex(self, locals) {
       var o = obj(self, locals),
-          i = indexFn(self, locals),
+          i = getStringValue(indexFn(self, locals), expression),
           v;
 
       ensureSafeMemberName(i, expression);
@@ -12300,7 +12438,7 @@ Parser.prototype = {
       return v;
     }, {
       assign: function(self, value, locals) {
-        var key = ensureSafeMemberName(indexFn(self, locals), expression);
+        var key = ensureSafeMemberName(getStringValue(indexFn(self, locals), expression), expression);
         // prevent overwriting of Function.constructor which would break ensureSafeObject check
         var o = ensureSafeObject(obj(self, locals), expression);
         if (!o) obj.assign(self, o = {}, locals);
@@ -12340,6 +12478,11 @@ Parser.prototype = {
       var v = fn.apply
             ? fn.apply(context, args)
             : fn(args[0], args[1], args[2], args[3], args[4]);
+
+      if (args) {
+        // Free-up the memory (arguments of the last function call).
+        args.length = 0;
+      }
 
       return ensureSafeObject(v, expressionText);
       };
@@ -13212,8 +13355,7 @@ function qFactory(nextTick, exceptionHandler) {
           'qcycle',
           "Expected promise to be resolved with value other than itself '{0}'",
           val));
-      }
-      else {
+      } else {
         this.$$resolve(val);
       }
 
@@ -13444,7 +13586,7 @@ function $$RAFProvider() { //rAF
                                $window.webkitCancelRequestAnimationFrame;
 
     var rafSupported = !!requestAnimationFrame;
-    var raf = rafSupported
+    var rafFn = rafSupported
       ? function(fn) {
           var id = requestAnimationFrame(fn);
           return function() {
@@ -13458,9 +13600,47 @@ function $$RAFProvider() { //rAF
           };
         };
 
-    raf.supported = rafSupported;
+    queueFn.supported = rafSupported;
 
-    return raf;
+    var cancelLastRAF;
+    var taskCount = 0;
+    var taskQueue = [];
+    return queueFn;
+
+    function flush() {
+      for (var i = 0; i < taskQueue.length; i++) {
+        var task = taskQueue[i];
+        if (task) {
+          taskQueue[i] = null;
+          task();
+        }
+      }
+      taskCount = taskQueue.length = 0;
+    }
+
+    function queueFn(asyncFn) {
+      var index = taskQueue.length;
+
+      taskCount++;
+      taskQueue.push(asyncFn);
+
+      if (index === 0) {
+        cancelLastRAF = rafFn(flush);
+      }
+
+      return function cancelQueueFn() {
+        if (index >= 0) {
+          taskQueue[index] = null;
+          index = null;
+
+          if (--taskCount === 0 && cancelLastRAF) {
+            cancelLastRAF();
+            cancelLastRAF = null;
+            taskQueue.length = 0;
+          }
+        }
+      };
+    }
   }];
 }
 
@@ -13544,8 +13724,25 @@ function $RootScopeProvider() {
     return TTL;
   };
 
+  function createChildScopeClass(parent) {
+    function ChildScope() {
+      this.$$watchers = this.$$nextSibling =
+          this.$$childHead = this.$$childTail = null;
+      this.$$listeners = {};
+      this.$$listenerCount = {};
+      this.$id = nextUid();
+      this.$$ChildScope = null;
+    }
+    ChildScope.prototype = parent;
+    return ChildScope;
+  }
+
   this.$get = ['$injector', '$exceptionHandler', '$parse', '$browser',
       function($injector, $exceptionHandler, $parse, $browser) {
+
+    function destroyChildScope($event) {
+        $event.currentScope.$$destroyed = true;
+    }
 
     /**
      * @ngdoc type
@@ -13555,12 +13752,9 @@ function $RootScopeProvider() {
      * A root scope can be retrieved using the {@link ng.$rootScope $rootScope} key from the
      * {@link auto.$injector $injector}. Child scopes are created using the
      * {@link ng.$rootScope.Scope#$new $new()} method. (Most scopes are created automatically when
-     * compiled HTML template is executed.)
+     * compiled HTML template is executed.) See also the {@link guide/scope Scopes guide} for
+     * an in-depth introduction and usage examples.
      *
-     * Here is a simple scope snippet to show how you can interact with the scope.
-     * ```html
-     * <file src="./test/ng/rootScopeSpec.js" tag="docs1" />
-     * ```
      *
      * # Inheritance
      * A scope can inherit from a parent scope, as in this example:
@@ -13669,15 +13863,7 @@ function $RootScopeProvider() {
           // Only create a child scope class if somebody asks for one,
           // but cache it to allow the VM to optimize lookups.
           if (!this.$$ChildScope) {
-            this.$$ChildScope = function ChildScope() {
-              this.$$watchers = this.$$nextSibling =
-                  this.$$childHead = this.$$childTail = null;
-              this.$$listeners = {};
-              this.$$listenerCount = {};
-              this.$id = nextUid();
-              this.$$ChildScope = null;
-            };
-            this.$$ChildScope.prototype = this;
+            this.$$ChildScope = createChildScopeClass(this);
           }
           child = new this.$$ChildScope();
         }
@@ -13695,13 +13881,9 @@ function $RootScopeProvider() {
         // prototypically. In all other cases, this property needs to be set
         // when the parent scope is destroyed.
         // The listener needs to be added after the parent is set
-        if (isolate || parent != this) child.$on('$destroy', destroyChild);
+        if (isolate || parent != this) child.$on('$destroy', destroyChildScope);
 
         return child;
-
-        function destroyChild() {
-          child.$$destroyed = true;
-        }
       },
 
       /**
@@ -13733,9 +13915,9 @@ function $RootScopeProvider() {
        *
        *
        * If you want to be notified whenever {@link ng.$rootScope.Scope#$digest $digest} is called,
-       * you can register a `watchExpression` function with no `listener`. (Since `watchExpression`
-       * can execute multiple times per {@link ng.$rootScope.Scope#$digest $digest} cycle when a
-       * change is detected, be prepared for multiple calls to your listener.)
+       * you can register a `watchExpression` function with no `listener`. (Be prepared for
+       * multiple calls to your `watchExpression` because it will execute multiple times in a
+       * single {@link ng.$rootScope.Scope#$digest $digest} cycle if a change is detected.)
        *
        * After a watcher is registered with the scope, the `listener` fn is called asynchronously
        * (via {@link ng.$rootScope.Scope#$evalAsync $evalAsync}) to initialize the
@@ -14862,6 +15044,17 @@ function $$SanitizeUriProvider() {
   };
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *     Any commits to this file should be reviewed with security in mind.  *
+ *   Changes to this file can potentially create security vulnerabilities. *
+ *          An approval from 2 Core members with history of modifying      *
+ *                         this file is required.                          *
+ *                                                                         *
+ *  Does the change somehow allow for arbitrary javascript to be executed? *
+ *    Or allows for someone to change the prototype of built-in objects?   *
+ *     Or gives undesired access to variables likes document or window?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 var $sceMinErr = minErr('$sce');
 
 var SCE_CONTEXTS = {
@@ -15396,7 +15589,7 @@ function $SceDelegateProvider() {
  *      characters: '`:`', '`/`', '`.`', '`?`', '`&`' and ';'.  It's a useful wildcard for use
  *      in a whitelist.
  *    - `**`: matches zero or more occurrences of *any* character.  As such, it's not
- *      not appropriate to use in for a scheme, domain, etc. as it would match too much.  (e.g.
+ *      appropriate for use in a scheme, domain, etc. as it would match too much.  (e.g.
  *      http://**.example.com/ would match http://evil.com/?ignore=.example.com/ and that might
  *      not have been the intention.)  Its usage at the very end of the path is ok.  (e.g.
  *      http://foo.example.com/templates/**).
@@ -15404,11 +15597,11 @@ function $SceDelegateProvider() {
  *    - *Caveat*:  While regular expressions are powerful and offer great flexibility,  their syntax
  *      (and all the inevitable escaping) makes them *harder to maintain*.  It's easy to
  *      accidentally introduce a bug when one updates a complex expression (imho, all regexes should
- *      have good test coverage.).  For instance, the use of `.` in the regex is correct only in a
+ *      have good test coverage).  For instance, the use of `.` in the regex is correct only in a
  *      small number of cases.  A `.` character in the regex used when matching the scheme or a
  *      subdomain could be matched against a `:` or literal `.` that was likely not intended.   It
  *      is highly recommended to use the string patterns and only fall back to regular expressions
- *      if they as a last resort.
+ *      as a last resort.
  *    - The regular expression must be an instance of RegExp (i.e. not a string.)  It is
  *      matched against the **entire** *normalized / absolute URL* of the resource being tested
  *      (even when the RegExp did not have the `^` and `$` codes.)  In addition, any flags
@@ -15418,7 +15611,7 @@ function $SceDelegateProvider() {
  *      remember to escape your regular expression (and be aware that you might need more than
  *      one level of escaping depending on your templating engine and the way you interpolated
  *      the value.)  Do make use of your platform's escaping mechanism as it might be good
- *      enough before coding your own.  e.g. Ruby has
+ *      enough before coding your own.  E.g. Ruby has
  *      [Regexp.escape(str)](http://www.ruby-doc.org/core-2.0.0/Regexp.html#method-c-escape)
  *      and Python has [re.escape](http://docs.python.org/library/re.html#re.escape).
  *      Javascript lacks a similar built in function for escaping.  Take a look at Google
@@ -16004,12 +16197,14 @@ var $compileMinErr = minErr('$compile');
  * @name $templateRequest
  *
  * @description
- * The `$templateRequest` service downloads the provided template using `$http` and, upon success,
- * stores the contents inside of `$templateCache`. If the HTTP request fails or the response data
- * of the HTTP request is empty, a `$compile` error will be thrown (the exception can be thwarted
- * by setting the 2nd parameter of the function to true).
+ * The `$templateRequest` service runs security checks then downloads the provided template using
+ * `$http` and, upon success, stores the contents inside of `$templateCache`. If the HTTP request
+ * fails or the response data of the HTTP request is empty, a `$compile` error will be thrown (the
+ * exception can be thwarted by setting the 2nd parameter of the function to true). Note that the
+ * contents of `$templateCache` are trusted, so the call to `$sce.getTrustedUrl(tpl)` is omitted
+ * when `tpl` is of type string and `$templateCache` has the matching entry.
  *
- * @param {string} tpl The HTTP request template URL
+ * @param {string|TrustedResourceUrl} tpl The HTTP request template URL
  * @param {boolean=} ignoreRequestError Whether or not to ignore the exception when the request fails or the template is empty
  *
  * @return {Promise} the HTTP Promise for the given.
@@ -16017,9 +16212,18 @@ var $compileMinErr = minErr('$compile');
  * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
  */
 function $TemplateRequestProvider() {
-  this.$get = ['$templateCache', '$http', '$q', function($templateCache, $http, $q) {
+  this.$get = ['$templateCache', '$http', '$q', '$sce', function($templateCache, $http, $q, $sce) {
     function handleRequestFn(tpl, ignoreRequestError) {
       handleRequestFn.totalPendingRequests++;
+
+      // We consider the template cache holds only trusted templates, so
+      // there's no need to go through whitelisting again for keys that already
+      // are included in there. This also makes Angular accept any script
+      // directive, no matter its name. However, we still need to unwrap trusted
+      // types.
+      if (!isString(tpl) || !$templateCache.get(tpl)) {
+        tpl = $sce.getTrustedResourceUrl(tpl);
+      }
 
       var transformResponse = $http.defaults && $http.defaults.transformResponse;
 
@@ -16037,7 +16241,7 @@ function $TemplateRequestProvider() {
       };
 
       return $http.get(tpl, httpOptions)
-        .finally(function() {
+        ['finally'](function() {
           handleRequestFn.totalPendingRequests--;
         })
         .then(function(response) {
@@ -16281,19 +16485,12 @@ var originUrl = urlResolve(window.location.href);
  *
  * Implementation Notes for IE
  * ---------------------------
- * IE >= 8 and <= 10 normalizes the URL when assigned to the anchor node similar to the other
+ * IE <= 10 normalizes the URL when assigned to the anchor node similar to the other
  * browsers.  However, the parsed components will not be set if the URL assigned did not specify
  * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
  * work around that by performing the parsing in a 2nd step by taking a previously normalized
  * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
  * properties such as protocol, hostname, port, etc.
- *
- * IE7 does not normalize the URL when assigned to an anchor node.  (Apparently, it does, if one
- * uses the inner HTML approach to assign the URL as part of an HTML snippet -
- * http://stackoverflow.com/a/472729)  However, setting img[src] does normalize the URL.
- * Unfortunately, setting img[src] to something like "javascript:foo" on IE throws an exception.
- * Since the primary usage for normalizing URLs is to sanitize such URLs, we can't use that
- * method and IE < 8 is unsupported.
  *
  * References:
  *   http://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement
@@ -16424,6 +16621,13 @@ function $WindowProvider() {
  * Dependency Injected. To achieve this a filter definition consists of a factory function which is
  * annotated with dependencies and is responsible for creating a filter function.
  *
+ * <div class="alert alert-warning">
+ * **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+ * Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+ * your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+ * (`myapp_subsection_filterx`).
+ * </div>
+ *
  * ```js
  *   // Filter registration
  *   function MyModule($provide, $filterProvider) {
@@ -16505,6 +16709,13 @@ function $FilterProvider($provide) {
    * @name $filterProvider#register
    * @param {string|Object} name Name of the filter function, or an object map of filters where
    *    the keys are the filter names and the values are the filter factories.
+   *
+   *    <div class="alert alert-warning">
+   *    **Note:** Filter names must be valid angular {@link expression} identifiers, such as `uppercase` or `orderBy`.
+   *    Names with special characters, such as hyphens and dots, are not allowed. If you wish to namespace
+   *    your filters, then you can use capitalization (`myappSubsectionFilterx`) or underscores
+   *    (`myapp_subsection_filterx`).
+   *    </div>
    * @returns {Object} Registered filter instance, or if a map of filters was provided then a map
    *    of the registered filter instances.
    */
@@ -16678,14 +16889,16 @@ function filterFilter() {
   return function(array, expression, comparator) {
     if (!isArray(array)) return array;
 
+    var expressionType = (expression !== null) ? typeof expression : 'null';
     var predicateFn;
     var matchAgainstAnyProp;
 
-    switch (typeof expression) {
+    switch (expressionType) {
       case 'function':
         predicateFn = expression;
         break;
       case 'boolean':
+      case 'null':
       case 'number':
       case 'string':
         matchAgainstAnyProp = true;
@@ -16711,6 +16924,14 @@ function createPredicateFn(expression, comparator, matchAgainstAnyProp) {
     comparator = equals;
   } else if (!isFunction(comparator)) {
     comparator = function(actual, expected) {
+      if (isUndefined(actual)) {
+        // No substring matching against `undefined`
+        return false;
+      }
+      if ((actual === null) || (expected === null)) {
+        // No substring matching against `null`; only match against `null`
+        return actual === expected;
+      }
       if (isObject(actual) || isObject(expected)) {
         // Prevent an object to be considered equal to a string like `'[object'`
         return false;
@@ -16733,8 +16954,8 @@ function createPredicateFn(expression, comparator, matchAgainstAnyProp) {
 }
 
 function deepCompare(actual, expected, comparator, matchAgainstAnyProp, dontMatchWholeObject) {
-  var actualType = typeof actual;
-  var expectedType = typeof expected;
+  var actualType = (actual !== null) ? typeof actual : 'null';
+  var expectedType = (expected !== null) ? typeof expected : 'null';
 
   if ((expectedType === 'string') && (expected.charAt(0) === '!')) {
     return !deepCompare(actual, expected.substring(1), comparator, matchAgainstAnyProp);
@@ -16759,7 +16980,7 @@ function deepCompare(actual, expected, comparator, matchAgainstAnyProp, dontMatc
       } else if (expectedType === 'object') {
         for (key in expected) {
           var expectedVal = expected[key];
-          if (isFunction(expectedVal)) {
+          if (isFunction(expectedVal) || isUndefined(expectedVal)) {
             continue;
           }
 
@@ -16861,6 +17082,8 @@ function currencyFilter($locale) {
  * @description
  * Formats a number as text.
  *
+ * If the input is null or undefined, it will just be returned.
+ * If the input is infinite (Infinity/-Infinity) the Infinity symbol '∞' is returned.
  * If the input is not a number an empty string is returned.
  *
  * @param {number|string} number Number to format.
@@ -17073,6 +17296,14 @@ function ampmGetter(date, formats) {
   return date.getHours() < 12 ? formats.AMPMS[0] : formats.AMPMS[1];
 }
 
+function eraGetter(date, formats) {
+  return date.getFullYear() <= 0 ? formats.ERAS[0] : formats.ERAS[1];
+}
+
+function longEraGetter(date, formats) {
+  return date.getFullYear() <= 0 ? formats.ERANAMES[0] : formats.ERANAMES[1];
+}
+
 var DATE_FORMATS = {
   yyyy: dateGetter('FullYear', 4),
     yy: dateGetter('FullYear', 2, 0, true),
@@ -17099,10 +17330,14 @@ var DATE_FORMATS = {
      a: ampmGetter,
      Z: timeZoneGetter,
     ww: weekGetter(2),
-     w: weekGetter(1)
+     w: weekGetter(1),
+     G: eraGetter,
+     GG: eraGetter,
+     GGG: eraGetter,
+     GGGG: longEraGetter
 };
 
-var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEw']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+|H+|h+|m+|s+|a|Z|w+))(.*)/,
+var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+|H+|h+|m+|s+|a|Z|G+|w+))(.*)/,
     NUMBER_STRING = /^\-?\d+$/;
 
 /**
@@ -17139,6 +17374,8 @@ var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEw']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d
  *   * `'Z'`: 4 digit (+sign) representation of the timezone offset (-1200-+1200)
  *   * `'ww'`: Week of year, padded (00-53). Week 01 is the week with the first Thursday of the year
  *   * `'w'`: Week of year (0-53). Week 1 is the week with the first Thursday of the year
+ *   * `'G'`, `'GG'`, `'GGG'`: The abbreviated form of the era string (e.g. 'AD')
+ *   * `'GGGG'`: The long form of the era string (e.g. 'Anno Domini')
  *
  *   `format` string can also be one of the following predefined
  *   {@link guide/i18n localizable formats}:
@@ -17455,7 +17692,7 @@ function limitToFilter() {
  *    Can be one of:
  *
  *    - `function`: Getter function. The result of this function will be sorted using the
- *      `<`, `=`, `>` operator.
+ *      `<`, `===`, `>` operator.
  *    - `string`: An Angular expression. The result of this expression is used to compare elements
  *      (for example `name` to sort by a property called `name` or `name.substr(0, 3)` to sort by
  *      3 first characters of a property called `name`). The result of a constant expression
@@ -17472,6 +17709,43 @@ function limitToFilter() {
  * @param {boolean=} reverse Reverse the order of the array.
  * @returns {Array} Sorted copy of the source array.
  *
+ *
+ * @example
+ * The example below demonstrates a simple ngRepeat, where the data is sorted
+ * by age in descending order (predicate is set to `'-age'`).
+ * `reverse` is not set, which means it defaults to `false`.
+   <example module="orderByExample">
+     <file name="index.html">
+       <script>
+         angular.module('orderByExample', [])
+           .controller('ExampleController', ['$scope', function($scope) {
+             $scope.friends =
+                 [{name:'John', phone:'555-1212', age:10},
+                  {name:'Mary', phone:'555-9876', age:19},
+                  {name:'Mike', phone:'555-4321', age:21},
+                  {name:'Adam', phone:'555-5678', age:35},
+                  {name:'Julie', phone:'555-8765', age:29}];
+           }]);
+       </script>
+       <div ng-controller="ExampleController">
+         <table class="friend">
+           <tr>
+             <th>Name</th>
+             <th>Phone Number</th>
+             <th>Age</th>
+           </tr>
+           <tr ng-repeat="friend in friends | orderBy:'-age'">
+             <td>{{friend.name}}</td>
+             <td>{{friend.phone}}</td>
+             <td>{{friend.age}}</td>
+           </tr>
+         </table>
+       </div>
+     </file>
+   </example>
+ *
+ * The predicate and reverse parameters can be controlled dynamically through scope properties,
+ * as shown in the next example.
  * @example
    <example module="orderByExample">
      <file name="index.html">
@@ -17846,20 +18120,24 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  *
- * We shouldn't do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:
+ * This directive sets the `disabled` attribute on the element if the
+ * {@link guide/expression expression} inside `ngDisabled` evaluates to truthy.
+ *
+ * A special directive is necessary because we cannot use interpolation inside the `disabled`
+ * attribute.  The following example would make the button enabled on Chrome/Firefox
+ * but not on older IEs:
+ *
  * ```html
- * <div ng-init="scope = { isDisabled: false }">
- *  <button disabled="{{scope.isDisabled}}">Disabled</button>
+ * <!-- See below for an example of ng-disabled being used correctly -->
+ * <div ng-init="isDisabled = false">
+ *  <button disabled="{{isDisabled}}">Disabled</button>
  * </div>
  * ```
  *
- * The HTML specification does not require browsers to preserve the values of boolean attributes
- * such as disabled. (Their presence means true and their absence means false.)
+ * This is because the HTML specification does not require browsers to preserve the values of
+ * boolean attributes such as `disabled` (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
  * binding information would be lost when the browser removes the attribute.
- * The `ngDisabled` directive solves this problem for the `disabled` attribute.
- * This complementary directive is not removed by the browser and so provides
- * a permanent reliable place to store the binding information.
  *
  * @example
     <example>
@@ -17878,7 +18156,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @element INPUT
  * @param {expression} ngDisabled If the {@link guide/expression expression} is truthy,
- *     then special attribute "disabled" will be set on the element
+ *     then the `disabled` attribute will be set on the element
  */
 
 
@@ -18426,7 +18704,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
  *
  * # Alias: {@link ng.directive:ngForm `ngForm`}
  *
- * In Angular forms can be nested. This means that the outer form is valid when all of the child
+ * In Angular, forms can be nested. This means that the outer form is valid when all of the child
  * forms are valid as well. However, browsers do not allow nesting of `<form>` elements, so
  * Angular provides the {@link ng.directive:ngForm `ngForm`} directive which behaves identically to
  * `<form>` but can be nested.  This allows you to have nested forms, which is very useful when
@@ -18525,11 +18803,11 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
        <form name="myForm" ng-controller="FormController" class="my-form">
          userType: <input name="input" ng-model="userType" required>
          <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
-         <tt>userType = {{userType}}</tt><br>
-         <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br>
-         <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br>
-         <tt>myForm.$valid = {{myForm.$valid}}</tt><br>
-         <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br>
+         <code>userType = {{userType}}</code><br>
+         <code>myForm.input.$valid = {{myForm.input.$valid}}</code><br>
+         <code>myForm.input.$error = {{myForm.input.$error}}</code><br>
+         <code>myForm.$valid = {{myForm.$valid}}</code><br>
+         <code>myForm.$error.required = {{!!myForm.$error.required}}</code><br>
         </form>
       </file>
       <file name="protractor.js" type="protractor">
@@ -18564,9 +18842,11 @@ var formDirectiveFactory = function(isNgForm) {
       name: 'form',
       restrict: isNgForm ? 'EAC' : 'E',
       controller: FormController,
-      compile: function ngFormCompile(formElement) {
+      compile: function ngFormCompile(formElement, attr) {
         // Setup initial state of the control
         formElement.addClass(PRISTINE_CLASS).addClass(VALID_CLASS);
+
+        var nameAttr = attr.name ? 'name' : (isNgForm && attr.ngForm ? 'ngForm' : false);
 
         return {
           pre: function ngFormPreLink(scope, formElement, attr, controller) {
@@ -18598,23 +18878,21 @@ var formDirectiveFactory = function(isNgForm) {
               });
             }
 
-            var parentFormCtrl = controller.$$parentForm,
-                alias = controller.$name;
+            var parentFormCtrl = controller.$$parentForm;
 
-            if (alias) {
-              setter(scope, null, alias, controller, alias);
-              attr.$observe(attr.name ? 'name' : 'ngForm', function(newValue) {
-                if (alias === newValue) return;
-                setter(scope, null, alias, undefined, alias);
-                alias = newValue;
-                setter(scope, null, alias, controller, alias);
-                parentFormCtrl.$$renameControl(controller, alias);
+            if (nameAttr) {
+              setter(scope, null, controller.$name, controller, controller.$name);
+              attr.$observe(nameAttr, function(newValue) {
+                if (controller.$name === newValue) return;
+                setter(scope, null, controller.$name, undefined, controller.$name);
+                parentFormCtrl.$$renameControl(controller, newValue);
+                setter(scope, null, controller.$name, controller, controller.$name);
               });
             }
             formElement.on('$destroy', function() {
               parentFormCtrl.$removeControl(controller);
-              if (alias) {
-                setter(scope, null, alias, undefined, alias);
+              if (nameAttr) {
+                setter(scope, null, attr[nameAttr], undefined, controller.$name);
               }
               extend(controller, nullFormCtrl); //stop propagating child destruction handlers upwards
             });
@@ -18636,7 +18914,7 @@ var ngFormDirective = formDirectiveFactory(true);
   DIRTY_CLASS: false,
   UNTOUCHED_CLASS: false,
   TOUCHED_CLASS: false,
-  $ngModelMinErr: false,
+  ngModelMinErr: false,
 */
 
 // Regex code is obtained from SO: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime#answer-3143231
@@ -19217,7 +19495,11 @@ var inputType = {
    * Text input with number validation and transformation. Sets the `number` validation
    * error if not a valid number.
    *
-   * The model must always be a number, otherwise Angular will throw an error.
+   * <div class="alert alert-warning">
+   * The model must always be of type `number` otherwise Angular will throw an error.
+   * Be aware that a string containing a number is not enough. See the {@link ngModel:numfmt}
+   * error docs for more information and an example of how to convert your model if necessary.
+   * </div>
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string=} name Property name of the form under which the control is published.
@@ -19796,7 +20078,7 @@ function createDateInputType(type, regexp, parseDate, format) {
 
     ctrl.$formatters.push(function(value) {
       if (value && !isDate(value)) {
-        throw $ngModelMinErr('datefmt', 'Expected `{0}` to be a date', value);
+        throw ngModelMinErr('datefmt', 'Expected `{0}` to be a date', value);
       }
       if (isValidDate(value)) {
         previousDate = value;
@@ -19873,14 +20155,14 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   ctrl.$formatters.push(function(value) {
     if (!ctrl.$isEmpty(value)) {
       if (!isNumber(value)) {
-        throw $ngModelMinErr('numfmt', 'Expected `{0}` to be a number', value);
+        throw ngModelMinErr('numfmt', 'Expected `{0}` to be a number', value);
       }
       value = value.toString();
     }
     return value;
   });
 
-  if (attr.min || attr.ngMin) {
+  if (isDefined(attr.min) || attr.ngMin) {
     var minVal;
     ctrl.$validators.min = function(value) {
       return ctrl.$isEmpty(value) || isUndefined(minVal) || value >= minVal;
@@ -19896,7 +20178,7 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     });
   }
 
-  if (attr.max || attr.ngMax) {
+  if (isDefined(attr.max) || attr.ngMax) {
     var maxVal;
     ctrl.$validators.max = function(value) {
       return ctrl.$isEmpty(value) || isUndefined(maxVal) || value <= maxVal;
@@ -19966,7 +20248,7 @@ function parseConstantExpr($parse, context, name, expression, fallback) {
   if (isDefined(expression)) {
     parseFn = $parse(expression);
     if (!parseFn.constant) {
-      throw minErr('ngModel')('constexpr', 'Expected constant expression for `{0}`, but saw ' +
+      throw ngModelMinErr('constexpr', 'Expected constant expression for `{0}`, but saw ' +
                                    '`{1}`.', name, expression);
     }
     return parseFn(context);
@@ -20925,17 +21207,13 @@ var ngClassEvenDirective = classDirective('Even', 1);
  * document; alternatively, the css rule above must be included in the external stylesheet of the
  * application.
  *
- * Legacy browsers, like IE7, do not provide attribute selector support (added in CSS 2.1) so they
- * cannot match the `[ng\:cloak]` selector. To work around this limitation, you must add the css
- * class `ng-cloak` in addition to the `ngCloak` directive as shown in the example below.
- *
  * @element ANY
  *
  * @example
    <example>
      <file name="index.html">
         <div id="template1" ng-cloak>{{ 'hello' }}</div>
-        <div id="template2" ng-cloak class="ng-cloak">{{ 'hello IE7' }}</div>
+        <div id="template2" class="ng-cloak">{{ 'world' }}</div>
      </file>
      <file name="protractor.js" type="protractor">
        it('should remove the template directive and css class', function() {
@@ -22149,8 +22427,8 @@ var ngIfDirective = ['$animate', function($animate) {
  * @param {Object} angularEvent Synthetic event object.
  * @param {String} src URL of content to load.
  */
-var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate', '$sce',
-                  function($templateRequest,   $anchorScroll,   $animate,   $sce) {
+var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate',
+                  function($templateRequest,   $anchorScroll,   $animate) {
   return {
     restrict: 'ECA',
     priority: 400,
@@ -22186,7 +22464,7 @@ var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate', '$sce
           }
         };
 
-        scope.$watch($sce.parseAsResourceUrl(srcExp), function ngIncludeWatchAction(src) {
+        scope.$watch(srcExp, function ngIncludeWatchAction(src) {
           var afterAnimation = function() {
             if (isDefined(autoScrollExp) && (!autoScrollExp || scope.$eval(autoScrollExp))) {
               $anchorScroll();
@@ -22474,8 +22752,7 @@ var VALID_CLASS = 'ng-valid',
     TOUCHED_CLASS = 'ng-touched',
     PENDING_CLASS = 'ng-pending';
 
-
-var $ngModelMinErr = new minErr('ngModel');
+var ngModelMinErr = minErr('ngModel');
 
 /**
  * @ngdoc type
@@ -22587,8 +22864,8 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  * data-binding. Notice how different directives (`contenteditable`, `ng-model`, and `required`)
  * collaborate together to achieve the desired result.
  *
- * Note that `contenteditable` is an HTML5 attribute, which tells the browser to let the element
- * contents be edited in place by the user.  This will not work on older browsers.
+ * `contenteditable` is an HTML5 attribute, which tells the browser to let the element
+ * contents be edited in place by the user.
  *
  * We are using the {@link ng.service:$sce $sce} service here and include the {@link ngSanitize $sanitize}
  * module to automatically remove "bad" content like inline event listener (e.g. `<span onclick="...">`).
@@ -22702,6 +22979,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
       ngModelGet = parsedNgModel,
       ngModelSet = parsedNgModelAssign,
       pendingDebounce = null,
+      parserValid,
       ctrl = this;
 
   this.$$setOptions = function(options) {
@@ -22725,7 +23003,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
         }
       };
     } else if (!parsedNgModel.assign) {
-      throw $ngModelMinErr('nonassign', "Expression '{0}' is non-assignable. Element: {1}",
+      throw ngModelMinErr('nonassign', "Expression '{0}' is non-assignable. Element: {1}",
           $attr.ngModel, startingTag($element));
     }
   };
@@ -22959,7 +23237,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * If the validity changes to invalid, the model will be set to `undefined`,
    * unless {@link ngModelOptions `ngModelOptions.allowInvalid`} is `true`.
    * If the validity changes to valid, it will set the model to the last available valid
-   * modelValue, i.e. either the last parsed value or the last value set from the scope.
+   * `$modelValue`, i.e. either the last parsed value or the last value set from the scope.
    */
   this.$validate = function() {
     // ignore $validate before model is initialized
@@ -22974,16 +23252,12 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
     // the model although neither viewValue nor the model on the scope changed
     var modelValue = ctrl.$$rawModelValue;
 
-    // Check if the there's a parse error, so we don't unset it accidentially
-    var parserName = ctrl.$$parserName || 'parse';
-    var parserValid = ctrl.$error[parserName] ? false : undefined;
-
     var prevValid = ctrl.$valid;
     var prevModelValue = ctrl.$modelValue;
 
     var allowInvalid = ctrl.$options && ctrl.$options.allowInvalid;
 
-    ctrl.$$runValidators(parserValid, modelValue, viewValue, function(allValid) {
+    ctrl.$$runValidators(modelValue, viewValue, function(allValid) {
       // If there was no change in validity, don't update the model
       // This prevents changing an invalid modelValue to undefined
       if (!allowInvalid && prevValid !== allValid) {
@@ -23001,12 +23275,12 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
   };
 
-  this.$$runValidators = function(parseValid, modelValue, viewValue, doneCallback) {
+  this.$$runValidators = function(modelValue, viewValue, doneCallback) {
     currentValidationRunId++;
     var localValidationRunId = currentValidationRunId;
 
     // check parser error
-    if (!processParseErrors(parseValid)) {
+    if (!processParseErrors()) {
       validationDone(false);
       return;
     }
@@ -23016,21 +23290,22 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
     }
     processAsyncValidators();
 
-    function processParseErrors(parseValid) {
+    function processParseErrors() {
       var errorKey = ctrl.$$parserName || 'parse';
-      if (parseValid === undefined) {
+      if (parserValid === undefined) {
         setValidity(errorKey, null);
       } else {
-        setValidity(errorKey, parseValid);
-        if (!parseValid) {
+        if (!parserValid) {
           forEach(ctrl.$validators, function(v, name) {
             setValidity(name, null);
           });
           forEach(ctrl.$asyncValidators, function(v, name) {
             setValidity(name, null);
           });
-          return false;
         }
+        // Set the parse error last, to prevent unsetting it, should a $validators key == parserName
+        setValidity(errorKey, parserValid);
+        return parserValid;
       }
       return true;
     }
@@ -23057,7 +23332,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
       forEach(ctrl.$asyncValidators, function(validator, name) {
         var promise = validator(modelValue, viewValue);
         if (!isPromiseLike(promise)) {
-          throw $ngModelMinErr("$asyncValidators",
+          throw ngModelMinErr("$asyncValidators",
             "Expected asynchronous validator to return a promise but got '{0}' instead.", promise);
         }
         setValidity(name, undefined);
@@ -23125,7 +23400,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
   this.$$parseAndValidate = function() {
     var viewValue = ctrl.$$lastCommittedViewValue;
     var modelValue = viewValue;
-    var parserValid = isUndefined(modelValue) ? undefined : true;
+    parserValid = isUndefined(modelValue) ? undefined : true;
 
     if (parserValid) {
       for (var i = 0; i < ctrl.$parsers.length; i++) {
@@ -23151,7 +23426,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
     // Pass the $$lastCommittedViewValue here, because the cached viewValue might be out of date.
     // This can happen if e.g. $setViewValue is called from inside a parser
-    ctrl.$$runValidators(parserValid, modelValue, ctrl.$$lastCommittedViewValue, function(allValid) {
+    ctrl.$$runValidators(modelValue, ctrl.$$lastCommittedViewValue, function(allValid) {
       if (!allowInvalid) {
         // Note: Don't check ctrl.$valid here, as we could have
         // external validators (e.g. calculated on the server),
@@ -23270,8 +23545,12 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
     // if scope model value and ngModel value are out of sync
     // TODO(perf): why not move this to the action fn?
-    if (modelValue !== ctrl.$modelValue) {
+    if (modelValue !== ctrl.$modelValue &&
+       // checks for NaN is needed to allow setting the model to NaN when there's an asyncValidator
+       (ctrl.$modelValue === ctrl.$modelValue || modelValue === modelValue)
+    ) {
       ctrl.$modelValue = ctrl.$$rawModelValue = modelValue;
+      parserValid = undefined;
 
       var formatters = ctrl.$formatters,
           idx = formatters.length;
@@ -23284,7 +23563,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
         ctrl.$viewValue = ctrl.$$lastCommittedViewValue = viewValue;
         ctrl.$render();
 
-        ctrl.$$runValidators(undefined, modelValue, viewValue, noop);
+        ctrl.$$runValidators(modelValue, viewValue, noop);
       }
     }
 
@@ -23446,10 +23725,11 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
            var _name = 'Brian';
            $scope.user = {
              name: function(newName) {
-               if (angular.isDefined(newName)) {
-                 _name = newName;
-               }
-               return _name;
+              // Note that newName can be undefined for two reasons:
+              // 1. Because it is called as a getter and thus called with no arguments
+              // 2. Because the property should actually be set to undefined. This happens e.g. if the
+              //    input is invalid
+              return arguments.length ? (_name = newName) : _name;
              }
            };
          }]);
@@ -23657,7 +23937,11 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
           var _name = 'Brian';
           $scope.user = {
             name: function(newName) {
-              return angular.isDefined(newName) ? (_name = newName) : _name;
+              // Note that newName can be undefined for two reasons:
+              // 1. Because it is called as a getter and thus called with no arguments
+              // 2. Because the property should actually be set to undefined. This happens e.g. if the
+              //    input is invalid
+              return arguments.length ? (_name = newName) : _name;
             }
           };
         }]);
@@ -24100,6 +24384,55 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
  * when keys are deleted and reinstated.
  *
  *
+ * # Tracking and Duplicates
+ *
+ * When the contents of the collection change, `ngRepeat` makes the corresponding changes to the DOM:
+ *
+ * * When an item is added, a new instance of the template is added to the DOM.
+ * * When an item is removed, its template instance is removed from the DOM.
+ * * When items are reordered, their respective templates are reordered in the DOM.
+ *
+ * By default, `ngRepeat` does not allow duplicate items in arrays. This is because when
+ * there are duplicates, it is not possible to maintain a one-to-one mapping between collection
+ * items and DOM elements.
+ *
+ * If you do need to repeat duplicate items, you can substitute the default tracking behavior
+ * with your own using the `track by` expression.
+ *
+ * For example, you may track items by the index of each item in the collection, using the
+ * special scope property `$index`:
+ * ```html
+ *    <div ng-repeat="n in [42, 42, 43, 43] track by $index">
+ *      {{n}}
+ *    </div>
+ * ```
+ *
+ * You may use arbitrary expressions in `track by`, including references to custom functions
+ * on the scope:
+ * ```html
+ *    <div ng-repeat="n in [42, 42, 43, 43] track by myTrackingFunction(n)">
+ *      {{n}}
+ *    </div>
+ * ```
+ *
+ * If you are working with objects that have an identifier property, you can track
+ * by the identifier instead of the whole object. Should you reload your data later, `ngRepeat`
+ * will not have to rebuild the DOM elements for items it has already rendered, even if the
+ * JavaScript objects in the collection have been substituted for new ones:
+ * ```html
+ *    <div ng-repeat="model in collection track by model.id">
+ *      {{model.name}}
+ *    </div>
+ * ```
+ *
+ * When no `track by` expression is provided, it is equivalent to tracking by the built-in
+ * `$id` function, which tracks items by their identity:
+ * ```html
+ *    <div ng-repeat="obj in collection track by $id(obj)">
+ *      {{obj.prop}}
+ *    </div>
+ * ```
+ *
  * # Special repeat start and end points
  * To repeat a series of elements instead of just one parent element, ngRepeat (as well as other ng directives) supports extending
  * the range of the repeater by defining explicit start and end points by using **ng-repeat-start** and **ng-repeat-end** respectively.
@@ -24167,12 +24500,12 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
  *
  *     For example: `(name, age) in {'adam':10, 'amalie':12}`.
  *
- *   * `variable in expression track by tracking_expression` – You can also provide an optional tracking function
- *     which can be used to associate the objects in the collection with the DOM elements. If no tracking function
- *     is specified the ng-repeat associates elements by identity in the collection. It is an error to have
- *     more than one tracking function to resolve to the same key. (This would mean that two distinct objects are
- *     mapped to the same DOM element, which is not possible.)  Filters should be applied to the expression,
- *     before specifying a tracking expression.
+ *   * `variable in expression track by tracking_expression` – You can also provide an optional tracking expression
+ *     which can be used to associate the objects in the collection with the DOM elements. If no tracking expression
+ *     is specified, ng-repeat associates elements by identity. It is an error to have
+ *     more than one tracking expression value resolve to the same key. (This would mean that two distinct objects are
+ *     mapped to the same DOM element, which is not possible.)  If filters are used in the expression, they should be
+ *     applied before the tracking expression.
  *
  *     For example: `item in items` is equivalent to `item in items track by $id(item)`. This implies that the DOM elements
  *     will be associated by item identity in the array.
@@ -24556,10 +24889,11 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
  *
  * By default, the `.ng-hide` class will style the element with `display: none!important`. If you wish to change
  * the hide behavior with ngShow/ngHide then this can be achieved by restating the styles for the `.ng-hide`
- * class in CSS:
+ * class CSS. Note that the selector that needs to be used is actually `.ng-hide:not(.ng-hide-animate)` to cope
+ * with extra animation classes that can be added.
  *
  * ```css
- * .ng-hide {
+ * .ng-hide:not(.ng-hide-animate) {
  *   /&#42; this is just another form of hiding an element &#42;/
  *   display: block!important;
  *   position: absolute;
@@ -24897,12 +25231,12 @@ var ngHideDirective = ['$animate', function($animate) {
    </example>
  */
 var ngStyleDirective = ngDirective(function(scope, element, attr) {
-  scope.$watchCollection(attr.ngStyle, function ngStyleWatchAction(newStyles, oldStyles) {
+  scope.$watch(attr.ngStyle, function ngStyleWatchAction(newStyles, oldStyles) {
     if (oldStyles && (newStyles !== oldStyles)) {
       forEach(oldStyles, function(val, style) { element.css(style, '');});
     }
     if (newStyles) element.css(newStyles);
-  });
+  }, true);
 });
 
 /**
@@ -24948,7 +25282,7 @@ var ngStyleDirective = ngDirective(function(scope, element, attr) {
  *
  * @scope
  * @priority 1200
- * @param {*} ngSwitch|on expression to match against <tt>ng-switch-when</tt>.
+ * @param {*} ngSwitch|on expression to match against <code>ng-switch-when</code>.
  * On child elements add:
  *
  * * `ngSwitchWhen`: the case statement to match against. If match then this
@@ -24965,7 +25299,7 @@ var ngStyleDirective = ngDirective(function(scope, element, attr) {
       <div ng-controller="ExampleController">
         <select ng-model="selection" ng-options="item for item in items">
         </select>
-        <tt>selection={{selection}}</tt>
+        <code>selection={{selection}}</code>
         <hr/>
         <div class="animate-switch-container"
           ng-switch on="selection">
@@ -25546,7 +25880,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
             selectElement.val(viewValue);
             if (viewValue === '') emptyOption.prop('selected', true); // to make IE9 happy
           } else {
-            if (isUndefined(viewValue) && emptyOption) {
+            if (viewValue == null && emptyOption) {
               selectElement.val('');
             } else {
               selectCtrl.renderUnknownOption(viewValue);
@@ -26053,8 +26387,9 @@ var patternDirective = function() {
         ctrl.$validate();
       });
 
-      ctrl.$validators.pattern = function(value) {
-        return ctrl.$isEmpty(value) || isUndefined(regexp) || regexp.test(value);
+      ctrl.$validators.pattern = function(modelValue, viewValue) {
+        // HTML5 pattern constraint validates the input value, so we validate the viewValue
+        return ctrl.$isEmpty(viewValue) || isUndefined(regexp) || regexp.test(viewValue);
       };
     }
   };
@@ -26075,7 +26410,7 @@ var maxlengthDirective = function() {
         ctrl.$validate();
       });
       ctrl.$validators.maxlength = function(modelValue, viewValue) {
-        return (maxlength < 0) || ctrl.$isEmpty(modelValue) || (viewValue.length <= maxlength);
+        return (maxlength < 0) || ctrl.$isEmpty(viewValue) || (viewValue.length <= maxlength);
       };
     }
   };
@@ -26118,7 +26453,7 @@ var minlengthDirective = function() {
 
 })(window, document);
 
-!window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
+!window.angular.$$csp() && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
 /**
  * @license AngularJS v1.3.11
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -44795,9 +45130,12367 @@ angular.module('pascalprecht.translate')
   return $translateLocalStorage;
 }]);
 
+/*
+ angular-file-upload v1.1.5
+ https://github.com/nervgh/angular-file-upload
+*/
+(function(angular, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define('angular-file-upload', ['angular'], function(angular) {
+            return factory(angular);
+        });
+    } else {
+        return factory(angular);
+    }
+}(typeof angular === 'undefined' ? null : angular, function(angular) {
+
+var module = angular.module('angularFileUpload', []);
+
 'use strict';
 
+/**
+ * Classes
+ *
+ * FileUploader
+ * FileUploader.FileLikeObject
+ * FileUploader.FileItem
+ * FileUploader.FileDirective
+ * FileUploader.FileSelect
+ * FileUploader.FileDrop
+ * FileUploader.FileOver
+ */
 
+module
+
+
+    .value('fileUploaderOptions', {
+        url: '/',
+        alias: 'file',
+        headers: {},
+        queue: [],
+        progress: 0,
+        autoUpload: false,
+        removeAfterUpload: false,
+        method: 'POST',
+        filters: [],
+        formData: [],
+        queueLimit: Number.MAX_VALUE,
+        withCredentials: false
+    })
+
+
+    .factory('FileUploader', ['fileUploaderOptions', '$rootScope', '$http', '$window', '$compile',
+        function(fileUploaderOptions, $rootScope, $http, $window, $compile) {
+            /**
+             * Creates an instance of FileUploader
+             * @param {Object} [options]
+             * @constructor
+             */
+            function FileUploader(options) {
+                var settings = angular.copy(fileUploaderOptions);
+                angular.extend(this, settings, options, {
+                    isUploading: false,
+                    _nextIndex: 0,
+                    _failFilterIndex: -1,
+                    _directives: {select: [], drop: [], over: []}
+                });
+
+                // add default filters
+                this.filters.unshift({name: 'queueLimit', fn: this._queueLimitFilter});
+                this.filters.unshift({name: 'folder', fn: this._folderFilter});
+            }
+            /**********************
+             * PUBLIC
+             **********************/
+            /**
+             * Checks a support the html5 uploader
+             * @returns {Boolean}
+             * @readonly
+             */
+            FileUploader.prototype.isHTML5 = !!($window.File && $window.FormData);
+            /**
+             * Adds items to the queue
+             * @param {File|HTMLInputElement|Object|FileList|Array<Object>} files
+             * @param {Object} [options]
+             * @param {Array<Function>|String} filters
+             */
+            FileUploader.prototype.addToQueue = function(files, options, filters) {
+                var list = this.isArrayLikeObject(files) ? files: [files];
+                var arrayOfFilters = this._getFilters(filters);
+                var count = this.queue.length;
+                var addedFileItems = [];
+
+                angular.forEach(list, function(some /*{File|HTMLInputElement|Object}*/) {
+                    var temp = new FileUploader.FileLikeObject(some);
+
+                    if (this._isValidFile(temp, arrayOfFilters, options)) {
+                        var fileItem = new FileUploader.FileItem(this, some, options);
+                        addedFileItems.push(fileItem);
+                        this.queue.push(fileItem);
+                        this._onAfterAddingFile(fileItem);
+                    } else {
+                        var filter = this.filters[this._failFilterIndex];
+                        this._onWhenAddingFileFailed(temp, filter, options);
+                    }
+                }, this);
+
+                if(this.queue.length !== count) {
+                    this._onAfterAddingAll(addedFileItems);
+                    this.progress = this._getTotalProgress();
+                }
+
+                this._render();
+                if (this.autoUpload) this.uploadAll();
+            };
+            /**
+             * Remove items from the queue. Remove last: index = -1
+             * @param {FileItem|Number} value
+             */
+            FileUploader.prototype.removeFromQueue = function(value) {
+                var index = this.getIndexOfItem(value);
+                var item = this.queue[index];
+                if (item.isUploading) item.cancel();
+                this.queue.splice(index, 1);
+                item._destroy();
+                this.progress = this._getTotalProgress();
+            };
+            /**
+             * Clears the queue
+             */
+            FileUploader.prototype.clearQueue = function() {
+                while(this.queue.length) {
+                    this.queue[0].remove();
+                }
+                this.progress = 0;
+            };
+            /**
+             * Uploads a item from the queue
+             * @param {FileItem|Number} value
+             */
+            FileUploader.prototype.uploadItem = function(value) {
+                var index = this.getIndexOfItem(value);
+                var item = this.queue[index];
+                var transport = this.isHTML5 ? '_xhrTransport' : '_iframeTransport';
+
+                item._prepareToUploading();
+                if(this.isUploading) return;
+
+                this.isUploading = true;
+                this[transport](item);
+            };
+            /**
+             * Cancels uploading of item from the queue
+             * @param {FileItem|Number} value
+             */
+            FileUploader.prototype.cancelItem = function(value) {
+                var index = this.getIndexOfItem(value);
+                var item = this.queue[index];
+                var prop = this.isHTML5 ? '_xhr' : '_form';
+                if (item && item.isUploading) item[prop].abort();
+            };
+            /**
+             * Uploads all not uploaded items of queue
+             */
+            FileUploader.prototype.uploadAll = function() {
+                var items = this.getNotUploadedItems().filter(function(item) {
+                    return !item.isUploading;
+                });
+                if (!items.length) return;
+
+                angular.forEach(items, function(item) {
+                    item._prepareToUploading();
+                });
+                items[0].upload();
+            };
+            /**
+             * Cancels all uploads
+             */
+            FileUploader.prototype.cancelAll = function() {
+                var items = this.getNotUploadedItems();
+                angular.forEach(items, function(item) {
+                    item.cancel();
+                });
+            };
+            /**
+             * Returns "true" if value an instance of File
+             * @param {*} value
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype.isFile = function(value) {
+                var fn = $window.File;
+                return (fn && value instanceof fn);
+            };
+            /**
+             * Returns "true" if value an instance of FileLikeObject
+             * @param {*} value
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype.isFileLikeObject = function(value) {
+                return value instanceof FileUploader.FileLikeObject;
+            };
+            /**
+             * Returns "true" if value is array like object
+             * @param {*} value
+             * @returns {Boolean}
+             */
+            FileUploader.prototype.isArrayLikeObject = function(value) {
+                return (angular.isObject(value) && 'length' in value);
+            };
+            /**
+             * Returns a index of item from the queue
+             * @param {Item|Number} value
+             * @returns {Number}
+             */
+            FileUploader.prototype.getIndexOfItem = function(value) {
+                return angular.isNumber(value) ? value : this.queue.indexOf(value);
+            };
+            /**
+             * Returns not uploaded items
+             * @returns {Array}
+             */
+            FileUploader.prototype.getNotUploadedItems = function() {
+                return this.queue.filter(function(item) {
+                    return !item.isUploaded;
+                });
+            };
+            /**
+             * Returns items ready for upload
+             * @returns {Array}
+             */
+            FileUploader.prototype.getReadyItems = function() {
+                return this.queue
+                    .filter(function(item) {
+                        return (item.isReady && !item.isUploading);
+                    })
+                    .sort(function(item1, item2) {
+                        return item1.index - item2.index;
+                    });
+            };
+            /**
+             * Destroys instance of FileUploader
+             */
+            FileUploader.prototype.destroy = function() {
+                angular.forEach(this._directives, function(key) {
+                    angular.forEach(this._directives[key], function(object) {
+                        object.destroy();
+                    }, this);
+                }, this);
+            };
+            /**
+             * Callback
+             * @param {Array} fileItems
+             */
+            FileUploader.prototype.onAfterAddingAll = function(fileItems) {};
+            /**
+             * Callback
+             * @param {FileItem} fileItem
+             */
+            FileUploader.prototype.onAfterAddingFile = function(fileItem) {};
+            /**
+             * Callback
+             * @param {File|Object} item
+             * @param {Object} filter
+             * @param {Object} options
+             * @private
+             */
+            FileUploader.prototype.onWhenAddingFileFailed = function(item, filter, options) {};
+            /**
+             * Callback
+             * @param {FileItem} fileItem
+             */
+            FileUploader.prototype.onBeforeUploadItem = function(fileItem) {};
+            /**
+             * Callback
+             * @param {FileItem} fileItem
+             * @param {Number} progress
+             */
+            FileUploader.prototype.onProgressItem = function(fileItem, progress) {};
+            /**
+             * Callback
+             * @param {Number} progress
+             */
+            FileUploader.prototype.onProgressAll = function(progress) {};
+            /**
+             * Callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileUploader.prototype.onSuccessItem = function(item, response, status, headers) {};
+            /**
+             * Callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileUploader.prototype.onErrorItem = function(item, response, status, headers) {};
+            /**
+             * Callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileUploader.prototype.onCancelItem = function(item, response, status, headers) {};
+            /**
+             * Callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileUploader.prototype.onCompleteItem = function(item, response, status, headers) {};
+            /**
+             * Callback
+             */
+            FileUploader.prototype.onCompleteAll = function() {};
+            /**********************
+             * PRIVATE
+             **********************/
+            /**
+             * Returns the total progress
+             * @param {Number} [value]
+             * @returns {Number}
+             * @private
+             */
+            FileUploader.prototype._getTotalProgress = function(value) {
+                if(this.removeAfterUpload) return value || 0;
+
+                var notUploaded = this.getNotUploadedItems().length;
+                var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
+                var ratio = 100 / this.queue.length;
+                var current = (value || 0) * ratio / 100;
+
+                return Math.round(uploaded * ratio + current);
+            };
+            /**
+             * Returns array of filters
+             * @param {Array<Function>|String} filters
+             * @returns {Array<Function>}
+             * @private
+             */
+            FileUploader.prototype._getFilters = function(filters) {
+                if (angular.isUndefined(filters)) return this.filters;
+                if (angular.isArray(filters)) return filters;
+                var names = filters.match(/[^\s,]+/g);
+                return this.filters.filter(function(filter) {
+                    return names.indexOf(filter.name) !== -1;
+                }, this);
+            };
+            /**
+             * Updates html
+             * @private
+             */
+            FileUploader.prototype._render = function() {
+                if (!$rootScope.$$phase) $rootScope.$apply();
+            };
+            /**
+             * Returns "true" if item is a file (not folder)
+             * @param {File|FileLikeObject} item
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype._folderFilter = function(item) {
+                return !!(item.size || item.type);
+            };
+            /**
+             * Returns "true" if the limit has not been reached
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype._queueLimitFilter = function() {
+                return this.queue.length < this.queueLimit;
+            };
+            /**
+             * Returns "true" if file pass all filters
+             * @param {File|Object} file
+             * @param {Array<Function>} filters
+             * @param {Object} options
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype._isValidFile = function(file, filters, options) {
+                this._failFilterIndex = -1;
+                return !filters.length ? true : filters.every(function(filter) {
+                    this._failFilterIndex++;
+                    return filter.fn.call(this, file, options);
+                }, this);
+            };
+            /**
+             * Checks whether upload successful
+             * @param {Number} status
+             * @returns {Boolean}
+             * @private
+             */
+            FileUploader.prototype._isSuccessCode = function(status) {
+                return (status >= 200 && status < 300) || status === 304;
+            };
+            /**
+             * Transforms the server response
+             * @param {*} response
+             * @param {Object} headers
+             * @returns {*}
+             * @private
+             */
+            FileUploader.prototype._transformResponse = function(response, headers) {
+                var headersGetter = this._headersGetter(headers);
+                angular.forEach($http.defaults.transformResponse, function(transformFn) {
+                    response = transformFn(response, headersGetter);
+                });
+                return response;
+            };
+            /**
+             * Parsed response headers
+             * @param headers
+             * @returns {Object}
+             * @see https://github.com/angular/angular.js/blob/master/src/ng/http.js
+             * @private
+             */
+            FileUploader.prototype._parseHeaders = function(headers) {
+                var parsed = {}, key, val, i;
+
+                if (!headers) return parsed;
+
+                angular.forEach(headers.split('\n'), function(line) {
+                    i = line.indexOf(':');
+                    key = line.slice(0, i).trim().toLowerCase();
+                    val = line.slice(i + 1).trim();
+
+                    if (key) {
+                        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+                    }
+                });
+
+                return parsed;
+            };
+            /**
+             * Returns function that returns headers
+             * @param {Object} parsedHeaders
+             * @returns {Function}
+             * @private
+             */
+            FileUploader.prototype._headersGetter = function(parsedHeaders) {
+                return function(name) {
+                    if (name) {
+                        return parsedHeaders[name.toLowerCase()] || null;
+                    }
+                    return parsedHeaders;
+                };
+            };
+            /**
+             * The XMLHttpRequest transport
+             * @param {FileItem} item
+             * @private
+             */
+            FileUploader.prototype._xhrTransport = function(item) {
+                var xhr = item._xhr = new XMLHttpRequest();
+                var form = new FormData();
+                var that = this;
+
+                that._onBeforeUploadItem(item);
+
+                angular.forEach(item.formData, function(obj) {
+                    angular.forEach(obj, function(value, key) {
+                        form.append(key, value);
+                    });
+                });
+
+                form.append(item.alias, item._file, item.file.name);
+
+                xhr.upload.onprogress = function(event) {
+                    var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+                    that._onProgressItem(item, progress);
+                };
+
+                xhr.onload = function() {
+                    var headers = that._parseHeaders(xhr.getAllResponseHeaders());
+                    var response = that._transformResponse(xhr.response, headers);
+                    var gist = that._isSuccessCode(xhr.status) ? 'Success' : 'Error';
+                    var method = '_on' + gist + 'Item';
+                    that[method](item, response, xhr.status, headers);
+                    that._onCompleteItem(item, response, xhr.status, headers);
+                };
+
+                xhr.onerror = function() {
+                    var headers = that._parseHeaders(xhr.getAllResponseHeaders());
+                    var response = that._transformResponse(xhr.response, headers);
+                    that._onErrorItem(item, response, xhr.status, headers);
+                    that._onCompleteItem(item, response, xhr.status, headers);
+                };
+
+                xhr.onabort = function() {
+                    var headers = that._parseHeaders(xhr.getAllResponseHeaders());
+                    var response = that._transformResponse(xhr.response, headers);
+                    that._onCancelItem(item, response, xhr.status, headers);
+                    that._onCompleteItem(item, response, xhr.status, headers);
+                };
+
+                xhr.open(item.method, item.url, true);
+
+                xhr.withCredentials = item.withCredentials;
+
+                angular.forEach(item.headers, function(value, name) {
+                    xhr.setRequestHeader(name, value);
+                });
+
+                xhr.send(form);
+                this._render();
+            };
+            /**
+             * The IFrame transport
+             * @param {FileItem} item
+             * @private
+             */
+            FileUploader.prototype._iframeTransport = function(item) {
+                var form = angular.element('<form style="display: none;" />');
+                var iframe = angular.element('<iframe name="iframeTransport' + Date.now() + '">');
+                var input = item._input;
+                var that = this;
+
+                if (item._form) item._form.replaceWith(input); // remove old form
+                item._form = form; // save link to new form
+
+                that._onBeforeUploadItem(item);
+
+                input.prop('name', item.alias);
+
+                angular.forEach(item.formData, function(obj) {
+                    angular.forEach(obj, function(value, key) {
+                        var element = angular.element('<input type="hidden" name="' + key + '" />');
+                        element.val(value);
+                        form.append(element);
+                    });
+                });
+
+                form.prop({
+                    action: item.url,
+                    method: 'POST',
+                    target: iframe.prop('name'),
+                    enctype: 'multipart/form-data',
+                    encoding: 'multipart/form-data' // old IE
+                });
+
+                iframe.bind('load', function() {
+                    try {
+                        // Fix for legacy IE browsers that loads internal error page
+                        // when failed WS response received. In consequence iframe
+                        // content access denied error is thrown becouse trying to
+                        // access cross domain page. When such thing occurs notifying
+                        // with empty response object. See more info at:
+                        // http://stackoverflow.com/questions/151362/access-is-denied-error-on-accessing-iframe-document-object
+                        // Note that if non standard 4xx or 5xx error code returned
+                        // from WS then response content can be accessed without error
+                        // but 'XHR' status becomes 200. In order to avoid confusion
+                        // returning response via same 'success' event handler.
+
+                        // fixed angular.contents() for iframes
+                        var html = iframe[0].contentDocument.body.innerHTML;
+                    } catch (e) {}
+
+                    var xhr = {response: html, status: 200, dummy: true};
+                    var headers = {};
+                    var response = that._transformResponse(xhr.response, headers);
+
+                    that._onSuccessItem(item, response, xhr.status, headers);
+                    that._onCompleteItem(item, response, xhr.status, headers);
+                });
+
+                form.abort = function() {
+                    var xhr = {status: 0, dummy: true};
+                    var headers = {};
+                    var response;
+
+                    iframe.unbind('load').prop('src', 'javascript:false;');
+                    form.replaceWith(input);
+
+                    that._onCancelItem(item, response, xhr.status, headers);
+                    that._onCompleteItem(item, response, xhr.status, headers);
+                };
+
+                input.after(form);
+                form.append(input).append(iframe);
+
+                form[0].submit();
+                this._render();
+            };
+            /**
+             * Inner callback
+             * @param {File|Object} item
+             * @param {Object} filter
+             * @param {Object} options
+             * @private
+             */
+            FileUploader.prototype._onWhenAddingFileFailed = function(item, filter, options) {
+                this.onWhenAddingFileFailed(item, filter, options);
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             */
+            FileUploader.prototype._onAfterAddingFile = function(item) {
+                this.onAfterAddingFile(item);
+            };
+            /**
+             * Inner callback
+             * @param {Array<FileItem>} items
+             */
+            FileUploader.prototype._onAfterAddingAll = function(items) {
+                this.onAfterAddingAll(items);
+            };
+            /**
+             *  Inner callback
+             * @param {FileItem} item
+             * @private
+             */
+            FileUploader.prototype._onBeforeUploadItem = function(item) {
+                item._onBeforeUpload();
+                this.onBeforeUploadItem(item);
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             * @param {Number} progress
+             * @private
+             */
+            FileUploader.prototype._onProgressItem = function(item, progress) {
+                var total = this._getTotalProgress(progress);
+                this.progress = total;
+                item._onProgress(progress);
+                this.onProgressItem(item, progress);
+                this.onProgressAll(total);
+                this._render();
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileUploader.prototype._onSuccessItem = function(item, response, status, headers) {
+                item._onSuccess(response, status, headers);
+                this.onSuccessItem(item, response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileUploader.prototype._onErrorItem = function(item, response, status, headers) {
+                item._onError(response, status, headers);
+                this.onErrorItem(item, response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileUploader.prototype._onCancelItem = function(item, response, status, headers) {
+                item._onCancel(response, status, headers);
+                this.onCancelItem(item, response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {FileItem} item
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileUploader.prototype._onCompleteItem = function(item, response, status, headers) {
+                item._onComplete(response, status, headers);
+                this.onCompleteItem(item, response, status, headers);
+
+                var nextItem = this.getReadyItems()[0];
+                this.isUploading = false;
+
+                if(angular.isDefined(nextItem)) {
+                    nextItem.upload();
+                    return;
+                }
+
+                this.onCompleteAll();
+                this.progress = this._getTotalProgress();
+                this._render();
+            };
+            /**********************
+             * STATIC
+             **********************/
+            /**
+             * @borrows FileUploader.prototype.isFile
+             */
+            FileUploader.isFile = FileUploader.prototype.isFile;
+            /**
+             * @borrows FileUploader.prototype.isFileLikeObject
+             */
+            FileUploader.isFileLikeObject = FileUploader.prototype.isFileLikeObject;
+            /**
+             * @borrows FileUploader.prototype.isArrayLikeObject
+             */
+            FileUploader.isArrayLikeObject = FileUploader.prototype.isArrayLikeObject;
+            /**
+             * @borrows FileUploader.prototype.isHTML5
+             */
+            FileUploader.isHTML5 = FileUploader.prototype.isHTML5;
+            /**
+             * Inherits a target (Class_1) by a source (Class_2)
+             * @param {Function} target
+             * @param {Function} source
+             */
+            FileUploader.inherit = function(target, source) {
+                target.prototype = Object.create(source.prototype);
+                target.prototype.constructor = target;
+                target.super_ = source;
+            };
+            FileUploader.FileLikeObject = FileLikeObject;
+            FileUploader.FileItem = FileItem;
+            FileUploader.FileDirective = FileDirective;
+            FileUploader.FileSelect = FileSelect;
+            FileUploader.FileDrop = FileDrop;
+            FileUploader.FileOver = FileOver;
+
+            // ---------------------------
+
+            /**
+             * Creates an instance of FileLikeObject
+             * @param {File|HTMLInputElement|Object} fileOrInput
+             * @constructor
+             */
+            function FileLikeObject(fileOrInput) {
+                var isInput = angular.isElement(fileOrInput);
+                var fakePathOrObject = isInput ? fileOrInput.value : fileOrInput;
+                var postfix = angular.isString(fakePathOrObject) ? 'FakePath' : 'Object';
+                var method = '_createFrom' + postfix;
+                this[method](fakePathOrObject);
+            }
+
+            /**
+             * Creates file like object from fake path string
+             * @param {String} path
+             * @private
+             */
+            FileLikeObject.prototype._createFromFakePath = function(path) {
+                this.lastModifiedDate = null;
+                this.size = null;
+                this.type = 'like/' + path.slice(path.lastIndexOf('.') + 1).toLowerCase();
+                this.name = path.slice(path.lastIndexOf('/') + path.lastIndexOf('\\') + 2);
+            };
+            /**
+             * Creates file like object from object
+             * @param {File|FileLikeObject} object
+             * @private
+             */
+            FileLikeObject.prototype._createFromObject = function(object) {
+                this.lastModifiedDate = angular.copy(object.lastModifiedDate);
+                this.size = object.size;
+                this.type = object.type;
+                this.name = object.name;
+            };
+
+            // ---------------------------
+
+            /**
+             * Creates an instance of FileItem
+             * @param {FileUploader} uploader
+             * @param {File|HTMLInputElement|Object} some
+             * @param {Object} options
+             * @constructor
+             */
+            function FileItem(uploader, some, options) {
+                var isInput = angular.isElement(some);
+                var input = isInput ? angular.element(some) : null;
+                var file = !isInput ? some : null;
+
+                angular.extend(this, {
+                    url: uploader.url,
+                    alias: uploader.alias,
+                    headers: angular.copy(uploader.headers),
+                    formData: angular.copy(uploader.formData),
+                    removeAfterUpload: uploader.removeAfterUpload,
+                    withCredentials: uploader.withCredentials,
+                    method: uploader.method
+                }, options, {
+                    uploader: uploader,
+                    file: new FileUploader.FileLikeObject(some),
+                    isReady: false,
+                    isUploading: false,
+                    isUploaded: false,
+                    isSuccess: false,
+                    isCancel: false,
+                    isError: false,
+                    progress: 0,
+                    index: null,
+                    _file: file,
+                    _input: input
+                });
+
+                if (input) this._replaceNode(input);
+            }
+            /**********************
+             * PUBLIC
+             **********************/
+            /**
+             * Uploads a FileItem
+             */
+            FileItem.prototype.upload = function() {
+                this.uploader.uploadItem(this);
+            };
+            /**
+             * Cancels uploading of FileItem
+             */
+            FileItem.prototype.cancel = function() {
+                this.uploader.cancelItem(this);
+            };
+            /**
+             * Removes a FileItem
+             */
+            FileItem.prototype.remove = function() {
+                this.uploader.removeFromQueue(this);
+            };
+            /**
+             * Callback
+             * @private
+             */
+            FileItem.prototype.onBeforeUpload = function() {};
+            /**
+             * Callback
+             * @param {Number} progress
+             * @private
+             */
+            FileItem.prototype.onProgress = function(progress) {};
+            /**
+             * Callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileItem.prototype.onSuccess = function(response, status, headers) {};
+            /**
+             * Callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileItem.prototype.onError = function(response, status, headers) {};
+            /**
+             * Callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileItem.prototype.onCancel = function(response, status, headers) {};
+            /**
+             * Callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             */
+            FileItem.prototype.onComplete = function(response, status, headers) {};
+            /**********************
+             * PRIVATE
+             **********************/
+            /**
+             * Inner callback
+             */
+            FileItem.prototype._onBeforeUpload = function() {
+                this.isReady = true;
+                this.isUploading = true;
+                this.isUploaded = false;
+                this.isSuccess = false;
+                this.isCancel = false;
+                this.isError = false;
+                this.progress = 0;
+                this.onBeforeUpload();
+            };
+            /**
+             * Inner callback
+             * @param {Number} progress
+             * @private
+             */
+            FileItem.prototype._onProgress = function(progress) {
+                this.progress = progress;
+                this.onProgress(progress);
+            };
+            /**
+             * Inner callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileItem.prototype._onSuccess = function(response, status, headers) {
+                this.isReady = false;
+                this.isUploading = false;
+                this.isUploaded = true;
+                this.isSuccess = true;
+                this.isCancel = false;
+                this.isError = false;
+                this.progress = 100;
+                this.index = null;
+                this.onSuccess(response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileItem.prototype._onError = function(response, status, headers) {
+                this.isReady = false;
+                this.isUploading = false;
+                this.isUploaded = true;
+                this.isSuccess = false;
+                this.isCancel = false;
+                this.isError = true;
+                this.progress = 0;
+                this.index = null;
+                this.onError(response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileItem.prototype._onCancel = function(response, status, headers) {
+                this.isReady = false;
+                this.isUploading = false;
+                this.isUploaded = false;
+                this.isSuccess = false;
+                this.isCancel = true;
+                this.isError = false;
+                this.progress = 0;
+                this.index = null;
+                this.onCancel(response, status, headers);
+            };
+            /**
+             * Inner callback
+             * @param {*} response
+             * @param {Number} status
+             * @param {Object} headers
+             * @private
+             */
+            FileItem.prototype._onComplete = function(response, status, headers) {
+                this.onComplete(response, status, headers);
+                if (this.removeAfterUpload) this.remove();
+            };
+            /**
+             * Destroys a FileItem
+             */
+            FileItem.prototype._destroy = function() {
+                if (this._input) this._input.remove();
+                if (this._form) this._form.remove();
+                delete this._form;
+                delete this._input;
+            };
+            /**
+             * Prepares to uploading
+             * @private
+             */
+            FileItem.prototype._prepareToUploading = function() {
+                this.index = this.index || ++this.uploader._nextIndex;
+                this.isReady = true;
+            };
+            /**
+             * Replaces input element on his clone
+             * @param {JQLite|jQuery} input
+             * @private
+             */
+            FileItem.prototype._replaceNode = function(input) {
+                var clone = $compile(input.clone())(input.scope());
+                clone.prop('value', null); // FF fix
+                input.css('display', 'none');
+                input.after(clone); // remove jquery dependency
+            };
+
+            // ---------------------------
+
+            /**
+             * Creates instance of {FileDirective} object
+             * @param {Object} options
+             * @param {Object} options.uploader
+             * @param {HTMLElement} options.element
+             * @param {Object} options.events
+             * @param {String} options.prop
+             * @constructor
+             */
+            function FileDirective(options) {
+                angular.extend(this, options);
+                this.uploader._directives[this.prop].push(this);
+                this._saveLinks();
+                this.bind();
+            }
+            /**
+             * Map of events
+             * @type {Object}
+             */
+            FileDirective.prototype.events = {};
+            /**
+             * Binds events handles
+             */
+            FileDirective.prototype.bind = function() {
+                for(var key in this.events) {
+                    var prop = this.events[key];
+                    this.element.bind(key, this[prop]);
+                }
+            };
+            /**
+             * Unbinds events handles
+             */
+            FileDirective.prototype.unbind = function() {
+                for(var key in this.events) {
+                    this.element.unbind(key, this.events[key]);
+                }
+            };
+            /**
+             * Destroys directive
+             */
+            FileDirective.prototype.destroy = function() {
+                var index = this.uploader._directives[this.prop].indexOf(this);
+                this.uploader._directives[this.prop].splice(index, 1);
+                this.unbind();
+                // this.element = null;
+            };
+            /**
+             * Saves links to functions
+             * @private
+             */
+            FileDirective.prototype._saveLinks = function() {
+                for(var key in this.events) {
+                    var prop = this.events[key];
+                    this[prop] = this[prop].bind(this);
+                }
+            };
+
+            // ---------------------------
+
+            FileUploader.inherit(FileSelect, FileDirective);
+
+            /**
+             * Creates instance of {FileSelect} object
+             * @param {Object} options
+             * @constructor
+             */
+            function FileSelect(options) {
+                FileSelect.super_.apply(this, arguments);
+
+                if(!this.uploader.isHTML5) {
+                    this.element.removeAttr('multiple');
+                }
+                this.element.prop('value', null); // FF fix
+            }
+            /**
+             * Map of events
+             * @type {Object}
+             */
+            FileSelect.prototype.events = {
+                $destroy: 'destroy',
+                change: 'onChange'
+            };
+            /**
+             * Name of property inside uploader._directive object
+             * @type {String}
+             */
+            FileSelect.prototype.prop = 'select';
+            /**
+             * Returns options
+             * @return {Object|undefined}
+             */
+            FileSelect.prototype.getOptions = function() {};
+            /**
+             * Returns filters
+             * @return {Array<Function>|String|undefined}
+             */
+            FileSelect.prototype.getFilters = function() {};
+            /**
+             * If returns "true" then HTMLInputElement will be cleared
+             * @returns {Boolean}
+             */
+            FileSelect.prototype.isEmptyAfterSelection = function() {
+                return !!this.element.attr('multiple');
+            };
+            /**
+             * Event handler
+             */
+            FileSelect.prototype.onChange = function() {
+                var files = this.uploader.isHTML5 ? this.element[0].files : this.element[0];
+                var options = this.getOptions();
+                var filters = this.getFilters();
+
+                if (!this.uploader.isHTML5) this.destroy();
+                this.uploader.addToQueue(files, options, filters);
+                if (this.isEmptyAfterSelection()) this.element.prop('value', null);
+            };
+
+            // ---------------------------
+
+            FileUploader.inherit(FileDrop, FileDirective);
+
+            /**
+             * Creates instance of {FileDrop} object
+             * @param {Object} options
+             * @constructor
+             */
+            function FileDrop(options) {
+                FileDrop.super_.apply(this, arguments);
+            }
+            /**
+             * Map of events
+             * @type {Object}
+             */
+            FileDrop.prototype.events = {
+                $destroy: 'destroy',
+                drop: 'onDrop',
+                dragover: 'onDragOver',
+                dragleave: 'onDragLeave'
+            };
+            /**
+             * Name of property inside uploader._directive object
+             * @type {String}
+             */
+            FileDrop.prototype.prop = 'drop';
+            /**
+             * Returns options
+             * @return {Object|undefined}
+             */
+            FileDrop.prototype.getOptions = function() {};
+            /**
+             * Returns filters
+             * @return {Array<Function>|String|undefined}
+             */
+            FileDrop.prototype.getFilters = function() {};
+            /**
+             * Event handler
+             */
+            FileDrop.prototype.onDrop = function(event) {
+                var transfer = this._getTransfer(event);
+                if (!transfer) return;
+                var options = this.getOptions();
+                var filters = this.getFilters();
+                this._preventAndStop(event);
+                angular.forEach(this.uploader._directives.over, this._removeOverClass, this);
+                this.uploader.addToQueue(transfer.files, options, filters);
+            };
+            /**
+             * Event handler
+             */
+            FileDrop.prototype.onDragOver = function(event) {
+                var transfer = this._getTransfer(event);
+                if(!this._haveFiles(transfer.types)) return;
+                transfer.dropEffect = 'copy';
+                this._preventAndStop(event);
+                angular.forEach(this.uploader._directives.over, this._addOverClass, this);
+            };
+            /**
+             * Event handler
+             */
+            FileDrop.prototype.onDragLeave = function(event) {
+                if (event.currentTarget !== this.element[0]) return;
+                this._preventAndStop(event);
+                angular.forEach(this.uploader._directives.over, this._removeOverClass, this);
+            };
+            /**
+             * Helper
+             */
+            FileDrop.prototype._getTransfer = function(event) {
+                return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer; // jQuery fix;
+            };
+            /**
+             * Helper
+             */
+            FileDrop.prototype._preventAndStop = function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+            };
+            /**
+             * Returns "true" if types contains files
+             * @param {Object} types
+             */
+            FileDrop.prototype._haveFiles = function(types) {
+                if (!types) return false;
+                if (types.indexOf) {
+                    return types.indexOf('Files') !== -1;
+                } else if(types.contains) {
+                    return types.contains('Files');
+                } else {
+                    return false;
+                }
+            };
+            /**
+             * Callback
+             */
+            FileDrop.prototype._addOverClass = function(item) {
+                item.addOverClass();
+            };
+            /**
+             * Callback
+             */
+            FileDrop.prototype._removeOverClass = function(item) {
+                item.removeOverClass();
+            };
+
+            // ---------------------------
+
+            FileUploader.inherit(FileOver, FileDirective);
+
+            /**
+             * Creates instance of {FileDrop} object
+             * @param {Object} options
+             * @constructor
+             */
+            function FileOver(options) {
+                FileOver.super_.apply(this, arguments);
+            }
+            /**
+             * Map of events
+             * @type {Object}
+             */
+            FileOver.prototype.events = {
+                $destroy: 'destroy'
+            };
+            /**
+             * Name of property inside uploader._directive object
+             * @type {String}
+             */
+            FileOver.prototype.prop = 'over';
+            /**
+             * Over class
+             * @type {string}
+             */
+            FileOver.prototype.overClass = 'nv-file-over';
+            /**
+             * Adds over class
+             */
+            FileOver.prototype.addOverClass = function() {
+                this.element.addClass(this.getOverClass());
+            };
+            /**
+             * Removes over class
+             */
+            FileOver.prototype.removeOverClass = function() {
+                this.element.removeClass(this.getOverClass());
+            };
+            /**
+             * Returns over class
+             * @returns {String}
+             */
+            FileOver.prototype.getOverClass = function() {
+                return this.overClass;
+            };
+
+            return FileUploader;
+        }])
+
+
+    .directive('nvFileSelect', ['$parse', 'FileUploader', function($parse, FileUploader) {
+        return {
+            link: function(scope, element, attributes) {
+                var uploader = scope.$eval(attributes.uploader);
+
+                if (!(uploader instanceof FileUploader)) {
+                    throw new TypeError('"Uploader" must be an instance of FileUploader');
+                }
+
+                var object = new FileUploader.FileSelect({
+                    uploader: uploader,
+                    element: element
+                });
+
+                object.getOptions = $parse(attributes.options).bind(object, scope);
+                object.getFilters = function() {return attributes.filters;};
+            }
+        };
+    }])
+
+
+    .directive('nvFileDrop', ['$parse', 'FileUploader', function($parse, FileUploader) {
+        return {
+            link: function(scope, element, attributes) {
+                var uploader = scope.$eval(attributes.uploader);
+
+                if (!(uploader instanceof FileUploader)) {
+                    throw new TypeError('"Uploader" must be an instance of FileUploader');
+                }
+
+                if (!uploader.isHTML5) return;
+
+                var object = new FileUploader.FileDrop({
+                    uploader: uploader,
+                    element: element
+                });
+
+                object.getOptions = $parse(attributes.options).bind(object, scope);
+                object.getFilters = function() {return attributes.filters;};
+            }
+        };
+    }])
+
+
+    .directive('nvFileOver', ['FileUploader', function(FileUploader) {
+        return {
+            link: function(scope, element, attributes) {
+                var uploader = scope.$eval(attributes.uploader);
+
+                if (!(uploader instanceof FileUploader)) {
+                    throw new TypeError('"Uploader" must be an instance of FileUploader');
+                }
+
+                var object = new FileUploader.FileOver({
+                    uploader: uploader,
+                    element: element
+                });
+
+                object.getOverClass = function() {
+                    return attributes.overClass || this.overClass;
+                };
+            }
+        };
+    }])
+
+    return module;
+}));
+!function(a,b){b["true"]=a,function(a,b){"use strict";function c(){this.$get=["$$sanitizeUri",function(a){return function(b){var c=[];return f(b,k(c,function(b,c){return!/^unsafe/.test(a(b,c))})),c.join("")}}]}function d(a){var c=[],d=k(c,b.noop);return d.chars(a),c.join("")}function e(a){var b,c={},d=a.split(",");for(b=0;b<d.length;b++)c[d[b]]=!0;return c}function f(a,c){function d(a,d,f,h){if(d=b.lowercase(d),A[d])for(;j.last()&&B[j.last()];)e("",j.last());z[d]&&j.last()==d&&e("",d),h=w[d]||!!h,h||j.push(d);var i={};f.replace(o,function(a,b,c,d,e){var f=c||d||e||"";i[b]=g(f)}),c.start&&c.start(d,i,h)}function e(a,d){var e,f=0;if(d=b.lowercase(d))for(f=j.length-1;f>=0&&j[f]!=d;f--);if(f>=0){for(e=j.length-1;e>=f;e--)c.end&&c.end(j[e]);j.length=f}}var f,h,i,j=[],k=a;for(j.last=function(){return j[j.length-1]};a;){if(h=!0,j.last()&&C[j.last()])a=a.replace(new RegExp("(.*)<\\s*\\/\\s*"+j.last()+"[^>]*>","i"),function(a,b){return b=b.replace(r,"$1").replace(t,"$1"),c.chars&&c.chars(g(b)),""}),e("",j.last());else if(0===a.indexOf("<!--")?(f=a.indexOf("--",4),f>=0&&a.lastIndexOf("-->",f)===f&&(c.comment&&c.comment(a.substring(4,f)),a=a.substring(f+3),h=!1)):s.test(a)?(i=a.match(s),i&&(a=a.replace(i[0],""),h=!1)):q.test(a)?(i=a.match(n),i&&(a=a.substring(i[0].length),i[0].replace(n,e),h=!1)):p.test(a)&&(i=a.match(m),i&&(a=a.substring(i[0].length),i[0].replace(m,d),h=!1)),h){f=a.indexOf("<");var u=0>f?a:a.substring(0,f);a=0>f?"":a.substring(f),c.chars&&c.chars(g(u))}if(a==k)throw l("badparse","The sanitizer was unable to parse the following block of html: {0}",a);k=a}e()}function g(a){if(!a)return"";var b=H.exec(a),c=b[1],d=b[3],e=b[2];return e&&(G.innerHTML=e.replace(/</g,"&lt;"),e="textContent"in G?G.textContent:G.innerText),c+e+d}function h(a){return a.replace(/&/g,"&amp;").replace(u,function(a){var b=a.charCodeAt(0),c=a.charCodeAt(1);return"&#"+(1024*(b-55296)+(c-56320)+65536)+";"}).replace(v,function(a){var b=a.charCodeAt(0);return 159>=b||173==b||b>=1536&&1540>=b||1807==b||6068==b||6069==b||b>=8204&&8207>=b||b>=8232&&8239>=b||b>=8288&&8303>=b||65279==b||b>=65520&&65535>=b?"&#"+b+";":a}).replace(/</g,"&lt;").replace(/>/g,"&gt;")}function i(a){var c="",d=a.split(";");return b.forEach(d,function(a){var d=a.split(":");if(2==d.length){var e=I(b.lowercase(d[0])),a=I(b.lowercase(d[1]));("color"===e&&(a.match(/^rgb\([0-9%,\. ]*\)$/i)||a.match(/^rgba\([0-9%,\. ]*\)$/i)||a.match(/^hsl\([0-9%,\. ]*\)$/i)||a.match(/^hsla\([0-9%,\. ]*\)$/i)||a.match(/^#[0-9a-f]{3,6}$/i)||a.match(/^[a-z]*$/i))||"text-align"===e&&("left"===a||"right"===a||"center"===a||"justify"===a)||"float"===e&&("left"===a||"right"===a||"none"===a)||("width"===e||"height"===e)&&a.match(/[0-9\.]*(px|em|rem|%)/))&&(c+=e+": "+a+";")}}),c}function j(a,b,c,d){return"img"===a&&b["ta-insert-video"]&&("ta-insert-video"===c||"allowfullscreen"===c||"frameborder"===c||"contenteditble"===c&&"false"===d)?!0:!1}function k(a,c){var d=!1,e=b.bind(a,a.push);return{start:function(a,f,g){a=b.lowercase(a),!d&&C[a]&&(d=a),d||D[a]!==!0||(e("<"),e(a),b.forEach(f,function(d,g){var k=b.lowercase(g),l="img"===a&&"src"===k||"background"===k;("style"===k&&""!==(d=i(d))||j(a,f,k,d)||F[k]===!0&&(E[k]!==!0||c(d,l)))&&(e(" "),e(g),e('="'),e(h(d)),e('"'))}),e(g?"/>":">"))},end:function(a){a=b.lowercase(a),d||D[a]!==!0||(e("</"),e(a),e(">")),a==d&&(d=!1)},chars:function(a){d||e(h(a))}}}var l=b.$$minErr("$sanitize"),m=/^<\s*([\w:-]+)((?:\s+[\w:-]+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)\s*>/,n=/^<\s*\/\s*([\w:-]+)[^>]*>/,o=/([\w:-]+)(?:\s*=\s*(?:(?:"((?:[^"])*)")|(?:'((?:[^'])*)')|([^>\s]+)))?/g,p=/^</,q=/^<\s*\//,r=/<!--(.*?)-->/g,s=/<!DOCTYPE([^>]*?)>/i,t=/<!\[CDATA\[(.*?)]]>/g,u=/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,v=/([^\#-~| |!])/g,w=e("area,br,col,hr,img,wbr"),x=e("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr"),y=e("rp,rt"),z=b.extend({},y,x),A=b.extend({},x,e("address,article,aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,script,section,table,ul")),B=b.extend({},y,e("a,abbr,acronym,b,bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,samp,small,span,strike,strong,sub,sup,time,tt,u,var")),C=e("script,style"),D=b.extend({},w,A,B,z),E=e("background,cite,href,longdesc,src,usemap"),F=b.extend({},E,e("abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,scope,scrolling,shape,size,span,start,summary,target,title,type,valign,value,vspace,width")),G=document.createElement("pre"),H=/^(\s*)([\s\S]*?)(\s*)$/,I=function(){return String.prototype.trim?function(a){return b.isString(a)?a.trim():a}:function(a){return b.isString(a)?a.replace(/^\s\s*/,"").replace(/\s\s*$/,""):a}}();b.module("ngSanitize",[]).provider("$sanitize",c),b.module("ngSanitize").filter("linky",["$sanitize",function(a){var c=/((ftp|https?):\/\/|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>]/,e=/^mailto:/;return function(f,g){function h(a){a&&n.push(d(a))}function i(a,c){n.push("<a "),b.isDefined(g)&&(n.push('target="'),n.push(g),n.push('" ')),n.push('href="'),n.push(a),n.push('">'),h(c),n.push("</a>")}if(!f)return f;for(var j,k,l,m=f,n=[];j=m.match(c);)k=j[0],j[2]==j[3]&&(k="mailto:"+k),l=j.index,h(m.substr(0,l)),i(k,j[0].replace(e,"")),m=m.substring(l+j[0].length);return h(m),a(n.join(""))}}])}(window,window.angular)}({},function(){return this}());
+!function(a,b){b["true"]=a,angular.module("textAngularSetup",[]).value("taOptions",{toolbar:[["h1","h2","h3","h4","h5","h6","p","pre","quote"],["bold","italics","underline","ul","ol","redo","undo","clear"],["justifyLeft","justifyCenter","justifyRight","indent","outdent"],["html","insertImage","insertLink","insertVideo"]],classes:{focussed:"focussed",toolbar:"btn-toolbar",toolbarGroup:"btn-group",toolbarButton:"btn btn-default",toolbarButtonActive:"active",disabled:"disabled",textEditor:"form-control",htmlEditor:"form-control"},setup:{textEditorSetup:function(){},htmlEditorSetup:function(){}},defaultFileDropHandler:function(a,b){var c=new FileReader;return"image"===a.type.substring(0,5)?(c.onload=function(){""!==c.result&&b("insertImage",c.result,!0)},c.readAsDataURL(a),!0):!1}}).value("taSelectableElements",["a","img"]).value("taCustomRenderers",[{selector:"img",customAttribute:"ta-insert-video",renderLogic:function(a){var b=angular.element("<iframe></iframe>"),c=a.prop("attributes");angular.forEach(c,function(a){b.attr(a.name,a.value)}),b.attr("src",b.attr("ta-insert-video")),a.replaceWith(b)}}]).constant("taTranslations",{html:{buttontext:"Toggle HTML",tooltip:"Toggle html / Rich Text"},heading:{tooltip:"Heading "},p:{tooltip:"Paragraph"},pre:{tooltip:"Preformatted text"},ul:{tooltip:"Unordered List"},ol:{tooltip:"Ordered List"},quote:{tooltip:"Quote/unqoute selection or paragraph"},undo:{tooltip:"Undo"},redo:{tooltip:"Redo"},bold:{tooltip:"Bold"},italic:{tooltip:"Italic"},underline:{tooltip:"Underline"},justifyLeft:{tooltip:"Align text left"},justifyRight:{tooltip:"Align text right"},justifyCenter:{tooltip:"Center"},indent:{tooltip:"Increase indent"},outdent:{tooltip:"Decrease indent"},clear:{tooltip:"Clear formatting"},insertImage:{dialogPrompt:"Please enter an image URL to insert",tooltip:"Insert image",hotkey:"the - possibly language dependent hotkey ... for some future implementation"},insertVideo:{tooltip:"Insert video",dialogPrompt:"Please enter a youtube URL to embed"},insertLink:{tooltip:"Insert / edit link",dialogPrompt:"Please enter a URL to insert"}}).run(["taRegisterTool","$window","taTranslations","taSelection",function(a,b,c,d){a("html",{buttontext:c.html.buttontext,tooltiptext:c.html.tooltip,action:function(){this.$editor().switchView()},activeState:function(){return this.$editor().showHtml}});var e=function(a){return function(){return this.$editor().queryFormatBlockState(a)}},f=function(){return this.$editor().wrapSelection("formatBlock","<"+this.name.toUpperCase()+">")};angular.forEach(["h1","h2","h3","h4","h5","h6"],function(b){a(b.toLowerCase(),{buttontext:b.toUpperCase(),tooltiptext:c.heading.tooltip+b.charAt(1),action:f,activeState:e(b.toLowerCase())})}),a("p",{buttontext:"P",tooltiptext:c.p.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<P>")},activeState:function(){return this.$editor().queryFormatBlockState("p")}}),a("pre",{buttontext:"pre",tooltiptext:c.pre.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<PRE>")},activeState:function(){return this.$editor().queryFormatBlockState("pre")}}),a("ul",{iconclass:"fa fa-list-ul",tooltiptext:c.ul.tooltip,action:function(){return this.$editor().wrapSelection("insertUnorderedList",null)},activeState:function(){return this.$editor().queryCommandState("insertUnorderedList")}}),a("ol",{iconclass:"fa fa-list-ol",tooltiptext:c.ol.tooltip,action:function(){return this.$editor().wrapSelection("insertOrderedList",null)},activeState:function(){return this.$editor().queryCommandState("insertOrderedList")}}),a("quote",{iconclass:"fa fa-quote-right",tooltiptext:c.quote.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<BLOCKQUOTE>")},activeState:function(){return this.$editor().queryFormatBlockState("blockquote")}}),a("undo",{iconclass:"fa fa-undo",tooltiptext:c.undo.tooltip,action:function(){return this.$editor().wrapSelection("undo",null)}}),a("redo",{iconclass:"fa fa-repeat",tooltiptext:c.redo.tooltip,action:function(){return this.$editor().wrapSelection("redo",null)}}),a("bold",{iconclass:"fa fa-bold",tooltiptext:c.bold.tooltip,action:function(){return this.$editor().wrapSelection("bold",null)},activeState:function(){return this.$editor().queryCommandState("bold")},commandKeyCode:98}),a("justifyLeft",{iconclass:"fa fa-align-left",tooltiptext:c.justifyLeft.tooltip,action:function(){return this.$editor().wrapSelection("justifyLeft",null)},activeState:function(a){var b=!1;return a&&(b="left"===a.css("text-align")||"left"===a.attr("align")||"right"!==a.css("text-align")&&"center"!==a.css("text-align")&&!this.$editor().queryCommandState("justifyRight")&&!this.$editor().queryCommandState("justifyCenter")),b=b||this.$editor().queryCommandState("justifyLeft")}}),a("justifyRight",{iconclass:"fa fa-align-right",tooltiptext:c.justifyRight.tooltip,action:function(){return this.$editor().wrapSelection("justifyRight",null)},activeState:function(a){var b=!1;return a&&(b="right"===a.css("text-align")),b=b||this.$editor().queryCommandState("justifyRight")}}),a("justifyCenter",{iconclass:"fa fa-align-center",tooltiptext:c.justifyCenter.tooltip,action:function(){return this.$editor().wrapSelection("justifyCenter",null)},activeState:function(a){var b=!1;return a&&(b="center"===a.css("text-align")),b=b||this.$editor().queryCommandState("justifyCenter")}}),a("indent",{iconclass:"fa fa-indent",tooltiptext:c.indent.tooltip,action:function(){return this.$editor().wrapSelection("indent",null)},activeState:function(){return this.$editor().queryFormatBlockState("blockquote")}}),a("outdent",{iconclass:"fa fa-outdent",tooltiptext:c.outdent.tooltip,action:function(){return this.$editor().wrapSelection("outdent",null)},activeState:function(){return!1}}),a("italics",{iconclass:"fa fa-italic",tooltiptext:c.italic.tooltip,action:function(){return this.$editor().wrapSelection("italic",null)},activeState:function(){return this.$editor().queryCommandState("italic")},commandKeyCode:105}),a("underline",{iconclass:"fa fa-underline",tooltiptext:c.underline.tooltip,action:function(){return this.$editor().wrapSelection("underline",null)},activeState:function(){return this.$editor().queryCommandState("underline")},commandKeyCode:117}),a("clear",{iconclass:"fa fa-ban",tooltiptext:c.clear.tooltip,action:function(a,b){this.$editor().wrapSelection("removeFormat",null);var c=angular.element(d.getSelectionElement()),e=function(a){a=angular.element(a);var b=a;angular.forEach(a.children(),function(a){var c=angular.element("<p></p>");c.html(angular.element(a).html()),b.after(c),b=c}),a.remove()};angular.forEach(c.find("ul"),e),angular.forEach(c.find("ol"),e);var f=this.$editor(),g=function(a){a=angular.element(a),a[0]!==f.displayElements.text[0]&&a.removeAttr("class"),angular.forEach(a.children(),g)};angular.forEach(c,g),"li"!==c[0].tagName.toLowerCase()&&"ol"!==c[0].tagName.toLowerCase()&&"ul"!==c[0].tagName.toLowerCase()&&this.$editor().wrapSelection("formatBlock","<p>"),b()}});var g=function(a,b,c){var d=function(){c.updateTaBindtaTextElement(),c.hidePopover()};a.preventDefault(),c.displayElements.popover.css("width","375px");var e=c.displayElements.popoverContainer;e.empty();var f=angular.element('<div class="btn-group" style="padding-right: 6px;">'),g=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">100% </button>');g.on("click",function(a){a.preventDefault(),b.css({width:"100%",height:""}),d()});var h=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">50% </button>');h.on("click",function(a){a.preventDefault(),b.css({width:"50%",height:""}),d()});var i=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">25% </button>');i.on("click",function(a){a.preventDefault(),b.css({width:"25%",height:""}),d()});var j=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">Reset</button>');j.on("click",function(a){a.preventDefault(),b.css({width:"",height:""}),d()}),f.append(g),f.append(h),f.append(i),f.append(j),e.append(f),f=angular.element('<div class="btn-group" style="padding-right: 6px;">');var k=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-left"></i></button>');k.on("click",function(a){a.preventDefault(),b.css("float","left"),d()});var l=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-right"></i></button>');l.on("click",function(a){a.preventDefault(),b.css("float","right"),d()});var m=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-justify"></i></button>');m.on("click",function(a){a.preventDefault(),b.css("float",""),d()}),f.append(k),f.append(m),f.append(l),e.append(f),f=angular.element('<div class="btn-group">');var n=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-trash-o"></i></button>');n.on("click",function(a){a.preventDefault(),b.remove(),d()}),f.append(n),e.append(f),c.showPopover(b),c.showResizeOverlay(b)};a("insertImage",{iconclass:"fa fa-picture-o",tooltiptext:c.insertImage.tooltip,action:function(){var a;return a=b.prompt(c.insertImage.dialogPrompt,"http://"),a&&""!==a&&"http://"!==a?this.$editor().wrapSelection("insertImage",a,!0):void 0},onElementSelect:{element:"img",action:g}}),a("insertVideo",{iconclass:"fa fa-youtube-play",tooltiptext:c.insertVideo.tooltip,action:function(){var a;if(a=b.prompt(c.insertVideo.dialogPrompt,"http://"),a&&""!==a&&"http://"!==a){var d=a.match(/(\?|&)v=[^&]*/);if(d.length>0){var e="http://www.youtube.com/embed/"+d[0].substring(3),f='<img class="ta-insert-video" ta-insert-video="'+e+'" contenteditable="false" src="" allowfullscreen="true" width="300" frameborder="0" height="250"/>';return this.$editor().wrapSelection("insertHTML",f,!0)}}},onElementSelect:{element:"img",onlyWithAttrs:["ta-insert-video"],action:g}}),a("insertLink",{tooltiptext:c.insertLink.tooltip,iconclass:"fa fa-link",action:function(){var a;return a=b.prompt(c.insertLink.dialogPrompt,"http://"),a&&""!==a&&"http://"!==a?this.$editor().wrapSelection("createLink",a,!0):void 0},activeState:function(a){return a?"A"===a[0].tagName:!1},onElementSelect:{element:"a",action:function(a,d,e){a.preventDefault(),e.displayElements.popover.css("width","435px");var f=e.displayElements.popoverContainer;f.empty(),f.css("line-height","28px");var g=angular.element('<a href="'+d.attr("href")+'" target="_blank">'+d.attr("href")+"</a>");g.css({display:"inline-block","max-width":"200px",overflow:"hidden","text-overflow":"ellipsis","white-space":"nowrap","vertical-align":"middle"}),f.append(g);var h=angular.element('<div class="btn-group pull-right">'),i=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on"><i class="fa fa-edit icon-edit"></i></button>');i.on("click",function(a){a.preventDefault();var f=b.prompt(c.insertLink.dialogPrompt,d.attr("href"));f&&""!==f&&"http://"!==f&&(d.attr("href",f),e.updateTaBindtaTextElement()),e.hidePopover()}),h.append(i);var j=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on"><i class="fa fa-unlink icon-unlink"></i></button>');j.on("click",function(a){a.preventDefault(),d.replaceWith(d.contents()),e.updateTaBindtaTextElement(),e.hidePopover()}),h.append(j);var k=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on">Open in New Window</button>');"_blank"===d.attr("target")&&k.addClass("active"),k.on("click",function(a){a.preventDefault(),d.attr("target","_blank"===d.attr("target")?"":"_blank"),k.toggleClass("active"),e.updateTaBindtaTextElement()}),h.append(k),f.append(h),e.showPopover(d)}}})}]),function(){"Use Strict";function a(a){try{return 0!==angular.element(a).length}catch(b){return!1}}function b(a,c){var d=[],e=a.children();return e.length&&angular.forEach(e,function(a){d=d.concat(b(angular.element(a),c))}),void 0!==a.attr(c)&&d.push(a),d}function c(b,c){if(!b||""===b||n.hasOwnProperty(b))throw"textAngular Error: A unique name is required for a Tool Definition";if(c.display&&(""===c.display||!a(c.display))||!c.display&&!c.buttontext&&!c.iconclass)throw'textAngular Error: Tool Definition for "'+b+'" does not have a valid display/iconclass/buttontext value';n[b]=c}var d=!1;/AppleWebKit\/([\d.]+)/.exec(navigator.userAgent)&&(document.addEventListener("click",function(){var a=window.event.target;if(d&&null!==a){for(var b=!1,c=a;null!==c&&"html"!==c.tagName.toLowerCase()&&!b;)b="true"===c.contentEditable,c=c.parentNode;b||(document.getElementById("textAngular-editableFix-010203040506070809").setSelectionRange(0,0),a.focus())}d=!1},!1),angular.element(document).ready(function(){angular.element(document.body).append(angular.element('<input id="textAngular-editableFix-010203040506070809" style="width:1px;height:1px;border:none;margin:0;padding:0;position:absolute; top: -10000; left: -10000;" unselectable="on" tabIndex="-1">'))}));var e=function(){var a,b=-1,c=window.navigator.userAgent,d=c.indexOf("MSIE "),e=c.indexOf("Trident/");if(d>0)b=parseInt(c.substring(d+5,c.indexOf(".",d)),10);else if(e>0){var f=c.indexOf("rv:");b=parseInt(c.substring(f+3,c.indexOf(".",f)),10)}return b>-1?b:a}();"function"!=typeof String.prototype.trim&&(String.prototype.trim=function(){return this.replace(/^\s\s*/,"").replace(/\s\s*$/,"")});var f,g,h,i,j;if(e>8||void 0===e){var k=function(){var a=document.createElement("style");return/AppleWebKit\/([\d.]+)/.exec(navigator.userAgent)&&a.appendChild(document.createTextNode("")),document.head.insertBefore(a,document.head.firstChild),a.sheet}();f=function(){var a=document.createElement("style");return/AppleWebKit\/([\d.]+)/.exec(navigator.userAgent)&&a.appendChild(document.createTextNode("")),document.head.appendChild(a),a.sheet}(),g=function(a,b){i(f,a,b)},i=function(a,b,c){var d;return a.rules?d=Math.max(a.rules.length-1,0):a.cssRules&&(d=Math.max(a.cssRules.length-1,0)),a.insertRule?a.insertRule(b+"{"+c+"}",d):a.addRule(b,c,d),d},h=function(a){j(f,a)},j=function(a,b){a.removeRule?a.removeRule(b):a.deleteRule(b)},i(k,".ta-scroll-window.form-control","height: auto; min-height: 300px; overflow: auto; font-family: inherit; font-size: 100%; position: relative; padding: 0;"),i(k,".ta-root.focussed .ta-scroll-window.form-control","border-color: #66afe9; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);"),i(k,".ta-editor.ta-html","min-height: 300px; height: auto; overflow: auto; font-family: inherit; font-size: 100%;"),i(k,".ta-scroll-window > .ta-bind","height: auto; min-height: 300px; padding: 6px 12px;"),i(k,".ta-root .ta-resizer-handle-overlay","z-index: 100; position: absolute; display: none;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-info","position: absolute; bottom: 16px; right: 16px; border: 1px solid black; background-color: #FFF; padding: 0 4px; opacity: 0.7;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-background","position: absolute; bottom: 5px; right: 5px; left: 5px; top: 5px; border: 1px solid black; background-color: rgba(0, 0, 0, 0.2);"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-corner","width: 10px; height: 10px; position: absolute;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-corner-tl","top: 0; left: 0; border-left: 1px solid black; border-top: 1px solid black;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-corner-tr","top: 0; right: 0; border-right: 1px solid black; border-top: 1px solid black;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-corner-bl","bottom: 0; left: 0; border-left: 1px solid black; border-bottom: 1px solid black;"),i(k,".ta-root .ta-resizer-handle-overlay > .ta-resizer-handle-corner-br","bottom: 0; right: 0; border: 1px solid black; cursor: se-resize; background-color: white;")}var l=!1,m=angular.module("textAngular",["ngSanitize","textAngularSetup"]),n={};m.constant("taRegisterTool",c),m.value("taTools",n),m.config([function(){angular.forEach(n,function(a,b){delete n[b]})}]),m.directive("textAngular",["$compile","$timeout","taOptions","taSelection","taExecCommand","textAngularManager","$window","$document","$animate","$log",function(a,b,c,d,e,f,g,h,i,j){return{require:"?ngModel",scope:{},restrict:"EA",link:function(k,l,m,n){var o,p,q,r,s,t,u,v,w,x=m.serial?m.serial:Math.floor(1e16*Math.random()),y=m.name?m.name:"textAngularEditor"+x,z=function(a,c,d){b(function(){var b=function(){a.off(c,b),d()};a.on(c,b)},100)};w=e(m.taDefaultWrap),angular.extend(k,angular.copy(c),{wrapSelection:function(a,b,c){w(a,!1,b),c&&k["reApplyOnSelectorHandlerstaTextElement"+x](),k.displayElements.text[0].focus()},showHtml:!1}),m.taFocussedClass&&(k.classes.focussed=m.taFocussedClass),m.taTextEditorClass&&(k.classes.textEditor=m.taTextEditorClass),m.taHtmlEditorClass&&(k.classes.htmlEditor=m.taHtmlEditorClass),m.taTextEditorSetup&&(k.setup.textEditorSetup=k.$parent.$eval(m.taTextEditorSetup)),m.taHtmlEditorSetup&&(k.setup.htmlEditorSetup=k.$parent.$eval(m.taHtmlEditorSetup)),k.fileDropHandler=m.taFileDrop?k.$parent.$eval(m.taFileDrop):k.defaultFileDropHandler,u=l[0].innerHTML,l[0].innerHTML="",k.displayElements={forminput:angular.element("<input type='hidden' tabindex='-1' style='display: none;'>"),html:angular.element("<textarea></textarea>"),text:angular.element("<div></div>"),scrollWindow:angular.element("<div class='ta-scroll-window'></div>"),popover:angular.element('<div class="popover fade bottom" style="max-width: none; width: 305px;"></div>'),popoverArrow:angular.element('<div class="arrow"></div>'),popoverContainer:angular.element('<div class="popover-content"></div>'),resize:{overlay:angular.element('<div class="ta-resizer-handle-overlay"></div>'),background:angular.element('<div class="ta-resizer-handle-background"></div>'),anchors:[angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-tl"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-tr"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-bl"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-br"></div>')],info:angular.element('<div class="ta-resizer-handle-info"></div>')}},k.displayElements.popover.append(k.displayElements.popoverArrow),k.displayElements.popover.append(k.displayElements.popoverContainer),k.displayElements.scrollWindow.append(k.displayElements.popover),k.displayElements.popover.on("mousedown",function(a,b){return b&&angular.extend(a,b),a.preventDefault(),!1}),k.showPopover=function(a){k.displayElements.popover.css("display","block"),k.reflowPopover(a),i.addClass(k.displayElements.popover,"in"),z(l,"click keyup",function(){k.hidePopover()})},k.reflowPopover=function(a){k.displayElements.text[0].offsetHeight-51>a[0].offsetTop?(k.displayElements.popover.css("top",a[0].offsetTop+a[0].offsetHeight+"px"),k.displayElements.popover.removeClass("top").addClass("bottom")):(k.displayElements.popover.css("top",a[0].offsetTop-54+"px"),k.displayElements.popover.removeClass("bottom").addClass("top"));var b=k.displayElements.text[0].offsetWidth-k.displayElements.popover[0].offsetWidth,c=a[0].offsetLeft+a[0].offsetWidth/2-k.displayElements.popover[0].offsetWidth/2;k.displayElements.popover.css("left",Math.max(0,Math.min(b,c))+"px"),k.displayElements.popoverArrow.css("margin-left",Math.min(c,Math.max(0,c-b))-11+"px")},k.hidePopover=function(){i.removeClass(k.displayElements.popover,"in",function(){k.displayElements.popover.css("display",""),k.displayElements.popoverContainer.attr("style",""),k.displayElements.popoverContainer.attr("class","popover-content")})},k.displayElements.resize.overlay.append(k.displayElements.resize.background),angular.forEach(k.displayElements.resize.anchors,function(a){k.displayElements.resize.overlay.append(a)}),k.displayElements.resize.overlay.append(k.displayElements.resize.info),k.displayElements.scrollWindow.append(k.displayElements.resize.overlay),k.reflowResizeOverlay=function(a){a=angular.element(a)[0],k.displayElements.resize.overlay.css({display:"block",left:a.offsetLeft-5+"px",top:a.offsetTop-5+"px",width:a.offsetWidth+10+"px",height:a.offsetHeight+10+"px"}),k.displayElements.resize.info.text(a.offsetWidth+" x "+a.offsetHeight)},k.showResizeOverlay=function(a){var b=function(b){var c={width:parseInt(a.attr("width")),height:parseInt(a.attr("height")),x:b.clientX,y:b.clientY};void 0===c.width&&(c.width=a[0].offsetWidth),void 0===c.height&&(c.height=a[0].offsetHeight),k.hidePopover();var d=c.height/c.width,e=function(b){var e={x:Math.max(0,c.width+(b.clientX-c.x)),y:Math.max(0,c.height+(b.clientY-c.y))},f=function(a,b){a=angular.element(a),"img"===a[0].tagName.toLowerCase()&&(b.height&&(a.attr("height",b.height),delete b.height),b.width&&(a.attr("width",b.width),delete b.width)),a.css(b)};if(b.shiftKey){var g=e.y/e.x;f(a,{width:d>g?e.x:e.y/d,height:d>g?e.x*d:e.y})}else f(a,{width:e.x,height:e.y});k.reflowResizeOverlay(a)};h.find("body").on("mousemove",e),z(k.displayElements.resize.overlay,"mouseup",function(){h.find("body").off("mousemove",e),k.showPopover(a)}),b.stopPropagation(),b.preventDefault()};k.displayElements.resize.anchors[3].on("mousedown",b),k.reflowResizeOverlay(a),z(l,"click",function(){k.hideResizeOverlay()})},k.hideResizeOverlay=function(){k.displayElements.resize.overlay.css("display","")},k.setup.htmlEditorSetup(k.displayElements.html),k.setup.textEditorSetup(k.displayElements.text),k.displayElements.html.attr({id:"taHtmlElement"+x,"ng-show":"showHtml","ta-bind":"ta-bind","ng-model":"html"}),k.displayElements.text.attr({id:"taTextElement"+x,contentEditable:"true","ta-bind":"ta-bind","ng-model":"html"}),k.displayElements.scrollWindow.attr({"ng-hide":"showHtml"}),m.taDefaultWrap&&k.displayElements.text.attr("ta-default-wrap",m.taDefaultWrap),m.taUnsafeSanitizer&&(k.displayElements.text.attr("ta-unsafe-sanitizer",m.taUnsafeSanitizer),k.displayElements.html.attr("ta-unsafe-sanitizer",m.taUnsafeSanitizer)),k.displayElements.scrollWindow.append(k.displayElements.text),l.append(k.displayElements.scrollWindow),l.append(k.displayElements.html),k.displayElements.forminput.attr("name",y),l.append(k.displayElements.forminput),m.tabindex&&(l.removeAttr("tabindex"),k.displayElements.text.attr("tabindex",m.tabindex),k.displayElements.html.attr("tabindex",m.tabindex)),m.placeholder&&(k.displayElements.text.attr("placeholder",m.placeholder),k.displayElements.html.attr("placeholder",m.placeholder)),m.taDisabled&&(k.displayElements.text.attr("ta-readonly","disabled"),k.displayElements.html.attr("ta-readonly","disabled"),k.disabled=k.$parent.$eval(m.taDisabled),k.$parent.$watch(m.taDisabled,function(a){k.disabled=a,k.disabled?l.addClass(k.classes.disabled):l.removeClass(k.classes.disabled)})),a(k.displayElements.scrollWindow)(k),a(k.displayElements.html)(k),k.updateTaBindtaTextElement=k["updateTaBindtaTextElement"+x],k.updateTaBindtaHtmlElement=k["updateTaBindtaHtmlElement"+x],l.addClass("ta-root"),k.displayElements.scrollWindow.addClass("ta-text ta-editor "+k.classes.textEditor),k.displayElements.html.addClass("ta-html ta-editor "+k.classes.htmlEditor),k._actionRunning=!1;var A=!1;if(k.startAction=function(){return k._actionRunning=!0,g.rangy&&g.rangy.saveSelection?(A=g.rangy.saveSelection(),function(){A&&g.rangy.restoreSelection(A)}):void 0},k.endAction=function(){k._actionRunning=!1,A&&g.rangy.removeMarkers(A),A=!1,k.updateSelectedStyles(),k.showHtml||k["updateTaBindtaTextElement"+x]()},s=function(){l.addClass(k.classes.focussed),v.focus()},k.displayElements.html.on("focus",s),k.displayElements.text.on("focus",s),t=function(a){return k._actionRunning||h[0].activeElement===k.displayElements.html[0]||h[0].activeElement===k.displayElements.text[0]||(l.removeClass(k.classes.focussed),v.unfocus(),b(function(){l.triggerHandler("blur")},0)),a.preventDefault(),!1},k.displayElements.html.on("blur",t),k.displayElements.text.on("blur",t),k.queryFormatBlockState=function(a){return!k.showHtml&&a.toLowerCase()===h[0].queryCommandValue("formatBlock").toLowerCase()},k.queryCommandState=function(a){return k.showHtml?"":h[0].queryCommandState(a)},k.switchView=function(){k.showHtml=!k.showHtml,k.showHtml?b(function(){return k.displayElements.html[0].focus()},100):b(function(){return k.displayElements.text[0].focus()},100)},m.ngModel){var B=!0;n.$render=function(){if(B){B=!1;var a=k.$parent.$eval(m.ngModel);void 0!==a&&null!==a||!u||""===u||n.$setViewValue(u)}k.displayElements.forminput.val(n.$viewValue),k._elementSelectTriggered||h[0].activeElement===k.displayElements.html[0]||h[0].activeElement===k.displayElements.text[0]||(k.html=n.$viewValue||"")};var C=function(a){return m.required&&n.$setValidity("required",!(!a||""===a.trim())),a};n.$parsers.push(C),n.$formatters.push(C)}else k.displayElements.forminput.val(u),k.html=u;if(k.$watch("html",function(a,b){a!==b&&(m.ngModel&&n.$viewValue!==a&&n.$setViewValue(a),k.displayElements.forminput.val(a))}),m.taTargetToolbars)v=f.registerEditor(y,k,m.taTargetToolbars.split(","));else{var D=angular.element('<div text-angular-toolbar name="textAngularToolbar'+x+'">');m.taToolbar&&D.attr("ta-toolbar",m.taToolbar),m.taToolbarClass&&D.attr("ta-toolbar-class",m.taToolbarClass),m.taToolbarGroupClass&&D.attr("ta-toolbar-group-class",m.taToolbarGroupClass),m.taToolbarButtonClass&&D.attr("ta-toolbar-button-class",m.taToolbarButtonClass),m.taToolbarActiveButtonClass&&D.attr("ta-toolbar-active-button-class",m.taToolbarActiveButtonClass),m.taFocussedClass&&D.attr("ta-focussed-class",m.taFocussedClass),l.prepend(D),a(D)(k.$parent),v=f.registerEditor(y,k,["textAngularToolbar"+x])}k.$on("$destroy",function(){f.unregisterEditor(y)}),k.$on("ta-element-select",function(a,b){v.triggerElementSelect(a,b)}),k.$on("ta-drop-event",function(a,b,c,d){k.displayElements.text[0].focus(),d&&d.files&&d.files.length>0&&(angular.forEach(d.files,function(a){try{return k.fileDropHandler(a,k.wrapSelection)||k.fileDropHandler!==k.defaultFileDropHandler&&k.defaultFileDropHandler(a,k.wrapSelection)}catch(b){j.error(b)}}),c.preventDefault(),c.stopPropagation())}),k._bUpdateSelectedStyles=!1,k.updateSelectedStyles=function(){var a;void 0!==(a=d.getSelectionElement())&&a.parentNode!==k.displayElements.text[0]?v.updateSelectedStyles(angular.element(a)):v.updateSelectedStyles(),k._bUpdateSelectedStyles&&b(k.updateSelectedStyles,200)},o=function(){k._bUpdateSelectedStyles||(k._bUpdateSelectedStyles=!0,k.$apply(function(){k.updateSelectedStyles()}))},k.displayElements.html.on("keydown",o),k.displayElements.text.on("keydown",o),p=function(){k._bUpdateSelectedStyles=!1},k.displayElements.html.on("keyup",p),k.displayElements.text.on("keyup",p),q=function(a,b){b&&angular.extend(a,b),k.$apply(function(){return v.sendKeyCommand(a)?(k._bUpdateSelectedStyles||k.updateSelectedStyles(),a.preventDefault(),!1):void 0})},k.displayElements.html.on("keypress",q),k.displayElements.text.on("keypress",q),r=function(){k._bUpdateSelectedStyles=!1,k.$apply(function(){k.updateSelectedStyles()})},k.displayElements.html.on("mouseup",r),k.displayElements.text.on("mouseup",r)}}}]).factory("taBrowserTag",[function(){return function(a){return a?""===a?void 0===e?"div":8>=e?"P":"p":8>=e?a.toUpperCase():a:8>=e?"P":"p"}}]).factory("taExecCommand",["taSelection","taBrowserTag","$document",function(a,b,c){var d=/^(address|article|aside|audio|blockquote|canvas|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video)$/gi,e=/^(ul|li|ol)$/gi,f=function(b,c){var d,e,f=b.find("li");for(e=f.length-1;e>=0;e--)d=angular.element("<"+c+">"+f[e].innerHTML+"</"+c+">"),b.after(d);b.remove(),a.setSelectionToElementEnd(d[0])},g=function(b,c){var d=angular.element("<"+c+">"+b[0].innerHTML+"</"+c+">");b.after(d),b.remove(),a.setSelectionToElementEnd(d.find("li")[0])},h=function(c,d,e){for(var f="",g=0;g<c.length;g++)f+="<"+b("li")+">"+c[g].innerHTML+"</"+b("li")+">";var h=angular.element("<"+e+">"+f+"</"+e+">");d.after(h),d.remove(),a.setSelectionToElementEnd(h.find("li")[0])};return function(i){return i=b(i),function(j,k,l){var m,n,o,p,q,r=angular.element("<"+i+">"),s=a.getSelectionElement(),t=angular.element(s);if(void 0!==s){var u=s.tagName.toLowerCase();if("insertorderedlist"===j.toLowerCase()||"insertunorderedlist"===j.toLowerCase()){var v=b("insertorderedlist"===j.toLowerCase()?"ol":"ul");if(u===v)return f(t,i);if("li"===u&&t.parent()[0].tagName.toLowerCase()===v&&1===t.parent().children().length)return f(t.parent(),i);if("li"===u&&t.parent()[0].tagName.toLowerCase()!==v&&1===t.parent().children().length)return g(t.parent(),v);if(u.match(d)&&!t.hasClass("ta-bind")){if("ol"===u||"ul"===u)return g(t,v);var w=!1;return angular.forEach(t.children(),function(a){a.tagName.match(d)&&(w=!0)}),w?h(t.children(),t,v):h([angular.element("<div>"+s.innerHTML+"</div>")[0]],t,v)}if(u.match(d)){if(p=a.getOnlySelectedElements(),1===p.length&&("ol"===p[0].tagName.toLowerCase()||"ul"===p[0].tagName.toLowerCase()))return p[0].tagName.toLowerCase()===v?f(angular.element(p[0]),i):g(angular.element(p[0]),v);o="";var x=[];for(m=0;m<p.length;m++)if(3!==p[m].nodeType){var y=angular.element(p[m]);o+="<"+b("li")+">"+y[0].innerHTML+"</"+b("li")+">",x.unshift(y)}return n=angular.element("<"+v+">"+o+"</"+v+">"),x.pop().replaceWith(n),angular.forEach(x,function(a){a.remove()}),void a.setSelectionToElementEnd(n[0])}}else if("formatblock"===j.toLowerCase()){var z=l.toLowerCase().replace(/[<>]/gi,"");for(n="li"===u?t.parent():t;!n[0].tagName.match(d);)n=n.parent(),u=n[0].tagName.toLowerCase();if(u===z){p=n.children();var A=!1;for(m=0;m<p.length;m++)A=A||p[m].tagName.match(d);A?(n.after(p),q=n.next(),n.remove(),n=q):(r.append(n[0].childNodes),n.after(r),n.remove(),n=r)}else if(n.parent()[0].tagName.toLowerCase()!==z||n.parent().hasClass("ta-bind"))if(u.match(e))n.wrap(l);else{p=a.getOnlySelectedElements(),0===p.length&&(p=[n[0]]);var B=!1;if(angular.forEach(p,function(a){3!==a.nodeType&&a.tagName.match(d)||(B=!0)}),B)for(;3===p[0].nodeType||!p[0].tagName.match(d);)p=[p[0].parentNode];if(angular.element(p[0]).hasClass("ta-bind"))n=angular.element(l),n[0].innerHTML=p[0].innerHTML,p[0].innerHTML=n[0].outerHTML;else if("blockquote"===z){for(o="",m=0;m<p.length;m++)o+=p[m].outerHTML;n=angular.element(l),n[0].innerHTML=o,p[0].parentNode.insertBefore(n[0],p[0]),angular.forEach(p,function(a){a.parentNode.removeChild(a)})}else for(m=0;m<p.length;m++)n=angular.element(l),n[0].innerHTML=p[m].innerHTML,p[m].parentNode.insertBefore(n[0],p[m]),p[m].parentNode.removeChild(p[m])}else{var C=n.parent(),D=C.contents();for(m=0;m<D.length;m++)C.parent().hasClass("ta-bind")&&3===D[m].nodeType&&(r=angular.element("<"+i+">"),r[0].innerHTML=D[m].outerHTML,D[m]=r[0]),C.parent()[0].insertBefore(D[m],C[0]);C.remove()}return void a.setSelectionToElementEnd(n[0])}}try{c[0].execCommand(j,k,l)}catch(E){}}}}]).directive("taBind",["taSanitize","$timeout","$window","$document","taFixChrome","taBrowserTag","taSelection","taSelectableElements","taApplyCustomRenderers","taOptions",function(a,b,c,f,i,j,k,m,n,o){return{require:"ngModel",scope:{},link:function(j,p,q,r){var s,t,u=void 0!==p.attr("contenteditable")&&p.attr("contenteditable"),v=u||"textarea"===p[0].tagName.toLowerCase()||"input"===p[0].tagName.toLowerCase(),w=!1,x=!1,y=q.taUnsafeSanitizer||o.disableSanitizer;void 0===q.taDefaultWrap&&(q.taDefaultWrap="p"),""===q.taDefaultWrap?(s="",t=void 0===e?"<div><br></div>":e>=11?"<p><br></p>":8>=e?"<P>&nbsp;</P>":"<p>&nbsp;</p>"):(s=void 0===e||e>=11?"<"+q.taDefaultWrap+"><br></"+q.taDefaultWrap+">":8>=e?"<"+q.taDefaultWrap.toUpperCase()+"></"+q.taDefaultWrap.toUpperCase()+">":"<"+q.taDefaultWrap+"></"+q.taDefaultWrap+">",t=void 0===e||e>=11?"<"+q.taDefaultWrap+"><br></"+q.taDefaultWrap+">":8>=e?"<"+q.taDefaultWrap.toUpperCase()+">&nbsp;</"+q.taDefaultWrap.toUpperCase()+">":"<"+q.taDefaultWrap+">&nbsp;</"+q.taDefaultWrap+">"),p.addClass("ta-bind");
+var z=function(){if(u)return p[0].innerHTML;if(v)return p.val();throw"textAngular Error: attempting to update non-editable taBind"},A=function(a){a||(a=z()),a===t?""!==r.$viewValue&&r.$setViewValue(""):r.$viewValue!==a&&r.$setViewValue(a)};if(j.$parent["updateTaBind"+(q.id||"")]=function(){w||A()},v)if(u){if(p.on("cut",function(a){w?a.preventDefault():b(function(){A()},0)}),p.on("paste",function(a,b){b&&angular.extend(a,b);var d;if(a.clipboardData||a.originalEvent&&a.originalEvent.clipboardData?d=(a.originalEvent||a).clipboardData.getData("text/plain"):c.clipboardData&&(d=c.clipboardData.getData("Text")),!d&&!w)return!0;if(a.preventDefault(),!w){var e=angular.element("<div></div>");if(e[0].innerHTML=d,d=e.text(),f[0].selection){var g=f[0].selection.createRange();g.pasteHTML(d)}else f[0].execCommand("insertText",!1,d);A()}}),p.on("keyup",function(a,b){if(b&&angular.extend(a,b),!w){if(""!==s&&13===a.keyCode&&!a.shiftKey){var c=k.getSelectionElement();if(c.tagName.toLowerCase()!==q.taDefaultWrap&&"li"!==c.tagName.toLowerCase()&&(""===c.innerHTML.trim()||"<br>"===c.innerHTML.trim())){var d=angular.element(s);angular.element(c).replaceWith(d),k.setSelectionToElementStart(d[0])}}var e=z();""!==s&&""===e.trim()&&(p[0].innerHTML=s,k.setSelectionToElementStart(p.children()[0])),A(e)}}),p.on("blur",function(){x=!1,w||A(),r.$render()}),q.placeholder&&(e>8||void 0===e)){var B;if(!q.id)throw"textAngular Error: An unique ID is required for placeholders to work";B=g("#"+q.id+".placeholder-text:before",'content: "'+q.placeholder+'"'),j.$on("$destroy",function(){h(B)})}p.on("focus",function(){x=!0,r.$render()}),p.on("mousedown",function(a,b){b&&angular.extend(a,b),a.stopPropagation()})}else p.on("paste cut",function(){w||b(function(){r.$setViewValue(z())},0)}),p.on("change blur",function(){w||r.$setViewValue(z())});var C=function(b){return r.$oldViewValue=a(i(b),r.$oldViewValue,y)},D=function(a){return q.required&&r.$setValidity("required",!(!a||a.trim()===t||""===a.trim())),a};r.$parsers.push(C),r.$parsers.push(D),r.$formatters.push(C),r.$formatters.push(D);var E=function(a){return j.$emit("ta-element-select",this),a.preventDefault(),!1},F=function(a,c){if(c&&angular.extend(a,c),!l&&!w){l=!0;var d;d=a.originalEvent?a.originalEvent.dataTransfer:a.dataTransfer,j.$emit("ta-drop-event",this,a,d),b(function(){l=!1},100)}};j.$parent["reApplyOnSelectorHandlers"+(q.id||"")]=function(){w||angular.forEach(m,function(a){p.find(a).off("click",E).on("click",E)})};var G=function(a){p[0].innerHTML=a};r.$render=function(){var a=r.$viewValue||"";f[0].activeElement!==p[0]?u?(q.placeholder?""===a?(x?p.removeClass("placeholder-text"):p.addClass("placeholder-text"),G(s)):(p.removeClass("placeholder-text"),G(a)):G(""===a?s:a),w?p.off("drop",F):(angular.forEach(m,function(a){p.find(a).on("click",E)}),p.on("drop",F))):"textarea"!==p[0].tagName.toLowerCase()&&"input"!==p[0].tagName.toLowerCase()?G(n(a)):p.val(a):u&&p.removeClass("placeholder-text")},q.taReadonly&&(w=j.$parent.$eval(q.taReadonly),w?(p.addClass("ta-readonly"),("textarea"===p[0].tagName.toLowerCase()||"input"===p[0].tagName.toLowerCase())&&p.attr("disabled","disabled"),void 0!==p.attr("contenteditable")&&p.attr("contenteditable")&&p.removeAttr("contenteditable")):(p.removeClass("ta-readonly"),"textarea"===p[0].tagName.toLowerCase()||"input"===p[0].tagName.toLowerCase()?p.removeAttr("disabled"):u&&p.attr("contenteditable","true")),j.$parent.$watch(q.taReadonly,function(a,b){b!==a&&(a?(p.addClass("ta-readonly"),("textarea"===p[0].tagName.toLowerCase()||"input"===p[0].tagName.toLowerCase())&&p.attr("disabled","disabled"),void 0!==p.attr("contenteditable")&&p.attr("contenteditable")&&p.removeAttr("contenteditable"),angular.forEach(m,function(a){p.find(a).on("click",E)}),p.off("drop",F)):(p.removeClass("ta-readonly"),"textarea"===p[0].tagName.toLowerCase()||"input"===p[0].tagName.toLowerCase()?p.removeAttr("disabled"):u&&p.attr("contenteditable","true"),angular.forEach(m,function(a){p.find(a).off("click",E)}),p.on("drop",F)),w=a)})),u&&!w&&(angular.forEach(m,function(a){p.find(a).on("click",E)}),p.on("drop",F),p.on("blur",function(){/AppleWebKit\/([\d.]+)/.exec(navigator.userAgent)&&(d=!0)}))}}}]).factory("taApplyCustomRenderers",["taCustomRenderers",function(a){return function(c){var d=angular.element("<div></div>");return d[0].innerHTML=c,angular.forEach(a,function(a){var c=[];a.selector&&""!==a.selector?c=d.find(a.selector):a.customAttribute&&""!==a.customAttribute&&(c=b(d,a.customAttribute)),angular.forEach(c,function(b){b=angular.element(b),a.selector&&""!==a.selector&&a.customAttribute&&""!==a.customAttribute?void 0!==b.attr(a.customAttribute)&&a.renderLogic(b):a.renderLogic(b)})}),d[0].innerHTML}}]).directive("taMaxText",function(){return{restrict:"A",require:"ngModel",link:function(a,b,c,d){function e(a){var b=angular.element("<div/>");b.html(a);var c=b.text().length;return f>=c?(d.$setValidity("taMaxText",!0),a):void d.$setValidity("taMaxText",!1)}var f=parseInt(a.$eval(c.taMaxText));if(isNaN(f))throw"Max text must be an integer";c.$observe("taMaxText",function(a){if(f=parseInt(a),isNaN(f))throw"Max text must be an integer";d.$dirty&&d.$setViewValue(d.$viewValue)}),d.$parsers.unshift(e)}}}).directive("taMinText",function(){return{restrict:"A",require:"ngModel",link:function(a,b,c,d){function e(a){var b=angular.element("<div/>");b.html(a);var c=b.text().length;return!c||c>=f?(d.$setValidity("taMinText",!0),a):void d.$setValidity("taMinText",!1)}var f=parseInt(a.$eval(c.taMinText));if(isNaN(f))throw"Min text must be an integer";c.$observe("taMinText",function(a){if(f=parseInt(a),isNaN(f))throw"Min text must be an integer";d.$dirty&&d.$setViewValue(d.$viewValue)}),d.$parsers.unshift(e)}}}).factory("taFixChrome",function(){var a=function(a){for(var b=angular.element("<div>"+a+"</div>"),c=angular.element(b).find("span"),d=0;d<c.length;d++){var e=angular.element(c[d]);e.attr("style")&&e.attr("style").match(/line-height: 1.428571429;|color: inherit; line-height: 1.1;/i)&&(e.attr("style",e.attr("style").replace(/( |)font-family: inherit;|( |)line-height: 1.428571429;|( |)line-height:1.1;|( |)color: inherit;/gi,"")),e.attr("style")&&""!==e.attr("style")||(e.next().length>0&&"BR"===e.next()[0].tagName&&e.next().remove(),e.replaceWith(e[0].innerHTML)))}var f=b[0].innerHTML.replace(/style="[^"]*?(line-height: 1.428571429;|color: inherit; line-height: 1.1;)[^"]*"/gi,"");return f!==b[0].innerHTML&&(b[0].innerHTML=f),b[0].innerHTML};return a}).factory("taSanitize",["$sanitize",function(a){return function(c,d,e){var f=angular.element("<div>"+c+"</div>");angular.forEach(b(f,"align"),function(a){a.css("text-align",a.attr("align")),a.removeAttr("align")});var g;c=f[0].innerHTML;try{g=a(c),e&&(g=c)}catch(h){g=d||""}return g}}]).directive("textAngularToolbar",["$compile","textAngularManager","taOptions","taTools","taToolExecuteAction","$window",function(a,b,c,d,e,f){return{scope:{name:"@"},restrict:"EA",link:function(g,h,i){if(!g.name||""===g.name)throw"textAngular Error: A toolbar requires a name";angular.extend(g,angular.copy(c)),i.taToolbar&&(g.toolbar=g.$parent.$eval(i.taToolbar)),i.taToolbarClass&&(g.classes.toolbar=i.taToolbarClass),i.taToolbarGroupClass&&(g.classes.toolbarGroup=i.taToolbarGroupClass),i.taToolbarButtonClass&&(g.classes.toolbarButton=i.taToolbarButtonClass),i.taToolbarActiveButtonClass&&(g.classes.toolbarButtonActive=i.taToolbarActiveButtonClass),i.taFocussedClass&&(g.classes.focussed=i.taFocussedClass),g.disabled=!0,g.focussed=!1,g._$element=h,h[0].innerHTML="",h.addClass("ta-toolbar "+g.classes.toolbar),g.$watch("focussed",function(){g.focussed?h.addClass(g.classes.focussed):h.removeClass(g.classes.focussed)});var j=function(b,c){var d;if(d=angular.element(b&&b.display?b.display:"<button type='button'>"),d.addClass(g.classes.toolbarButton),d.attr("name",c.name),d.attr("unselectable","on"),d.attr("ng-disabled","isDisabled()"),d.attr("tabindex","-1"),d.attr("ng-click","executeAction()"),d.attr("ng-class","displayActiveToolClass(active)"),b&&b.tooltiptext&&d.attr("title",b.tooltiptext),d.on("mousedown",function(a,b){return b&&angular.extend(a,b),a.preventDefault(),!1}),b&&!b.display&&!c._display&&(d[0].innerHTML="",b.buttontext&&(d[0].innerHTML=b.buttontext),b.iconclass)){var e=angular.element("<i>"),f=d[0].innerHTML;e.addClass(b.iconclass),d[0].innerHTML="",d.append(e),f&&""!==f&&d.append("&nbsp;"+f)}return c._lastToolDefinition=angular.copy(b),a(d)(c)};g.tools={},g._parent={disabled:!0,showHtml:!1,queryFormatBlockState:function(){return!1},queryCommandState:function(){return!1}};var k={$window:f,$editor:function(){return g._parent},isDisabled:function(){return this.$eval("disabled")||this.$eval("disabled()")||"html"!==this.name&&this.$editor().showHtml||this.$parent.disabled||this.$editor().disabled},displayActiveToolClass:function(a){return a?g.classes.toolbarButtonActive:""},executeAction:e};angular.forEach(g.toolbar,function(a){var b=angular.element("<div>");b.addClass(g.classes.toolbarGroup),angular.forEach(a,function(a){g.tools[a]=angular.extend(g.$new(!0),d[a],k,{name:a}),g.tools[a].$element=j(d[a],g.tools[a]),b.append(g.tools[a].$element)}),h.append(b)}),g.updateToolDisplay=function(a,b,c){var d=g.tools[a];if(d){if(d._lastToolDefinition&&!c&&(b=angular.extend({},d._lastToolDefinition,b)),null===b.buttontext&&null===b.iconclass&&null===b.display)throw'textAngular Error: Tool Definition for updating "'+a+'" does not have a valid display/iconclass/buttontext value';null===b.buttontext&&delete b.buttontext,null===b.iconclass&&delete b.iconclass,null===b.display&&delete b.display;var e=j(b,d);d.$element.replaceWith(e),d.$element=e}},g.addTool=function(a,b,c,e){g.tools[a]=angular.extend(g.$new(!0),d[a],k,{name:a}),g.tools[a].$element=j(d[a],g.tools[a]);var f;void 0===c&&(c=g.toolbar.length-1),f=angular.element(h.children()[c]),void 0===e?(f.append(g.tools[a].$element),g.toolbar[c][g.toolbar[c].length-1]=a):(f.children().eq(e).after(g.tools[a].$element),g.toolbar[c][e]=a)},b.registerToolbar(g),g.$on("$destroy",function(){b.unregisterToolbar(g.name)})}}}]).service("taToolExecuteAction",["$q",function(a){return function(b){void 0!==b&&(this.$editor=function(){return b});var c=a.defer(),d=c.promise,e=this.$editor();d["finally"](function(){e.endAction.call(e)});var f;try{f=this.action(c,e.startAction())}catch(g){}(f||void 0===f)&&c.resolve()}}]).service("textAngularManager",["taToolExecuteAction","taTools","taRegisterTool",function(a,b,c){var d={},e={};return{registerEditor:function(c,f,g){if(!c||""===c)throw"textAngular Error: An editor requires a name";if(!f)throw"textAngular Error: An editor requires a scope";if(e[c])throw'textAngular Error: An Editor with name "'+c+'" already exists';var h=[];return angular.forEach(g,function(a){d[a]&&h.push(d[a])}),e[c]={scope:f,toolbars:g,_registerToolbar:function(a){this.toolbars.indexOf(a.name)>=0&&h.push(a)},editorFunctions:{disable:function(){angular.forEach(h,function(a){a.disabled=!0})},enable:function(){angular.forEach(h,function(a){a.disabled=!1})},focus:function(){angular.forEach(h,function(a){a._parent=f,a.disabled=!1,a.focussed=!0})},unfocus:function(){angular.forEach(h,function(a){a.disabled=!0,a.focussed=!1})},updateSelectedStyles:function(a){angular.forEach(h,function(b){angular.forEach(b.tools,function(b){b.activeState&&(b.active=b.activeState(a))})})},sendKeyCommand:function(c){var d=!1;return(c.ctrlKey||c.metaKey)&&angular.forEach(b,function(b,e){if(b.commandKeyCode&&b.commandKeyCode===c.which)for(var g=0;g<h.length;g++)if(void 0!==h[g].tools[e]){a.call(h[g].tools[e],f),d=!0;break}}),d},triggerElementSelect:function(a,c){var d=function(a,b){for(var c=!0,d=0;d<b.length;d++)c=c&&a.attr(b[d]);return c},e=[],g={},i=!1;c=angular.element(c);var j=!1;if(angular.forEach(b,function(a,b){a.onElementSelect&&a.onElementSelect.element&&a.onElementSelect.element.toLowerCase()===c[0].tagName.toLowerCase()&&(!a.onElementSelect.filter||a.onElementSelect.filter(c))&&(j=j||angular.isArray(a.onElementSelect.onlyWithAttrs)&&d(c,a.onElementSelect.onlyWithAttrs),(!a.onElementSelect.onlyWithAttrs||d(c,a.onElementSelect.onlyWithAttrs))&&(g[b]=a))}),j?(angular.forEach(g,function(a,b){a.onElementSelect.onlyWithAttrs&&d(c,a.onElementSelect.onlyWithAttrs)&&e.push({name:b,tool:a})}),e.sort(function(a,b){return b.tool.onElementSelect.onlyWithAttrs.length-a.tool.onElementSelect.onlyWithAttrs.length})):angular.forEach(g,function(a,b){e.push({name:b,tool:a})}),e.length>0)for(var k=0;k<e.length;k++){for(var l=e[k].tool,m=e[k].name,n=0;n<h.length;n++)if(void 0!==h[n].tools[m]){l.onElementSelect.action.call(h[n].tools[m],a,c,f),i=!0;break}if(i)break}return i}}},e[c].editorFunctions},retrieveEditor:function(a){return e[a]},unregisterEditor:function(a){delete e[a]},registerToolbar:function(a){if(!a)throw"textAngular Error: A toolbar requires a scope";if(!a.name||""===a.name)throw"textAngular Error: A toolbar requires a name";if(d[a.name])throw'textAngular Error: A toolbar with name "'+a.name+'" already exists';d[a.name]=a,angular.forEach(e,function(b){b._registerToolbar(a)})},retrieveToolbar:function(a){return d[a]},retrieveToolbarsViaEditor:function(a){var b=[],c=this;return angular.forEach(this.retrieveEditor(a).toolbars,function(a){b.push(c.retrieveToolbar(a))}),b},unregisterToolbar:function(a){delete d[a]},updateToolsDisplay:function(a){var b=this;angular.forEach(a,function(a,c){b.updateToolDisplay(c,a)})},resetToolsDisplay:function(){var a=this;angular.forEach(b,function(b,c){a.resetToolDisplay(c)})},updateToolDisplay:function(a,b){var c=this;angular.forEach(d,function(d,e){c.updateToolbarToolDisplay(e,a,b)})},resetToolDisplay:function(a){var b=this;angular.forEach(d,function(c,d){b.resetToolbarToolDisplay(d,a)})},updateToolbarToolDisplay:function(a,b,c){if(!d[a])throw'textAngular Error: No Toolbar with name "'+a+'" exists';d[a].updateToolDisplay(b,c)},resetToolbarToolDisplay:function(a,c){if(!d[a])throw'textAngular Error: No Toolbar with name "'+a+'" exists';d[a].updateToolDisplay(c,b[c],!0)},removeTool:function(a){delete b[a],angular.forEach(d,function(b){delete b.tools[a];for(var c=0;c<b.toolbar.length;c++){for(var d,e=0;e<b.toolbar[c].length;e++){if(b.toolbar[c][e]===a){d={group:c,index:e};break}if(void 0!==d)break}void 0!==d&&(b.toolbar[d.group].slice(d.index,1),b._$element.children().eq(d.group).children().eq(d.index).remove())}})},addTool:function(a,b,e,f){c(a,b),angular.forEach(d,function(c){c.addTool(a,b,e,f)})},addToolToToolbar:function(a,b,e,f,g){c(a,b),d[e].addTool(a,b,f,g)},refreshEditor:function(a){if(!e[a])throw'textAngular Error: No Editor with name "'+a+'" exists';e[a].scope.updateTaBindtaTextElement(),e[a].scope.$$phase||e[a].scope.$digest()}}}]).service("taSelection",["$window","$document",function(a,b){var c=b[0],d=function(a){if(a.hasChildNodes())return a.firstChild;for(;a&&!a.nextSibling;)a=a.parentNode;return a?a.nextSibling:null},e=function(a){var b=a.startContainer,c=a.endContainer;if(b===c)return[b];for(var e=[];b&&b!==c;)b=d(b),b.parentNode===a.commonAncestorContainer&&e.push(b);for(b=a.startContainer;b&&b!==a.commonAncestorContainer;)b.parentNode===a.commonAncestorContainer&&e.unshift(b),b=b.parentNode;return e};return{getOnlySelectedElements:function(){if(window.getSelection){var b=a.getSelection();if(!b.isCollapsed)return e(b.getRangeAt(0))}return[]},getSelectionElement:function(){var b,d,e;return c.selection&&c.selection.createRange?(b=c.selection.createRange(),b.parentElement()):a.getSelection&&(d=a.getSelection(),d.getRangeAt?d.rangeCount>0&&(b=d.getRangeAt(0)):(b=c.createRange(),b.setStart(d.anchorNode,d.anchorOffset),b.setEnd(d.focusNode,d.focusOffset),b.collapsed!==d.isCollapsed&&(b.setStart(d.focusNode,d.focusOffset),b.setEnd(d.anchorNode,d.anchorOffset))),b)?(e=b.commonAncestorContainer,3===e.nodeType?e.parentNode:e):void 0},setSelectionToElementStart:function(b){if(c.createRange&&a.getSelection){var d=c.createRange();d.selectNodeContents(b),d.setStart(b,0),d.setEnd(b,0);var e=a.getSelection();e.removeAllRanges(),e.addRange(d)}else if(c.selection&&c.body.createTextRange){var f=c.body.createTextRange();f.moveToElementText(b),f.collapse(!0),f.moveEnd("character",0),f.moveStart("character",0),f.select()}},setSelectionToElementEnd:function(b){if(c.createRange&&a.getSelection){var d=c.createRange();d.selectNodeContents(b),d.collapse(!1);var e=a.getSelection();e.removeAllRanges(),e.addRange(d)}else if(c.selection&&c.body.createTextRange){var f=c.body.createTextRange();f.moveToElementText(b),f.collapse(!1),f.select()}}}}])}()}({},function(){return this}());
+UMEDITOR_CONFIG = window.UMEDITOR_CONFIG || {};
+
+window.UM = {
+    plugins : {},
+
+    commands : {},
+
+    I18N : {},
+
+    version : "1.2.2"
+};
+
+var dom = UM.dom = {};
+/**
+ * 浏览器判断模块
+ * @file
+ * @module UE.browser
+ * @since 1.2.6.1
+ */
+
+/**
+ * 提供浏览器检测的模块
+ * @unfile
+ * @module UE.browser
+ */
+var browser = UM.browser = function(){
+    var agent = navigator.userAgent.toLowerCase(),
+        opera = window.opera,
+        browser = {
+            /**
+             * @property {boolean} ie 检测当前浏览器是否为IE
+             * @example
+             * ```javascript
+             * if ( UE.browser.ie ) {
+         *     console.log( '当前浏览器是IE' );
+         * }
+             * ```
+             */
+            ie		:  /(msie\s|trident.*rv:)([\w.]+)/.test(agent),
+
+            /**
+             * @property {boolean} opera 检测当前浏览器是否为Opera
+             * @example
+             * ```javascript
+             * if ( UE.browser.opera ) {
+         *     console.log( '当前浏览器是Opera' );
+         * }
+             * ```
+             */
+            opera	: ( !!opera && opera.version ),
+
+            /**
+             * @property {boolean} webkit 检测当前浏览器是否是webkit内核的浏览器
+             * @example
+             * ```javascript
+             * if ( UE.browser.webkit ) {
+         *     console.log( '当前浏览器是webkit内核浏览器' );
+         * }
+             * ```
+             */
+            webkit	: ( agent.indexOf( ' applewebkit/' ) > -1 ),
+
+            /**
+             * @property {boolean} mac 检测当前浏览器是否是运行在mac平台下
+             * @example
+             * ```javascript
+             * if ( UE.browser.mac ) {
+         *     console.log( '当前浏览器运行在mac平台下' );
+         * }
+             * ```
+             */
+            mac	: ( agent.indexOf( 'macintosh' ) > -1 ),
+
+            /**
+             * @property {boolean} quirks 检测当前浏览器是否处于“怪异模式”下
+             * @example
+             * ```javascript
+             * if ( UE.browser.quirks ) {
+         *     console.log( '当前浏览器运行处于“怪异模式”' );
+         * }
+             * ```
+             */
+            quirks : ( document.compatMode == 'BackCompat' )
+        };
+
+    /**
+     * @property {boolean} gecko 检测当前浏览器内核是否是gecko内核
+     * @example
+     * ```javascript
+     * if ( UE.browser.gecko ) {
+    *     console.log( '当前浏览器内核是gecko内核' );
+    * }
+     * ```
+     */
+    browser.gecko =( navigator.product == 'Gecko' && !browser.webkit && !browser.opera && !browser.ie);
+
+    var version = 0;
+
+    // Internet Explorer 6.0+
+    if ( browser.ie ){
+
+
+        var v1 =  agent.match(/(?:msie\s([\w.]+))/);
+        var v2 = agent.match(/(?:trident.*rv:([\w.]+))/);
+        if(v1 && v2 && v1[1] && v2[1]){
+            version = Math.max(v1[1]*1,v2[1]*1);
+        }else if(v1 && v1[1]){
+            version = v1[1]*1;
+        }else if(v2 && v2[1]){
+            version = v2[1]*1;
+        }else{
+            version = 0;
+        }
+
+        browser.ie11Compat = document.documentMode == 11;
+        /**
+         * @property { boolean } ie9Compat 检测浏览器模式是否为 IE9 兼容模式
+         * @warning 如果浏览器不是IE， 则该值为undefined
+         * @example
+         * ```javascript
+         * if ( UE.browser.ie9Compat ) {
+         *     console.log( '当前浏览器运行在IE9兼容模式下' );
+         * }
+         * ```
+         */
+        browser.ie9Compat = document.documentMode == 9;
+
+        /**
+         * @property { boolean } ie8 检测浏览器是否是IE8浏览器
+         * @warning 如果浏览器不是IE， 则该值为undefined
+         * @example
+         * ```javascript
+         * if ( UE.browser.ie8 ) {
+         *     console.log( '当前浏览器是IE8浏览器' );
+         * }
+         * ```
+         */
+        browser.ie8 = !!document.documentMode;
+
+        /**
+         * @property { boolean } ie8Compat 检测浏览器模式是否为 IE8 兼容模式
+         * @warning 如果浏览器不是IE， 则该值为undefined
+         * @example
+         * ```javascript
+         * if ( UE.browser.ie8Compat ) {
+         *     console.log( '当前浏览器运行在IE8兼容模式下' );
+         * }
+         * ```
+         */
+        browser.ie8Compat = document.documentMode == 8;
+
+        /**
+         * @property { boolean } ie7Compat 检测浏览器模式是否为 IE7 兼容模式
+         * @warning 如果浏览器不是IE， 则该值为undefined
+         * @example
+         * ```javascript
+         * if ( UE.browser.ie7Compat ) {
+         *     console.log( '当前浏览器运行在IE7兼容模式下' );
+         * }
+         * ```
+         */
+        browser.ie7Compat = ( ( version == 7 && !document.documentMode )
+            || document.documentMode == 7 );
+
+        /**
+         * @property { boolean } ie6Compat 检测浏览器模式是否为 IE6 模式 或者怪异模式
+         * @warning 如果浏览器不是IE， 则该值为undefined
+         * @example
+         * ```javascript
+         * if ( UE.browser.ie6Compat ) {
+         *     console.log( '当前浏览器运行在IE6模式或者怪异模式下' );
+         * }
+         * ```
+         */
+        browser.ie6Compat = ( version < 7 || browser.quirks );
+
+        browser.ie9above = version > 8;
+
+        browser.ie9below = version < 9;
+
+    }
+
+    // Gecko.
+    if ( browser.gecko ){
+        var geckoRelease = agent.match( /rv:([\d\.]+)/ );
+        if ( geckoRelease )
+        {
+            geckoRelease = geckoRelease[1].split( '.' );
+            version = geckoRelease[0] * 10000 + ( geckoRelease[1] || 0 ) * 100 + ( geckoRelease[2] || 0 ) * 1;
+        }
+    }
+
+    /**
+     * @property { Number } chrome 检测当前浏览器是否为Chrome, 如果是，则返回Chrome的大版本号
+     * @warning 如果浏览器不是chrome， 则该值为undefined
+     * @example
+     * ```javascript
+     * if ( UE.browser.chrome ) {
+     *     console.log( '当前浏览器是Chrome' );
+     * }
+     * ```
+     */
+    if (/chrome\/(\d+\.\d)/i.test(agent)) {
+        browser.chrome = + RegExp['\x241'];
+    }
+
+    /**
+     * @property { Number } safari 检测当前浏览器是否为Safari, 如果是，则返回Safari的大版本号
+     * @warning 如果浏览器不是safari， 则该值为undefined
+     * @example
+     * ```javascript
+     * if ( UE.browser.safari ) {
+     *     console.log( '当前浏览器是Safari' );
+     * }
+     * ```
+     */
+    if(/(\d+\.\d)?(?:\.\d)?\s+safari\/?(\d+\.\d+)?/i.test(agent) && !/chrome/i.test(agent)){
+        browser.safari = + (RegExp['\x241'] || RegExp['\x242']);
+    }
+
+
+    // Opera 9.50+
+    if ( browser.opera )
+        version = parseFloat( opera.version() );
+
+    // WebKit 522+ (Safari 3+)
+    if ( browser.webkit )
+        version = parseFloat( agent.match( / applewebkit\/(\d+)/ )[1] );
+
+    /**
+     * @property { Number } version 检测当前浏览器版本号
+     * @remind
+     * <ul>
+     *     <li>IE系列返回值为5,6,7,8,9,10等</li>
+     *     <li>gecko系列会返回10900，158900等</li>
+     *     <li>webkit系列会返回其build号 (如 522等)</li>
+     * </ul>
+     * @example
+     * ```javascript
+     * console.log( '当前浏览器版本号是： ' + UE.browser.version );
+     * ```
+     */
+    browser.version = version;
+
+    /**
+     * @property { boolean } isCompatible 检测当前浏览器是否能够与UEditor良好兼容
+     * @example
+     * ```javascript
+     * if ( UE.browser.isCompatible ) {
+     *     console.log( '浏览器与UEditor能够良好兼容' );
+     * }
+     * ```
+     */
+    browser.isCompatible =
+        !browser.mobile && (
+            ( browser.ie && version >= 6 ) ||
+                ( browser.gecko && version >= 10801 ) ||
+                ( browser.opera && version >= 9.5 ) ||
+                ( browser.air && version >= 1 ) ||
+                ( browser.webkit && version >= 522 ) ||
+                false );
+    return browser;
+}();
+//快捷方式
+var ie = browser.ie,
+    webkit = browser.webkit,
+    gecko = browser.gecko,
+    opera = browser.opera;
+/**
+ * @file
+ * @name UM.Utils
+ * @short Utils
+ * @desc UEditor封装使用的静态工具函数
+ * @import editor.js
+ */
+var utils = UM.utils = {
+    /**
+     * 遍历数组，对象，nodeList
+     * @name each
+     * @grammar UM.utils.each(obj,iterator,[context])
+     * @since 1.2.4+
+     * @desc
+     * * obj 要遍历的对象
+     * * iterator 遍历的方法,方法的第一个是遍历的值，第二个是索引，第三个是obj
+     * * context  iterator的上下文
+     * @example
+     * UM.utils.each([1,2],function(v,i){
+     *     console.log(v)//值
+     *     console.log(i)//索引
+     * })
+     * UM.utils.each(document.getElementsByTagName('*'),function(n){
+     *     console.log(n.tagName)
+     * })
+     */
+    each : function(obj, iterator, context) {
+        if (obj == null) return;
+        if (obj.length === +obj.length) {
+            for (var i = 0, l = obj.length; i < l; i++) {
+                if(iterator.call(context, obj[i], i, obj) === false)
+                    return false;
+            }
+        } else {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    if(iterator.call(context, obj[key], key, obj) === false)
+                        return false;
+                }
+            }
+        }
+    },
+
+    makeInstance:function (obj) {
+        var noop = new Function();
+        noop.prototype = obj;
+        obj = new noop;
+        noop.prototype = null;
+        return obj;
+    },
+    /**
+     * 将source对象中的属性扩展到target对象上
+     * @name extend
+     * @grammar UM.utils.extend(target,source)  => Object  //覆盖扩展
+     * @grammar UM.utils.extend(target,source,true)  ==> Object  //保留扩展
+     */
+    extend:function (t, s, b) {
+        if (s) {
+            for (var k in s) {
+                if (!b || !t.hasOwnProperty(k)) {
+                    t[k] = s[k];
+                }
+            }
+        }
+        return t;
+    },
+    extend2:function (t) {
+        var a = arguments;
+        for (var i = 1; i < a.length; i++) {
+            var x = a[i];
+            for (var k in x) {
+                if (!t.hasOwnProperty(k)) {
+                    t[k] = x[k];
+                }
+            }
+        }
+        return t;
+    },
+    /**
+     * 模拟继承机制，subClass继承superClass
+     * @name inherits
+     * @grammar UM.utils.inherits(subClass,superClass) => subClass
+     * @example
+     * function SuperClass(){
+     *     this.name = "小李";
+     * }
+     * SuperClass.prototype = {
+     *     hello:function(str){
+     *         console.log(this.name + str);
+     *     }
+     * }
+     * function SubClass(){
+     *     this.name = "小张";
+     * }
+     * UM.utils.inherits(SubClass,SuperClass);
+     * var sub = new SubClass();
+     * sub.hello("早上好!"); ==> "小张早上好！"
+     */
+    inherits:function (subClass, superClass) {
+        var oldP = subClass.prototype,
+            newP = utils.makeInstance(superClass.prototype);
+        utils.extend(newP, oldP, true);
+        subClass.prototype = newP;
+        return (newP.constructor = subClass);
+    },
+
+    /**
+     * 用指定的context作为fn上下文，也就是this
+     * @name bind
+     * @grammar UM.utils.bind(fn,context)  =>  fn
+     */
+    bind:function (fn, context) {
+        return function () {
+            return fn.apply(context, arguments);
+        };
+    },
+
+    /**
+     * 创建延迟delay执行的函数fn
+     * @name defer
+     * @grammar UM.utils.defer(fn,delay)  =>fn   //延迟delay毫秒执行fn，返回fn
+     * @grammar UM.utils.defer(fn,delay,exclusion)  =>fn   //延迟delay毫秒执行fn，若exclusion为真，则互斥执行fn
+     * @example
+     * function test(){
+     *     console.log("延迟输出！");
+     * }
+     * //非互斥延迟执行
+     * var testDefer = UM.utils.defer(test,1000);
+     * testDefer();   =>  "延迟输出！";
+     * testDefer();   =>  "延迟输出！";
+     * //互斥延迟执行
+     * var testDefer1 = UM.utils.defer(test,1000,true);
+     * testDefer1();   =>  //本次不执行
+     * testDefer1();   =>  "延迟输出！";
+     */
+    defer:function (fn, delay, exclusion) {
+        var timerID;
+        return function () {
+            if (exclusion) {
+                clearTimeout(timerID);
+            }
+            timerID = setTimeout(fn, delay);
+        };
+    },
+
+    /**
+     * 查找元素item在数组array中的索引, 若找不到返回-1
+     * @name indexOf
+     * @grammar UM.utils.indexOf(array,item)  => index|-1  //默认从数组开头部开始搜索
+     * @grammar UM.utils.indexOf(array,item,start)  => index|-1  //start指定开始查找的位置
+     */
+    indexOf:function (array, item, start) {
+        var index = -1;
+        start = this.isNumber(start) ? start : 0;
+        this.each(array, function (v, i) {
+            if (i >= start && v === item) {
+                index = i;
+                return false;
+            }
+        });
+        return index;
+    },
+
+    /**
+     * 移除数组array中的元素item
+     * @name removeItem
+     * @grammar UM.utils.removeItem(array,item)
+     */
+    removeItem:function (array, item) {
+        for (var i = 0, l = array.length; i < l; i++) {
+            if (array[i] === item) {
+                array.splice(i, 1);
+                i--;
+            }
+        }
+    },
+
+    /**
+     * 删除字符串str的首尾空格
+     * @name trim
+     * @grammar UM.utils.trim(str) => String
+     */
+    trim:function (str) {
+        return str.replace(/(^[ \t\n\r]+)|([ \t\n\r]+$)/g, '');
+    },
+
+    /**
+     * 将字符串list(以','分隔)或者数组list转成哈希对象
+     * @name listToMap
+     * @grammar UM.utils.listToMap(list)  => Object  //Object形如{test:1,br:1,textarea:1}
+     */
+    listToMap:function (list) {
+        if (!list)return {};
+        list = utils.isArray(list) ? list : list.split(',');
+        for (var i = 0, ci, obj = {}; ci = list[i++];) {
+            obj[ci.toUpperCase()] = obj[ci] = 1;
+        }
+        return obj;
+    },
+
+    /**
+     * 将str中的html符号转义,默认将转义''&<">''四个字符，可自定义reg来确定需要转义的字符
+     * @name unhtml
+     * @grammar UM.utils.unhtml(str);  => String
+     * @grammar UM.utils.unhtml(str,reg)  => String
+     * @example
+     * var html = '<body>You say:"你好！Baidu & UEditor!"</body>';
+     * UM.utils.unhtml(html);   ==>  &lt;body&gt;You say:&quot;你好！Baidu &amp; UEditor!&quot;&lt;/body&gt;
+     * UM.utils.unhtml(html,/[<>]/g)  ==>  &lt;body&gt;You say:"你好！Baidu & UEditor!"&lt;/body&gt;
+     */
+    unhtml:function (str, reg) {
+        return str ? str.replace(reg || /[&<">'](?:(amp|lt|quot|gt|#39|nbsp);)?/g, function (a, b) {
+            if (b) {
+                return a;
+            } else {
+                return {
+                    '<':'&lt;',
+                    '&':'&amp;',
+                    '"':'&quot;',
+                    '>':'&gt;',
+                    "'":'&#39;'
+                }[a]
+            }
+
+        }) : '';
+    },
+    /**
+     * 将str中的转义字符还原成html字符
+     * @name html
+     * @grammar UM.utils.html(str)  => String   //详细参见<code><a href = '#unhtml'>unhtml</a></code>
+     */
+    html:function (str) {
+        return str ? str.replace(/&((g|l|quo)t|amp|#39);/g, function (m) {
+            return {
+                '&lt;':'<',
+                '&amp;':'&',
+                '&quot;':'"',
+                '&gt;':'>',
+                '&#39;':"'"
+            }[m]
+        }) : '';
+    },
+    /**
+     * 将css样式转换为驼峰的形式。如font-size => fontSize
+     * @name cssStyleToDomStyle
+     * @grammar UM.utils.cssStyleToDomStyle(cssName)  => String
+     */
+    cssStyleToDomStyle:function () {
+        var test = document.createElement('div').style,
+            cache = {
+                'float':test.cssFloat != undefined ? 'cssFloat' : test.styleFloat != undefined ? 'styleFloat' : 'float'
+            };
+
+        return function (cssName) {
+            return cache[cssName] || (cache[cssName] = cssName.toLowerCase().replace(/-./g, function (match) {
+                return match.charAt(1).toUpperCase();
+            }));
+        };
+    }(),
+    /**
+     * 动态加载文件到doc中，并依据obj来设置属性，加载成功后执行回调函数fn
+     * @name loadFile
+     * @grammar UM.utils.loadFile(doc,obj)
+     * @grammar UM.utils.loadFile(doc,obj,fn)
+     * @example
+     * //指定加载到当前document中一个script文件，加载成功后执行function
+     * utils.loadFile( document, {
+     *     src:"test.js",
+     *     tag:"script",
+     *     type:"text/javascript",
+     *     defer:"defer"
+     * }, function () {
+     *     console.log('加载成功！')
+     * });
+     */
+    loadFile:function () {
+        var tmpList = [];
+
+        function getItem(doc, obj) {
+            try {
+                for (var i = 0, ci; ci = tmpList[i++];) {
+                    if (ci.doc === doc && ci.url == (obj.src || obj.href)) {
+                        return ci;
+                    }
+                }
+            } catch (e) {
+                return null;
+            }
+
+        }
+
+        return function (doc, obj, fn) {
+            var item = getItem(doc, obj);
+            if (item) {
+                if (item.ready) {
+                    fn && fn();
+                } else {
+                    item.funs.push(fn)
+                }
+                return;
+            }
+            tmpList.push({
+                doc:doc,
+                url:obj.src || obj.href,
+                funs:[fn]
+            });
+            if (!doc.body) {
+                var html = [];
+                for (var p in obj) {
+                    if (p == 'tag')continue;
+                    html.push(p + '="' + obj[p] + '"')
+                }
+                doc.write('<' + obj.tag + ' ' + html.join(' ') + ' ></' + obj.tag + '>');
+                return;
+            }
+            if (obj.id && doc.getElementById(obj.id)) {
+                return;
+            }
+            var element = doc.createElement(obj.tag);
+            delete obj.tag;
+            for (var p in obj) {
+                element.setAttribute(p, obj[p]);
+            }
+            element.onload = element.onreadystatechange = function () {
+                if (!this.readyState || /loaded|complete/.test(this.readyState)) {
+                    item = getItem(doc, obj);
+                    if (item.funs.length > 0) {
+                        item.ready = 1;
+                        for (var fi; fi = item.funs.pop();) {
+                            fi();
+                        }
+                    }
+                    element.onload = element.onreadystatechange = null;
+                }
+            };
+            element.onerror = function () {
+                throw Error('The load ' + (obj.href || obj.src) + ' fails,check the url settings of file umeditor.config.js ')
+            };
+            doc.getElementsByTagName("head")[0].appendChild(element);
+        }
+    }(),
+    /**
+     * 判断obj对象是否为空
+     * @name isEmptyObject
+     * @grammar UM.utils.isEmptyObject(obj)  => true|false
+     * @example
+     * UM.utils.isEmptyObject({}) ==>true
+     * UM.utils.isEmptyObject([]) ==>true
+     * UM.utils.isEmptyObject("") ==>true
+     */
+    isEmptyObject:function (obj) {
+        if (obj == null) return true;
+        if (this.isArray(obj) || this.isString(obj)) return obj.length === 0;
+        for (var key in obj) if (obj.hasOwnProperty(key)) return false;
+        return true;
+    },
+
+    /**
+     * 统一将颜色值使用16进制形式表示
+     * @name fixColor
+     * @grammar UM.utils.fixColor(name,value) => value
+     * @example
+     * rgb(255,255,255)  => "#ffffff"
+     */
+    fixColor:function (name, value) {
+        if (/color/i.test(name) && /rgba?/.test(value)) {
+            var array = value.split(",");
+            if (array.length > 3)
+                return "";
+            value = "#";
+            for (var i = 0, color; color = array[i++];) {
+                color = parseInt(color.replace(/[^\d]/gi, ''), 10).toString(16);
+                value += color.length == 1 ? "0" + color : color;
+            }
+            value = value.toUpperCase();
+        }
+        return  value;
+    },
+
+    /**
+     * 深度克隆对象，从source到target
+     * @name clone
+     * @grammar UM.utils.clone(source) => anthorObj 新的对象是完整的source的副本
+     * @grammar UM.utils.clone(source,target) => target包含了source的所有内容，重名会覆盖
+     */
+    clone:function (source, target) {
+        var tmp;
+        target = target || {};
+        for (var i in source) {
+            if (source.hasOwnProperty(i)) {
+                tmp = source[i];
+                if (typeof tmp == 'object') {
+                    target[i] = utils.isArray(tmp) ? [] : {};
+                    utils.clone(source[i], target[i])
+                } else {
+                    target[i] = tmp;
+                }
+            }
+        }
+        return target;
+    },
+    /**
+     * 转换cm/pt到px
+     * @name transUnitToPx
+     * @grammar UM.utils.transUnitToPx('20pt') => '27px'
+     * @grammar UM.utils.transUnitToPx('0pt') => '0'
+     */
+    transUnitToPx:function (val) {
+        if (!/(pt|cm)/.test(val)) {
+            return val
+        }
+        var unit;
+        val.replace(/([\d.]+)(\w+)/, function (str, v, u) {
+            val = v;
+            unit = u;
+        });
+        switch (unit) {
+            case 'cm':
+                val = parseFloat(val) * 25;
+                break;
+            case 'pt':
+                val = Math.round(parseFloat(val) * 96 / 72);
+        }
+        return val + (val ? 'px' : '');
+    },
+    /**
+     * 动态添加css样式
+     * @name cssRule
+     * @grammar UM.utils.cssRule('添加的样式的节点名称',['样式'，'放到哪个document上'])
+     * @grammar UM.utils.cssRule('body','body{background:#ccc}') => null  //给body添加背景颜色
+     * @grammar UM.utils.cssRule('body') =>样式的字符串  //取得key值为body的样式的内容,如果没有找到key值先关的样式将返回空，例如刚才那个背景颜色，将返回 body{background:#ccc}
+     * @grammar UM.utils.cssRule('body','') =>null //清空给定的key值的背景颜色
+     */
+    cssRule:browser.ie && browser.version != 11 ? function (key, style, doc) {
+        var indexList, index;
+        doc = doc || document;
+        if (doc.indexList) {
+            indexList = doc.indexList;
+        } else {
+            indexList = doc.indexList = {};
+        }
+        var sheetStyle;
+        if (!indexList[key]) {
+            if (style === undefined) {
+                return ''
+            }
+            sheetStyle = doc.createStyleSheet('', index = doc.styleSheets.length);
+            indexList[key] = index;
+        } else {
+            sheetStyle = doc.styleSheets[indexList[key]];
+        }
+        if (style === undefined) {
+            return sheetStyle.cssText
+        }
+        sheetStyle.cssText = style || ''
+    } : function (key, style, doc) {
+        doc = doc || document;
+        var head = doc.getElementsByTagName('head')[0], node;
+        if (!(node = doc.getElementById(key))) {
+            if (style === undefined) {
+                return ''
+            }
+            node = doc.createElement('style');
+            node.id = key;
+            head.appendChild(node)
+        }
+        if (style === undefined) {
+            return node.innerHTML
+        }
+        if (style !== '') {
+            node.innerHTML = style;
+        } else {
+            head.removeChild(node)
+        }
+    }
+
+};
+/**
+ * 判断str是否为字符串
+ * @name isString
+ * @grammar UM.utils.isString(str) => true|false
+ */
+/**
+ * 判断array是否为数组
+ * @name isArray
+ * @grammar UM.utils.isArray(obj) => true|false
+ */
+/**
+ * 判断obj对象是否为方法
+ * @name isFunction
+ * @grammar UM.utils.isFunction(obj)  => true|false
+ */
+/**
+ * 判断obj对象是否为数字
+ * @name isNumber
+ * @grammar UM.utils.isNumber(obj)  => true|false
+ */
+utils.each(['String', 'Function', 'Array', 'Number', 'RegExp', 'Object'], function (v) {
+    UM.utils['is' + v] = function (obj) {
+        return Object.prototype.toString.apply(obj) == '[object ' + v + ']';
+    }
+});
+/**
+ * @file
+ * @name UM.EventBase
+ * @short EventBase
+ * @import editor.js,core/utils.js
+ * @desc UE采用的事件基类，继承此类的对应类将获取addListener,removeListener,fireEvent方法。
+ * 在UE中，Editor以及所有ui实例都继承了该类，故可以在对应的ui对象以及editor对象上使用上述方法。
+ */
+var EventBase = UM.EventBase = function () {};
+
+EventBase.prototype = {
+    /**
+     * 注册事件监听器
+     * @name addListener
+     * @grammar editor.addListener(types,fn)  //types为事件名称，多个可用空格分隔
+     * @example
+     * editor.addListener('selectionchange',function(){
+     *      console.log("选区已经变化！");
+     * })
+     * editor.addListener('beforegetcontent aftergetcontent',function(type){
+     *         if(type == 'beforegetcontent'){
+     *             //do something
+     *         }else{
+     *             //do something
+     *         }
+     *         console.log(this.getContent) // this是注册的事件的编辑器实例
+     * })
+     */
+    addListener:function (types, listener) {
+        types = utils.trim(types).split(' ');
+        for (var i = 0, ti; ti = types[i++];) {
+            getListener(this, ti, true).push(listener);
+        }
+    },
+    /**
+     * 移除事件监听器
+     * @name removeListener
+     * @grammar editor.removeListener(types,fn)  //types为事件名称，多个可用空格分隔
+     * @example
+     * //changeCallback为方法体
+     * editor.removeListener("selectionchange",changeCallback);
+     */
+    removeListener:function (types, listener) {
+        types = utils.trim(types).split(' ');
+        for (var i = 0, ti; ti = types[i++];) {
+            utils.removeItem(getListener(this, ti) || [], listener);
+        }
+    },
+    /**
+     * 触发事件
+     * @name fireEvent
+     * @grammar editor.fireEvent(types)  //types为事件名称，多个可用空格分隔
+     * @example
+     * editor.fireEvent("selectionchange");
+     */
+    fireEvent:function () {
+        var types = arguments[0];
+        types = utils.trim(types).split(' ');
+        for (var i = 0, ti; ti = types[i++];) {
+            var listeners = getListener(this, ti),
+                r, t, k;
+            if (listeners) {
+                k = listeners.length;
+                while (k--) {
+                    if(!listeners[k])continue;
+                    t = listeners[k].apply(this, arguments);
+                    if(t === true){
+                        return t;
+                    }
+                    if (t !== undefined) {
+                        r = t;
+                    }
+                }
+            }
+            if (t = this['on' + ti.toLowerCase()]) {
+                r = t.apply(this, arguments);
+            }
+        }
+        return r;
+    }
+};
+/**
+ * 获得对象所拥有监听类型的所有监听器
+ * @public
+ * @function
+ * @param {Object} obj  查询监听器的对象
+ * @param {String} type 事件类型
+ * @param {Boolean} force  为true且当前所有type类型的侦听器不存在时，创建一个空监听器数组
+ * @returns {Array} 监听器数组
+ */
+function getListener(obj, type, force) {
+    var allListeners;
+    type = type.toLowerCase();
+    return ( ( allListeners = ( obj.__allListeners || force && ( obj.__allListeners = {} ) ) )
+        && ( allListeners[type] || force && ( allListeners[type] = [] ) ) );
+}
+
+
+///import editor.js
+///import core/dom/dom.js
+///import core/utils.js
+/**
+ * dtd html语义化的体现类
+ * @constructor
+ * @namespace dtd
+ */
+var dtd = dom.dtd = (function() {
+    function _( s ) {
+        for (var k in s) {
+            s[k.toUpperCase()] = s[k];
+        }
+        return s;
+    }
+    var X = utils.extend2;
+    var A = _({isindex:1,fieldset:1}),
+        B = _({input:1,button:1,select:1,textarea:1,label:1}),
+        C = X( _({a:1}), B ),
+        D = X( {iframe:1}, C ),
+        E = _({hr:1,ul:1,menu:1,div:1,blockquote:1,noscript:1,table:1,center:1,address:1,dir:1,pre:1,h5:1,dl:1,h4:1,noframes:1,h6:1,ol:1,h1:1,h3:1,h2:1}),
+        F = _({ins:1,del:1,script:1,style:1}),
+        G = X( _({b:1,acronym:1,bdo:1,'var':1,'#':1,abbr:1,code:1,br:1,i:1,cite:1,kbd:1,u:1,strike:1,s:1,tt:1,strong:1,q:1,samp:1,em:1,dfn:1,span:1}), F ),
+        H = X( _({sub:1,img:1,embed:1,object:1,sup:1,basefont:1,map:1,applet:1,font:1,big:1,small:1}), G ),
+        I = X( _({p:1}), H ),
+        J = X( _({iframe:1}), H, B ),
+        K = _({img:1,embed:1,noscript:1,br:1,kbd:1,center:1,button:1,basefont:1,h5:1,h4:1,samp:1,h6:1,ol:1,h1:1,h3:1,h2:1,form:1,font:1,'#':1,select:1,menu:1,ins:1,abbr:1,label:1,code:1,table:1,script:1,cite:1,input:1,iframe:1,strong:1,textarea:1,noframes:1,big:1,small:1,span:1,hr:1,sub:1,bdo:1,'var':1,div:1,object:1,sup:1,strike:1,dir:1,map:1,dl:1,applet:1,del:1,isindex:1,fieldset:1,ul:1,b:1,acronym:1,a:1,blockquote:1,i:1,u:1,s:1,tt:1,address:1,q:1,pre:1,p:1,em:1,dfn:1}),
+
+        L = X( _({a:0}), J ),//a不能被切开，所以把他
+        M = _({tr:1}),
+        N = _({'#':1}),
+        O = X( _({param:1}), K ),
+        P = X( _({form:1}), A, D, E, I ),
+        Q = _({li:1,ol:1,ul:1}),
+        R = _({style:1,script:1}),
+        S = _({base:1,link:1,meta:1,title:1}),
+        T = X( S, R ),
+        U = _({head:1,body:1}),
+        V = _({html:1});
+
+    var block = _({address:1,blockquote:1,center:1,dir:1,div:1,dl:1,fieldset:1,form:1,h1:1,h2:1,h3:1,h4:1,h5:1,h6:1,hr:1,isindex:1,menu:1,noframes:1,ol:1,p:1,pre:1,table:1,ul:1}),
+
+        empty =  _({area:1,base:1,basefont:1,br:1,col:1,command:1,dialog:1,embed:1,hr:1,img:1,input:1,isindex:1,keygen:1,link:1,meta:1,param:1,source:1,track:1,wbr:1});
+
+    return  _({
+
+        // $ 表示自定的属性
+
+        // body外的元素列表.
+        $nonBodyContent: X( V, U, S ),
+
+        //块结构元素列表
+        $block : block,
+
+        //内联元素列表
+        $inline : L,
+
+        $inlineWithA : X(_({a:1}),L),
+
+        $body : X( _({script:1,style:1}), block ),
+
+        $cdata : _({script:1,style:1}),
+
+        //自闭和元素
+        $empty : empty,
+
+        //不是自闭合，但不能让range选中里边
+        $nonChild : _({iframe:1,textarea:1}),
+        //列表元素列表
+        $listItem : _({dd:1,dt:1,li:1}),
+
+        //列表根元素列表
+        $list: _({ul:1,ol:1,dl:1}),
+
+        //不能认为是空的元素
+        $isNotEmpty : _({table:1,ul:1,ol:1,dl:1,iframe:1,area:1,base:1,col:1,hr:1,img:1,embed:1,input:1,link:1,meta:1,param:1,h1:1,h2:1,h3:1,h4:1,h5:1,h6:1}),
+
+        //如果没有子节点就可以删除的元素列表，像span,a
+        $removeEmpty : _({a:1,abbr:1,acronym:1,address:1,b:1,bdo:1,big:1,cite:1,code:1,del:1,dfn:1,em:1,font:1,i:1,ins:1,label:1,kbd:1,q:1,s:1,samp:1,small:1,span:1,strike:1,strong:1,sub:1,sup:1,tt:1,u:1,'var':1}),
+
+        $removeEmptyBlock : _({'p':1,'div':1}),
+
+        //在table元素里的元素列表
+        $tableContent : _({caption:1,col:1,colgroup:1,tbody:1,td:1,tfoot:1,th:1,thead:1,tr:1,table:1}),
+        //不转换的标签
+        $notTransContent : _({pre:1,script:1,style:1,textarea:1}),
+        html: U,
+        head: T,
+        style: N,
+        script: N,
+        body: P,
+        base: {},
+        link: {},
+        meta: {},
+        title: N,
+        col : {},
+        tr : _({td:1,th:1}),
+        img : {},
+        embed: {},
+        colgroup : _({thead:1,col:1,tbody:1,tr:1,tfoot:1}),
+        noscript : P,
+        td : P,
+        br : {},
+        th : P,
+        center : P,
+        kbd : L,
+        button : X( I, E ),
+        basefont : {},
+        h5 : L,
+        h4 : L,
+        samp : L,
+        h6 : L,
+        ol : Q,
+        h1 : L,
+        h3 : L,
+        option : N,
+        h2 : L,
+        form : X( A, D, E, I ),
+        select : _({optgroup:1,option:1}),
+        font : L,
+        ins : L,
+        menu : Q,
+        abbr : L,
+        label : L,
+        table : _({thead:1,col:1,tbody:1,tr:1,colgroup:1,caption:1,tfoot:1}),
+        code : L,
+        tfoot : M,
+        cite : L,
+        li : P,
+        input : {},
+        iframe : P,
+        strong : L,
+        textarea : N,
+        noframes : P,
+        big : L,
+        small : L,
+        //trace:
+        span :_({'#':1,br:1,b:1,strong:1,u:1,i:1,em:1,sub:1,sup:1,strike:1,span:1}),
+        hr : L,
+        dt : L,
+        sub : L,
+        optgroup : _({option:1}),
+        param : {},
+        bdo : L,
+        'var' : L,
+        div : P,
+        object : O,
+        sup : L,
+        dd : P,
+        strike : L,
+        area : {},
+        dir : Q,
+        map : X( _({area:1,form:1,p:1}), A, F, E ),
+        applet : O,
+        dl : _({dt:1,dd:1}),
+        del : L,
+        isindex : {},
+        fieldset : X( _({legend:1}), K ),
+        thead : M,
+        ul : Q,
+        acronym : L,
+        b : L,
+        a : X( _({a:1}), J ),
+        blockquote :X(_({td:1,tr:1,tbody:1,li:1}),P),
+        caption : L,
+        i : L,
+        u : L,
+        tbody : M,
+        s : L,
+        address : X( D, I ),
+        tt : L,
+        legend : L,
+        q : L,
+        pre : X( G, C ),
+        p : X(_({'a':1}),L),
+        em :L,
+        dfn : L
+    });
+})();
+
+/**
+ * @file
+ * @name UM.dom.domUtils
+ * @short DomUtils
+ * @import editor.js, core/utils.js,core/browser.js,core/dom/dtd.js
+ * @desc UEditor封装的底层dom操作库
+ */
+
+function getDomNode(node, start, ltr, startFromChild, fn, guard) {
+    var tmpNode = startFromChild && node[start],
+        parent;
+    !tmpNode && (tmpNode = node[ltr]);
+    while (!tmpNode && (parent = (parent || node).parentNode)) {
+        if (parent.tagName == 'BODY' || guard && !guard(parent)) {
+            return null;
+        }
+        tmpNode = parent[ltr];
+    }
+    if (tmpNode && fn && !fn(tmpNode)) {
+        return  getDomNode(tmpNode, start, ltr, false, fn);
+    }
+    return tmpNode;
+}
+var attrFix = ie && browser.version < 9 ? {
+        tabindex: "tabIndex",
+        readonly: "readOnly",
+        "for": "htmlFor",
+        "class": "className",
+        maxlength: "maxLength",
+        cellspacing: "cellSpacing",
+        cellpadding: "cellPadding",
+        rowspan: "rowSpan",
+        colspan: "colSpan",
+        usemap: "useMap",
+        frameborder: "frameBorder"
+    } : {
+        tabindex: "tabIndex",
+        readonly: "readOnly"
+    },
+    styleBlock = utils.listToMap([
+        '-webkit-box', '-moz-box', 'block' ,
+        'list-item' , 'table' , 'table-row-group' ,
+        'table-header-group', 'table-footer-group' ,
+        'table-row' , 'table-column-group' , 'table-column' ,
+        'table-cell' , 'table-caption'
+    ]);
+var domUtils = dom.domUtils = {
+    //节点常量
+    NODE_ELEMENT: 1,
+    NODE_DOCUMENT: 9,
+    NODE_TEXT: 3,
+    NODE_COMMENT: 8,
+    NODE_DOCUMENT_FRAGMENT: 11,
+
+    //位置关系
+    POSITION_IDENTICAL: 0,
+    POSITION_DISCONNECTED: 1,
+    POSITION_FOLLOWING: 2,
+    POSITION_PRECEDING: 4,
+    POSITION_IS_CONTAINED: 8,
+    POSITION_CONTAINS: 16,
+    //ie6使用其他的会有一段空白出现
+    fillChar: ie && browser.version == '6' ? '\ufeff' : '\u200B',
+    //-------------------------Node部分--------------------------------
+    keys: {
+        /*Backspace*/ 8: 1, /*Delete*/ 46: 1,
+        /*Shift*/ 16: 1, /*Ctrl*/ 17: 1, /*Alt*/ 18: 1,
+        37: 1, 38: 1, 39: 1, 40: 1,
+        13: 1 /*enter*/
+    },
+    breakParent:function (node, parent) {
+        var tmpNode,
+            parentClone = node,
+            clone = node,
+            leftNodes,
+            rightNodes;
+        do {
+            parentClone = parentClone.parentNode;
+            if (leftNodes) {
+                tmpNode = parentClone.cloneNode(false);
+                tmpNode.appendChild(leftNodes);
+                leftNodes = tmpNode;
+                tmpNode = parentClone.cloneNode(false);
+                tmpNode.appendChild(rightNodes);
+                rightNodes = tmpNode;
+            } else {
+                leftNodes = parentClone.cloneNode(false);
+                rightNodes = leftNodes.cloneNode(false);
+            }
+            while (tmpNode = clone.previousSibling) {
+                leftNodes.insertBefore(tmpNode, leftNodes.firstChild);
+            }
+            while (tmpNode = clone.nextSibling) {
+                rightNodes.appendChild(tmpNode);
+            }
+            clone = parentClone;
+        } while (parent !== parentClone);
+        tmpNode = parent.parentNode;
+        tmpNode.insertBefore(leftNodes, parent);
+        tmpNode.insertBefore(rightNodes, parent);
+        tmpNode.insertBefore(node, rightNodes);
+        domUtils.remove(parent);
+        return node;
+    },
+    trimWhiteTextNode:function (node) {
+        function remove(dir) {
+            var child;
+            while ((child = node[dir]) && child.nodeType == 3 && domUtils.isWhitespace(child)) {
+                node.removeChild(child);
+            }
+        }
+        remove('firstChild');
+        remove('lastChild');
+    },
+    /**
+     * 获取节点A相对于节点B的位置关系
+     * @name getPosition
+     * @grammar UM.dom.domUtils.getPosition(nodeA,nodeB)  =>  Number
+     * @example
+     *  switch (returnValue) {
+     *      case 0: //相等，同一节点
+     *      case 1: //无关，节点不相连
+     *      case 2: //跟随，即节点A头部位于节点B头部的后面
+     *      case 4: //前置，即节点A头部位于节点B头部的前面
+     *      case 8: //被包含，即节点A被节点B包含
+     *      case 10://组合类型，即节点A满足跟随节点B且被节点B包含。实际上，如果被包含，必定跟随，所以returnValue事实上不会存在8的情况。
+     *      case 16://包含，即节点A包含节点B
+     *      case 20://组合类型，即节点A满足前置节点A且包含节点B。同样，如果包含，必定前置，所以returnValue事实上也不会存在16的情况
+     *  }
+     */
+    getPosition: function (nodeA, nodeB) {
+        // 如果两个节点是同一个节点
+        if (nodeA === nodeB) {
+            // domUtils.POSITION_IDENTICAL
+            return 0;
+        }
+        var node,
+            parentsA = [nodeA],
+            parentsB = [nodeB];
+        node = nodeA;
+        while (node = node.parentNode) {
+            // 如果nodeB是nodeA的祖先节点
+            if (node === nodeB) {
+                // domUtils.POSITION_IS_CONTAINED + domUtils.POSITION_FOLLOWING
+                return 10;
+            }
+            parentsA.push(node);
+        }
+        node = nodeB;
+        while (node = node.parentNode) {
+            // 如果nodeA是nodeB的祖先节点
+            if (node === nodeA) {
+                // domUtils.POSITION_CONTAINS + domUtils.POSITION_PRECEDING
+                return 20;
+            }
+            parentsB.push(node);
+        }
+        parentsA.reverse();
+        parentsB.reverse();
+        if (parentsA[0] !== parentsB[0]) {
+            // domUtils.POSITION_DISCONNECTED
+            return 1;
+        }
+        var i = -1;
+        while (i++, parentsA[i] === parentsB[i]) {
+        }
+        nodeA = parentsA[i];
+        nodeB = parentsB[i];
+        while (nodeA = nodeA.nextSibling) {
+            if (nodeA === nodeB) {
+                // domUtils.POSITION_PRECEDING
+                return 4
+            }
+        }
+        // domUtils.POSITION_FOLLOWING
+        return  2;
+    },
+
+    /**
+     * 返回节点node在父节点中的索引位置
+     * @name getNodeIndex
+     * @grammar UM.dom.domUtils.getNodeIndex(node)  => Number  //索引值从0开始
+     */
+    getNodeIndex: function (node, ignoreTextNode) {
+        var preNode = node,
+            i = 0;
+        while (preNode = preNode.previousSibling) {
+            if (ignoreTextNode && preNode.nodeType == 3) {
+                if (preNode.nodeType != preNode.nextSibling.nodeType) {
+                    i++;
+                }
+                continue;
+            }
+            i++;
+        }
+        return i;
+    },
+
+    /**
+     * 检测节点node是否在节点doc的树上，实质上是检测是否被doc包含
+     * @name inDoc
+     * @grammar UM.dom.domUtils.inDoc(node,doc)   =>  true|false
+     */
+    inDoc: function (node, doc) {
+        return domUtils.getPosition(node, doc) == 10;
+    },
+    /**
+     * 查找node节点的祖先节点
+     * @name findParent
+     * @grammar UM.dom.domUtils.findParent(node)  => Element  // 直接返回node节点的父节点
+     * @grammar UM.dom.domUtils.findParent(node,filterFn)  => Element  //filterFn为过滤函数，node作为参数，返回true时才会将node作为符合要求的节点返回
+     * @grammar UM.dom.domUtils.findParent(node,filterFn,includeSelf)  => Element  //includeSelf指定是否包含自身
+     */
+    findParent: function (node, filterFn, includeSelf) {
+        if (node && !domUtils.isBody(node)) {
+            node = includeSelf ? node : node.parentNode;
+            while (node) {
+                if (!filterFn || filterFn(node) || domUtils.isBody(node)) {
+                    return filterFn && !filterFn(node) && domUtils.isBody(node) ? null : node;
+                }
+                node = node.parentNode;
+            }
+        }
+        return null;
+    },
+    /**
+     * 通过tagName查找node节点的祖先节点
+     * @name findParentByTagName
+     * @grammar UM.dom.domUtils.findParentByTagName(node,tagNames)   =>  Element  //tagNames支持数组，区分大小写
+     * @grammar UM.dom.domUtils.findParentByTagName(node,tagNames,includeSelf)   =>  Element  //includeSelf指定是否包含自身
+     * @grammar UM.dom.domUtils.findParentByTagName(node,tagNames,includeSelf,excludeFn)   =>  Element  //excludeFn指定例外过滤条件，返回true时忽略该节点
+     */
+    findParentByTagName: function (node, tagNames, includeSelf, excludeFn) {
+        tagNames = utils.listToMap(utils.isArray(tagNames) ? tagNames : [tagNames]);
+        return domUtils.findParent(node, function (node) {
+            return tagNames[node.tagName] && !(excludeFn && excludeFn(node));
+        }, includeSelf);
+    },
+    /**
+     * 查找节点node的祖先节点集合
+     * @name findParents
+     * @grammar UM.dom.domUtils.findParents(node)  => Array  //返回一个祖先节点数组集合，不包含自身
+     * @grammar UM.dom.domUtils.findParents(node,includeSelf)  => Array  //返回一个祖先节点数组集合，includeSelf指定是否包含自身
+     * @grammar UM.dom.domUtils.findParents(node,includeSelf,filterFn)  => Array  //返回一个祖先节点数组集合，filterFn指定过滤条件，返回true的node将被选取
+     * @grammar UM.dom.domUtils.findParents(node,includeSelf,filterFn,closerFirst)  => Array  //返回一个祖先节点数组集合，closerFirst为true的话，node的直接父亲节点是数组的第0个
+     */
+    findParents: function (node, includeSelf, filterFn, closerFirst) {
+        var parents = includeSelf && ( filterFn && filterFn(node) || !filterFn ) ? [node] : [];
+        while (node = domUtils.findParent(node, filterFn)) {
+            parents.push(node);
+        }
+        return closerFirst ? parents : parents.reverse();
+    },
+
+    /**
+     * 在节点node后面插入新节点newNode
+     * @name insertAfter
+     * @grammar UM.dom.domUtils.insertAfter(node,newNode)  => newNode
+     */
+    insertAfter: function (node, newNode) {
+        return node.parentNode.insertBefore(newNode, node.nextSibling);
+    },
+
+    /**
+     * 删除节点node，并根据keepChildren指定是否保留子节点
+     * @name remove
+     * @grammar UM.dom.domUtils.remove(node)  =>  node
+     * @grammar UM.dom.domUtils.remove(node,keepChildren)  =>  node
+     */
+    remove: function (node, keepChildren) {
+
+        var parent = node.parentNode,
+            child;
+        if (parent) {
+            if (keepChildren && node.hasChildNodes()) {
+                while (child = node.firstChild) {
+                    parent.insertBefore(child, node);
+                }
+            }
+            parent.removeChild(node);
+        }
+        return node;
+    },
+
+
+    /**
+     * 取得node节点的下一个兄弟节点， 如果该节点其后没有兄弟节点， 则递归查找其父节点之后的第一个兄弟节点，
+     * 直到找到满足条件的节点或者递归到BODY节点之后才会结束。
+     * @method getNextDomNode
+     * @param { Node } node 需要获取其后的兄弟节点的节点对象
+     * @return { Node | NULL } 如果找满足条件的节点， 则返回该节点， 否则返回NULL
+     * @example
+     * ```html
+     *     <body>
+     *      <div id="test">
+     *          <span></span>
+     *      </div>
+     *      <i>xxx</i>
+     * </body>
+     * <script>
+     *
+     *     //output: i节点
+     *     console.log( UE.dom.domUtils.getNextDomNode( document.getElementById( "test" ) ) );
+     *
+     * </script>
+     * ```
+     * @example
+     * ```html
+     * <body>
+     *      <div>
+     *          <span></span>
+     *          <i id="test">xxx</i>
+     *      </div>
+     *      <b>xxx</b>
+     * </body>
+     * <script>
+     *
+     *     //由于id为test的i节点之后没有兄弟节点， 则查找其父节点（div）后面的兄弟节点
+     *     //output: b节点
+     *     console.log( UE.dom.domUtils.getNextDomNode( document.getElementById( "test" ) ) );
+     *
+     * </script>
+     * ```
+     */
+
+    /**
+     * 取得node节点的下一个兄弟节点， 如果startFromChild的值为ture，则先获取其子节点，
+     * 如果有子节点则直接返回第一个子节点；如果没有子节点或者startFromChild的值为false，
+     * 则执行<a href="#UE.dom.domUtils.getNextDomNode(Node)">getNextDomNode(Node node)</a>的查找过程。
+     * @method getNextDomNode
+     * @param { Node } node 需要获取其后的兄弟节点的节点对象
+     * @param { Boolean } startFromChild 查找过程是否从其子节点开始
+     * @return { Node | NULL } 如果找满足条件的节点， 则返回该节点， 否则返回NULL
+     * @see UE.dom.domUtils.getNextDomNode(Node)
+     */
+    getNextDomNode:function (node, startFromChild, filterFn, guard) {
+        return getDomNode(node, 'firstChild', 'nextSibling', startFromChild, filterFn, guard);
+    },
+    getPreDomNode:function (node, startFromChild, filterFn, guard) {
+        return getDomNode(node, 'lastChild', 'previousSibling', startFromChild, filterFn, guard);
+    },
+
+    /**
+     * 检测节点node是否属于bookmark节点
+     * @name isBookmarkNode
+     * @grammar UM.dom.domUtils.isBookmarkNode(node)  => true|false
+     */
+    isBookmarkNode: function (node) {
+        return node.nodeType == 1 && node.id && /^_baidu_bookmark_/i.test(node.id);
+    },
+    /**
+     * 获取节点node所在的window对象
+     * @name  getWindow
+     * @grammar UM.dom.domUtils.getWindow(node)  => window对象
+     */
+    getWindow: function (node) {
+        var doc = node.ownerDocument || node;
+        return doc.defaultView || doc.parentWindow;
+    },
+
+    /**
+     * 获取离nodeA与nodeB最近的公共的祖先节点
+     * @method  getCommonAncestor
+     * @param { Node } nodeA 第一个节点
+     * @param { Node } nodeB 第二个节点
+     * @remind 如果给定的两个节点是同一个节点， 将直接返回该节点。
+     * @return { Node | NULL } 如果未找到公共节点， 返回NULL， 否则返回最近的公共祖先节点。
+     * @example
+     * ```javascript
+     * var commonAncestor = UE.dom.domUtils.getCommonAncestor( document.body, document.body.firstChild );
+     * //output: true
+     * console.log( commonAncestor.tagName.toLowerCase() === 'body' );
+     * ```
+     */
+    getCommonAncestor:function (nodeA, nodeB) {
+        if (nodeA === nodeB)
+            return nodeA;
+        var parentsA = [nodeA] , parentsB = [nodeB], parent = nodeA, i = -1;
+        while (parent = parent.parentNode) {
+            if (parent === nodeB) {
+                return parent;
+            }
+            parentsA.push(parent);
+        }
+        parent = nodeB;
+        while (parent = parent.parentNode) {
+            if (parent === nodeA)
+                return parent;
+            parentsB.push(parent);
+        }
+        parentsA.reverse();
+        parentsB.reverse();
+        while (i++, parentsA[i] === parentsB[i]) {
+        }
+        return i == 0 ? null : parentsA[i - 1];
+
+    },
+    /**
+     * 清除node节点左右连续为空的兄弟inline节点
+     * @method clearEmptySibling
+     * @param { Node } node 执行的节点对象， 如果该节点的左右连续的兄弟节点是空的inline节点，
+     * 则这些兄弟节点将被删除
+     * @grammar UE.dom.domUtils.clearEmptySibling(node,ignoreNext)  //ignoreNext指定是否忽略右边空节点
+     * @grammar UE.dom.domUtils.clearEmptySibling(node,ignoreNext,ignorePre)  //ignorePre指定是否忽略左边空节点
+     * @example
+     * ```html
+     * <body>
+     *     <div></div>
+     *     <span id="test"></span>
+     *     <i></i>
+     *     <b></b>
+     *     <em>xxx</em>
+     *     <span></span>
+     * </body>
+     * <script>
+     *
+     *      UE.dom.domUtils.clearEmptySibling( document.getElementById( "test" ) );
+     *
+     *      //output: <div></div><span id="test"></span><em>xxx</em><span></span>
+     *      console.log( document.body.innerHTML );
+     *
+     * </script>
+     * ```
+     */
+
+    /**
+     * 清除node节点左右连续为空的兄弟inline节点， 如果ignoreNext的值为true，
+     * 则忽略对右边兄弟节点的操作。
+     * @method clearEmptySibling
+     * @param { Node } node 执行的节点对象， 如果该节点的左右连续的兄弟节点是空的inline节点，
+     * @param { Boolean } ignoreNext 是否忽略忽略对右边的兄弟节点的操作
+     * 则这些兄弟节点将被删除
+     * @see UE.dom.domUtils.clearEmptySibling(Node)
+     */
+
+    /**
+     * 清除node节点左右连续为空的兄弟inline节点， 如果ignoreNext的值为true，
+     * 则忽略对右边兄弟节点的操作， 如果ignorePre的值为true，则忽略对左边兄弟节点的操作。
+     * @method clearEmptySibling
+     * @param { Node } node 执行的节点对象， 如果该节点的左右连续的兄弟节点是空的inline节点，
+     * @param { Boolean } ignoreNext 是否忽略忽略对右边的兄弟节点的操作
+     * @param { Boolean } ignorePre 是否忽略忽略对左边的兄弟节点的操作
+     * 则这些兄弟节点将被删除
+     * @see UE.dom.domUtils.clearEmptySibling(Node)
+     */
+    clearEmptySibling:function (node, ignoreNext, ignorePre) {
+        function clear(next, dir) {
+            var tmpNode;
+            while (next && !domUtils.isBookmarkNode(next) && (domUtils.isEmptyInlineElement(next)
+                //这里不能把空格算进来会吧空格干掉，出现文字间的空格丢掉了
+                || !new RegExp('[^\t\n\r' + domUtils.fillChar + ']').test(next.nodeValue) )) {
+                tmpNode = next[dir];
+                domUtils.remove(next);
+                next = tmpNode;
+            }
+        }
+        !ignoreNext && clear(node.nextSibling, 'nextSibling');
+        !ignorePre && clear(node.previousSibling, 'previousSibling');
+    },
+
+    /**
+     * 将一个文本节点node拆分成两个文本节点，offset指定拆分位置
+     * @name split
+     * @grammar UM.dom.domUtils.split(node,offset)  =>  TextNode  //返回从切分位置开始的后一个文本节点
+     */
+    split: function (node, offset) {
+        var doc = node.ownerDocument;
+        if (browser.ie && offset == node.nodeValue.length) {
+            var next = doc.createTextNode('');
+            return domUtils.insertAfter(node, next);
+        }
+        var retval = node.splitText(offset);
+        //ie8下splitText不会跟新childNodes,我们手动触发他的更新
+        if (browser.ie8) {
+            var tmpNode = doc.createTextNode('');
+            domUtils.insertAfter(retval, tmpNode);
+            domUtils.remove(tmpNode);
+        }
+        return retval;
+    },
+
+    /**
+     * 检测节点node是否为空节点（包括空格、换行、占位符等字符）
+     * @name  isWhitespace
+     * @grammar  UM.dom.domUtils.isWhitespace(node)  => true|false
+     */
+    isWhitespace: function (node) {
+        return !new RegExp('[^ \t\n\r' + domUtils.fillChar + ']').test(node.nodeValue);
+    },
+    /**
+     * 获取元素element相对于viewport的位置坐标
+     * @name getXY
+     * @grammar UM.dom.domUtils.getXY(element)  => Object //返回坐标对象{x:left,y:top}
+     */
+    getXY: function (element) {
+        var x = 0, y = 0;
+        while (element.offsetParent) {
+            y += element.offsetTop;
+            x += element.offsetLeft;
+            element = element.offsetParent;
+        }
+        return { 'x': x, 'y': y};
+    },
+    /**
+     * 检查节点node是否是空inline节点
+     * @name  isEmptyInlineElement
+     * @grammar   UM.dom.domUtils.isEmptyInlineElement(node)  => 1|0
+     * @example
+     * <b><i></i></b> => 1
+     * <b><i></i><u></u></b> => 1
+     * <b></b> => 1
+     * <b>xx<i></i></b> => 0
+     */
+    isEmptyInlineElement: function (node) {
+        if (node.nodeType != 1 || !dtd.$removeEmpty[ node.tagName ]) {
+            return 0;
+        }
+        node = node.firstChild;
+        while (node) {
+            //如果是创建的bookmark就跳过
+            if (domUtils.isBookmarkNode(node)) {
+                return 0;
+            }
+            if (node.nodeType == 1 && !domUtils.isEmptyInlineElement(node) ||
+                node.nodeType == 3 && !domUtils.isWhitespace(node)
+                ) {
+                return 0;
+            }
+            node = node.nextSibling;
+        }
+        return 1;
+
+    },
+
+
+    /**
+     * 检查节点node是否为块元素
+     * @name isBlockElm
+     * @grammar UM.dom.domUtils.isBlockElm(node)  => true|false
+     */
+    isBlockElm: function (node) {
+        return node.nodeType == 1 && (dtd.$block[node.tagName] || styleBlock[domUtils.getComputedStyle(node, 'display')]) && !dtd.$nonChild[node.tagName];
+    },
+
+
+    /**
+     * 原生方法getElementsByTagName的封装
+     * @name getElementsByTagName
+     * @grammar UM.dom.domUtils.getElementsByTagName(node,tagName)  => Array  //节点集合数组
+     */
+    getElementsByTagName: function (node, name, filter) {
+        if (filter && utils.isString(filter)) {
+            var className = filter;
+            filter = function (node) {
+                var result = false;
+                $.each(utils.trim(className).replace(/[ ]{2,}/g, ' ').split(' '), function (i, v) {
+                    if ($(node).hasClass(v)) {
+                        result = true;
+                        return false;
+                    }
+                })
+                return result;
+            }
+        }
+        name = utils.trim(name).replace(/[ ]{2,}/g, ' ').split(' ');
+        var arr = [];
+        for (var n = 0, ni; ni = name[n++];) {
+            var list = node.getElementsByTagName(ni);
+            for (var i = 0, ci; ci = list[i++];) {
+                if (!filter || filter(ci))
+                    arr.push(ci);
+            }
+        }
+        return arr;
+    },
+
+
+    /**
+     * 设置节点node及其子节点不会被选中
+     * @name unSelectable
+     * @grammar UM.dom.domUtils.unSelectable(node)
+     */
+    unSelectable: ie && browser.ie9below || browser.opera ? function (node) {
+        //for ie9
+        node.onselectstart = function () {
+            return false;
+        };
+        node.onclick = node.onkeyup = node.onkeydown = function () {
+            return false;
+        };
+        node.unselectable = 'on';
+        node.setAttribute("unselectable", "on");
+        for (var i = 0, ci; ci = node.all[i++];) {
+            switch (ci.tagName.toLowerCase()) {
+                case 'iframe' :
+                case 'textarea' :
+                case 'input' :
+                case 'select' :
+                    break;
+                default :
+                    ci.unselectable = 'on';
+                    node.setAttribute("unselectable", "on");
+            }
+        }
+    } : function (node) {
+        node.style.MozUserSelect =
+            node.style.webkitUserSelect =
+                    node.style.msUserSelect =
+                        node.style.KhtmlUserSelect = 'none';
+    },
+    /**
+     * 删除节点node上的属性attrNames，attrNames为属性名称数组
+     * @name  removeAttributes
+     * @grammar UM.dom.domUtils.removeAttributes(node,attrNames)
+     * @example
+     * //Before remove
+     * <span style="font-size:14px;" id="test" name="followMe">xxxxx</span>
+     * //Remove
+     * UM.dom.domUtils.removeAttributes(node,["id","name"]);
+     * //After remove
+     * <span style="font-size:14px;">xxxxx</span>
+     */
+    removeAttributes: function (node, attrNames) {
+        attrNames = utils.isArray(attrNames) ? attrNames : utils.trim(attrNames).replace(/[ ]{2,}/g, ' ').split(' ');
+        for (var i = 0, ci; ci = attrNames[i++];) {
+            ci = attrFix[ci] || ci;
+            switch (ci) {
+                case 'className':
+                    node[ci] = '';
+                    break;
+                case 'style':
+                    node.style.cssText = '';
+                    var val = node.getAttributeNode('style');
+                    !browser.ie && val && node.removeAttributeNode(val);
+            }
+            node.removeAttribute(ci);
+        }
+    },
+    /**
+     * 在doc下创建一个标签名为tag，属性为attrs的元素
+     * @name createElement
+     * @grammar UM.dom.domUtils.createElement(doc,tag,attrs)  =>  Node  //返回创建的节点
+     */
+    createElement: function (doc, tag, attrs) {
+        return domUtils.setAttributes(doc.createElement(tag), attrs)
+    },
+    /**
+     * 为节点node添加属性attrs，attrs为属性键值对
+     * @name setAttributes
+     * @grammar UM.dom.domUtils.setAttributes(node,attrs)  => node
+     */
+    setAttributes: function (node, attrs) {
+        for (var attr in attrs) {
+            if (attrs.hasOwnProperty(attr)) {
+                var value = attrs[attr];
+                switch (attr) {
+                    case 'class':
+                        //ie下要这样赋值，setAttribute不起作用
+                        node.className = value;
+                        break;
+                    case 'style' :
+                        node.style.cssText = node.style.cssText + ";" + value;
+                        break;
+                    case 'innerHTML':
+                        node[attr] = value;
+                        break;
+                    case 'value':
+                        node.value = value;
+                        break;
+                    default:
+                        node.setAttribute(attrFix[attr] || attr, value);
+                }
+            }
+        }
+        return node;
+    },
+
+    /**
+     * 获取元素element的计算样式
+     * @name getComputedStyle
+     * @grammar UM.dom.domUtils.getComputedStyle(element,styleName)  => String //返回对应样式名称的样式值
+     * @example
+     * getComputedStyle(document.body,"font-size")  =>  "15px"
+     * getComputedStyle(form,"color")  =>  "#ffccdd"
+     */
+    getComputedStyle: function (element, styleName) {
+        return utils.transUnitToPx(utils.fixColor(styleName, $(element).css(styleName)));
+    },
+
+    /**
+     * 阻止事件默认行为
+     * @param {Event} evt    需要组织的事件对象
+     */
+    preventDefault: function (evt) {
+        evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
+    },
+
+    /**
+     * 删除元素element指定的样式
+     * @method removeStyle
+     * @param { Element } element 需要删除样式的元素
+     * @param { String } styleName 需要删除的样式名
+     * @example
+     * ```html
+     * <span id="test" style="color: red; background: blue;"></span>
+     *
+     * <script>
+     *
+     *     var testNode = document.getElementById("test");
+     *
+     *     UE.dom.domUtils.removeStyle( testNode, 'color' );
+     *
+     *     //output: background: blue;
+     *     console.log( testNode.style.cssText );
+     *
+     * </script>
+     * ```
+     */
+    removeStyle:function (element, name) {
+        if(browser.ie ){
+            //针对color先单独处理一下
+            if(name == 'color'){
+                name = '(^|;)' + name;
+            }
+            element.style.cssText = element.style.cssText.replace(new RegExp(name + '[^:]*:[^;]+;?','ig'),'')
+        }else{
+            if (element.style.removeProperty) {
+                element.style.removeProperty (name);
+            }else {
+                element.style.removeAttribute (utils.cssStyleToDomStyle(name));
+            }
+        }
+
+
+        if (!element.style.cssText) {
+            domUtils.removeAttributes(element, ['style']);
+        }
+    },
+
+    /**
+     * 获取元素element的某个样式值
+     * @name getStyle
+     * @grammar UM.dom.domUtils.getStyle(element,name)  => String
+     */
+    getStyle: function (element, name) {
+        var value = element.style[ utils.cssStyleToDomStyle(name) ];
+        return utils.fixColor(name, value);
+    },
+    /**
+     * 为元素element设置样式属性值
+     * @name setStyle
+     * @grammar UM.dom.domUtils.setStyle(element,name,value)
+     */
+    setStyle: function (element, name, value) {
+        element.style[utils.cssStyleToDomStyle(name)] = value;
+        if (!utils.trim(element.style.cssText)) {
+            this.removeAttributes(element, 'style')
+        }
+    },
+
+    /**
+     * 删除_moz_dirty属性
+     * @function
+     */
+    removeDirtyAttr: function (node) {
+        for (var i = 0, ci, nodes = node.getElementsByTagName('*'); ci = nodes[i++];) {
+            ci.removeAttribute('_moz_dirty');
+        }
+        node.removeAttribute('_moz_dirty');
+    },
+    /**
+     * 返回子节点的数量
+     * @function
+     * @param {Node}    node    父节点
+     * @param  {Function}    fn    过滤子节点的规则，若为空，则得到所有子节点的数量
+     * @return {Number}    符合条件子节点的数量
+     */
+    getChildCount: function (node, fn) {
+        var count = 0, first = node.firstChild;
+        fn = fn || function () {
+            return 1;
+        };
+        while (first) {
+            if (fn(first)) {
+                count++;
+            }
+            first = first.nextSibling;
+        }
+        return count;
+    },
+
+    /**
+     * 判断是否为空节点
+     * @function
+     * @param {Node}    node    节点
+     * @return {Boolean}    是否为空节点
+     */
+    isEmptyNode: function (node) {
+        return !node.firstChild || domUtils.getChildCount(node, function (node) {
+            return  !domUtils.isBr(node) && !domUtils.isBookmarkNode(node) && !domUtils.isWhitespace(node)
+        }) == 0
+    },
+
+    /**
+     * 判断节点是否为br
+     * @function
+     * @param {Node}    node   节点
+     */
+    isBr: function (node) {
+        return node.nodeType == 1 && node.tagName == 'BR';
+    },
+    isFillChar: function (node, isInStart) {
+        return node.nodeType == 3 && !node.nodeValue.replace(new RegExp((isInStart ? '^' : '' ) + domUtils.fillChar), '').length
+    },
+
+    isEmptyBlock: function (node, reg) {
+        if (node.nodeType != 1)
+            return 0;
+        reg = reg || new RegExp('[ \t\r\n' + domUtils.fillChar + ']', 'g');
+        if (node[browser.ie ? 'innerText' : 'textContent'].replace(reg, '').length > 0) {
+            return 0;
+        }
+        for (var n in dtd.$isNotEmpty) {
+            if (node.getElementsByTagName(n).length) {
+                return 0;
+            }
+        }
+        return 1;
+    },
+
+    //判断是否是编辑器自定义的参数
+    isCustomeNode: function (node) {
+        return node.nodeType == 1 && node.getAttribute('_ue_custom_node_');
+    },
+    fillNode: function (doc, node) {
+        var tmpNode = browser.ie ? doc.createTextNode(domUtils.fillChar) : doc.createElement('br');
+        node.innerHTML = '';
+        node.appendChild(tmpNode);
+    },
+    isBoundaryNode: function (node, dir) {
+        var tmp;
+        while (!domUtils.isBody(node)) {
+            tmp = node;
+            node = node.parentNode;
+            if (tmp !== node[dir]) {
+                return false;
+            }
+        }
+        return true;
+    },
+    isFillChar: function (node, isInStart) {
+        return node.nodeType == 3 && !node.nodeValue.replace(new RegExp((isInStart ? '^' : '' ) + domUtils.fillChar), '').length
+    },
+    isBody: function(node){
+        return $(node).hasClass('edui-body-container');
+    }
+};
+var fillCharReg = new RegExp(domUtils.fillChar, 'g');
+///import editor.js
+///import core/utils.js
+///import core/browser.js
+///import core/dom/dom.js
+///import core/dom/dtd.js
+///import core/dom/domUtils.js
+/**
+ * @file
+ * @name UM.dom.Range
+ * @anthor zhanyi
+ * @short Range
+ * @import editor.js,core/utils.js,core/browser.js,core/dom/domUtils.js,core/dom/dtd.js
+ * @desc Range范围实现类，本类是UEditor底层核心类，统一w3cRange和ieRange之间的差异，包括接口和属性
+ */
+(function () {
+    var guid = 0,
+        fillChar = domUtils.fillChar,
+        fillData;
+
+    /**
+     * 更新range的collapse状态
+     * @param  {Range}   range    range对象
+     */
+    function updateCollapse(range) {
+        range.collapsed =
+            range.startContainer && range.endContainer &&
+                range.startContainer === range.endContainer &&
+                range.startOffset == range.endOffset;
+    }
+
+    function selectOneNode(rng){
+        return !rng.collapsed && rng.startContainer.nodeType == 1 && rng.startContainer === rng.endContainer && rng.endOffset - rng.startOffset == 1
+    }
+    function setEndPoint(toStart, node, offset, range) {
+        //如果node是自闭合标签要处理
+        if (node.nodeType == 1 && (dtd.$empty[node.tagName] || dtd.$nonChild[node.tagName])) {
+            offset = domUtils.getNodeIndex(node) + (toStart ? 0 : 1);
+            node = node.parentNode;
+        }
+        if (toStart) {
+            range.startContainer = node;
+            range.startOffset = offset;
+            if (!range.endContainer) {
+                range.collapse(true);
+            }
+        } else {
+            range.endContainer = node;
+            range.endOffset = offset;
+            if (!range.startContainer) {
+                range.collapse(false);
+            }
+        }
+        updateCollapse(range);
+        return range;
+    }
+
+
+    /**
+     * @name Range
+     * @grammar new UM.dom.Range(document)  => Range 实例
+     * @desc 创建一个跟document绑定的空的Range实例
+     * - ***startContainer*** 开始边界的容器节点,可以是elementNode或者是textNode
+     * - ***startOffset*** 容器节点中的偏移量，如果是elementNode就是childNodes中的第几个，如果是textNode就是nodeValue的第几个字符
+     * - ***endContainer*** 结束边界的容器节点,可以是elementNode或者是textNode
+     * - ***endOffset*** 容器节点中的偏移量，如果是elementNode就是childNodes中的第几个，如果是textNode就是nodeValue的第几个字符
+     * - ***document*** 跟range关联的document对象
+     * - ***collapsed*** 是否是闭合状态
+     */
+    var Range = dom.Range = function (document,body) {
+        var me = this;
+        me.startContainer =
+            me.startOffset =
+                me.endContainer =
+                    me.endOffset = null;
+        me.document = document;
+        me.collapsed = true;
+        me.body = body;
+    };
+
+    /**
+     * 删除fillData
+     * @param doc
+     * @param excludeNode
+     */
+    function removeFillData(doc, excludeNode) {
+        try {
+            if (fillData && domUtils.inDoc(fillData, doc)) {
+                if (!fillData.nodeValue.replace(fillCharReg, '').length) {
+                    var tmpNode = fillData.parentNode;
+                    domUtils.remove(fillData);
+                    while (tmpNode && domUtils.isEmptyInlineElement(tmpNode) &&
+                        //safari的contains有bug
+                        (browser.safari ? !(domUtils.getPosition(tmpNode,excludeNode) & domUtils.POSITION_CONTAINS) : !tmpNode.contains(excludeNode))
+                        ) {
+                        fillData = tmpNode.parentNode;
+                        domUtils.remove(tmpNode);
+                        tmpNode = fillData;
+                    }
+                } else {
+                    fillData.nodeValue = fillData.nodeValue.replace(fillCharReg, '');
+                }
+            }
+        } catch (e) {
+        }
+    }
+
+    /**
+     *
+     * @param node
+     * @param dir
+     */
+    function mergeSibling(node, dir) {
+        var tmpNode;
+        node = node[dir];
+        while (node && domUtils.isFillChar(node)) {
+            tmpNode = node[dir];
+            domUtils.remove(node);
+            node = tmpNode;
+        }
+    }
+
+    function execContentsAction(range, action) {
+        //调整边界
+        //range.includeBookmark();
+        var start = range.startContainer,
+            end = range.endContainer,
+            startOffset = range.startOffset,
+            endOffset = range.endOffset,
+            doc = range.document,
+            frag = doc.createDocumentFragment(),
+            tmpStart, tmpEnd;
+        if (start.nodeType == 1) {
+            start = start.childNodes[startOffset] || (tmpStart = start.appendChild(doc.createTextNode('')));
+        }
+        if (end.nodeType == 1) {
+            end = end.childNodes[endOffset] || (tmpEnd = end.appendChild(doc.createTextNode('')));
+        }
+        if (start === end && start.nodeType == 3) {
+            frag.appendChild(doc.createTextNode(start.substringData(startOffset, endOffset - startOffset)));
+            //is not clone
+            if (action) {
+                start.deleteData(startOffset, endOffset - startOffset);
+                range.collapse(true);
+            }
+            return frag;
+        }
+        var current, currentLevel, clone = frag,
+            startParents = domUtils.findParents(start, true), endParents = domUtils.findParents(end, true);
+        for (var i = 0; startParents[i] == endParents[i];) {
+            i++;
+        }
+        for (var j = i, si; si = startParents[j]; j++) {
+            current = si.nextSibling;
+            if (si == start) {
+                if (!tmpStart) {
+                    if (range.startContainer.nodeType == 3) {
+                        clone.appendChild(doc.createTextNode(start.nodeValue.slice(startOffset)));
+                        //is not clone
+                        if (action) {
+                            start.deleteData(startOffset, start.nodeValue.length - startOffset);
+                        }
+                    } else {
+                        clone.appendChild(!action ? start.cloneNode(true) : start);
+                    }
+                }
+            } else {
+                currentLevel = si.cloneNode(false);
+                clone.appendChild(currentLevel);
+            }
+            while (current) {
+                if (current === end || current === endParents[j]) {
+                    break;
+                }
+                si = current.nextSibling;
+                clone.appendChild(!action ? current.cloneNode(true) : current);
+                current = si;
+            }
+            clone = currentLevel;
+        }
+        clone = frag;
+        if (!startParents[i]) {
+            clone.appendChild(startParents[i - 1].cloneNode(false));
+            clone = clone.firstChild;
+        }
+        for (var j = i, ei; ei = endParents[j]; j++) {
+            current = ei.previousSibling;
+            if (ei == end) {
+                if (!tmpEnd && range.endContainer.nodeType == 3) {
+                    clone.appendChild(doc.createTextNode(end.substringData(0, endOffset)));
+                    //is not clone
+                    if (action) {
+                        end.deleteData(0, endOffset);
+                    }
+                }
+            } else {
+                currentLevel = ei.cloneNode(false);
+                clone.appendChild(currentLevel);
+            }
+            //如果两端同级，右边第一次已经被开始做了
+            if (j != i || !startParents[i]) {
+                while (current) {
+                    if (current === start) {
+                        break;
+                    }
+                    ei = current.previousSibling;
+                    clone.insertBefore(!action ? current.cloneNode(true) : current, clone.firstChild);
+                    current = ei;
+                }
+            }
+            clone = currentLevel;
+        }
+        if (action) {
+            range.setStartBefore(!endParents[i] ? endParents[i - 1] : !startParents[i] ? startParents[i - 1] : endParents[i]).collapse(true);
+        }
+        tmpStart && domUtils.remove(tmpStart);
+        tmpEnd && domUtils.remove(tmpEnd);
+        return frag;
+    }
+    Range.prototype = {
+        /**
+         * @name deleteContents
+         * @grammar range.deleteContents()  => Range
+         * @desc 删除当前选区范围中的所有内容并返回range实例，这时的range已经变成了闭合状态
+         * @example
+         * DOM Element :
+         * <b>x<i>x[x<i>xx]x</b>
+         * //执行方法后
+         * <b>x<i>x<i>|x</b>
+         * 注意range改变了
+         * range.startContainer => b
+         * range.startOffset  => 2
+         * range.endContainer => b
+         * range.endOffset => 2
+         * range.collapsed => true
+         */
+        deleteContents:function () {
+            var txt;
+            if (!this.collapsed) {
+                execContentsAction(this, 1);
+            }
+            if (browser.webkit) {
+                txt = this.startContainer;
+                if (txt.nodeType == 3 && !txt.nodeValue.length) {
+                    this.setStartBefore(txt).collapse(true);
+                    domUtils.remove(txt);
+                }
+            }
+            return this;
+        },
+        inFillChar : function(){
+            var start = this.startContainer;
+            if(this.collapsed && start.nodeType == 3
+                && start.nodeValue.replace(new RegExp('^' + domUtils.fillChar),'').length + 1 == start.nodeValue.length
+                ){
+                return true;
+            }
+            return false;
+        },
+        /**
+         * @name  setStart
+         * @grammar range.setStart(node,offset)  => Range
+         * @desc    设置range的开始位置位于node节点内，偏移量为offset
+         * 如果node是elementNode那offset指的是childNodes中的第几个，如果是textNode那offset指的是nodeValue的第几个字符
+         */
+        setStart:function (node, offset) {
+            return setEndPoint(true, node, offset, this);
+        },
+        /**
+         * 设置range的结束位置位于node节点，偏移量为offset
+         * 如果node是elementNode那offset指的是childNodes中的第几个，如果是textNode那offset指的是nodeValue的第几个字符
+         * @name  setEnd
+         * @grammar range.setEnd(node,offset)  => Range
+         */
+        setEnd:function (node, offset) {
+            return setEndPoint(false, node, offset, this);
+        },
+        /**
+         * 将Range开始位置设置到node节点之后
+         * @name  setStartAfter
+         * @grammar range.setStartAfter(node)  => Range
+         * @example
+         * <b>xx<i>x|x</i>x</b>
+         * 执行setStartAfter(i)后
+         * range.startContainer =>b
+         * range.startOffset =>2
+         */
+        setStartAfter:function (node) {
+            return this.setStart(node.parentNode, domUtils.getNodeIndex(node) + 1);
+        },
+        /**
+         * 将Range开始位置设置到node节点之前
+         * @name  setStartBefore
+         * @grammar range.setStartBefore(node)  => Range
+         * @example
+         * <b>xx<i>x|x</i>x</b>
+         * 执行setStartBefore(i)后
+         * range.startContainer =>b
+         * range.startOffset =>1
+         */
+        setStartBefore:function (node) {
+            return this.setStart(node.parentNode, domUtils.getNodeIndex(node));
+        },
+        /**
+         * 将Range结束位置设置到node节点之后
+         * @name  setEndAfter
+         * @grammar range.setEndAfter(node)  => Range
+         * @example
+         * <b>xx<i>x|x</i>x</b>
+         * setEndAfter(i)后
+         * range.endContainer =>b
+         * range.endtOffset =>2
+         */
+        setEndAfter:function (node) {
+            return this.setEnd(node.parentNode, domUtils.getNodeIndex(node) + 1);
+        },
+        /**
+         * 将Range结束位置设置到node节点之前
+         * @name  setEndBefore
+         * @grammar range.setEndBefore(node)  => Range
+         * @example
+         * <b>xx<i>x|x</i>x</b>
+         * 执行setEndBefore(i)后
+         * range.endContainer =>b
+         * range.endtOffset =>1
+         */
+        setEndBefore:function (node) {
+            return this.setEnd(node.parentNode, domUtils.getNodeIndex(node));
+        },
+        /**
+         * 将Range开始位置设置到node节点内的开始位置
+         * @name  setStartAtFirst
+         * @grammar range.setStartAtFirst(node)  => Range
+         */
+        setStartAtFirst:function (node) {
+            return this.setStart(node, 0);
+        },
+        /**
+         * 将Range开始位置设置到node节点内的结束位置
+         * @name  setStartAtLast
+         * @grammar range.setStartAtLast(node)  => Range
+         */
+        setStartAtLast:function (node) {
+            return this.setStart(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
+        },
+        /**
+         * 将Range结束位置设置到node节点内的开始位置
+         * @name  setEndAtFirst
+         * @grammar range.setEndAtFirst(node)  => Range
+         */
+        setEndAtFirst:function (node) {
+            return this.setEnd(node, 0);
+        },
+        /**
+         * 将Range结束位置设置到node节点内的结束位置
+         * @name  setEndAtLast
+         * @grammar range.setEndAtLast(node)  => Range
+         */
+        setEndAtLast:function (node) {
+            return this.setEnd(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
+        },
+
+        /**
+         * 选中完整的指定节点,并返回包含该节点的range
+         * @name  selectNode
+         * @grammar range.selectNode(node)  => Range
+         */
+        selectNode:function (node) {
+            return this.setStartBefore(node).setEndAfter(node);
+        },
+        /**
+         * 选中node内部的所有节点，并返回对应的range
+         * @name selectNodeContents
+         * @grammar range.selectNodeContents(node)  => Range
+         * @example
+         * <b>xx[x<i>xxx</i>]xxx</b>
+         * 执行后
+         * <b>[xxx<i>xxx</i>xxx]</b>
+         * range.startContainer =>b
+         * range.startOffset =>0
+         * range.endContainer =>b
+         * range.endOffset =>3
+         */
+        selectNodeContents:function (node) {
+            return this.setStart(node, 0).setEndAtLast(node);
+        },
+
+        /**
+         * 克隆一个新的range对象
+         * @name  cloneRange
+         * @grammar range.cloneRange() => Range
+         */
+        cloneRange:function () {
+            var me = this;
+            return new Range(me.document).setStart(me.startContainer, me.startOffset).setEnd(me.endContainer, me.endOffset);
+
+        },
+
+        /**
+         * 让选区闭合到尾部，若toStart为真，则闭合到头部
+         * @name  collapse
+         * @grammar range.collapse() => Range
+         * @grammar range.collapse(true) => Range   //闭合选区到头部
+         */
+        collapse:function (toStart) {
+            var me = this;
+            if (toStart) {
+                me.endContainer = me.startContainer;
+                me.endOffset = me.startOffset;
+            } else {
+                me.startContainer = me.endContainer;
+                me.startOffset = me.endOffset;
+            }
+            me.collapsed = true;
+            return me;
+        },
+
+        /**
+         * 调整range的边界，使其"收缩"到最小的位置
+         * @name  shrinkBoundary
+         * @grammar range.shrinkBoundary()  => Range  //range开始位置和结束位置都调整，参见<code><a href="#adjustmentboundary">adjustmentBoundary</a></code>
+         * @grammar range.shrinkBoundary(true)  => Range  //仅调整开始位置，忽略结束位置
+         * @example
+         * <b>xx[</b>xxxxx] ==> <b>xx</b>[xxxxx]
+         * <b>x[xx</b><i>]xxx</i> ==> <b>x[xx]</b><i>xxx</i>
+         * [<b><i>xxxx</i>xxxxxxx</b>] ==> <b><i>[xxxx</i>xxxxxxx]</b>
+         */
+        shrinkBoundary:function (ignoreEnd) {
+            var me = this, child,
+                collapsed = me.collapsed;
+            function check(node){
+                return node.nodeType == 1 && !domUtils.isBookmarkNode(node) && !dtd.$empty[node.tagName] && !dtd.$nonChild[node.tagName]
+            }
+            while (me.startContainer.nodeType == 1 //是element
+                && (child = me.startContainer.childNodes[me.startOffset]) //子节点也是element
+                && check(child)) {
+                me.setStart(child, 0);
+            }
+            if (collapsed) {
+                return me.collapse(true);
+            }
+            if (!ignoreEnd) {
+                while (me.endContainer.nodeType == 1//是element
+                    && me.endOffset > 0 //如果是空元素就退出 endOffset=0那么endOffst-1为负值，childNodes[endOffset]报错
+                    && (child = me.endContainer.childNodes[me.endOffset - 1]) //子节点也是element
+                    && check(child)) {
+                    me.setEnd(child, child.childNodes.length);
+                }
+            }
+            return me;
+        },
+
+        /**
+         * 调整边界容器，如果是textNode,就调整到elementNode上
+         * @name trimBoundary
+         * @grammar range.trimBoundary([ignoreEnd])  => Range //true忽略结束边界
+         * @example
+         * DOM Element :
+         * <b>|xxx</b>
+         * startContainer = xxx; startOffset = 0
+         * //执行后本方法后
+         * startContainer = <b>;  startOffset = 0
+         * @example
+         * Dom Element :
+         * <b>xx|x</b>
+         * startContainer = xxx;  startOffset = 2
+         * //执行本方法后，xxx被实实在在地切分成两个TextNode
+         * startContainer = <b>; startOffset = 1
+         */
+        trimBoundary:function (ignoreEnd) {
+            this.txtToElmBoundary();
+            var start = this.startContainer,
+                offset = this.startOffset,
+                collapsed = this.collapsed,
+                end = this.endContainer;
+            if (start.nodeType == 3) {
+                if (offset == 0) {
+                    this.setStartBefore(start);
+                } else {
+                    if (offset >= start.nodeValue.length) {
+                        this.setStartAfter(start);
+                    } else {
+                        var textNode = domUtils.split(start, offset);
+                        //跟新结束边界
+                        if (start === end) {
+                            this.setEnd(textNode, this.endOffset - offset);
+                        } else if (start.parentNode === end) {
+                            this.endOffset += 1;
+                        }
+                        this.setStartBefore(textNode);
+                    }
+                }
+                if (collapsed) {
+                    return this.collapse(true);
+                }
+            }
+            if (!ignoreEnd) {
+                offset = this.endOffset;
+                end = this.endContainer;
+                if (end.nodeType == 3) {
+                    if (offset == 0) {
+                        this.setEndBefore(end);
+                    } else {
+                        offset < end.nodeValue.length && domUtils.split(end, offset);
+                        this.setEndAfter(end);
+                    }
+                }
+            }
+            return this;
+        },
+        /**
+         * 如果选区在文本的边界上，就扩展选区到文本的父节点上
+         * @name  txtToElmBoundary
+         * @example
+         * Dom Element :
+         * <b> |xxx</b>
+         * startContainer = xxx;  startOffset = 0
+         * //本方法执行后
+         * startContainer = <b>; startOffset = 0
+         * @example
+         * Dom Element :
+         * <b> xxx| </b>
+         * startContainer = xxx; startOffset = 3
+         * //本方法执行后
+         * startContainer = <b>; startOffset = 1
+         */
+        txtToElmBoundary:function (ignoreCollapsed) {
+            function adjust(r, c) {
+                var container = r[c + 'Container'],
+                    offset = r[c + 'Offset'];
+                if (container.nodeType == 3) {
+                    if (!offset) {
+                        r['set' + c.replace(/(\w)/, function (a) {
+                            return a.toUpperCase();
+                        }) + 'Before'](container);
+                    } else if (offset >= container.nodeValue.length) {
+                        r['set' + c.replace(/(\w)/, function (a) {
+                            return a.toUpperCase();
+                        }) + 'After' ](container);
+                    }
+                }
+            }
+
+            if (ignoreCollapsed || !this.collapsed) {
+                adjust(this, 'start');
+                adjust(this, 'end');
+            }
+            return this;
+        },
+
+        /**
+         * 在当前选区的开始位置前插入一个节点或者fragment，range的开始位置会在插入节点的前边
+         * @name  insertNode
+         * @grammar range.insertNode(node)  => Range //node可以是textNode,elementNode,fragment
+         * @example
+         * Range :
+         * xxx[x<p>xxxx</p>xxxx]x<p>sdfsdf</p>
+         * 待插入Node :
+         * <p>ssss</p>
+         * 执行本方法后的Range :
+         * xxx[<p>ssss</p>x<p>xxxx</p>xxxx]x<p>sdfsdf</p>
+         */
+        insertNode:function (node) {
+            var first = node, length = 1;
+            if (node.nodeType == 11) {
+                first = node.firstChild;
+                length = node.childNodes.length;
+            }
+            this.trimBoundary(true);
+            var start = this.startContainer,
+                offset = this.startOffset;
+            var nextNode = start.childNodes[ offset ];
+            if (nextNode) {
+                start.insertBefore(node, nextNode);
+            } else {
+                start.appendChild(node);
+            }
+            if (first.parentNode === this.endContainer) {
+                this.endOffset = this.endOffset + length;
+            }
+            return this.setStartBefore(first);
+        },
+        /**
+         * 设置光标闭合位置,toEnd设置为true时光标将闭合到选区的结尾
+         * @name  setCursor
+         * @grammar range.setCursor([toEnd])  =>  Range   //toEnd为true时，光标闭合到选区的末尾
+         */
+        setCursor:function (toEnd, noFillData) {
+            return this.collapse(!toEnd).select(noFillData);
+        },
+        /**
+         * 创建当前range的一个书签，记录下当前range的位置，方便当dom树改变时，还能找回原来的选区位置
+         * @name createBookmark
+         * @grammar range.createBookmark([serialize])  => Object  //{start:开始标记,end:结束标记,id:serialize} serialize为真时，开始结束标记是插入节点的id，否则是插入节点的引用
+         */
+        createBookmark:function (serialize, same) {
+            var endNode,
+                startNode = this.document.createElement('span');
+            startNode.style.cssText = 'display:none;line-height:0px;';
+            startNode.appendChild(this.document.createTextNode('\u200D'));
+            startNode.id = '_baidu_bookmark_start_' + (same ? '' : guid++);
+
+            if (!this.collapsed) {
+                endNode = startNode.cloneNode(true);
+                endNode.id = '_baidu_bookmark_end_' + (same ? '' : guid++);
+            }
+            this.insertNode(startNode);
+            if (endNode) {
+                this.collapse().insertNode(endNode).setEndBefore(endNode);
+            }
+            this.setStartAfter(startNode);
+            return {
+                start:serialize ? startNode.id : startNode,
+                end:endNode ? serialize ? endNode.id : endNode : null,
+                id:serialize
+            }
+        },
+        /**
+         *  移动边界到书签位置，并删除插入的书签节点
+         *  @name  moveToBookmark
+         *  @grammar range.moveToBookmark(bookmark)  => Range //让当前的range选到给定bookmark的位置,bookmark对象是由range.createBookmark创建的
+         */
+        moveToBookmark:function (bookmark) {
+            var start = bookmark.id ? this.document.getElementById(bookmark.start) : bookmark.start,
+                end = bookmark.end && bookmark.id ? this.document.getElementById(bookmark.end) : bookmark.end;
+            this.setStartBefore(start);
+            domUtils.remove(start);
+            if (end) {
+                this.setEndBefore(end);
+                domUtils.remove(end);
+            } else {
+                this.collapse(true);
+            }
+            return this;
+        },
+
+        /**
+         * 调整Range的边界，使其"缩小"到最合适的位置
+         * @name adjustmentBoundary
+         * @grammar range.adjustmentBoundary() => Range   //参见<code><a href="#shrinkboundary">shrinkBoundary</a></code>
+         * @example
+         * <b>xx[</b>xxxxx] ==> <b>xx</b>[xxxxx]
+         * <b>x[xx</b><i>]xxx</i> ==> <b>x[xx</b>]<i>xxx</i>
+         */
+        adjustmentBoundary:function () {
+            if (!this.collapsed) {
+                while (!domUtils.isBody(this.startContainer) &&
+                    this.startOffset == this.startContainer[this.startContainer.nodeType == 3 ? 'nodeValue' : 'childNodes'].length &&
+                    this.startContainer[this.startContainer.nodeType == 3 ? 'nodeValue' : 'childNodes'].length
+                    ) {
+
+                    this.setStartAfter(this.startContainer);
+                }
+                while (!domUtils.isBody(this.endContainer) && !this.endOffset &&
+                    this.endContainer[this.endContainer.nodeType == 3 ? 'nodeValue' : 'childNodes'].length
+                    ) {
+                    this.setEndBefore(this.endContainer);
+                }
+            }
+            return this;
+        },
+
+        /**
+         * 得到一个自闭合的节点,常用于获取自闭和的节点，例如图片节点
+         * @name  getClosedNode
+         * @grammar range.getClosedNode()  => node|null
+         * @example
+         * <b>xxxx[<img />]xxx</b>
+         */
+        getClosedNode:function () {
+            var node;
+            if (!this.collapsed) {
+                var range = this.cloneRange().adjustmentBoundary().shrinkBoundary();
+                if (selectOneNode(range)) {
+                    var child = range.startContainer.childNodes[range.startOffset];
+                    if (child && child.nodeType == 1 && (dtd.$empty[child.tagName] || dtd.$nonChild[child.tagName])) {
+                        node = child;
+                    }
+                }
+            }
+            return node;
+        },
+        /**
+         * 根据当前range选中内容节点（在页面上表现为反白显示）
+         * @name select
+         * @grammar range.select();  => Range
+         */
+        select:browser.ie ? function (noFillData, textRange) {
+            var nativeRange;
+            if (!this.collapsed)
+                this.shrinkBoundary();
+            var node = this.getClosedNode();
+            if (node && !textRange) {
+                try {
+                    nativeRange = this.document.body.createControlRange();
+                    nativeRange.addElement(node);
+                    nativeRange.select();
+                } catch (e) {}
+                return this;
+            }
+            var bookmark = this.createBookmark(),
+                start = bookmark.start,
+                end;
+            nativeRange = this.document.body.createTextRange();
+            nativeRange.moveToElementText(start);
+            nativeRange.moveStart('character', 1);
+            if (!this.collapsed) {
+                var nativeRangeEnd = this.document.body.createTextRange();
+                end = bookmark.end;
+                nativeRangeEnd.moveToElementText(end);
+                nativeRange.setEndPoint('EndToEnd', nativeRangeEnd);
+            } else {
+                if (!noFillData && this.startContainer.nodeType != 3) {
+                    //使用<span>|x<span>固定住光标
+                    var tmpText = this.document.createTextNode(fillChar),
+                        tmp = this.document.createElement('span');
+                    tmp.appendChild(this.document.createTextNode(fillChar));
+                    start.parentNode.insertBefore(tmp, start);
+                    start.parentNode.insertBefore(tmpText, start);
+                    //当点b,i,u时，不能清除i上边的b
+                    removeFillData(this.document, tmpText);
+                    fillData = tmpText;
+                    mergeSibling(tmp, 'previousSibling');
+                    mergeSibling(start, 'nextSibling');
+                    nativeRange.moveStart('character', -1);
+                    nativeRange.collapse(true);
+                }
+            }
+            this.moveToBookmark(bookmark);
+            tmp && domUtils.remove(tmp);
+            //IE在隐藏状态下不支持range操作，catch一下
+            try {
+                nativeRange.select();
+            } catch (e) {
+            }
+            return this;
+        } : function (notInsertFillData) {
+            function checkOffset(rng){
+
+                function check(node,offset,dir){
+                    if(node.nodeType == 3 && node.nodeValue.length < offset){
+                        rng[dir + 'Offset'] = node.nodeValue.length
+                    }
+                }
+                check(rng.startContainer,rng.startOffset,'start');
+                check(rng.endContainer,rng.endOffset,'end');
+            }
+            var win = domUtils.getWindow(this.document),
+                sel = win.getSelection(),
+                txtNode;
+            //FF下关闭自动长高时滚动条在关闭dialog时会跳
+            //ff下如果不body.focus将不能定位闭合光标到编辑器内
+            browser.gecko ? this.body.focus() : win.focus();
+            if (sel) {
+                sel.removeAllRanges();
+                // trace:870 chrome/safari后边是br对于闭合得range不能定位 所以去掉了判断
+                // this.startContainer.nodeType != 3 &&! ((child = this.startContainer.childNodes[this.startOffset]) && child.nodeType == 1 && child.tagName == 'BR'
+                if (this.collapsed && !notInsertFillData) {
+//                    //opear如果没有节点接着，原生的不能够定位,不能在body的第一级插入空白节点
+//                    if (notInsertFillData && browser.opera && !domUtils.isBody(this.startContainer) && this.startContainer.nodeType == 1) {
+//                        var tmp = this.document.createTextNode('');
+//                        this.insertNode(tmp).setStart(tmp, 0).collapse(true);
+//                    }
+//
+                    //处理光标落在文本节点的情况
+                    //处理以下的情况
+                    //<b>|xxxx</b>
+                    //<b>xxxx</b>|xxxx
+                    //xxxx<b>|</b>
+                    var start = this.startContainer,child = start;
+                    if(start.nodeType == 1){
+                        child = start.childNodes[this.startOffset];
+
+                    }
+                    if( !(start.nodeType == 3 && this.startOffset)  &&
+                        (child ?
+                            (!child.previousSibling || child.previousSibling.nodeType != 3)
+                            :
+                            (!start.lastChild || start.lastChild.nodeType != 3)
+                            )
+                        ){
+                        txtNode = this.document.createTextNode(fillChar);
+                        //跟着前边走
+                        this.insertNode(txtNode);
+                        removeFillData(this.document, txtNode);
+                        mergeSibling(txtNode, 'previousSibling');
+                        mergeSibling(txtNode, 'nextSibling');
+                        fillData = txtNode;
+                        this.setStart(txtNode, browser.webkit ? 1 : 0).collapse(true);
+                    }
+                }
+                var nativeRange = this.document.createRange();
+                if(this.collapsed && browser.opera && this.startContainer.nodeType == 1){
+                    var child = this.startContainer.childNodes[this.startOffset];
+                    if(!child){
+                        //往前靠拢
+                        child = this.startContainer.lastChild;
+                        if( child && domUtils.isBr(child)){
+                            this.setStartBefore(child).collapse(true);
+                        }
+                    }else{
+                        //向后靠拢
+                        while(child && domUtils.isBlockElm(child)){
+                            if(child.nodeType == 1 && child.childNodes[0]){
+                                child = child.childNodes[0]
+                            }else{
+                                break;
+                            }
+                        }
+                        child && this.setStartBefore(child).collapse(true)
+                    }
+
+                }
+                //是createAddress最后一位算的不准，现在这里进行微调
+                checkOffset(this);
+                nativeRange.setStart(this.startContainer, this.startOffset);
+                nativeRange.setEnd(this.endContainer, this.endOffset);
+                sel.addRange(nativeRange);
+            }
+            return this;
+        },
+      
+
+        createAddress : function(ignoreEnd,ignoreTxt){
+            var addr = {},me = this;
+
+            function getAddress(isStart){
+                var node = isStart ? me.startContainer : me.endContainer;
+                var parents = domUtils.findParents(node,true,function(node){return !domUtils.isBody(node)}),
+                    addrs = [];
+                for(var i = 0,ci;ci = parents[i++];){
+                    addrs.push(domUtils.getNodeIndex(ci,ignoreTxt));
+                }
+                var firstIndex = 0;
+
+                if(ignoreTxt){
+                    if(node.nodeType == 3){
+                        var tmpNode = node.previousSibling;
+                        while(tmpNode && tmpNode.nodeType == 3){
+                            firstIndex += tmpNode.nodeValue.replace(fillCharReg,'').length;
+                            tmpNode = tmpNode.previousSibling;
+                        }
+                        firstIndex +=  (isStart ? me.startOffset : me.endOffset)// - (fillCharReg.test(node.nodeValue) ? 1 : 0 )
+                    }else{
+                        node =  node.childNodes[ isStart ? me.startOffset : me.endOffset];
+                        if(node){
+                            firstIndex = domUtils.getNodeIndex(node,ignoreTxt);
+                        }else{
+                            node = isStart ? me.startContainer : me.endContainer;
+                            var first = node.firstChild;
+                            while(first){
+                                if(domUtils.isFillChar(first)){
+                                    first = first.nextSibling;
+                                    continue;
+                                }
+                                firstIndex++;
+                                if(first.nodeType == 3){
+                                    while( first && first.nodeType == 3){
+                                        first = first.nextSibling;
+                                    }
+                                }else{
+                                    first = first.nextSibling;
+                                }
+                            }
+                        }
+                    }
+
+                }else{
+                    firstIndex = isStart ? domUtils.isFillChar(node) ? 0 : me.startOffset  : me.endOffset
+                }
+                if(firstIndex < 0){
+                    firstIndex = 0;
+                }
+                addrs.push(firstIndex);
+                return addrs;
+            }
+            addr.startAddress = getAddress(true);
+            if(!ignoreEnd){
+                addr.endAddress = me.collapsed ? [].concat(addr.startAddress) : getAddress();
+            }
+            return addr;
+        },
+        moveToAddress : function(addr,ignoreEnd){
+            var me = this;
+            function getNode(address,isStart){
+                var tmpNode = me.body,
+                    parentNode,offset;
+                for(var i= 0,ci,l=address.length;i<l;i++){
+                    ci = address[i];
+                    parentNode = tmpNode;
+                    tmpNode = tmpNode.childNodes[ci];
+                    if(!tmpNode){
+                        offset = ci;
+                        break;
+                    }
+                }
+                if(isStart){
+                    if(tmpNode){
+                        me.setStartBefore(tmpNode)
+                    }else{
+                        me.setStart(parentNode,offset)
+                    }
+                }else{
+                    if(tmpNode){
+                        me.setEndBefore(tmpNode)
+                    }else{
+                        me.setEnd(parentNode,offset)
+                    }
+                }
+            }
+            getNode(addr.startAddress,true);
+            !ignoreEnd && addr.endAddress &&  getNode(addr.endAddress);
+            return me;
+        },
+        equals : function(rng){
+            for(var p in this){
+                if(this.hasOwnProperty(p)){
+                    if(this[p] !== rng[p])
+                        return false
+                }
+            }
+            return true;
+
+        },
+        scrollIntoView : function(){
+            var $span = $('<span style="padding:0;margin:0;display:block;border:0">&nbsp;</span>');
+            this.cloneRange().insertNode($span.get(0));
+            var winScrollTop = $(window).scrollTop(),
+                winHeight = $(window).height(),
+                spanTop = $span.offset().top;
+            if(spanTop < winScrollTop-winHeight || spanTop > winScrollTop + winHeight ){
+                if(spanTop > winScrollTop + winHeight){
+                    window.scrollTo(0,spanTop - winHeight + $span.height())
+                }else{
+                    window.scrollTo(0,winScrollTop - spanTop)
+                }
+
+            }
+            $span.remove();
+        },
+        getOffset : function(){
+            var bk = this.createBookmark();
+            var offset = $(bk.start).css('display','inline-block').offset();
+            this.moveToBookmark(bk);
+            return offset
+        }
+    };
+})();
+///import editor.js
+///import core/browser.js
+///import core/dom/dom.js
+///import core/dom/dtd.js
+///import core/dom/domUtils.js
+///import core/dom/Range.js
+/**
+ * @class UM.dom.Selection    Selection类
+ */
+(function () {
+
+    function getBoundaryInformation( range, start ) {
+        var getIndex = domUtils.getNodeIndex;
+        range = range.duplicate();
+        range.collapse( start );
+        var parent = range.parentElement();
+        //如果节点里没有子节点，直接退出
+        if ( !parent.hasChildNodes() ) {
+            return  {container:parent, offset:0};
+        }
+        var siblings = parent.children,
+            child,
+            testRange = range.duplicate(),
+            startIndex = 0, endIndex = siblings.length - 1, index = -1,
+            distance;
+        while ( startIndex <= endIndex ) {
+            index = Math.floor( (startIndex + endIndex) / 2 );
+            child = siblings[index];
+            testRange.moveToElementText( child );
+            var position = testRange.compareEndPoints( 'StartToStart', range );
+            if ( position > 0 ) {
+                endIndex = index - 1;
+            } else if ( position < 0 ) {
+                startIndex = index + 1;
+            } else {
+                //trace:1043
+                return  {container:parent, offset:getIndex( child )};
+            }
+        }
+        if ( index == -1 ) {
+            testRange.moveToElementText( parent );
+            testRange.setEndPoint( 'StartToStart', range );
+            distance = testRange.text.replace( /(\r\n|\r)/g, '\n' ).length;
+            siblings = parent.childNodes;
+            if ( !distance ) {
+                child = siblings[siblings.length - 1];
+                return  {container:child, offset:child.nodeValue.length};
+            }
+
+            var i = siblings.length;
+            while ( distance > 0 ){
+                distance -= siblings[ --i ].nodeValue.length;
+            }
+            return {container:siblings[i], offset:-distance};
+        }
+        testRange.collapse( position > 0 );
+        testRange.setEndPoint( position > 0 ? 'StartToStart' : 'EndToStart', range );
+        distance = testRange.text.replace( /(\r\n|\r)/g, '\n' ).length;
+        if ( !distance ) {
+            return  dtd.$empty[child.tagName] || dtd.$nonChild[child.tagName] ?
+            {container:parent, offset:getIndex( child ) + (position > 0 ? 0 : 1)} :
+            {container:child, offset:position > 0 ? 0 : child.childNodes.length}
+        }
+        while ( distance > 0 ) {
+            try {
+                var pre = child;
+                child = child[position > 0 ? 'previousSibling' : 'nextSibling'];
+                distance -= child.nodeValue.length;
+            } catch ( e ) {
+                return {container:parent, offset:getIndex( pre )};
+            }
+        }
+        return  {container:child, offset:position > 0 ? -distance : child.nodeValue.length + distance}
+    }
+
+    /**
+     * 将ieRange转换为Range对象
+     * @param {Range}   ieRange    ieRange对象
+     * @param {Range}   range      Range对象
+     * @return  {Range}  range       返回转换后的Range对象
+     */
+    function transformIERangeToRange( ieRange, range ) {
+        if ( ieRange.item ) {
+            range.selectNode( ieRange.item( 0 ) );
+        } else {
+            var bi = getBoundaryInformation( ieRange, true );
+            range.setStart( bi.container, bi.offset );
+            if ( ieRange.compareEndPoints( 'StartToEnd', ieRange ) != 0 ) {
+                bi = getBoundaryInformation( ieRange, false );
+                range.setEnd( bi.container, bi.offset );
+            }
+        }
+        return range;
+    }
+
+    /**
+     * 获得ieRange
+     * @param {Selection} sel    Selection对象
+     * @return {ieRange}    得到ieRange
+     */
+    function _getIERange( sel,txtRange ) {
+        var ieRange;
+        //ie下有可能报错
+        try {
+            ieRange = sel.getNative(txtRange).createRange();
+        } catch ( e ) {
+            return null;
+        }
+        var el = ieRange.item ? ieRange.item( 0 ) : ieRange.parentElement();
+        if ( ( el.ownerDocument || el ) === sel.document ) {
+            return ieRange;
+        }
+        return null;
+    }
+
+    var Selection = dom.Selection = function ( doc,body ) {
+        var me = this;
+        me.document = doc;
+        me.body = body;
+        if ( browser.ie9below ) {
+            $( body).on('beforedeactivate', function () {
+                me._bakIERange = me.getIERange();
+            } ).on('activate', function () {
+                try {
+                    var ieNativRng =  _getIERange( me );
+                    if ( (!ieNativRng || !me.rangeInBody(ieNativRng)) && me._bakIERange ) {
+                        me._bakIERange.select();
+                    }
+                } catch ( ex ) {
+                }
+                me._bakIERange = null;
+            } );
+        }
+    };
+
+    Selection.prototype = {
+        hasNativeRange : function(){
+            var rng;
+            if(!browser.ie || browser.ie9above){
+                var nativeSel = this.getNative();
+                if(!nativeSel.rangeCount){
+                    return false;
+                }
+                rng = nativeSel.getRangeAt(0);
+            }else{
+                rng = _getIERange(this);
+            }
+            return rng && this.rangeInBody(rng);
+        },
+        /**
+         * 获取原生seleciton对象
+         * @public
+         * @function
+         * @name    UM.dom.Selection.getNative
+         * @return {Selection}    获得selection对象
+         */
+        getNative:function (txtRange) {
+            var doc = this.document;
+            try {
+                return !doc ? null : browser.ie9below || txtRange? doc.selection : domUtils.getWindow( doc ).getSelection();
+            } catch ( e ) {
+                return null;
+            }
+        },
+        /**
+         * 获得ieRange
+         * @public
+         * @function
+         * @name    UM.dom.Selection.getIERange
+         * @return {ieRange}    返回ie原生的Range
+         */
+        getIERange:function (txtRange) {
+            var ieRange = _getIERange( this,txtRange );
+            if ( !ieRange  || !this.rangeInBody(ieRange,txtRange)) {
+                if ( this._bakIERange ) {
+                    return this._bakIERange;
+                }
+            }
+            return ieRange;
+        },
+        rangeInBody : function(rng,txtRange){
+            var node = browser.ie9below || txtRange ? rng && rng.item ? rng.item() : rng.parentElement() : rng.startContainer;
+
+            return node === this.body || domUtils.inDoc(node,this.body);
+        },
+        /**
+         * 缓存当前选区的range和选区的开始节点
+         * @public
+         * @function
+         * @name    UM.dom.Selection.cache
+         */
+        cache:function () {
+            this.clear();
+            this._cachedRange = this.getRange();
+            this._cachedStartElement = this.getStart();
+            this._cachedStartElementPath = this.getStartElementPath();
+        },
+
+        getStartElementPath:function () {
+            if ( this._cachedStartElementPath ) {
+                return this._cachedStartElementPath;
+            }
+            var start = this.getStart();
+            if ( start ) {
+                return domUtils.findParents( start, true, null, true )
+            }
+            return [];
+        },
+        /**
+         * 清空缓存
+         * @public
+         * @function
+         * @name    UM.dom.Selection.clear
+         */
+        clear:function () {
+            this._cachedStartElementPath = this._cachedRange = this._cachedStartElement = null;
+        },
+        /**
+         * 编辑器是否得到了选区
+         */
+        isFocus:function () {
+            return this.hasNativeRange()
+
+        },
+        /**
+         * 获取选区对应的Range
+         * @public
+         * @function
+         * @name    UM.dom.Selection.getRange
+         * @returns {UM.dom.Range}    得到Range对象
+         */
+        getRange:function () {
+            var me = this;
+            function optimze( range ) {
+                var child = me.body.firstChild,
+                    collapsed = range.collapsed;
+                while ( child && child.firstChild ) {
+                    range.setStart( child, 0 );
+                    child = child.firstChild;
+                }
+                if ( !range.startContainer ) {
+                    range.setStart( me.body, 0 )
+                }
+                if ( collapsed ) {
+                    range.collapse( true );
+                }
+            }
+
+            if ( me._cachedRange != null ) {
+                return this._cachedRange;
+            }
+            var range = new dom.Range( me.document,me.body );
+            if ( browser.ie9below ) {
+                var nativeRange = me.getIERange();
+                if ( nativeRange  && this.rangeInBody(nativeRange)) {
+
+                    try{
+                        transformIERangeToRange( nativeRange, range );
+                    }catch(e){
+                        optimze( range );
+                    }
+
+                } else {
+                    optimze( range );
+                }
+            } else {
+                var sel = me.getNative();
+                if ( sel && sel.rangeCount && me.rangeInBody(sel.getRangeAt( 0 ))) {
+                    var firstRange = sel.getRangeAt( 0 );
+                    var lastRange = sel.getRangeAt( sel.rangeCount - 1 );
+                    range.setStart( firstRange.startContainer, firstRange.startOffset ).setEnd( lastRange.endContainer, lastRange.endOffset );
+                    if ( range.collapsed && domUtils.isBody( range.startContainer ) && !range.startOffset ) {
+                        optimze( range );
+                    }
+                } else {
+                    //trace:1734 有可能已经不在dom树上了，标识的节点
+                    if ( this._bakRange && (this._bakRange.startContainer === this.body || domUtils.inDoc( this._bakRange.startContainer, this.body )) ){
+                        return this._bakRange;
+                    }
+                    optimze( range );
+                }
+            }
+
+            return this._bakRange = range;
+        },
+
+        /**
+         * 获取开始元素，用于状态反射
+         * @public
+         * @function
+         * @name    UM.dom.Selection.getStart
+         * @return {Element}     获得开始元素
+         */
+        getStart:function () {
+            if ( this._cachedStartElement ) {
+                return this._cachedStartElement;
+            }
+            var range = browser.ie9below ? this.getIERange() : this.getRange(),
+                tmpRange,
+                start, tmp, parent;
+            if ( browser.ie9below ) {
+                if ( !range ) {
+                    //todo 给第一个值可能会有问题
+                    return this.document.body.firstChild;
+                }
+                //control元素
+                if ( range.item ){
+                    return range.item( 0 );
+                }
+                tmpRange = range.duplicate();
+                //修正ie下<b>x</b>[xx] 闭合后 <b>x|</b>xx
+                tmpRange.text.length > 0 && tmpRange.moveStart( 'character', 1 );
+                tmpRange.collapse( 1 );
+                start = tmpRange.parentElement();
+                parent = tmp = range.parentElement();
+                while ( tmp = tmp.parentNode ) {
+                    if ( tmp == start ) {
+                        start = parent;
+                        break;
+                    }
+                }
+            } else {
+                start = range.startContainer;
+                if ( start.nodeType == 1 && start.hasChildNodes() ){
+                    start = start.childNodes[Math.min( start.childNodes.length - 1, range.startOffset )];
+                }
+                if ( start.nodeType == 3 ){
+                    return start.parentNode;
+                }
+            }
+            return start;
+        },
+        /**
+         * 得到选区中的文本
+         * @public
+         * @function
+         * @name    UM.dom.Selection.getText
+         * @return  {String}    选区中包含的文本
+         */
+        getText:function () {
+            var nativeSel, nativeRange;
+            if ( this.isFocus() && (nativeSel = this.getNative()) ) {
+                nativeRange = browser.ie9below ? nativeSel.createRange() : nativeSel.getRangeAt( 0 );
+                return browser.ie9below ? nativeRange.text : nativeRange.toString();
+            }
+            return '';
+        }
+    };
+})();
+/**
+ * @file
+ * @name UM.Editor
+ * @short Editor
+ * @import editor.js,core/utils.js,core/EventBase.js,core/browser.js,core/dom/dtd.js,core/dom/domUtils.js,core/dom/Range.js,core/dom/Selection.js,plugins/serialize.js
+ * @desc 编辑器主类，包含编辑器提供的大部分公用接口
+ */
+(function () {
+    var uid = 0, _selectionChangeTimer;
+
+    /**
+     * @private
+     * @ignore
+     * @param form  编辑器所在的form元素
+     * @param editor  编辑器实例对象
+     */
+    function setValue(form, editor) {
+        var textarea;
+        if (editor.textarea) {
+            if (utils.isString(editor.textarea)) {
+                for (var i = 0, ti, tis = domUtils.getElementsByTagName(form, 'textarea'); ti = tis[i++];) {
+                    if (ti.id == 'umeditor_textarea_' + editor.options.textarea) {
+                        textarea = ti;
+                        break;
+                    }
+                }
+            } else {
+                textarea = editor.textarea;
+            }
+        }
+        if (!textarea) {
+            form.appendChild(textarea = domUtils.createElement(document, 'textarea', {
+                'name': editor.options.textarea,
+                'id': 'umeditor_textarea_' + editor.options.textarea,
+                'style': "display:none"
+            }));
+            //不要产生多个textarea
+            editor.textarea = textarea;
+        }
+        textarea.value = editor.hasContents() ?
+            (editor.options.allHtmlEnabled ? editor.getAllHtml() : editor.getContent(null, null, true)) :
+            '';
+    }
+    function loadPlugins(me){
+        //初始化插件
+        for (var pi in UM.plugins) {
+            if(me.options.excludePlugins.indexOf(pi) == -1){
+                UM.plugins[pi].call(me);
+                me.plugins[pi] = 1;
+            }
+        }
+        me.langIsReady = true;
+
+        me.fireEvent("langReady");
+    }
+    function checkCurLang(I18N){
+        for(var lang in I18N){
+            return lang;
+        }
+    }
+    /**
+     * UEditor编辑器类
+     * @name Editor
+     * @desc 创建一个跟编辑器实例
+     * - ***container*** 编辑器容器对象
+     * - ***iframe*** 编辑区域所在的iframe对象
+     * - ***window*** 编辑区域所在的window
+     * - ***document*** 编辑区域所在的document对象
+     * - ***body*** 编辑区域所在的body对象
+     * - ***selection*** 编辑区域的选区对象
+     */
+    var Editor = UM.Editor = function (options) {
+        var me = this;
+        me.uid = uid++;
+        EventBase.call(me);
+        me.commands = {};
+        me.options = utils.extend(utils.clone(options || {}), UMEDITOR_CONFIG, true);
+        me.shortcutkeys = {};
+        me.inputRules = [];
+        me.outputRules = [];
+        //设置默认的常用属性
+        me.setOpt({
+            isShow: true,
+            initialContent: '',
+            initialStyle:'',
+            autoClearinitialContent: false,
+            textarea: 'editorValue',
+            focus: false,
+            focusInEnd: true,
+            autoClearEmptyNode: true,
+            fullscreen: false,
+            readonly: false,
+            zIndex: 999,
+            enterTag: 'p',
+            lang: 'zh-cn',
+            langPath: me.options.UMEDITOR_HOME_URL + 'lang/',
+            theme: 'default',
+            themePath: me.options.UMEDITOR_HOME_URL + 'themes/',
+            allHtmlEnabled: false,
+            autoSyncData : true,
+            autoHeightEnabled : true,
+            excludePlugins:''
+        });
+        me.plugins = {};
+        if(!utils.isEmptyObject(UM.I18N)){
+            //修改默认的语言类型
+            me.options.lang = checkCurLang(UM.I18N);
+            loadPlugins(me);
+        }else{
+            utils.loadFile(document, {
+                src: me.options.langPath + me.options.lang + "/" + me.options.lang + ".js",
+                tag: "script",
+                type: "text/javascript",
+                defer: "defer"
+            }, function () {
+                loadPlugins(me);
+            });
+        }
+
+    };
+    Editor.prototype = {
+        /**
+         * 当编辑器ready后执行传入的fn,如果编辑器已经完成ready，就马上执行fn，fn的中的this是编辑器实例。
+         * 大部分的实例接口都需要放在该方法内部执行，否则在IE下可能会报错。
+         * @name ready
+         * @grammar editor.ready(fn) fn是当编辑器渲染好后执行的function
+         * @example
+         * var editor = new UM.ui.Editor();
+         * editor.render("myEditor");
+         * editor.ready(function(){
+         *     editor.setContent("欢迎使用UEditor！");
+         * })
+         */
+        ready: function (fn) {
+            var me = this;
+            if (fn) {
+                me.isReady ? fn.apply(me) : me.addListener('ready', fn);
+            }
+        },
+        /**
+         * 为编辑器设置默认参数值。若用户配置为空，则以默认配置为准
+         * @grammar editor.setOpt(key,value);      //传入一个键、值对
+         * @grammar editor.setOpt({ key:value});   //传入一个json对象
+         */
+        setOpt: function (key, val) {
+            var obj = {};
+            if (utils.isString(key)) {
+                obj[key] = val;
+            } else {
+                obj = key;
+            }
+            utils.extend(this.options, obj, true);
+        },
+        getOpt:function(key){
+            return this.options[key] || '';
+        },
+        /**
+         * 销毁编辑器实例对象
+         * @name destroy
+         * @grammar editor.destroy();
+         */
+        destroy: function () {
+
+            var me = this;
+            me.fireEvent('destroy');
+            var container = me.container.parentNode;
+            if(container === document.body){
+                container = me.container;
+            }
+            var textarea = me.textarea;
+            if (!textarea) {
+                textarea = document.createElement('textarea');
+                container.parentNode.insertBefore(textarea, container);
+            } else {
+                textarea.style.display = '';
+            }
+
+            textarea.style.width = me.body.offsetWidth + 'px';
+            textarea.style.height = me.body.offsetHeight + 'px';
+            textarea.value = me.getContent();
+            textarea.id = me.key;
+            if(container.contains(textarea)){
+                $(textarea).insertBefore(container);
+            }
+            container.innerHTML = '';
+
+            domUtils.remove(container);
+            UM.clearCache(me.id);
+            //trace:2004
+            for (var p in me) {
+                if (me.hasOwnProperty(p)) {
+                    delete this[p];
+                }
+            }
+
+        },
+        initialCont : function(holder){
+
+            if(holder){
+                holder.getAttribute('name') && ( this.options.textarea = holder.getAttribute('name'));
+                if (holder && /script|textarea/ig.test(holder.tagName)) {
+                    var newDiv = document.createElement('div');
+                    holder.parentNode.insertBefore(newDiv, holder);
+                    this.options.initialContent = UM.htmlparser(holder.value || holder.innerHTML|| this.options.initialContent).toHtml();
+                    holder.className && (newDiv.className = holder.className);
+                    holder.style.cssText && (newDiv.style.cssText = holder.style.cssText);
+
+                    if (/textarea/i.test(holder.tagName)) {
+                        this.textarea = holder;
+                        this.textarea.style.display = 'none';
+
+                    } else {
+                        holder.parentNode.removeChild(holder);
+                        holder.id && (newDiv.id = holder.id);
+                    }
+                    holder = newDiv;
+                    holder.innerHTML = '';
+                }
+                return holder;
+            }else{
+                return null;
+            }
+
+        },
+        /**
+         * 渲染编辑器的DOM到指定容器，必须且只能调用一次
+         * @name render
+         * @grammar editor.render(containerId);    //可以指定一个容器ID
+         * @grammar editor.render(containerDom);   //也可以直接指定容器对象
+         */
+        render: function (container) {
+            var me = this,
+                options = me.options,
+                getStyleValue=function(attr){
+                    return parseInt($(container).css(attr));
+                };
+
+            if (utils.isString(container)) {
+                container = document.getElementById(container);
+            }
+            if (container) {
+                this.id = container.getAttribute('id');
+                UM.setEditor(this);
+                utils.cssRule('edui-style-body',me.options.initialStyle,document);
+
+                container = this.initialCont(container);
+
+                container.className += ' edui-body-container';
+
+                if(options.initialFrameWidth){
+                    options.minFrameWidth = options.initialFrameWidth;
+                }else{
+                    //都没给值，先写死了
+                    options.minFrameWidth = options.initialFrameWidth = $(container).width() || UM.defaultWidth;
+                }
+                if(options.initialFrameHeight){
+                    options.minFrameHeight = options.initialFrameHeight;
+                }else{
+                    options.initialFrameHeight = options.minFrameHeight = $(container).height() || UM.defaultHeight;
+                }
+
+                container.style.width = /%$/.test(options.initialFrameWidth) ?  '100%' : options.initialFrameWidth -
+                    getStyleValue("padding-left")-
+                    getStyleValue("padding-right")  +'px';
+
+                var height = /%$/.test(options.initialFrameHeight) ?  '100%' : (options.initialFrameHeight - getStyleValue("padding-top")- getStyleValue("padding-bottom") );
+                if(this.options.autoHeightEnabled){
+                    container.style.minHeight = height +'px';
+                    container.style.height = '';
+                    if(browser.ie && browser.version <= 6){
+                        container.style.height = height ;
+                        container.style.setExpression('height', 'this.scrollHeight <= ' + height + ' ? "' + height + 'px" : "auto"');
+                    }
+                }else{
+                    $(container).height(height);
+                }
+                container.style.zIndex = options.zIndex;
+                this._setup(container);
+
+            }
+        },
+        /**
+         * 编辑器初始化
+         * @private
+         * @ignore
+         * @param {Element} doc 编辑器Iframe中的文档对象
+         */
+        _setup: function (cont) {
+            var me = this,
+                options = me.options;
+
+            cont.contentEditable = true;
+            document.body.spellcheck = false;
+
+            me.document = document;
+            me.window = document.defaultView || document.parentWindow;
+            me.body = cont;
+            me.$body = $(cont);
+            me.selection = new dom.Selection(document,me.body);
+            me._isEnabled = false;
+            //gecko初始化就能得到range,无法判断isFocus了
+            var geckoSel;
+            if (browser.gecko && (geckoSel = this.selection.getNative())) {
+                geckoSel.removeAllRanges();
+            }
+            this._initEvents();
+            //为form提交提供一个隐藏的textarea
+            for (var form = cont.parentNode; form && !domUtils.isBody(form); form = form.parentNode) {
+                if (form.tagName == 'FORM') {
+                    me.form = form;
+                    if(me.options.autoSyncData){
+                        $(cont).on('blur',function(){
+                            setValue(form,me);
+                        });
+                    }else{
+                        $(form).on('submit', function () {
+                            setValue(this, me);
+                        });
+                    }
+                    break;
+                }
+            }
+            if (options.initialContent) {
+                if (options.autoClearinitialContent) {
+                    var oldExecCommand = me.execCommand;
+                    me.execCommand = function () {
+                        me.fireEvent('firstBeforeExecCommand');
+                        return oldExecCommand.apply(me, arguments);
+                    };
+                    this._setDefaultContent(options.initialContent);
+                } else
+                    this.setContent(options.initialContent, false, true);
+            }
+
+            //编辑器不能为空内容
+
+            if (domUtils.isEmptyNode(me.body)) {
+                me.body.innerHTML = '<p>' + (browser.ie ? '' : '<br/>') + '</p>';
+            }
+            //如果要求focus, 就把光标定位到内容开始
+            if (options.focus) {
+                setTimeout(function () {
+                    me.focus(me.options.focusInEnd);
+                    //如果自动清除开着，就不需要做selectionchange;
+                    !me.options.autoClearinitialContent && me._selectionChange();
+                }, 0);
+            }
+            if (!me.container) {
+                me.container = cont.parentNode;
+            }
+
+            me._bindshortcutKeys();
+            me.isReady = 1;
+            me.fireEvent('ready');
+            options.onready && options.onready.call(me);
+            if(!browser.ie || browser.ie9above){
+
+                $(me.body).on( 'blur focus', function (e) {
+                    var nSel = me.selection.getNative();
+                    //chrome下会出现alt+tab切换时，导致选区位置不对
+                    if (e.type == 'blur') {
+                        if(nSel.rangeCount > 0 ){
+                            me._bakRange = nSel.getRangeAt(0);
+                        }
+                    } else {
+                        try {
+                            me._bakRange && nSel.addRange(me._bakRange);
+                        } catch (e) {
+                        }
+                        me._bakRange = null;
+                    }
+                });
+            }
+
+            !options.isShow && me.setHide();
+            options.readonly && me.setDisabled();
+        },
+        /**
+         * 同步编辑器的数据，为提交数据做准备，主要用于你是手动提交的情况
+         * @name sync
+         * @grammar editor.sync(); //从编辑器的容器向上查找，如果找到就同步数据
+         * @grammar editor.sync(formID); //formID制定一个要同步数据的form的id,编辑器的数据会同步到你指定form下
+         * @desc
+         * 后台取得数据得键值使用你容器上得''name''属性，如果没有就使用参数传入的''textarea''
+         * @example
+         * editor.sync();
+         * form.sumbit(); //form变量已经指向了form元素
+         *
+         */
+        sync: function (formId) {
+            var me = this,
+                form = formId ? document.getElementById(formId) :
+                    domUtils.findParent(me.body.parentNode, function (node) {
+                        return node.tagName == 'FORM';
+                    }, true);
+            form && setValue(form, me);
+        },
+        /**
+         * 设置编辑器高度
+         * @name setHeight
+         * @grammar editor.setHeight(number);  //纯数值，不带单位
+         */
+        setHeight: function (height,notSetHeight) {
+            !notSetHeight && (this.options.initialFrameHeight = height);
+            if(this.options.autoHeightEnabled){
+                $(this.body).css({
+                    'min-height':height + 'px'
+                });
+                if(browser.ie && browser.version <= 6 && this.container){
+                    this.container.style.height = height ;
+                    this.container.style.setExpression('height', 'this.scrollHeight <= ' + height + ' ? "' + height + 'px" : "auto"');
+                }
+            }else{
+                $(this.body).height(height);
+            }
+            this.fireEvent('resize');
+        },
+        /**
+         * 设置编辑器宽度
+         * @name setWidth
+         * @grammar editor.setWidth(number);  //纯数值，不带单位
+         */
+        setWidth:function(width){
+            this.$container && this.$container.width(width);
+            $(this.body).width(width - $(this.body).css('padding-left').replace('px','') * 1 - $(this.body).css('padding-right').replace('px','') * 1);
+            this.fireEvent('resize');
+        },
+        addshortcutkey: function (cmd, keys) {
+            var obj = {};
+            if (keys) {
+                obj[cmd] = keys;
+            } else {
+                obj = cmd;
+            }
+            utils.extend(this.shortcutkeys, obj);
+        },
+        _bindshortcutKeys: function () {
+            var me = this, shortcutkeys = this.shortcutkeys;
+            me.addListener('keydown', function (type, e) {
+                var keyCode = e.keyCode || e.which;
+                for (var i in shortcutkeys) {
+                    var tmp = shortcutkeys[i].split(',');
+                    for (var t = 0, ti; ti = tmp[t++];) {
+                        ti = ti.split(':');
+                        var key = ti[0], param = ti[1];
+                        if (/^(ctrl)(\+shift)?\+(\d+)$/.test(key.toLowerCase()) || /^(\d+)$/.test(key)) {
+                            if (( (RegExp.$1 == 'ctrl' ? (e.ctrlKey || e.metaKey) : 0)
+                                && (RegExp.$2 != "" ? e[RegExp.$2.slice(1) + "Key"] : 1)
+                                && keyCode == RegExp.$3
+                                ) ||
+                                keyCode == RegExp.$1
+                                ) {
+                                if (me.queryCommandState(i,param) != -1)
+                                    me.execCommand(i, param);
+                                domUtils.preventDefault(e);
+                            }
+                        }
+                    }
+
+                }
+            });
+        },
+        /**
+         * 获取编辑器内容
+         * @name getContent
+         * @grammar editor.getContent()  => String //若编辑器中只包含字符"&lt;p&gt;&lt;br /&gt;&lt;/p/&gt;"会返回空。
+         * @grammar editor.getContent(fn)  => String
+         * @example
+         * getContent默认是会现调用hasContents来判断编辑器是否为空，如果是，就直接返回空字符串
+         * 你也可以传入一个fn来接替hasContents的工作，定制判断的规则
+         * editor.getContent(function(){
+         *     return false //编辑器没有内容 ，getContent直接返回空
+         * })
+         */
+        getContent: function (cmd, fn,notSetCursor,ignoreBlank,formatter) {
+            var me = this;
+            if (cmd && utils.isFunction(cmd)) {
+                fn = cmd;
+                cmd = '';
+            }
+            if (fn ? !fn() : !this.hasContents()) {
+                return '';
+            }
+            me.fireEvent('beforegetcontent');
+            var root = UM.htmlparser(me.body.innerHTML,ignoreBlank);
+            me.filterOutputRule(root);
+            me.fireEvent('aftergetcontent',root);
+            return  root.toHtml(formatter);
+        },
+        /**
+         * 取得完整的html代码，可以直接显示成完整的html文档
+         * @name getAllHtml
+         * @grammar editor.getAllHtml()  => String
+         */
+        getAllHtml: function () {
+            var me = this,
+                headHtml = [],
+                html = '';
+            me.fireEvent('getAllHtml', headHtml);
+            if (browser.ie && browser.version > 8) {
+                var headHtmlForIE9 = '';
+                utils.each(me.document.styleSheets, function (si) {
+                    headHtmlForIE9 += ( si.href ? '<link rel="stylesheet" type="text/css" href="' + si.href + '" />' : '<style>' + si.cssText + '</style>');
+                });
+                utils.each(me.document.getElementsByTagName('script'), function (si) {
+                    headHtmlForIE9 += si.outerHTML;
+                });
+            }
+            return '<html><head>' + (me.options.charset ? '<meta http-equiv="Content-Type" content="text/html; charset=' + me.options.charset + '"/>' : '')
+                + (headHtmlForIE9 || me.document.getElementsByTagName('head')[0].innerHTML) + headHtml.join('\n') + '</head>'
+                + '<body ' + (ie && browser.version < 9 ? 'class="view"' : '') + '>' + me.getContent(null, null, true) + '</body></html>';
+        },
+        /**
+         * 得到编辑器的纯文本内容，但会保留段落格式
+         * @name getPlainTxt
+         * @grammar editor.getPlainTxt()  => String
+         */
+        getPlainTxt: function () {
+            var reg = new RegExp(domUtils.fillChar, 'g'),
+                html = this.body.innerHTML.replace(/[\n\r]/g, '');//ie要先去了\n在处理
+            html = html.replace(/<(p|div)[^>]*>(<br\/?>|&nbsp;)<\/\1>/gi, '\n')
+                .replace(/<br\/?>/gi, '\n')
+                .replace(/<[^>/]+>/g, '')
+                .replace(/(\n)?<\/([^>]+)>/g, function (a, b, c) {
+                    return dtd.$block[c] ? '\n' : b ? b : '';
+                });
+            //取出来的空格会有c2a0会变成乱码，处理这种情况\u00a0
+            return html.replace(reg, '').replace(/\u00a0/g, ' ').replace(/&nbsp;/g, ' ');
+        },
+
+        /**
+         * 获取编辑器中的纯文本内容,没有段落格式
+         * @name getContentTxt
+         * @grammar editor.getContentTxt()  => String
+         */
+        getContentTxt: function () {
+            var reg = new RegExp(domUtils.fillChar, 'g');
+            //取出来的空格会有c2a0会变成乱码，处理这种情况\u00a0
+            return this.body[browser.ie ? 'innerText' : 'textContent'].replace(reg, '').replace(/\u00a0/g, ' ');
+        },
+
+        /**
+         * 将html设置到编辑器中, 如果是用于初始化时给编辑器赋初值，则必须放在ready方法内部执行
+         * @name setContent
+         * @grammar editor.setContent(html)
+         * @example
+         * var editor = new UM.ui.Editor()
+         * editor.ready(function(){
+         *     //需要ready后执行，否则可能报错
+         *     editor.setContent("欢迎使用UEditor！");
+         * })
+         */
+        setContent: function (html, isAppendTo, notFireSelectionchange) {
+            var me = this;
+
+            me.fireEvent('beforesetcontent', html);
+            var root = UM.htmlparser(html);
+            me.filterInputRule(root);
+            html = root.toHtml();
+
+
+            me.body.innerHTML = (isAppendTo ? me.body.innerHTML : '') + html;
+
+
+            function isCdataDiv(node){
+                return  node.tagName == 'DIV' && node.getAttribute('cdata_tag');
+            }
+            //给文本或者inline节点套p标签
+            if (me.options.enterTag == 'p') {
+
+                var child = this.body.firstChild, tmpNode;
+                if (!child || child.nodeType == 1 &&
+                    (dtd.$cdata[child.tagName] || isCdataDiv(child) ||
+                        domUtils.isCustomeNode(child)
+                        )
+                    && child === this.body.lastChild) {
+                    this.body.innerHTML = '<p>' + (browser.ie ? '&nbsp;' : '<br/>') + '</p>' + this.body.innerHTML;
+
+                } else {
+                    var p = me.document.createElement('p');
+                    while (child) {
+                        while (child && (child.nodeType == 3 || child.nodeType == 1 && dtd.p[child.tagName] && !dtd.$cdata[child.tagName])) {
+                            tmpNode = child.nextSibling;
+                            p.appendChild(child);
+                            child = tmpNode;
+                        }
+                        if (p.firstChild) {
+                            if (!child) {
+                                me.body.appendChild(p);
+                                break;
+                            } else {
+                                child.parentNode.insertBefore(p, child);
+                                p = me.document.createElement('p');
+                            }
+                        }
+                        child = child.nextSibling;
+                    }
+                }
+            }
+            me.fireEvent('aftersetcontent');
+            me.fireEvent('contentchange');
+
+            !notFireSelectionchange && me._selectionChange();
+            //清除保存的选区
+            me._bakRange = me._bakIERange = me._bakNativeRange = null;
+            //trace:1742 setContent后gecko能得到焦点问题
+            var geckoSel;
+            if (browser.gecko && (geckoSel = this.selection.getNative())) {
+                geckoSel.removeAllRanges();
+            }
+            if(me.options.autoSyncData){
+                me.form && setValue(me.form,me);
+            }
+        },
+
+        /**
+         * 让编辑器获得焦点，toEnd确定focus位置
+         * @name focus
+         * @grammar editor.focus([toEnd])   //默认focus到编辑器头部，toEnd为true时focus到内容尾部
+         */
+        focus: function (toEnd) {
+            try {
+                var me = this,
+                    rng = me.selection.getRange();
+                if (toEnd) {
+                    rng.setStartAtLast(me.body.lastChild).setCursor(false, true);
+                } else {
+                    rng.select(true);
+                }
+                this.fireEvent('focus');
+            } catch (e) {
+            }
+        },
+        /**
+         * 使编辑区域失去焦点
+         */
+        blur:function(){
+            var sel = this.selection.getNative();
+            sel.empty ? sel.empty() : sel.removeAllRanges();
+            this.fireEvent('blur');
+        },
+        /**
+         * 判断编辑器当前是否获得了焦点
+         */
+        isFocus : function(){
+            if(this.fireEvent('isfocus')===true){
+                return true;
+            }
+            return this.selection.isFocus();
+        },
+
+        /**
+         * 初始化UE事件及部分事件代理
+         * @private
+         * @ignore
+         */
+        _initEvents: function () {
+            var me = this,
+                cont = me.body,
+                _proxyDomEvent = function(){
+                    me._proxyDomEvent.apply(me, arguments);
+                };
+
+            $(cont)
+                .on( 'click contextmenu mousedown keydown keyup keypress mouseup mouseover mouseout selectstart', _proxyDomEvent)
+                .on( 'focus blur', _proxyDomEvent)
+                .on('mouseup keydown', function (evt) {
+                    //特殊键不触发selectionchange
+                    if (evt.type == 'keydown' && (evt.ctrlKey || evt.metaKey || evt.shiftKey || evt.altKey)) {
+                        return;
+                    }
+                    if (evt.button == 2)return;
+                    me._selectionChange(250, evt);
+                });
+        },
+        /**
+         * 触发事件代理
+         * @private
+         * @ignore
+         */
+        _proxyDomEvent: function (evt) {
+            return this.fireEvent(evt.type.replace(/^on/, ''), evt);
+        },
+        /**
+         * 变化选区
+         * @private
+         * @ignore
+         */
+        _selectionChange: function (delay, evt) {
+            var me = this;
+            //有光标才做selectionchange 为了解决未focus时点击source不能触发更改工具栏状态的问题（source命令notNeedUndo=1）
+//            if ( !me.selection.isFocus() ){
+//                return;
+//            }
+
+
+            var hackForMouseUp = false;
+            var mouseX, mouseY;
+            if (browser.ie && browser.version < 9 && evt && evt.type == 'mouseup') {
+                var range = this.selection.getRange();
+                if (!range.collapsed) {
+                    hackForMouseUp = true;
+                    mouseX = evt.clientX;
+                    mouseY = evt.clientY;
+                }
+            }
+            clearTimeout(_selectionChangeTimer);
+            _selectionChangeTimer = setTimeout(function () {
+                if (!me.selection.getNative()) {
+                    return;
+                }
+                //修复一个IE下的bug: 鼠标点击一段已选择的文本中间时，可能在mouseup后的一段时间内取到的range是在selection的type为None下的错误值.
+                //IE下如果用户是拖拽一段已选择文本，则不会触发mouseup事件，所以这里的特殊处理不会对其有影响
+                var ieRange;
+                if (hackForMouseUp && me.selection.getNative().type == 'None') {
+                    ieRange = me.document.body.createTextRange();
+                    try {
+                        ieRange.moveToPoint(mouseX, mouseY);
+                    } catch (ex) {
+                        ieRange = null;
+                    }
+                }
+                var bakGetIERange;
+                if (ieRange) {
+                    bakGetIERange = me.selection.getIERange;
+                    me.selection.getIERange = function () {
+                        return ieRange;
+                    };
+                }
+                me.selection.cache();
+                if (bakGetIERange) {
+                    me.selection.getIERange = bakGetIERange;
+                }
+                if (me.selection._cachedRange && me.selection._cachedStartElement) {
+                    me.fireEvent('beforeselectionchange');
+                    // 第二个参数causeByUi为true代表由用户交互造成的selectionchange.
+                    me.fireEvent('selectionchange', !!evt);
+                    me.fireEvent('afterselectionchange');
+                    me.selection.clear();
+                }
+            }, delay || 50);
+        },
+        _callCmdFn: function (fnName, args) {
+            args = Array.prototype.slice.call(args,0);
+            var cmdName = args.shift().toLowerCase(),
+                cmd, cmdFn;
+            cmd = this.commands[cmdName] || UM.commands[cmdName];
+            cmdFn = cmd && cmd[fnName];
+            //没有querycommandstate或者没有command的都默认返回0
+            if ((!cmd || !cmdFn) && fnName == 'queryCommandState') {
+                return 0;
+            } else if (cmdFn) {
+                return cmdFn.apply(this, [cmdName].concat(args));
+            }
+        },
+
+        /**
+         * 执行编辑命令cmdName，完成富文本编辑效果
+         * @name execCommand
+         * @grammar editor.execCommand(cmdName)   => {*}
+         */
+        execCommand: function (cmdName) {
+            if(!this.isFocus()){
+                var bakRange = this.selection._bakRange;
+                if(bakRange){
+                    bakRange.select();
+                }else{
+                    this.focus(true);
+                }
+
+            }
+            cmdName = cmdName.toLowerCase();
+            var me = this,
+                result,
+                cmd = me.commands[cmdName] || UM.commands[cmdName];
+            if (!cmd || !cmd.execCommand) {
+                return null;
+            }
+            if (!cmd.notNeedUndo && !me.__hasEnterExecCommand) {
+                me.__hasEnterExecCommand = true;
+                if (me.queryCommandState.apply(me,arguments) != -1) {
+                    me.fireEvent('saveScene');
+                    me.fireEvent('beforeexeccommand', cmdName);
+                    result = this._callCmdFn('execCommand', arguments);
+                    (!cmd.ignoreContentChange && !me._ignoreContentChange) && me.fireEvent('contentchange');
+                    me.fireEvent('afterexeccommand', cmdName);
+                    me.fireEvent('saveScene');
+                }
+                me.__hasEnterExecCommand = false;
+            } else {
+                result = this._callCmdFn('execCommand', arguments);
+                (!me.__hasEnterExecCommand && !cmd.ignoreContentChange && !me._ignoreContentChange) && me.fireEvent('contentchange');
+            }
+            (!me.__hasEnterExecCommand && !cmd.ignoreContentChange && !me._ignoreContentChange) && me._selectionChange();
+            return result;
+        },
+        /**
+         * 根据传入的command命令，查选编辑器当前的选区，返回命令的状态
+         * @name  queryCommandState
+         * @grammar editor.queryCommandState(cmdName)  => (-1|0|1)
+         * @desc
+         * * ''-1'' 当前命令不可用
+         * * ''0'' 当前命令可用
+         * * ''1'' 当前命令已经执行过了
+         */
+        queryCommandState: function (cmdName) {
+            try{
+                return this._callCmdFn('queryCommandState', arguments);
+            }catch(e){
+                return 0;
+            }
+
+        },
+
+        /**
+         * 根据传入的command命令，查选编辑器当前的选区，根据命令返回相关的值
+         * @name  queryCommandValue
+         * @grammar editor.queryCommandValue(cmdName)  =>  {*}
+         */
+        queryCommandValue: function (cmdName) {
+            try{
+                return this._callCmdFn('queryCommandValue', arguments);
+            }catch(e){
+                return null;
+            }
+        },
+        /**
+         * 检查编辑区域中是否有内容，若包含tags中的节点类型，直接返回true
+         * @name  hasContents
+         * @desc
+         * 默认有文本内容，或者有以下节点都不认为是空
+         * <code>{table:1,ul:1,ol:1,dl:1,iframe:1,area:1,base:1,col:1,hr:1,img:1,embed:1,input:1,link:1,meta:1,param:1}</code>
+         * @grammar editor.hasContents()  => (true|false)
+         * @grammar editor.hasContents(tags)  =>  (true|false)  //若文档中包含tags数组里对应的tag，直接返回true
+         * @example
+         * editor.hasContents(['span']) //如果编辑器里有这些，不认为是空
+         */
+        hasContents: function (tags) {
+            if (tags) {
+                for (var i = 0, ci; ci = tags[i++];) {
+                    if (this.body.getElementsByTagName(ci).length > 0) {
+                        return true;
+                    }
+                }
+            }
+            if (!domUtils.isEmptyBlock(this.body)) {
+                return true;
+            }
+            //随时添加,定义的特殊标签如果存在，不能认为是空
+            tags = ['div'];
+            for (i = 0; ci = tags[i++];) {
+                var nodes = domUtils.getElementsByTagName(this.body, ci);
+                for (var n = 0, cn; cn = nodes[n++];) {
+                    if (domUtils.isCustomeNode(cn)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        },
+        /**
+         * 重置编辑器，可用来做多个tab使用同一个编辑器实例
+         * @name  reset
+         * @desc
+         * * 清空编辑器内容
+         * * 清空回退列表
+         * @grammar editor.reset()
+         */
+        reset: function () {
+            this.fireEvent('reset');
+        },
+        isEnabled: function(){
+            return this._isEnabled != true;
+        },
+
+        setEnabled: function () {
+            var me = this, range;
+
+            me.body.contentEditable = true;
+
+            /* 恢复选区 */
+            if (me.lastBk) {
+                range = me.selection.getRange();
+                try {
+                    range.moveToBookmark(me.lastBk);
+                    delete me.lastBk;
+                } catch (e) {
+                    range.setStartAtFirst(me.body).collapse(true);
+                }
+                range.select(true);
+            }
+
+            /* 恢复query函数 */
+            if (me.bkqueryCommandState) {
+                me.queryCommandState = me.bkqueryCommandState;
+                delete me.bkqueryCommandState;
+            }
+
+            /* 恢复原生事件 */
+            if (me._bkproxyDomEvent) {
+                me._proxyDomEvent = me._bkproxyDomEvent;
+                delete me._bkproxyDomEvent;
+            }
+
+            /* 触发事件 */
+            me.fireEvent('setEnabled');
+        },
+        /**
+         * 设置当前编辑区域可以编辑
+         * @name enable
+         * @grammar editor.enable()
+         */
+        enable: function () {
+            return this.setEnabled();
+        },
+        setDisabled: function (except, keepDomEvent) {
+            var me = this;
+
+            me.body.contentEditable = false;
+            me._except = except ? utils.isArray(except) ? except : [except] : [];
+
+            /* 备份最后的选区 */
+            if (!me.lastBk) {
+                me.lastBk = me.selection.getRange().createBookmark(true);
+            }
+
+            /* 备份并重置query函数 */
+            if(!me.bkqueryCommandState) {
+                me.bkqueryCommandState = me.queryCommandState;
+                me.queryCommandState = function (type) {
+                    if (utils.indexOf(me._except, type) != -1) {
+                        return me.bkqueryCommandState.apply(me, arguments);
+                    }
+                    return -1;
+                };
+            }
+
+            /* 备份并墙原生事件 */
+            if(!keepDomEvent && !me._bkproxyDomEvent) {
+                me._bkproxyDomEvent = me._proxyDomEvent;
+                me._proxyDomEvent = function () {};
+            }
+
+            /* 触发事件 */
+            me.fireEvent('selectionchange');
+            me.fireEvent('setDisabled', me._except);
+        },
+        /** 设置当前编辑区域不可编辑,except中的命令除外
+         * @name disable
+         * @grammar editor.disable()
+         * @grammar editor.disable(except)  //例外的命令，也即即使设置了disable，此处配置的命令仍然可以执行
+         * @example
+         * //禁用工具栏中除加粗和插入图片之外的所有功能
+         * editor.disable(['bold','insertimage']);//可以是单一的String,也可以是Array
+         */
+        disable: function (except) {
+            return this.setDisabled(except);
+        },
+        /**
+         * 设置默认内容
+         * @ignore
+         * @private
+         * @param  {String} cont 要存入的内容
+         */
+        _setDefaultContent: function () {
+            function clear() {
+                var me = this;
+                if (me.document.getElementById('initContent')) {
+                    me.body.innerHTML = '<p>' + (ie ? '' : '<br/>') + '</p>';
+                    me.removeListener('firstBeforeExecCommand focus', clear);
+                    setTimeout(function () {
+                        me.focus();
+                        me._selectionChange();
+                    }, 0);
+                }
+            }
+
+            return function (cont) {
+                var me = this;
+                me.body.innerHTML = '<p id="initContent">' + cont + '</p>';
+
+                me.addListener('firstBeforeExecCommand focus', clear);
+            };
+        }(),
+        /**
+         * show方法的兼容版本
+         * @private
+         * @ignore
+         */
+        setShow: function () {
+            var me = this, range = me.selection.getRange();
+            if (me.container.style.display == 'none') {
+                //有可能内容丢失了
+                try {
+                    range.moveToBookmark(me.lastBk);
+                    delete me.lastBk;
+                } catch (e) {
+                    range.setStartAtFirst(me.body).collapse(true);
+                }
+                //ie下focus实效，所以做了个延迟
+                setTimeout(function () {
+                    range.select(true);
+                }, 100);
+                me.container.style.display = '';
+            }
+
+        },
+        /**
+         * 显示编辑器
+         * @name show
+         * @grammar editor.show()
+         */
+        show: function () {
+            return this.setShow();
+        },
+        /**
+         * hide方法的兼容版本
+         * @private
+         * @ignore
+         */
+        setHide: function () {
+            var me = this;
+            if (!me.lastBk) {
+                me.lastBk = me.selection.getRange().createBookmark(true);
+            }
+            me.container.style.display = 'none';
+        },
+        /**
+         * 隐藏编辑器
+         * @name hide
+         * @grammar editor.hide()
+         */
+        hide: function () {
+            return this.setHide();
+        },
+        /**
+         * 根据制定的路径，获取对应的语言资源
+         * @name  getLang
+         * @grammar editor.getLang(path)  =>  （JSON|String) 路径根据的是lang目录下的语言文件的路径结构
+         * @example
+         * editor.getLang('contextMenu.delete') //如果当前是中文，那返回是的是删除
+         */
+        getLang: function (path) {
+            var lang = UM.I18N[this.options.lang];
+            if (!lang) {
+                throw Error("not import language file");
+            }
+            path = (path || "").split(".");
+            for (var i = 0, ci; ci = path[i++];) {
+                lang = lang[ci];
+                if (!lang)break;
+            }
+            return lang;
+        },
+        /**
+         * 计算编辑器当前内容的长度
+         * @name  getContentLength
+         * @grammar editor.getContentLength(ingoneHtml,tagNames)  =>
+         * @example
+         * editor.getLang(true)
+         */
+        getContentLength: function (ingoneHtml, tagNames) {
+            var count = this.getContent(false,false,true).length;
+            if (ingoneHtml) {
+                tagNames = (tagNames || []).concat([ 'hr', 'img', 'iframe']);
+                count = this.getContentTxt().replace(/[\t\r\n]+/g, '').length;
+                for (var i = 0, ci; ci = tagNames[i++];) {
+                    count += this.body.getElementsByTagName(ci).length;
+                }
+            }
+            return count;
+        },
+        addInputRule: function (rule,ignoreUndo) {
+            rule.ignoreUndo = ignoreUndo;
+            this.inputRules.push(rule);
+        },
+        filterInputRule: function (root,isUndoLoad) {
+            for (var i = 0, ci; ci = this.inputRules[i++];) {
+                if(isUndoLoad && ci.ignoreUndo){
+                    continue;
+                }
+                ci.call(this, root);
+            }
+        },
+        addOutputRule: function (rule,ignoreUndo) {
+            rule.ignoreUndo = ignoreUndo;
+            this.outputRules.push(rule);
+        },
+        filterOutputRule: function (root,isUndoLoad) {
+            for (var i = 0, ci; ci = this.outputRules[i++];) {
+                if(isUndoLoad && ci.ignoreUndo){
+                    continue;
+                }
+                ci.call(this, root);
+            }
+        }
+    };
+    utils.inherits(Editor, EventBase);
+})();
+
+/**
+ * @file
+ * @name UM.filterWord
+ * @short filterWord
+ * @desc 用来过滤word粘贴过来的字符串
+ * @import editor.js,core/utils.js
+ * @anthor zhanyi
+ */
+var filterWord = UM.filterWord = function () {
+
+    //是否是word过来的内容
+    function isWordDocument( str ) {
+        return /(class="?Mso|style="[^"]*\bmso\-|w:WordDocument|<(v|o):|lang=)/ig.test( str );
+    }
+    //去掉小数
+    function transUnit( v ) {
+        v = v.replace( /[\d.]+\w+/g, function ( m ) {
+            return utils.transUnitToPx(m);
+        } );
+        return v;
+    }
+
+    function filterPasteWord( str ) {
+        return str.replace(/[\t\r\n]+/g,' ')
+            .replace( /<!--[\s\S]*?-->/ig, "" )
+            //转换图片
+            .replace(/<v:shape [^>]*>[\s\S]*?.<\/v:shape>/gi,function(str){
+                //opera能自己解析出image所这里直接返回空
+                if(browser.opera){
+                    return '';
+                }
+                try{
+                    //有可能是bitmap占为图，无用，直接过滤掉，主要体现在粘贴excel表格中
+                    if(/Bitmap/i.test(str)){
+                        return '';
+                    }
+                    var width = str.match(/width:([ \d.]*p[tx])/i)[1],
+                        height = str.match(/height:([ \d.]*p[tx])/i)[1],
+                        src =  str.match(/src=\s*"([^"]*)"/i)[1];
+                    return '<img width="'+ transUnit(width) +'" height="'+transUnit(height) +'" src="' + src + '" />';
+                } catch(e){
+                    return '';
+                }
+            })
+            //针对wps添加的多余标签处理
+            .replace(/<\/?div[^>]*>/g,'')
+            //去掉多余的属性
+            .replace( /v:\w+=(["']?)[^'"]+\1/g, '' )
+            .replace( /<(!|script[^>]*>.*?<\/script(?=[>\s])|\/?(\?xml(:\w+)?|xml|meta|link|style|\w+:\w+)(?=[\s\/>]))[^>]*>/gi, "" )
+            .replace( /<p [^>]*class="?MsoHeading"?[^>]*>(.*?)<\/p>/gi, "<p><strong>$1</strong></p>" )
+            //去掉多余的属性
+            .replace( /\s+(class|lang|align)\s*=\s*(['"]?)([\w-]+)\2/ig, function(str,name,marks,val){
+                //保留list的标示
+                return name == 'class' && val == 'MsoListParagraph' ? str : ''
+            })
+            //清除多余的font/span不能匹配&nbsp;有可能是空格
+            .replace( /<(font|span)[^>]*>(\s*)<\/\1>/gi, function(a,b,c){
+                return c.replace(/[\t\r\n ]+/g,' ')
+            })
+            //处理style的问题
+            .replace( /(<[a-z][^>]*)\sstyle=(["'])([^\2]*?)\2/gi, function( str, tag, tmp, style ) {
+                var n = [],
+                    s = style.replace( /^\s+|\s+$/, '' )
+                        .replace(/&#39;/g,'\'')
+                        .replace( /&quot;/gi, "'" )
+                        .split( /;\s*/g );
+
+                for ( var i = 0,v; v = s[i];i++ ) {
+
+                    var name, value,
+                        parts = v.split( ":" );
+
+                    if ( parts.length == 2 ) {
+                        name = parts[0].toLowerCase();
+                        value = parts[1].toLowerCase();
+                        if(/^(background)\w*/.test(name) && value.replace(/(initial|\s)/g,'').length == 0
+                            ||
+                            /^(margin)\w*/.test(name) && /^0\w+$/.test(value)
+                            ){
+                            continue;
+                        }
+
+                        switch ( name ) {
+                            case "mso-padding-alt":
+                            case "mso-padding-top-alt":
+                            case "mso-padding-right-alt":
+                            case "mso-padding-bottom-alt":
+                            case "mso-padding-left-alt":
+                            case "mso-margin-alt":
+                            case "mso-margin-top-alt":
+                            case "mso-margin-right-alt":
+                            case "mso-margin-bottom-alt":
+                            case "mso-margin-left-alt":
+                            //ie下会出现挤到一起的情况
+                            //case "mso-table-layout-alt":
+                            case "mso-height":
+                            case "mso-width":
+                            case "mso-vertical-align-alt":
+                                //trace:1819 ff下会解析出padding在table上
+                                if(!/<table/.test(tag))
+                                    n[i] = name.replace( /^mso-|-alt$/g, "" ) + ":" + transUnit( value );
+                                continue;
+                            case "horiz-align":
+                                n[i] = "text-align:" + value;
+                                continue;
+
+                            case "vert-align":
+                                n[i] = "vertical-align:" + value;
+                                continue;
+
+                            case "font-color":
+                            case "mso-foreground":
+                                n[i] = "color:" + value;
+                                continue;
+
+                            case "mso-background":
+                            case "mso-highlight":
+                                n[i] = "background:" + value;
+                                continue;
+
+                            case "mso-default-height":
+                                n[i] = "min-height:" + transUnit( value );
+                                continue;
+
+                            case "mso-default-width":
+                                n[i] = "min-width:" + transUnit( value );
+                                continue;
+
+                            case "mso-padding-between-alt":
+                                n[i] = "border-collapse:separate;border-spacing:" + transUnit( value );
+                                continue;
+
+                            case "text-line-through":
+                                if ( (value == "single") || (value == "double") ) {
+                                    n[i] = "text-decoration:line-through";
+                                }
+                                continue;
+                            case "mso-zero-height":
+                                if ( value == "yes" ) {
+                                    n[i] = "display:none";
+                                }
+                                continue;
+//                                case 'background':
+//                                    break;
+                            case 'margin':
+                                if ( !/[1-9]/.test( value ) ) {
+                                    continue;
+                                }
+
+                        }
+
+                        if ( /^(mso|column|font-emph|lang|layout|line-break|list-image|nav|panose|punct|row|ruby|sep|size|src|tab-|table-border|text-(?:decor|trans)|top-bar|version|vnd|word-break)/.test( name )
+                            ||
+                            /text\-indent|padding|margin/.test(name) && /\-[\d.]+/.test(value)
+                            ) {
+                            continue;
+                        }
+
+                        n[i] = name + ":" + parts[1];
+                    }
+                }
+                return tag + (n.length ? ' style="' + n.join( ';').replace(/;{2,}/g,';') + '"' : '');
+            })
+            .replace(/[\d.]+(cm|pt)/g,function(str){
+                return utils.transUnitToPx(str)
+            })
+
+    }
+
+    return function ( html ) {
+        return (isWordDocument( html ) ? filterPasteWord( html ) : html);
+    };
+}();
+///import editor.js
+///import core/utils.js
+///import core/dom/dom.js
+///import core/dom/dtd.js
+///import core/htmlparser.js
+//模拟的节点类
+//by zhanyi
+(function () {
+    var uNode = UM.uNode = function (obj) {
+        this.type = obj.type;
+        this.data = obj.data;
+        this.tagName = obj.tagName;
+        this.parentNode = obj.parentNode;
+        this.attrs = obj.attrs || {};
+        this.children = obj.children;
+    };
+    var notTransAttrs = {
+        'href':1,
+        'src':1,
+        '_src':1,
+        '_href':1,
+        'cdata_data':1
+    };
+
+    var notTransTagName = {
+        style:1,
+        script:1
+    };
+
+    var indentChar = '    ',
+        breakChar = '\n';
+
+    function insertLine(arr, current, begin) {
+        arr.push(breakChar);
+        return current + (begin ? 1 : -1);
+    }
+
+    function insertIndent(arr, current) {
+        //插入缩进
+        for (var i = 0; i < current; i++) {
+            arr.push(indentChar);
+        }
+    }
+
+    //创建uNode的静态方法
+    //支持标签和html
+    uNode.createElement = function (html) {
+        if (/[<>]/.test(html)) {
+            return UM.htmlparser(html).children[0]
+        } else {
+            return new uNode({
+                type:'element',
+                children:[],
+                tagName:html
+            })
+        }
+    };
+    uNode.createText = function (data,noTrans) {
+        return new UM.uNode({
+            type:'text',
+            'data':noTrans ? data : utils.unhtml(data || '')
+        })
+    };
+    function nodeToHtml(node, arr, formatter, current) {
+        switch (node.type) {
+            case 'root':
+                for (var i = 0, ci; ci = node.children[i++];) {
+                    //插入新行
+                    if (formatter && ci.type == 'element' && !dtd.$inlineWithA[ci.tagName] && i > 1) {
+                        insertLine(arr, current, true);
+                        insertIndent(arr, current)
+                    }
+                    nodeToHtml(ci, arr, formatter, current)
+                }
+                break;
+            case 'text':
+                isText(node, arr);
+                break;
+            case 'element':
+                isElement(node, arr, formatter, current);
+                break;
+            case 'comment':
+                isComment(node, arr, formatter);
+        }
+        return arr;
+    }
+
+    function isText(node, arr) {
+        if(node.parentNode.tagName == 'pre'){
+            //源码模式下输入html标签，不能做转换处理，直接输出
+            arr.push(node.data)
+        }else{
+            arr.push(notTransTagName[node.parentNode.tagName] ? utils.html(node.data) : node.data.replace(/[ ]{2}/g,' &nbsp;'))
+        }
+
+    }
+
+    function isElement(node, arr, formatter, current) {
+        var attrhtml = '';
+        if (node.attrs) {
+            attrhtml = [];
+            var attrs = node.attrs;
+            for (var a in attrs) {
+                //这里就针对
+                //<p>'<img src='http://nsclick.baidu.com/u.gif?&asdf=\"sdf&asdfasdfs;asdf'></p>
+                //这里边的\"做转换，要不用innerHTML直接被截断了，属性src
+                //有可能做的不够
+                attrhtml.push(a + (attrs[a] !== undefined ? '="' + (notTransAttrs[a] ? utils.html(attrs[a]).replace(/["]/g, function (a) {
+                    return '&quot;'
+                }) : utils.unhtml(attrs[a])) + '"' : ''))
+            }
+            attrhtml = attrhtml.join(' ');
+        }
+        arr.push('<' + node.tagName +
+            (attrhtml ? ' ' + attrhtml  : '') +
+            (dtd.$empty[node.tagName] ? '\/' : '' ) + '>'
+        );
+        //插入新行
+        if (formatter  &&  !dtd.$inlineWithA[node.tagName] && node.tagName != 'pre') {
+            if(node.children && node.children.length){
+                current = insertLine(arr, current, true);
+                insertIndent(arr, current)
+            }
+
+        }
+        if (node.children && node.children.length) {
+            for (var i = 0, ci; ci = node.children[i++];) {
+                if (formatter && ci.type == 'element' &&  !dtd.$inlineWithA[ci.tagName] && i > 1) {
+                    insertLine(arr, current);
+                    insertIndent(arr, current)
+                }
+                nodeToHtml(ci, arr, formatter, current)
+            }
+        }
+        if (!dtd.$empty[node.tagName]) {
+            if (formatter && !dtd.$inlineWithA[node.tagName]  && node.tagName != 'pre') {
+
+                if(node.children && node.children.length){
+                    current = insertLine(arr, current);
+                    insertIndent(arr, current)
+                }
+            }
+            arr.push('<\/' + node.tagName + '>');
+        }
+
+    }
+
+    function isComment(node, arr) {
+        arr.push('<!--' + node.data + '-->');
+    }
+
+    function getNodeById(root, id) {
+        var node;
+        if (root.type == 'element' && root.getAttr('id') == id) {
+            return root;
+        }
+        if (root.children && root.children.length) {
+            for (var i = 0, ci; ci = root.children[i++];) {
+                if (node = getNodeById(ci, id)) {
+                    return node;
+                }
+            }
+        }
+    }
+
+    function getNodesByTagName(node, tagName, arr) {
+        if (node.type == 'element' && node.tagName == tagName) {
+            arr.push(node);
+        }
+        if (node.children && node.children.length) {
+            for (var i = 0, ci; ci = node.children[i++];) {
+                getNodesByTagName(ci, tagName, arr)
+            }
+        }
+    }
+    function nodeTraversal(root,fn){
+        if(root.children && root.children.length){
+            for(var i= 0,ci;ci=root.children[i];){
+                nodeTraversal(ci,fn);
+                //ci被替换的情况，这里就不再走 fn了
+                if(ci.parentNode ){
+                    if(ci.children && ci.children.length){
+                        fn(ci)
+                    }
+                    if(ci.parentNode) i++
+                }
+            }
+        }else{
+            fn(root)
+        }
+
+    }
+    uNode.prototype = {
+
+        /**
+         * 当前节点对象，转换成html文本
+         * @method toHtml
+         * @return { String } 返回转换后的html字符串
+         * @example
+         * ```javascript
+         * node.toHtml();
+         * ```
+         */
+
+        /**
+         * 当前节点对象，转换成html文本
+         * @method toHtml
+         * @param { Boolean } formatter 是否格式化返回值
+         * @return { String } 返回转换后的html字符串
+         * @example
+         * ```javascript
+         * node.toHtml( true );
+         * ```
+         */
+        toHtml:function (formatter) {
+            var arr = [];
+            nodeToHtml(this, arr, formatter, 0);
+            return arr.join('')
+        },
+
+        /**
+         * 获取节点的html内容
+         * @method innerHTML
+         * @warning 假如节点的type不是'element'，或节点的标签名称不在dtd列表里，直接返回当前节点
+         * @return { String } 返回节点的html内容
+         * @example
+         * ```javascript
+         * var htmlstr = node.innerHTML();
+         * ```
+         */
+
+        /**
+         * 设置节点的html内容
+         * @method innerHTML
+         * @warning 假如节点的type不是'element'，或节点的标签名称不在dtd列表里，直接返回当前节点
+         * @param { String } htmlstr 传入要设置的html内容
+         * @return { UM.uNode } 返回节点本身
+         * @example
+         * ```javascript
+         * node.innerHTML('<span>text</span>');
+         * ```
+         */
+        innerHTML:function (htmlstr) {
+            if (this.type != 'element' || dtd.$empty[this.tagName]) {
+                return this;
+            }
+            if (utils.isString(htmlstr)) {
+                if(this.children){
+                    for (var i = 0, ci; ci = this.children[i++];) {
+                        ci.parentNode = null;
+                    }
+                }
+                this.children = [];
+                var tmpRoot = UM.htmlparser(htmlstr);
+                for (var i = 0, ci; ci = tmpRoot.children[i++];) {
+                    this.children.push(ci);
+                    ci.parentNode = this;
+                }
+                return this;
+            } else {
+                var tmpRoot = new UM.uNode({
+                    type:'root',
+                    children:this.children
+                });
+                return tmpRoot.toHtml();
+            }
+        },
+
+        /**
+         * 获取节点的纯文本内容
+         * @method innerText
+         * @warning 假如节点的type不是'element'，或节点的标签名称不在dtd列表里，直接返回当前节点
+         * @return { String } 返回节点的存文本内容
+         * @example
+         * ```javascript
+         * var textStr = node.innerText();
+         * ```
+         */
+
+        /**
+         * 设置节点的纯文本内容
+         * @method innerText
+         * @warning 假如节点的type不是'element'，或节点的标签名称不在dtd列表里，直接返回当前节点
+         * @param { String } textStr 传入要设置的文本内容
+         * @return { UM.uNode } 返回节点本身
+         * @example
+         * ```javascript
+         * node.innerText('<span>text</span>');
+         * ```
+         */
+        innerText:function (textStr,noTrans) {
+            if (this.type != 'element' || dtd.$empty[this.tagName]) {
+                return this;
+            }
+            if (textStr) {
+                if(this.children){
+                    for (var i = 0, ci; ci = this.children[i++];) {
+                        ci.parentNode = null;
+                    }
+                }
+                this.children = [];
+                this.appendChild(uNode.createText(textStr,noTrans));
+                return this;
+            } else {
+                return this.toHtml().replace(/<[^>]+>/g, '');
+            }
+        },
+
+        /**
+         * 获取当前对象的data属性
+         * @method getData
+         * @return { Object } 若节点的type值是elemenet，返回空字符串，否则返回节点的data属性
+         * @example
+         * ```javascript
+         * node.getData();
+         * ```
+         */
+        getData:function () {
+            if (this.type == 'element')
+                return '';
+            return this.data
+        },
+
+        /**
+         * 获取当前节点下的第一个子节点
+         * @method firstChild
+         * @return { UM.uNode } 返回第一个子节点
+         * @example
+         * ```javascript
+         * node.firstChild(); //返回第一个子节点
+         * ```
+         */
+        firstChild:function () {
+//            if (this.type != 'element' || dtd.$empty[this.tagName]) {
+//                return this;
+//            }
+            return this.children ? this.children[0] : null;
+        },
+
+        /**
+         * 获取当前节点下的最后一个子节点
+         * @method lastChild
+         * @return { UM.uNode } 返回最后一个子节点
+         * @example
+         * ```javascript
+         * node.lastChild(); //返回最后一个子节点
+         * ```
+         */
+        lastChild:function () {
+//            if (this.type != 'element' || dtd.$empty[this.tagName] ) {
+//                return this;
+//            }
+            return this.children ? this.children[this.children.length - 1] : null;
+        },
+
+        /**
+         * 获取和当前节点有相同父亲节点的前一个节点
+         * @method previousSibling
+         * @return { UM.uNode } 返回前一个节点
+         * @example
+         * ```javascript
+         * node.children[2].previousSibling(); //返回子节点node.children[1]
+         * ```
+         */
+        previousSibling : function(){
+            var parent = this.parentNode;
+            for (var i = 0, ci; ci = parent.children[i]; i++) {
+                if (ci === this) {
+                    return i == 0 ? null : parent.children[i-1];
+                }
+            }
+
+        },
+
+        /**
+         * 获取和当前节点有相同父亲节点的后一个节点
+         * @method nextSibling
+         * @return { UM.uNode } 返回后一个节点,找不到返回null
+         * @example
+         * ```javascript
+         * node.children[2].nextSibling(); //如果有，返回子节点node.children[3]
+         * ```
+         */
+        nextSibling : function(){
+            var parent = this.parentNode;
+            for (var i = 0, ci; ci = parent.children[i++];) {
+                if (ci === this) {
+                    return parent.children[i];
+                }
+            }
+        },
+
+        /**
+         * 用新的节点替换当前节点
+         * @method replaceChild
+         * @param { UM.uNode } target 要替换成该节点参数
+         * @param { UM.uNode } source 要被替换掉的节点
+         * @return { UM.uNode } 返回替换之后的节点对象
+         * @example
+         * ```javascript
+         * node.replaceChild(newNode, childNode); //用newNode替换childNode,childNode是node的子节点
+         * ```
+         */
+        replaceChild:function (target, source) {
+            if (this.children) {
+                if(target.parentNode){
+                    target.parentNode.removeChild(target);
+                }
+                for (var i = 0, ci; ci = this.children[i]; i++) {
+                    if (ci === source) {
+                        this.children.splice(i, 1, target);
+                        source.parentNode = null;
+                        target.parentNode = this;
+                        return target;
+                    }
+                }
+            }
+        },
+
+        /**
+         * 在节点的子节点列表最后位置插入一个节点
+         * @method appendChild
+         * @param { UM.uNode } node 要插入的节点
+         * @return { UM.uNode } 返回刚插入的子节点
+         * @example
+         * ```javascript
+         * node.appendChild( newNode ); //在node内插入子节点newNode
+         * ```
+         */
+        appendChild:function (node) {
+            if (this.type == 'root' || (this.type == 'element' && !dtd.$empty[this.tagName])) {
+                if (!this.children) {
+                    this.children = []
+                }
+                if(node.parentNode){
+                    node.parentNode.removeChild(node);
+                }
+                for (var i = 0, ci; ci = this.children[i]; i++) {
+                    if (ci === node) {
+                        this.children.splice(i, 1);
+                        break;
+                    }
+                }
+                this.children.push(node);
+                node.parentNode = this;
+                return node;
+            }
+
+
+        },
+
+        /**
+         * 在传入节点的前面插入一个节点
+         * @method insertBefore
+         * @param { UM.uNode } target 要插入的节点
+         * @param { UM.uNode } source 在该参数节点前面插入
+         * @return { UM.uNode } 返回刚插入的子节点
+         * @example
+         * ```javascript
+         * node.parentNode.insertBefore(newNode, node); //在node节点后面插入newNode
+         * ```
+         */
+        insertBefore:function (target, source) {
+            if (this.children) {
+                if(target.parentNode){
+                    target.parentNode.removeChild(target);
+                }
+                for (var i = 0, ci; ci = this.children[i]; i++) {
+                    if (ci === source) {
+                        this.children.splice(i, 0, target);
+                        target.parentNode = this;
+                        return target;
+                    }
+                }
+
+            }
+        },
+
+        /**
+         * 在传入节点的后面插入一个节点
+         * @method insertAfter
+         * @param { UM.uNode } target 要插入的节点
+         * @param { UM.uNode } source 在该参数节点后面插入
+         * @return { UM.uNode } 返回刚插入的子节点
+         * @example
+         * ```javascript
+         * node.parentNode.insertAfter(newNode, node); //在node节点后面插入newNode
+         * ```
+         */
+        insertAfter:function (target, source) {
+            if (this.children) {
+                if(target.parentNode){
+                    target.parentNode.removeChild(target);
+                }
+                for (var i = 0, ci; ci = this.children[i]; i++) {
+                    if (ci === source) {
+                        this.children.splice(i + 1, 0, target);
+                        target.parentNode = this;
+                        return target;
+                    }
+
+                }
+            }
+        },
+
+        /**
+         * 从当前节点的子节点列表中，移除节点
+         * @method removeChild
+         * @param { UM.uNode } node 要移除的节点引用
+         * @param { Boolean } keepChildren 是否保留移除节点的子节点，若传入true，自动把移除节点的子节点插入到移除的位置
+         * @return { * } 返回刚移除的子节点
+         * @example
+         * ```javascript
+         * node.removeChild(childNode,true); //在node的子节点列表中移除child节点，并且吧child的子节点插入到移除的位置
+         * ```
+         */
+        removeChild:function (node,keepChildren) {
+            if (this.children) {
+                for (var i = 0, ci; ci = this.children[i]; i++) {
+                    if (ci === node) {
+                        this.children.splice(i, 1);
+                        ci.parentNode = null;
+                        if(keepChildren && ci.children && ci.children.length){
+                            for(var j= 0,cj;cj=ci.children[j];j++){
+                                this.children.splice(i+j,0,cj);
+                                cj.parentNode = this;
+
+                            }
+                        }
+                        return ci;
+                    }
+                }
+            }
+        },
+
+        /**
+         * 获取当前节点所代表的元素属性，即获取attrs对象下的属性值
+         * @method getAttr
+         * @param { String } attrName 要获取的属性名称
+         * @return { * } 返回attrs对象下的属性值
+         * @example
+         * ```javascript
+         * node.getAttr('title');
+         * ```
+         */
+        getAttr:function (attrName) {
+            return this.attrs && this.attrs[attrName.toLowerCase()]
+        },
+
+        /**
+         * 设置当前节点所代表的元素属性，即设置attrs对象下的属性值
+         * @method setAttr
+         * @param { String } attrName 要设置的属性名称
+         * @param { * } attrVal 要设置的属性值，类型视设置的属性而定
+         * @return { * } 返回attrs对象下的属性值
+         * @example
+         * ```javascript
+         * node.setAttr('title','标题');
+         * ```
+         */
+        setAttr:function (attrName, attrVal) {
+            if (!attrName) {
+                delete this.attrs;
+                return;
+            }
+            if(!this.attrs){
+                this.attrs = {};
+            }
+            if (utils.isObject(attrName)) {
+                for (var a in attrName) {
+                    if (!attrName[a]) {
+                        delete this.attrs[a]
+                    } else {
+                        this.attrs[a.toLowerCase()] = attrName[a];
+                    }
+                }
+            } else {
+                if (!attrVal) {
+                    delete this.attrs[attrName]
+                } else {
+                    this.attrs[attrName.toLowerCase()] = attrVal;
+                }
+
+            }
+        },
+        hasAttr: function( attrName ){
+            var attrVal = this.getAttr( attrName );
+            return ( attrVal !== null ) && ( attrVal !== undefined );
+        },
+        /**
+         * 获取当前节点在父节点下的位置索引
+         * @method getIndex
+         * @return { Number } 返回索引数值，如果没有父节点，返回-1
+         * @example
+         * ```javascript
+         * node.getIndex();
+         * ```
+         */
+        getIndex:function(){
+            var parent = this.parentNode;
+            for(var i= 0,ci;ci=parent.children[i];i++){
+                if(ci === this){
+                    return i;
+                }
+            }
+            return -1;
+        },
+
+        /**
+         * 在当前节点下，根据id查找节点
+         * @method getNodeById
+         * @param { String } id 要查找的id
+         * @return { UM.uNode } 返回找到的节点
+         * @example
+         * ```javascript
+         * node.getNodeById('textId');
+         * ```
+         */
+        getNodeById:function (id) {
+            var node;
+            if (this.children && this.children.length) {
+                for (var i = 0, ci; ci = this.children[i++];) {
+                    if (node = getNodeById(ci, id)) {
+                        return node;
+                    }
+                }
+            }
+        },
+
+        /**
+         * 在当前节点下，根据元素名称查找节点列表
+         * @method getNodesByTagName
+         * @param { String } tagNames 要查找的元素名称
+         * @return { Array } 返回找到的节点列表
+         * @example
+         * ```javascript
+         * node.getNodesByTagName('span');
+         * ```
+         */
+        getNodesByTagName:function (tagNames) {
+            tagNames = utils.trim(tagNames).replace(/[ ]{2,}/g, ' ').split(' ');
+            var arr = [], me = this;
+            utils.each(tagNames, function (tagName) {
+                if (me.children && me.children.length) {
+                    for (var i = 0, ci; ci = me.children[i++];) {
+                        getNodesByTagName(ci, tagName, arr)
+                    }
+                }
+            });
+            return arr;
+        },
+
+        /**
+         * 根据样式名称，获取节点的样式值
+         * @method getStyle
+         * @param { String } name 要获取的样式名称
+         * @return { String } 返回样式值
+         * @example
+         * ```javascript
+         * node.getStyle('font-size');
+         * ```
+         */
+        getStyle:function (name) {
+            var cssStyle = this.getAttr('style');
+            if (!cssStyle) {
+                return ''
+            }
+            var reg = new RegExp('(^|;)\\s*' + name + ':([^;]+)','i');
+            var match = cssStyle.match(reg);
+            if (match && match[0]) {
+                return match[2]
+            }
+            return '';
+        },
+
+        /**
+         * 给节点设置样式
+         * @method setStyle
+         * @param { String } name 要设置的的样式名称
+         * @param { String } val 要设置的的样值
+         * @example
+         * ```javascript
+         * node.setStyle('font-size', '12px');
+         * ```
+         */
+        setStyle:function (name, val) {
+            function exec(name, val) {
+                var reg = new RegExp('(^|;)\\s*' + name + ':([^;]+;?)', 'gi');
+                cssStyle = cssStyle.replace(reg, '$1');
+                if (val) {
+                    cssStyle = name + ':' + utils.unhtml(val) + ';' + cssStyle
+                }
+
+            }
+
+            var cssStyle = this.getAttr('style');
+            if (!cssStyle) {
+                cssStyle = '';
+            }
+            if (utils.isObject(name)) {
+                for (var a in name) {
+                    exec(a, name[a])
+                }
+            } else {
+                exec(name, val)
+            }
+            this.setAttr('style', utils.trim(cssStyle))
+        },
+        hasClass: function( className ){
+            if( this.hasAttr('class') ) {
+                var classNames = this.getAttr('class').split(/\s+/),
+                    hasClass = false;
+                $.each(classNames, function(key, item){
+                    if( item === className ) {
+                        hasClass = true;
+                    }
+                });
+                return hasClass;
+            } else {
+                return false;
+            }
+        },
+        addClass: function( className ){
+
+            var classes = null,
+                hasClass = false;
+
+            if( this.hasAttr('class') ) {
+
+                classes = this.getAttr('class');
+                classes = classes.split(/\s+/);
+
+                classes.forEach( function( item ){
+
+                    if( item===className ) {
+                        hasClass = true;
+                        return;
+                    }
+
+                } );
+
+                !hasClass && classes.push( className );
+
+                this.setAttr('class', classes.join(" "));
+
+            } else {
+                this.setAttr('class', className);
+            }
+
+        },
+        removeClass: function( className ){
+            if( this.hasAttr('class') ) {
+                var cl = this.getAttr('class');
+                cl = cl.replace(new RegExp('\\b' + className + '\\b', 'g'),'');
+                this.setAttr('class', utils.trim(cl).replace(/[ ]{2,}/g,' '));
+            }
+        },
+        /**
+         * 传入一个函数，递归遍历当前节点下的所有节点
+         * @method traversal
+         * @param { Function } fn 遍历到节点的时，传入节点作为参数，运行此函数
+         * @example
+         * ```javascript
+         * traversal(node, function(){
+         *     console.log(node.type);
+         * });
+         * ```
+         */
+        traversal:function(fn){
+            if(this.children && this.children.length){
+                nodeTraversal(this,fn);
+            }
+            return this;
+        }
+    }
+})();
+
+//html字符串转换成uNode节点
+//by zhanyi
+var htmlparser = UM.htmlparser = function (htmlstr,ignoreBlank) {
+    //todo 原来的方式  [^"'<>\/] 有\/就不能配对上 <TD vAlign=top background=../AAA.JPG> 这样的标签了
+    //先去掉了，加上的原因忘了，这里先记录
+    var re_tag = /<(?:(?:\/([^>]+)>)|(?:!--([\S|\s]*?)-->)|(?:([^\s\/>]+)\s*((?:(?:"[^"]*")|(?:'[^']*')|[^"'<>])*)\/?>))/g,
+        re_attr = /([\w\-:.]+)(?:(?:\s*=\s*(?:(?:"([^"]*)")|(?:'([^']*)')|([^\s>]+)))|(?=\s|$))/g;
+
+    //ie下取得的html可能会有\n存在，要去掉，在处理replace(/[\t\r\n]*/g,'');代码高量的\n不能去除
+    var allowEmptyTags = {
+        b:1,code:1,i:1,u:1,strike:1,s:1,tt:1,strong:1,q:1,samp:1,em:1,span:1,
+        sub:1,img:1,sup:1,font:1,big:1,small:1,iframe:1,a:1,br:1,pre:1
+    };
+    htmlstr = htmlstr.replace(new RegExp(domUtils.fillChar, 'g'), '');
+    if(!ignoreBlank){
+        htmlstr = htmlstr.replace(new RegExp('[\\r\\t\\n'+(ignoreBlank?'':' ')+']*<\/?(\\w+)\\s*(?:[^>]*)>[\\r\\t\\n'+(ignoreBlank?'':' ')+']*','g'), function(a,b){
+            //br暂时单独处理
+            if(b && allowEmptyTags[b.toLowerCase()]){
+                return a.replace(/(^[\n\r]+)|([\n\r]+$)/g,'');
+            }
+            return a.replace(new RegExp('^[\\r\\n'+(ignoreBlank?'':' ')+']+'),'').replace(new RegExp('[\\r\\n'+(ignoreBlank?'':' ')+']+$'),'');
+        });
+    }
+
+    var notTransAttrs = {
+        'href':1,
+        'src':1
+    };
+
+    var uNode = UM.uNode,
+        needParentNode = {
+            'td':'tr',
+            'tr':['tbody','thead','tfoot'],
+            'tbody':'table',
+            'th':'tr',
+            'thead':'table',
+            'tfoot':'table',
+            'caption':'table',
+            'li':['ul', 'ol'],
+            'dt':'dl',
+            'dd':'dl',
+            'option':'select'
+        },
+        needChild = {
+            'ol':'li',
+            'ul':'li'
+        };
+
+    function text(parent, data) {
+
+        if(needChild[parent.tagName]){
+            var tmpNode = uNode.createElement(needChild[parent.tagName]);
+            parent.appendChild(tmpNode);
+            tmpNode.appendChild(uNode.createText(data));
+            parent = tmpNode;
+        }else{
+
+            parent.appendChild(uNode.createText(data));
+        }
+    }
+
+    function element(parent, tagName, htmlattr) {
+        var needParentTag;
+        if (needParentTag = needParentNode[tagName]) {
+            var tmpParent = parent,hasParent;
+            while(tmpParent.type != 'root'){
+                if(utils.isArray(needParentTag) ? utils.indexOf(needParentTag, tmpParent.tagName) != -1 : needParentTag == tmpParent.tagName){
+                    parent = tmpParent;
+                    hasParent = true;
+                    break;
+                }
+                tmpParent = tmpParent.parentNode;
+            }
+            if(!hasParent){
+                parent = element(parent, utils.isArray(needParentTag) ? needParentTag[0] : needParentTag)
+            }
+        }
+        //按dtd处理嵌套
+//        if(parent.type != 'root' && !dtd[parent.tagName][tagName])
+//            parent = parent.parentNode;
+        var elm = new uNode({
+            parentNode:parent,
+            type:'element',
+            tagName:tagName.toLowerCase(),
+            //是自闭合的处理一下
+            children:dtd.$empty[tagName] ? null : []
+        });
+        //如果属性存在，处理属性
+        if (htmlattr) {
+            var attrs = {}, match;
+            while (match = re_attr.exec(htmlattr)) {
+                attrs[match[1].toLowerCase()] = notTransAttrs[match[1].toLowerCase()] ? (match[2] || match[3] || match[4]) : utils.unhtml(match[2] || match[3] || match[4])
+            }
+            elm.attrs = attrs;
+        }
+
+        parent.children.push(elm);
+        //如果是自闭合节点返回父亲节点
+        return  dtd.$empty[tagName] ? parent : elm
+    }
+
+    function comment(parent, data) {
+        parent.children.push(new uNode({
+            type:'comment',
+            data:data,
+            parentNode:parent
+        }));
+    }
+
+    var match, currentIndex = 0, nextIndex = 0;
+    //设置根节点
+    var root = new uNode({
+        type:'root',
+        children:[]
+    });
+    var currentParent = root;
+
+    while (match = re_tag.exec(htmlstr)) {
+        currentIndex = match.index;
+        try{
+            if (currentIndex > nextIndex) {
+                //text node
+                text(currentParent, htmlstr.slice(nextIndex, currentIndex));
+            }
+            if (match[3]) {
+
+                if(dtd.$cdata[currentParent.tagName]){
+                    text(currentParent, match[0]);
+                }else{
+                    //start tag
+                    currentParent = element(currentParent, match[3].toLowerCase(), match[4]);
+                }
+
+
+            } else if (match[1]) {
+                if(currentParent.type != 'root'){
+                    if(dtd.$cdata[currentParent.tagName] && !dtd.$cdata[match[1]]){
+                        text(currentParent, match[0]);
+                    }else{
+                        var tmpParent = currentParent;
+                        while(currentParent.type == 'element' && currentParent.tagName != match[1].toLowerCase()){
+                            currentParent = currentParent.parentNode;
+                            if(currentParent.type == 'root'){
+                                currentParent = tmpParent;
+                                throw 'break'
+                            }
+                        }
+                        //end tag
+                        currentParent = currentParent.parentNode;
+                    }
+
+                }
+
+            } else if (match[2]) {
+                //comment
+                comment(currentParent, match[2])
+            }
+        }catch(e){}
+
+        nextIndex = re_tag.lastIndex;
+
+    }
+    //如果结束是文本，就有可能丢掉，所以这里手动判断一下
+    //例如 <li>sdfsdfsdf<li>sdfsdfsdfsdf
+    if (nextIndex < htmlstr.length) {
+        text(currentParent, htmlstr.slice(nextIndex));
+    }
+    return root;
+};
+/**
+ * @file
+ * @name UM.filterNode
+ * @short filterNode
+ * @desc 根据给定的规则过滤节点
+ * @import editor.js,core/utils.js
+ * @anthor zhanyi
+ */
+var filterNode = UM.filterNode = function () {
+    function filterNode(node,rules){
+        switch (node.type) {
+            case 'text':
+                break;
+            case 'element':
+                var val;
+                if(val = rules[node.tagName]){
+                    if(val === '-'){
+                        node.parentNode.removeChild(node)
+                    }else if(utils.isFunction(val)){
+                        var parentNode = node.parentNode,
+                            index = node.getIndex();
+                        val(node);
+                        if(node.parentNode){
+                            if(node.children){
+                                for(var i = 0,ci;ci=node.children[i];){
+                                    filterNode(ci,rules);
+                                    if(ci.parentNode){
+                                        i++;
+                                    }
+                                }
+                            }
+                        }else{
+                            for(var i = index,ci;ci=parentNode.children[i];){
+                                filterNode(ci,rules);
+                                if(ci.parentNode){
+                                    i++;
+                                }
+                            }
+                        }
+
+
+                    }else{
+                        var attrs = val['$'];
+                        if(attrs && node.attrs){
+                            var tmpAttrs = {},tmpVal;
+                            for(var a in attrs){
+                                tmpVal = node.getAttr(a);
+                                //todo 只先对style单独处理
+                                if(a == 'style' && utils.isArray(attrs[a])){
+                                    var tmpCssStyle = [];
+                                    utils.each(attrs[a],function(v){
+                                        var tmp;
+                                        if(tmp = node.getStyle(v)){
+                                            tmpCssStyle.push(v + ':' + tmp);
+                                        }
+                                    });
+                                    tmpVal = tmpCssStyle.join(';')
+                                }
+                                if(tmpVal){
+                                    tmpAttrs[a] = tmpVal;
+                                }
+
+                            }
+                            node.attrs = tmpAttrs;
+                        }
+                        if(node.children){
+                            for(var i = 0,ci;ci=node.children[i];){
+                                filterNode(ci,rules);
+                                if(ci.parentNode){
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    //如果不在名单里扣出子节点并删除该节点,cdata除外
+                    if(dtd.$cdata[node.tagName]){
+                        node.parentNode.removeChild(node)
+                    }else{
+                        var parentNode = node.parentNode,
+                            index = node.getIndex();
+                        node.parentNode.removeChild(node,true);
+                        for(var i = index,ci;ci=parentNode.children[i];){
+                            filterNode(ci,rules);
+                            if(ci.parentNode){
+                                i++;
+                            }
+                        }
+                    }
+                }
+                break;
+            case 'comment':
+                node.parentNode.removeChild(node)
+        }
+
+    }
+    return function(root,rules){
+        if(utils.isEmptyObject(rules)){
+            return root;
+        }
+        var val;
+        if(val = rules['-']){
+            utils.each(val.split(' '),function(k){
+                rules[k] = '-'
+            })
+        }
+        for(var i= 0,ci;ci=root.children[i];){
+            filterNode(ci,rules);
+            if(ci.parentNode){
+                i++;
+            }
+        }
+        return root;
+    }
+}();
+///import core
+/**
+ * @description 插入内容
+ * @name baidu.editor.execCommand
+ * @param   {String}   cmdName     inserthtml插入内容的命令
+ * @param   {String}   html                要插入的内容
+ * @author zhanyi
+ */
+UM.commands['inserthtml'] = {
+    execCommand: function(command, html, notNeedFilter) {
+        var me = this,
+            range,
+            div;
+        if (!html) {
+            return;
+        }
+        if (me.fireEvent('beforeinserthtml', html) === true) {
+            return;
+        }
+        range = me.selection.getRange();
+        div = range.document.createElement('div');
+        div.style.display = 'inline';
+
+        if (!notNeedFilter) {
+            var root = UM.htmlparser(html);
+            //如果给了过滤规则就先进行过滤
+            if (me.options.filterRules) {
+                UM.filterNode(root, me.options.filterRules);
+            }
+            //执行默认的处理
+            me.filterInputRule(root);
+            html = root.toHtml()
+        }
+        div.innerHTML = utils.trim(html);
+
+        if (!range.collapsed) {
+            var tmpNode = range.startContainer;
+            if (domUtils.isFillChar(tmpNode)) {
+                range.setStartBefore(tmpNode)
+            }
+            tmpNode = range.endContainer;
+            if (domUtils.isFillChar(tmpNode)) {
+                range.setEndAfter(tmpNode)
+            }
+            range.txtToElmBoundary();
+            //结束边界可能放到了br的前边，要把br包含进来
+            // x[xxx]<br/>
+            if (range.endContainer && range.endContainer.nodeType == 1) {
+                tmpNode = range.endContainer.childNodes[range.endOffset];
+                if (tmpNode && domUtils.isBr(tmpNode)) {
+                    range.setEndAfter(tmpNode);
+                }
+            }
+            if (range.startOffset == 0) {
+                tmpNode = range.startContainer;
+                if (domUtils.isBoundaryNode(tmpNode, 'firstChild')) {
+                    tmpNode = range.endContainer;
+                    if (range.endOffset == (tmpNode.nodeType == 3 ? tmpNode.nodeValue.length : tmpNode.childNodes.length) && domUtils.isBoundaryNode(tmpNode, 'lastChild')) {
+                        me.body.innerHTML = '<span>' + (browser.ie ? '' : '') + '</span>';
+                        range.setStart(me.body.firstChild, 0).collapse(true)
+
+                    }
+                }
+            }!range.collapsed && range.deleteContents();
+            if (range.startContainer.nodeType == 1) {
+                var child = range.startContainer.childNodes[range.startOffset],
+                    pre;
+                if (child && domUtils.isBlockElm(child) && (pre = child.previousSibling) && domUtils.isBlockElm(pre)) {
+                    range.setEnd(pre, pre.childNodes.length).collapse();
+                    while (child.firstChild) {
+                        pre.appendChild(child.firstChild);
+                    }
+                    domUtils.remove(child);
+                }
+            }
+
+        }
+
+
+        var child, parent, pre, tmp, hadBreak = 0,
+            nextNode;
+        //如果当前位置选中了fillchar要干掉，要不会产生空行
+        if (range.inFillChar()) {
+            child = range.startContainer;
+            if (domUtils.isFillChar(child)) {
+                range.setStartBefore(child).collapse(true);
+                domUtils.remove(child);
+            } else if (domUtils.isFillChar(child, true)) {
+                child.nodeValue = child.nodeValue.replace(fillCharReg, '');
+                range.startOffset--;
+                range.collapsed && range.collapse(true)
+            }
+        }
+        while (child = div.firstChild) {
+            if (hadBreak) {
+                var p = me.document.createElement('p');
+                while (child && (child.nodeType == 3 || !dtd.$block[child.tagName])) {
+                    nextNode = child.nextSibling;
+                    p.appendChild(child);
+                    child = nextNode;
+                }
+                if (p.firstChild) {
+
+                    child = p
+                }
+            }
+            range.insertNode(child);
+            nextNode = child.nextSibling;
+            if (!hadBreak && child.nodeType == domUtils.NODE_ELEMENT && domUtils.isBlockElm(child)) {
+
+                parent = domUtils.findParent(child, function(node) {
+                    return domUtils.isBlockElm(node);
+                });
+                if (parent && parent.tagName.toLowerCase() != 'body' && !(dtd[parent.tagName][child.nodeName] && child.parentNode === parent)) {
+                    if (!dtd[parent.tagName][child.nodeName]) {
+                        pre = parent;
+                    } else {
+                        tmp = child.parentNode;
+                        while (tmp !== parent) {
+                            pre = tmp;
+                            tmp = tmp.parentNode;
+
+                        }
+                    }
+
+
+                    domUtils.breakParent(child, pre || tmp);
+                    //去掉break后前一个多余的节点  <p>|<[p> ==> <p></p><div></div><p>|</p>
+                    var pre = child.previousSibling;
+                    domUtils.trimWhiteTextNode(pre);
+                    if (!pre.childNodes.length) {
+                        domUtils.remove(pre);
+                    }
+                    //trace:2012,在非ie的情况，切开后剩下的节点有可能不能点入光标添加br占位
+
+                    if (!browser.ie &&
+                        (next = child.nextSibling) &&
+                        domUtils.isBlockElm(next) &&
+                        next.lastChild &&
+                        !domUtils.isBr(next.lastChild)) {
+                        next.appendChild(me.document.createElement('br'));
+                    }
+                    hadBreak = 1;
+                }
+            }
+            var next = child.nextSibling;
+            if (!div.firstChild && next && domUtils.isBlockElm(next)) {
+
+                range.setStart(next, 0).collapse(true);
+                break;
+            }
+            range.setEndAfter(child).collapse();
+
+        }
+
+        child = range.startContainer;
+
+        if (nextNode && domUtils.isBr(nextNode)) {
+            domUtils.remove(nextNode)
+        }
+        //用chrome可能有空白展位符
+        if (domUtils.isBlockElm(child) && domUtils.isEmptyNode(child)) {
+            if (nextNode = child.nextSibling) {
+                domUtils.remove(child);
+                if (nextNode.nodeType == 1 && dtd.$block[nextNode.tagName]) {
+
+                    range.setStart(nextNode, 0).collapse(true).shrinkBoundary()
+                }
+            } else {
+
+                try {
+                    child.innerHTML = browser.ie ? domUtils.fillChar : '<br/>';
+                } catch (e) {
+                    range.setStartBefore(child);
+                    domUtils.remove(child)
+                }
+
+            }
+
+        }
+        //加上true因为在删除表情等时会删两次，第一次是删的fillData
+        try {
+            if (browser.ie9below && range.startContainer.nodeType == 1 && !range.startContainer.childNodes[range.startOffset]) {
+                var start = range.startContainer,
+                    pre = start.childNodes[range.startOffset - 1];
+                if (pre && pre.nodeType == 1 && dtd.$empty[pre.tagName]) {
+                    var txt = this.document.createTextNode(domUtils.fillChar);
+                    range.insertNode(txt).setStart(txt, 0).collapse(true);
+                }
+            }
+            setTimeout(function() {
+                range.select(true);
+            })
+
+        } catch (e) {}
+
+
+        setTimeout(function() {
+            range = me.selection.getRange();
+            range.scrollIntoView();
+            me.fireEvent('afterinserthtml');
+        }, 200);
+    }
+};
+
+///import core
+///import plugins\inserthtml.js
+///commands 插入图片，操作图片的对齐方式
+///commandsName  InsertImage,ImageNone,ImageLeft,ImageRight,ImageCenter
+///commandsTitle  图片,默认,居左,居右,居中
+///commandsDialog  dialogs\image
+/**
+ * Created by .
+ * User: zhanyi
+ * for image
+ */
+UM.commands['insertimage'] = {
+    execCommand:function (cmd, opt) {
+        opt = utils.isArray(opt) ? opt : [opt];
+        if (!opt.length) {
+            return;
+        }
+        var me = this;
+        var html = [], str = '', ci;
+        ci = opt[0];
+        if (opt.length == 1) {
+            str = '<img src="' + ci.src + '" ' + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+                (ci.width ? 'width="' + ci.width + '" ' : '') +
+                (ci.height ? ' height="' + ci.height + '" ' : '') +
+                (ci['floatStyle'] == 'left' || ci['floatStyle'] == 'right' ? ' style="float:' + ci['floatStyle'] + ';"' : '') +
+                (ci.title && ci.title != "" ? ' title="' + ci.title + '"' : '') +
+                (ci.border && ci.border != "0" ? ' border="' + ci.border + '"' : '') +
+                (ci.alt && ci.alt != "" ? ' alt="' + ci.alt + '"' : '') +
+                (ci.hspace && ci.hspace != "0" ? ' hspace = "' + ci.hspace + '"' : '') +
+                (ci.vspace && ci.vspace != "0" ? ' vspace = "' + ci.vspace + '"' : '') + '/>';
+            if (ci['floatStyle'] == 'center') {
+                str = '<p style="text-align: center">' + str + '</p>';
+            }
+            html.push(str);
+
+        } else {
+            for (var i = 0; ci = opt[i++];) {
+                str = '<p ' + (ci['floatStyle'] == 'center' ? 'style="text-align: center" ' : '') + '><img src="' + ci.src + '" ' +
+                    (ci.width ? 'width="' + ci.width + '" ' : '') + (ci._src ? ' _src="' + ci._src + '" ' : '') +
+                    (ci.height ? ' height="' + ci.height + '" ' : '') +
+                    ' style="' + (ci['floatStyle'] && ci['floatStyle'] != 'center' ? 'float:' + ci['floatStyle'] + ';' : '') +
+                    (ci.border || '') + '" ' +
+                    (ci.title ? ' title="' + ci.title + '"' : '') + ' /></p>';
+                html.push(str);
+            }
+        }
+
+        me.execCommand('insertHtml', html.join(''), true);
+    }
+};
+///import core
+///commands 段落格式,居左,居右,居中,两端对齐
+///commandsName  JustifyLeft,JustifyCenter,JustifyRight,JustifyJustify
+///commandsTitle  居左对齐,居中对齐,居右对齐,两端对齐
+/**
+ * @description 居左右中
+ * @name UM.execCommand
+ * @param   {String}   cmdName     justify执行对齐方式的命令
+ * @param   {String}   align               对齐方式：left居左，right居右，center居中，justify两端对齐
+ * @author zhanyi
+ */
+UM.plugins['justify']=function(){
+    var me = this;
+    $.each('justifyleft justifyright justifycenter justifyfull'.split(' '),function(i,cmdName){
+        me.commands[cmdName] = {
+            execCommand:function (cmdName) {
+                return this.document.execCommand(cmdName);
+            },
+            queryCommandValue: function (cmdName) {
+                var val = this.document.queryCommandValue(cmdName);
+                return   val === true || val === 'true' ? cmdName.replace(/justify/,'') : '';
+            },
+            queryCommandState: function (cmdName) {
+                return this.document.queryCommandState(cmdName) ? 1 : 0
+            }
+        };
+    })
+};
+
+///import core
+///import plugins\removeformat.js
+///commands 字体颜色,背景色,字号,字体,下划线,删除线
+///commandsName  ForeColor,BackColor,FontSize,FontFamily,Underline,StrikeThrough
+///commandsTitle  字体颜色,背景色,字号,字体,下划线,删除线
+/**
+ * @description 字体
+ * @name UM.execCommand
+ * @param {String}     cmdName    执行的功能名称
+ * @param {String}    value             传入的值
+ */
+UM.plugins['font'] = function() {
+    var me = this,
+        fonts = {
+            'forecolor': 'forecolor',
+            'backcolor': 'backcolor',
+            'fontsize': 'fontsize',
+            'fontfamily': 'fontname'
+        },
+        cmdNameToStyle = {
+            'forecolor': 'color',
+            'backcolor': 'background-color',
+            'fontsize': 'font-size',
+            'fontfamily': 'font-family'
+        },
+        cmdNameToAttr = {
+            'forecolor': 'color',
+            'fontsize': 'size',
+            'fontfamily': 'face'
+        };
+    me.setOpt({
+        'fontfamily': [{
+            name: 'songti',
+            val: '宋体,SimSun'
+        }, {
+            name: 'yahei',
+            val: '微软雅黑,Microsoft YaHei'
+        }, {
+            name: 'kaiti',
+            val: '楷体,楷体_GB2312, SimKai'
+        }, {
+            name: 'heiti',
+            val: '黑体, SimHei'
+        }, {
+            name: 'lishu',
+            val: '隶书, SimLi'
+        }, {
+            name: 'andaleMono',
+            val: 'andale mono'
+        }, {
+            name: 'arial',
+            val: 'arial, helvetica,sans-serif'
+        }, {
+            name: 'arialBlack',
+            val: 'arial black,avant garde'
+        }, {
+            name: 'comicSansMs',
+            val: 'comic sans ms'
+        }, {
+            name: 'impact',
+            val: 'impact,chicago'
+        }, {
+            name: 'timesNewRoman',
+            val: 'times new roman'
+        }, {
+            name: 'sans-serif',
+            val: 'sans-serif'
+        }],
+        'fontsize': [10, 12, 16, 18, 24, 32, 48]
+    });
+
+    function font2span(node) {
+        if (node.tagName == 'font') {
+            var cssStyle = [];
+            for (var p in node.attrs) {
+                switch (p) {
+                    case 'size':
+                        var val = node.attrs[p];
+                        $.each({
+                            '10': '1',
+                            '12': '2',
+                            '16': '3',
+                            '18': '4',
+                            '24': '5',
+                            '32': '6',
+                            '48': '7'
+                        }, function(k, v) {
+                            if (v == val) {
+                                val = k;
+                                return false;
+                            }
+                        });
+                        cssStyle.push('font-size:' + val + 'px');
+                        break;
+                    case 'color':
+                        cssStyle.push('color:' + node.attrs[p]);
+                        break;
+                    case 'face':
+                        cssStyle.push('font-family:' + node.attrs[p]);
+                        break;
+                    case 'style':
+                        cssStyle.push(node.attrs[p]);
+                }
+            }
+            node.attrs = {
+                'style': cssStyle.join(';')
+            };
+        }
+        node.tagName = 'span';
+        if (node.parentNode.tagName == 'span' && node.parentNode.children.length == 1) {
+            $.each(node.attrs, function(k, v) {
+
+                node.parentNode.attrs[k] = k == 'style' ? node.parentNode.attrs[k] + v : v;
+            });
+            node.parentNode.removeChild(node, true);
+        }
+    }
+
+    me.addInputRule(function(root) {
+        utils.each(root.getNodesByTagName('font'), function(node) {
+            font2span(node);
+        });
+    });
+
+    me.addOutputRule(function(root) {
+        utils.each(root.getNodesByTagName('font'), function(node) {
+            font2span(node);
+        });
+    });
+
+    for (var p in fonts) {
+        (function(cmd) {
+            me.commands[cmd] = {
+                execCommand: function(cmdName, value) {
+                    if (value == 'transparent') {
+                        return;
+                    }
+                    var rng = this.selection.getRange();
+                    if (rng.collapsed) {
+                        var span = $('<span></span>').css(cmdNameToStyle[cmdName], size)[0];
+                        rng.insertNode(span).setStart(span, 0).setCursor();
+                    } else {
+                        if (cmdName == 'fontsize') {
+                            /* fontsize额外处理 */
+                            var size = {
+                                '10': '1',
+                                '12': '2',
+                                '16': '3',
+                                '18': '4',
+                                '24': '5',
+                                '32': '6',
+                                '48': '7'
+                            }[(value + "").replace(/px/, '')] || 1;
+
+                            this.document.execCommand(fonts[cmdName], false, size);
+                            var $fonts = $('font[size=' + size + ']', this.body).attr('size', null).css('font-size', value + 'px');
+
+                            // 处理ff原生fontsize命令不判断style上的fontsize的bug
+                            if (browser.gecko) {
+                                $fonts.find('*').each(function(i, ele) {
+                                    var $ele = $(ele),
+                                        fontSize = parseInt($ele.css('font-size'));
+                                    if (fontSize && fontSize != value) {
+                                        $ele.css('font-size', '');
+                                    }
+                                });
+                            }
+
+                        } else {
+                            this.document.execCommand(fonts[cmdName], false, value);
+                        }
+
+
+                        if (browser.gecko) {
+                            $.each(this.$body.find('a'), function(i, a) {
+                                var parent = a.parentNode;
+                                if (parent.lastChild === parent.firstChild && /FONT|SPAN/.test(parent.tagName)) {
+                                    var cloneNode = parent.cloneNode(false);
+                                    cloneNode.innerHTML = a.innerHTML;
+                                    $(a).html('').append(cloneNode).insertBefore(parent);
+
+                                    $(parent).remove();
+                                }
+                            });
+                        }
+                        if (!browser.ie) {
+                            var nativeRange = this.selection.getNative().getRangeAt(0);
+                            var common = nativeRange.commonAncestorContainer;
+                            var rng = this.selection.getRange(),
+                                bk = rng.createBookmark(true);
+
+                            $(common).find('a').each(function(i, n) {
+                                var parent = n.parentNode;
+                                if (parent.nodeName == 'FONT') {
+                                    var font = parent.cloneNode(false);
+                                    font.innerHTML = n.innerHTML;
+                                    $(n).html('').append(font);
+                                }
+                            });
+                            rng.moveToBookmark(bk).select()
+                        }
+                        return true
+                    }
+
+                },
+                queryCommandValue: function(cmdName) {
+                    var start = me.selection.getStart();
+                    var val = $(start).css(cmdNameToStyle[cmdName]);
+                    if (val === undefined) {
+                        val = $(start).attr(cmdNameToAttr[cmdName])
+                    }
+
+                    if (val.indexOf('px') != -1 && start.indexOf('px') != -1 && start.style.fontSize != val) {
+                        val = start.style.fontSize;
+                    }
+                    return val ? utils.fixColor(cmdName, val).replace(/px/, '') : '';
+                },
+                queryCommandState: function(cmdName) {
+                    return this.queryCommandValue(cmdName)
+                }
+            };
+        })(p);
+    }
+};
+
+///import core
+///commands 超链接,取消链接
+///commandsName  Link,Unlink
+///commandsTitle  超链接,取消链接
+///commandsDialog  dialogs\link
+/**
+ * 超链接
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     link插入超链接
+ * @param   {Object}  options         url地址，title标题，target是否打开新页
+ * @author zhanyi
+ */
+/**
+ * 取消链接
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     unlink取消链接
+ * @author zhanyi
+ */
+
+UM.plugins['link'] = function(){
+    var me = this;
+
+    me.setOpt('autourldetectinie',false);
+    //在ie下禁用autolink
+    if(browser.ie && this.options.autourldetectinie === false){
+        this.addListener('keyup',function(cmd,evt){
+            var me = this,keyCode = evt.keyCode;
+            if(keyCode == 13 || keyCode == 32){
+                var rng = me.selection.getRange();
+                var start = rng.startContainer;
+                if(keyCode == 13){
+                    if(start.nodeName == 'P'){
+                        var pre = start.previousSibling;
+                        if(pre && pre.nodeType == 1){
+                            var pre = pre.lastChild;
+                            if(pre && pre.nodeName == 'A' && !pre.getAttribute('_href')){
+                                domUtils.remove(pre,true);
+                            }
+                        }
+                    }
+                }else if(keyCode == 32){
+                   if(start.nodeType == 3 && /^\s$/.test(start.nodeValue)){
+                       start = start.previousSibling;
+                       if(start && start.nodeName == 'A' && !start.getAttribute('_href')){
+                           domUtils.remove(start,true);
+                       }
+                   }
+                }
+
+            }
+
+
+        });
+    }
+
+    this.addOutputRule(function(root){
+        $.each(root.getNodesByTagName('a'),function(i,a){
+            var _href = utils.html(a.getAttr('_href'));
+            if(!/^(ftp|tel|https?|\/|file)/.test(_href)){
+                _href = 'http://' + _href;
+            }
+            a.setAttr('href', _href);
+            a.setAttr('_href')
+            if(a.getAttr('title')==''){
+                a.setAttr('title')
+            }
+        })
+    });
+    this.addInputRule(function(root){
+        $.each(root.getNodesByTagName('a'),function(i,a){
+            a.setAttr('_href', utils.html(a.getAttr('href')));
+        })
+    });
+    me.commands['link'] = {
+        execCommand : function( cmdName, opt ) {
+
+            var me = this;
+            var rng = me.selection.getRange();
+            if(rng.collapsed){
+                var start = rng.startContainer;
+                if(start = domUtils.findParentByTagName(start,'a',true)){
+                    $(start).attr(opt);
+                    rng.selectNode(start).select()
+                }else{
+                    rng.insertNode($('<a>').text(opt.href).attr(opt)[0]).select();
+
+                }
+
+            }else{
+                me.document.execCommand('createlink',false,'_umeditor_link');
+                utils.each(domUtils.getElementsByTagName(me.body,'a',function(n){
+
+                    return n.getAttribute('href') == '_umeditor_link'
+                }),function(l){
+                    if($(l).text() == '_umeditor_link'){
+                        $(l).text(opt.href);
+                    }
+                    domUtils.setAttributes(l,opt);
+                    rng.selectNode(l).select()
+                })
+            }
+
+        },
+        queryCommandState:function(){
+            return this.queryCommandValue('link') ? 1 : 0;
+        },
+        queryCommandValue:function(){
+            var path = this.selection.getStartElementPath();
+            var result;
+            $.each(path,function(i,n){
+                if(n.nodeName == "A"){
+                    result = n;
+                    return false;
+                }
+            })
+            return result;
+        }
+    };
+    me.commands['unlink'] = {
+        execCommand : function() {
+            this.document.execCommand('unlink');
+        }
+    };
+};
+
+///import core
+///commands 打印
+///commandsName  Print
+///commandsTitle  打印
+/**
+ * @description 打印
+ * @name baidu.editor.execCommand
+ * @param   {String}   cmdName     print打印编辑器内容
+ * @author zhanyi
+ */
+UM.commands['print'] = {
+    execCommand : function(){
+        var me = this,
+            id = 'editor_print_' + +new Date();
+
+        $('<iframe src="" id="' + id + '" name="' + id + '" frameborder="0"></iframe>').attr('id', id)
+            .css({
+                width:'0px',
+                height:'0px',
+                'overflow':'hidden',
+                'float':'left',
+                'position':'absolute',
+                top:'-10000px',
+                left:'-10000px'
+            })
+            .appendTo(me.$container.find('.edui-dialog-container'));
+
+        var w = window.open('', id, ''),
+            d = w.document;
+        d.open();
+        d.write('<html><head></head><body><div>'+this.getContent(null,null,true)+'</div><script>' +
+            "setTimeout(function(){" +
+            "window.print();" +
+            "setTimeout(function(){" +
+            "window.parent.$('#" + id + "').remove();" +
+            "},100);" +
+            "},200);" +
+            '</script></body></html>');
+        d.close();
+    },
+    notNeedUndo : 1
+};
+///import core
+///commands 格式
+///commandsName  Paragraph
+///commandsTitle  段落格式
+/**
+ * 段落样式
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     paragraph插入段落执行命令
+ * @param   {String}   style               标签值为：'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+ * @param   {String}   attrs               标签的属性
+ * @author zhanyi
+ */
+UM.plugins['paragraph'] = function() {
+    var me = this;
+    me.setOpt('paragraph',{'p':'', 'h1':'', 'h2':'', 'h3':'', 'h4':'', 'h5':'', 'h6':''});
+    me.commands['paragraph'] = {
+        execCommand : function( cmdName, style ) {
+            return this.document.execCommand('formatBlock',false,'<' + style + '>');
+        },
+        queryCommandValue : function() {
+            try{
+                var  val = this.document.queryCommandValue('formatBlock')
+            }catch(e){
+            }
+            return val ;
+        }
+    };
+};
+
+///import core
+///import plugins\inserthtml.js
+///commands 分割线
+///commandsName  Horizontal
+///commandsTitle  分隔线
+/**
+ * 分割线
+ * @function
+ * @name UM.execCommand
+ * @param {String}     cmdName    horizontal插入分割线
+ */
+UM.plugins['horizontal'] = function(){
+    var me = this;
+    me.commands['horizontal'] = {
+        execCommand : function(  ) {
+            this.document.execCommand('insertHorizontalRule');
+            var rng = me.selection.getRange().txtToElmBoundary(true),
+                start = rng.startContainer;
+            if(domUtils.isBody(rng.startContainer)){
+                var next = rng.startContainer.childNodes[rng.startOffset];
+                if(!next){
+                    next = $('<p></p>').appendTo(rng.startContainer).html(browser.ie ? '&nbsp;' : '<br/>')[0]
+                }
+                rng.setStart(next,0).setCursor()
+            }else{
+
+                while(dtd.$inline[start.tagName] && start.lastChild === start.firstChild){
+
+                    var parent = start.parentNode;
+                    parent.appendChild(start.firstChild);
+                    parent.removeChild(start);
+                    start = parent;
+                }
+                while(dtd.$inline[start.tagName]){
+                    start = start.parentNode;
+                }
+                if(start.childNodes.length == 1 && start.lastChild.nodeName == 'HR'){
+                    var hr = start.lastChild;
+                    $(hr).insertBefore(start);
+                    rng.setStart(start,0).setCursor();
+                }else{
+                    hr = $('hr',start)[0];
+                    domUtils.breakParent(hr,start);
+                    var pre = hr.previousSibling;
+                    if(pre && domUtils.isEmptyBlock(pre)){
+                        $(pre).remove()
+                    }
+                    rng.setStart(hr.nextSibling,0).setCursor();
+                }
+
+            }
+        }
+    };
+
+};
+
+
+///import core
+///commands 清空文档
+///commandsName  ClearDoc
+///commandsTitle  清空文档
+/**
+ *
+ * 清空文档
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     cleardoc清空文档
+ */
+
+UM.commands['cleardoc'] = {
+    execCommand : function() {
+        var me = this,
+            range = me.selection.getRange();
+        me.body.innerHTML = "<p>"+(ie ? "" : "<br/>")+"</p>";
+        range.setStart(me.body.firstChild,0).setCursor(false,true);
+        setTimeout(function(){
+            me.fireEvent("clearDoc");
+        },0);
+
+    }
+};
+
+
+///import core
+///commands 撤销和重做
+///commandsName  Undo,Redo
+///commandsTitle  撤销,重做
+/**
+ * @description 回退
+ * @author zhanyi
+ */
+
+UM.plugins['undo'] = function () {
+    var saveSceneTimer;
+    var me = this,
+        maxUndoCount = me.options.maxUndoCount || 20,
+        maxInputCount = me.options.maxInputCount || 20,
+        fillchar = new RegExp(domUtils.fillChar + '|<\/hr>', 'gi');// ie会产生多余的</hr>
+    var noNeedFillCharTags = {
+        ol:1,ul:1,table:1,tbody:1,tr:1,body:1
+    };
+    var orgState = me.options.autoClearEmptyNode;
+    function compareAddr(indexA, indexB) {
+        if (indexA.length != indexB.length)
+            return 0;
+        for (var i = 0, l = indexA.length; i < l; i++) {
+            if (indexA[i] != indexB[i])
+                return 0
+        }
+        return 1;
+    }
+
+    function compareRangeAddress(rngAddrA, rngAddrB) {
+        if (rngAddrA.collapsed != rngAddrB.collapsed) {
+            return 0;
+        }
+        if (!compareAddr(rngAddrA.startAddress, rngAddrB.startAddress) || !compareAddr(rngAddrA.endAddress, rngAddrB.endAddress)) {
+            return 0;
+        }
+        return 1;
+    }
+
+    function UndoManager() {
+        this.list = [];
+        this.index = 0;
+        this.hasUndo = false;
+        this.hasRedo = false;
+        this.undo = function () {
+            if (this.hasUndo) {
+                if (!this.list[this.index - 1] && this.list.length == 1) {
+                    this.reset();
+                    return;
+                }
+                while (this.list[this.index].content == this.list[this.index - 1].content) {
+                    this.index--;
+                    if (this.index == 0) {
+                        return this.restore(0);
+                    }
+                }
+                this.restore(--this.index);
+            }
+        };
+        this.redo = function () {
+            if (this.hasRedo) {
+                while (this.list[this.index].content == this.list[this.index + 1].content) {
+                    this.index++;
+                    if (this.index == this.list.length - 1) {
+                        return this.restore(this.index);
+                    }
+                }
+                this.restore(++this.index);
+            }
+        };
+
+        this.restore = function () {
+            var me = this.editor;
+            var scene = this.list[this.index];
+            var root = UM.htmlparser(scene.content.replace(fillchar, ''));
+            me.options.autoClearEmptyNode = false;
+            me.filterInputRule(root,true);
+            me.options.autoClearEmptyNode = orgState;
+            //trace:873
+            //去掉展位符
+            me.body.innerHTML = root.toHtml();
+            me.fireEvent('afterscencerestore');
+            //处理undo后空格不展位的问题
+            if (browser.ie) {
+                utils.each(domUtils.getElementsByTagName(me.document,'td th caption p'),function(node){
+                    if(domUtils.isEmptyNode(node)){
+                        domUtils.fillNode(me.document, node);
+                    }
+                })
+            }
+
+            try{
+                var rng = new dom.Range(me.document,me.body).moveToAddress(scene.address);
+                if(browser.ie && rng.collapsed && rng.startContainer.nodeType == 1){
+                    var tmpNode = rng.startContainer.childNodes[rng.startOffset];
+                    if( !tmpNode || tmpNode.nodeType == 1 && dtd.$empty[tmpNode]){
+                        rng.insertNode(me.document.createTextNode(' ')).collapse(true);
+                    }
+                }
+                rng.select(noNeedFillCharTags[rng.startContainer.nodeName.toLowerCase()]);
+            }catch(e){}
+
+            this.update();
+            this.clearKey();
+            //不能把自己reset了
+            me.fireEvent('reset', true);
+        };
+
+        this.getScene = function () {
+            var me = this.editor;
+            var rng = me.selection.getRange(),
+                rngAddress = rng.createAddress(false,true);
+            me.fireEvent('beforegetscene');
+            var root = UM.htmlparser(me.body.innerHTML,true);
+            me.options.autoClearEmptyNode = false;
+            me.filterOutputRule(root,true);
+            me.options.autoClearEmptyNode = orgState;
+            var cont = root.toHtml();
+            browser.ie && (cont = cont.replace(/>&nbsp;</g, '><').replace(/\s*</g, '<').replace(/>\s*/g, '>'));
+            me.fireEvent('aftergetscene');
+            return {
+                address:rngAddress,
+                content:cont
+            }
+        };
+        this.save = function (notCompareRange,notSetCursor) {
+            clearTimeout(saveSceneTimer);
+            var currentScene = this.getScene(notSetCursor),
+                lastScene = this.list[this.index];
+            //内容相同位置相同不存
+            if (lastScene && lastScene.content == currentScene.content &&
+                ( notCompareRange ? 1 : compareRangeAddress(lastScene.address, currentScene.address) )
+                ) {
+                return;
+            }
+            this.list = this.list.slice(0, this.index + 1);
+            this.list.push(currentScene);
+            //如果大于最大数量了，就把最前的剔除
+            if (this.list.length > maxUndoCount) {
+                this.list.shift();
+            }
+            this.index = this.list.length - 1;
+            this.clearKey();
+            //跟新undo/redo状态
+            this.update();
+
+        };
+        this.update = function () {
+            this.hasRedo = !!this.list[this.index + 1];
+            this.hasUndo = !!this.list[this.index - 1];
+        };
+        this.reset = function () {
+            this.list = [];
+            this.index = 0;
+            this.hasUndo = false;
+            this.hasRedo = false;
+            this.clearKey();
+        };
+        this.clearKey = function () {
+            keycont = 0;
+            lastKeyCode = null;
+        };
+    }
+
+    me.undoManger = new UndoManager();
+    me.undoManger.editor = me;
+    function saveScene() {
+        this.undoManger.save();
+    }
+
+    me.addListener('saveScene', function () {
+        var args = Array.prototype.splice.call(arguments,1);
+        this.undoManger.save.apply(this.undoManger,args);
+    });
+
+    me.addListener('beforeexeccommand', saveScene);
+    me.addListener('afterexeccommand', saveScene);
+
+    me.addListener('reset', function (type, exclude) {
+        if (!exclude) {
+            this.undoManger.reset();
+        }
+    });
+    me.commands['redo'] = me.commands['undo'] = {
+        execCommand:function (cmdName) {
+            this.undoManger[cmdName]();
+        },
+        queryCommandState:function (cmdName) {
+            return this.undoManger['has' + (cmdName.toLowerCase() == 'undo' ? 'Undo' : 'Redo')] ? 0 : -1;
+        },
+        notNeedUndo:1
+    };
+
+    var keys = {
+            //  /*Backspace*/ 8:1, /*Delete*/ 46:1,
+            /*Shift*/ 16:1, /*Ctrl*/ 17:1, /*Alt*/ 18:1,
+            37:1, 38:1, 39:1, 40:1
+
+        },
+        keycont = 0,
+        lastKeyCode;
+    //输入法状态下不计算字符数
+    var inputType = false;
+    me.addListener('ready', function () {
+        $(this.body).on('compositionstart', function () {
+            inputType = true;
+        }).on('compositionend', function () {
+            inputType = false;
+        })
+    });
+    //快捷键
+    me.addshortcutkey({
+        "Undo":"ctrl+90", //undo
+        "Redo":"ctrl+89,shift+ctrl+z" //redo
+
+    });
+    var isCollapsed = true;
+    me.addListener('keydown', function (type, evt) {
+
+        var me = this;
+        var keyCode = evt.keyCode || evt.which;
+        if (!keys[keyCode] && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey && !evt.altKey) {
+            if (inputType)
+                return;
+
+            if(!me.selection.getRange().collapsed){
+                me.undoManger.save(false,true);
+                isCollapsed = false;
+                return;
+            }
+            if (me.undoManger.list.length == 0) {
+                me.undoManger.save(true);
+            }
+            clearTimeout(saveSceneTimer);
+            function save(cont){
+
+                if (cont.selection.getRange().collapsed)
+                    cont.fireEvent('contentchange');
+                cont.undoManger.save(false,true);
+                cont.fireEvent('selectionchange');
+            }
+            saveSceneTimer = setTimeout(function(){
+                if(inputType){
+                    var interalTimer = setInterval(function(){
+                        if(!inputType){
+                            save(me);
+                            clearInterval(interalTimer)
+                        }
+                    },300)
+                    return;
+                }
+                save(me);
+            },200);
+
+            lastKeyCode = keyCode;
+            keycont++;
+            if (keycont >= maxInputCount ) {
+                save(me)
+            }
+        }
+    });
+    me.addListener('keyup', function (type, evt) {
+        var keyCode = evt.keyCode || evt.which;
+        if (!keys[keyCode] && !evt.ctrlKey && !evt.metaKey && !evt.shiftKey && !evt.altKey) {
+            if (inputType)
+                return;
+            if(!isCollapsed){
+                this.undoManger.save(false,true);
+                isCollapsed = true;
+            }
+        }
+    });
+
+};
+
+///import core
+///import plugins/inserthtml.js
+///import plugins/undo.js
+///import plugins/serialize.js
+///commands 粘贴
+///commandsName  PastePlain
+///commandsTitle  纯文本粘贴模式
+/**
+ * @description 粘贴
+ * @author zhanyi
+ */
+UM.plugins['paste'] = function () {
+    function getClipboardData(callback) {
+        var doc = this.document;
+        if (doc.getElementById('baidu_pastebin')) {
+            return;
+        }
+        var range = this.selection.getRange(),
+            bk = range.createBookmark(),
+        //创建剪贴的容器div
+            pastebin = doc.createElement('div');
+        pastebin.id = 'baidu_pastebin';
+        // Safari 要求div必须有内容，才能粘贴内容进来
+        browser.webkit && pastebin.appendChild(doc.createTextNode(domUtils.fillChar + domUtils.fillChar));
+        this.body.appendChild(pastebin);
+        //trace:717 隐藏的span不能得到top
+        //bk.start.innerHTML = '&nbsp;';
+        bk.start.style.display = '';
+
+        pastebin.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;left:-1000px;white-space:nowrap;top:" +
+        //要在现在光标平行的位置加入，否则会出现跳动的问题
+        $(bk.start).position().top  + 'px';
+
+        range.selectNodeContents(pastebin).select(true);
+
+        setTimeout(function () {
+            if (browser.webkit) {
+                for (var i = 0, pastebins = doc.querySelectorAll('#baidu_pastebin'), pi; pi = pastebins[i++];) {
+                    if (domUtils.isEmptyNode(pi)) {
+                        domUtils.remove(pi);
+                    } else {
+                        pastebin = pi;
+                        break;
+                    }
+                }
+            }
+            try {
+                pastebin.parentNode.removeChild(pastebin);
+            } catch (e) {
+            }
+            range.moveToBookmark(bk).select(true);
+            callback(pastebin);
+        }, 0);
+    }
+
+    var me = this;
+
+
+    function filter(div) {
+        var html;
+        if (div.firstChild) {
+            //去掉cut中添加的边界值
+            var nodes = domUtils.getElementsByTagName(div, 'span');
+            for (var i = 0, ni; ni = nodes[i++];) {
+                if (ni.id == '_baidu_cut_start' || ni.id == '_baidu_cut_end') {
+                    domUtils.remove(ni);
+                }
+            }
+
+            if (browser.webkit) {
+
+                var brs = div.querySelectorAll('div br');
+                for (var i = 0, bi; bi = brs[i++];) {
+                    var pN = bi.parentNode;
+                    if (pN.tagName == 'DIV' && pN.childNodes.length == 1) {
+                        pN.innerHTML = '<p><br/></p>';
+                        domUtils.remove(pN);
+                    }
+                }
+                var divs = div.querySelectorAll('#baidu_pastebin');
+                for (var i = 0, di; di = divs[i++];) {
+                    var tmpP = me.document.createElement('p');
+                    di.parentNode.insertBefore(tmpP, di);
+                    while (di.firstChild) {
+                        tmpP.appendChild(di.firstChild);
+                    }
+                    domUtils.remove(di);
+                }
+
+                var metas = div.querySelectorAll('meta');
+                for (var i = 0, ci; ci = metas[i++];) {
+                    domUtils.remove(ci);
+                }
+
+                var brs = div.querySelectorAll('br');
+                for (i = 0; ci = brs[i++];) {
+                    if (/^apple-/i.test(ci.className)) {
+                        domUtils.remove(ci);
+                    }
+                }
+            }
+            if (browser.gecko) {
+                var dirtyNodes = div.querySelectorAll('[_moz_dirty]');
+                for (i = 0; ci = dirtyNodes[i++];) {
+                    ci.removeAttribute('_moz_dirty');
+                }
+            }
+            if (!browser.ie) {
+                var spans = div.querySelectorAll('span.Apple-style-span');
+                for (var i = 0, ci; ci = spans[i++];) {
+                    domUtils.remove(ci, true);
+                }
+            }
+
+            //ie下使用innerHTML会产生多余的\r\n字符，也会产生&nbsp;这里过滤掉
+            html = div.innerHTML;//.replace(/>(?:(\s|&nbsp;)*?)</g,'><');
+
+            //过滤word粘贴过来的冗余属性
+            html = UM.filterWord(html);
+            //取消了忽略空白的第二个参数，粘贴过来的有些是有空白的，会被套上相关的标签
+            var root = UM.htmlparser(html);
+            //如果给了过滤规则就先进行过滤
+            if (me.options.filterRules) {
+                UM.filterNode(root, me.options.filterRules);
+            }
+            //执行默认的处理
+            me.filterInputRule(root);
+            //针对chrome的处理
+            if (browser.webkit) {
+                var br = root.lastChild();
+                if (br && br.type == 'element' && br.tagName == 'br') {
+                    root.removeChild(br)
+                }
+                utils.each(me.body.querySelectorAll('div'), function (node) {
+                    if (domUtils.isEmptyBlock(node)) {
+                        domUtils.remove(node)
+                    }
+                })
+            }
+            html = {'html': root.toHtml()};
+            me.fireEvent('beforepaste', html, root);
+            //抢了默认的粘贴，那后边的内容就不执行了，比如表格粘贴
+            if(!html.html){
+                return;
+            }
+
+            me.execCommand('insertHtml', html.html, true);
+            me.fireEvent("afterpaste", html);
+        }
+    }
+
+
+    me.addListener('ready', function () {
+        $(me.body).on( 'cut', function () {
+            var range = me.selection.getRange();
+            if (!range.collapsed && me.undoManger) {
+                me.undoManger.save();
+            }
+        }).on(browser.ie || browser.opera ? 'keydown' : 'paste', function (e) {
+            //ie下beforepaste在点击右键时也会触发，所以用监控键盘才处理
+            if ((browser.ie || browser.opera) && ((!e.ctrlKey && !e.metaKey) || e.keyCode != '86')) {
+                return;
+            }
+            getClipboardData.call(me, function (div) {
+                filter(div);
+            });
+        });
+
+    });
+};
+
+
+///import core
+///commands 有序列表,无序列表
+///commandsName  InsertOrderedList,InsertUnorderedList
+///commandsTitle  有序列表,无序列表
+/**
+ * 有序列表
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     insertorderlist插入有序列表
+ * @param   {String}   style               值为：decimal,lower-alpha,lower-roman,upper-alpha,upper-roman
+ * @author zhanyi
+ */
+/**
+ * 无序链接
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     insertunorderlist插入无序列表
+ * * @param   {String}   style            值为：circle,disc,square
+ * @author zhanyi
+ */
+
+UM.plugins['list'] = function () {
+    var me = this;
+
+    me.setOpt( {
+        'insertorderedlist':{
+            'decimal':'',
+            'lower-alpha':'',
+            'lower-roman':'',
+            'upper-alpha':'',
+            'upper-roman':''
+        },
+        'insertunorderedlist':{
+            'circle':'',
+            'disc':'',
+            'square':''
+        }
+    } );
+
+    this.addInputRule(function(root){
+        utils.each(root.getNodesByTagName('li'), function (node) {
+            if(node.children.length == 0){
+                node.parentNode.removeChild(node);
+            }
+        })
+    });
+    me.commands['insertorderedlist'] =
+    me.commands['insertunorderedlist'] = {
+            execCommand:function (cmdName) {
+                this.document.execCommand(cmdName);
+                var rng = this.selection.getRange(),
+                    bk = rng.createBookmark(true);
+
+                this.$body.find('ol,ul').each(function(i,n){
+                    var parent = n.parentNode;
+                    if(parent.tagName == 'P' && parent.lastChild === parent.firstChild){
+                        $(n).children().each(function(j,li){
+                            var p = parent.cloneNode(false);
+                            $(p).append(li.innerHTML);
+                            $(li).html('').append(p);
+                        });
+                        $(n).insertBefore(parent);
+                        $(parent).remove();
+                    }
+
+                    if(dtd.$inline[parent.tagName]){
+                        if(parent.tagName == 'SPAN'){
+
+                            $(n).children().each(function(k,li){
+                                var span = parent.cloneNode(false);
+                                if(li.firstChild.nodeName != 'P'){
+
+                                    while(li.firstChild){
+                                        span.appendChild(li.firstChild)
+                                    };
+                                    $('<p></p>').appendTo(li).append(span);
+                                }else{
+                                    while(li.firstChild){
+                                        span.appendChild(li.firstChild)
+                                    };
+                                    $(li.firstChild).append(span);
+                                }
+                            })
+
+                        }
+                        domUtils.remove(parent,true)
+                    }
+                });
+
+
+
+
+                rng.moveToBookmark(bk).select();
+                return true;
+            },
+            queryCommandState:function (cmdName) {
+                return this.document.queryCommandState(cmdName);
+            }
+        };
+};
+
+
+///import core
+///import plugins/serialize.js
+///import plugins/undo.js
+///commands 查看源码
+///commandsName  Source
+///commandsTitle  查看源码
+(function (){
+    var sourceEditors = {
+        textarea: function (editor, holder){
+            var textarea = holder.ownerDocument.createElement('textarea');
+            textarea.style.cssText = 'resize:none;border:0;padding:0;margin:0;overflow-y:auto;outline:0';
+            // todo: IE下只有onresize属性可用... 很纠结
+            if (browser.ie && browser.version < 8) {
+
+                textarea.style.width = holder.offsetWidth + 'px';
+                textarea.style.height = holder.offsetHeight + 'px';
+                holder.onresize = function (){
+                    textarea.style.width = holder.offsetWidth + 'px';
+                    textarea.style.height = holder.offsetHeight + 'px';
+                };
+            }
+            holder.appendChild(textarea);
+            return {
+                container : textarea,
+                setContent: function (content){
+                    textarea.value = content;
+                },
+                getContent: function (){
+                    return textarea.value;
+                },
+                select: function (){
+                    var range;
+                    if (browser.ie) {
+                        range = textarea.createTextRange();
+                        range.collapse(true);
+                        range.select();
+                    } else {
+                        //todo: chrome下无法设置焦点
+                        textarea.setSelectionRange(0, 0);
+                        textarea.focus();
+                    }
+                },
+                dispose: function (){
+                    holder.removeChild(textarea);
+                    // todo
+                    holder.onresize = null;
+                    textarea = null;
+                    holder = null;
+                }
+            };
+        }
+    };
+
+    UM.plugins['source'] = function (){
+        var me = this;
+        var opt = this.options;
+        var sourceMode = false;
+        var sourceEditor;
+
+        opt.sourceEditor = 'textarea';
+
+        me.setOpt({
+            sourceEditorFirst:false
+        });
+        function createSourceEditor(holder){
+            return sourceEditors.textarea(me, holder);
+        }
+
+        var bakCssText;
+        //解决在源码模式下getContent不能得到最新的内容问题
+        var oldGetContent = me.getContent,
+            bakAddress;
+
+        me.commands['source'] = {
+            execCommand: function (){
+
+                sourceMode = !sourceMode;
+                if (sourceMode) {
+                    bakAddress = me.selection.getRange().createAddress(false,true);
+                    me.undoManger && me.undoManger.save(true);
+                    if(browser.gecko){
+                        me.body.contentEditable = false;
+                    }
+
+//                    bakCssText = me.body.style.cssText;
+                    me.body.style.cssText += ';position:absolute;left:-32768px;top:-32768px;';
+
+
+                    me.fireEvent('beforegetcontent');
+                    var root = UM.htmlparser(me.body.innerHTML);
+                    me.filterOutputRule(root);
+                    root.traversal(function (node) {
+                        if (node.type == 'element') {
+                            switch (node.tagName) {
+                                case 'td':
+                                case 'th':
+                                case 'caption':
+                                    if(node.children && node.children.length == 1){
+                                        if(node.firstChild().tagName == 'br' ){
+                                            node.removeChild(node.firstChild())
+                                        }
+                                    };
+                                    break;
+                                case 'pre':
+                                    node.innerText(node.innerText().replace(/&nbsp;/g,' '))
+
+                            }
+                        }
+                    });
+
+                    me.fireEvent('aftergetcontent');
+
+                    var content = root.toHtml(true);
+
+                    sourceEditor = createSourceEditor(me.body.parentNode);
+
+                    sourceEditor.setContent(content);
+
+                    var getStyleValue=function(attr){
+                        return parseInt($(me.body).css(attr));
+                    };
+                    $(sourceEditor.container).width($(me.body).width()+getStyleValue("padding-left")+getStyleValue("padding-right"))
+                        .height($(me.body).height());
+                    setTimeout(function (){
+                        sourceEditor.select();
+                    });
+                    //重置getContent，源码模式下取值也能是最新的数据
+                    me.getContent = function (){
+                        return sourceEditor.getContent() || '<p>' + (browser.ie ? '' : '<br/>')+'</p>';
+                    };
+                } else {
+                    me.$body.css({
+                        'position':'',
+                        'left':'',
+                        'top':''
+                    });
+//                    me.body.style.cssText = bakCssText;
+                    var cont = sourceEditor.getContent() || '<p>' + (browser.ie ? '' : '<br/>')+'</p>';
+                    //处理掉block节点前后的空格,有可能会误命中，暂时不考虑
+                    cont = cont.replace(new RegExp('[\\r\\t\\n ]*<\/?(\\w+)\\s*(?:[^>]*)>','g'), function(a,b){
+                        if(b && !dtd.$inlineWithA[b.toLowerCase()]){
+                            return a.replace(/(^[\n\r\t ]*)|([\n\r\t ]*$)/g,'');
+                        }
+                        return a.replace(/(^[\n\r\t]*)|([\n\r\t]*$)/g,'')
+                    });
+                    me.setContent(cont);
+                    sourceEditor.dispose();
+                    sourceEditor = null;
+                    //还原getContent方法
+                    me.getContent = oldGetContent;
+                    var first = me.body.firstChild;
+                    //trace:1106 都删除空了，下边会报错，所以补充一个p占位
+                    if(!first){
+                        me.body.innerHTML = '<p>'+(browser.ie?'':'<br/>')+'</p>';
+                    }
+                    //要在ifm为显示时ff才能取到selection,否则报错
+                    //这里不能比较位置了
+                    me.undoManger && me.undoManger.save(true);
+                    if(browser.gecko){
+                        me.body.contentEditable = true;
+                    }
+                    try{
+                        me.selection.getRange().moveToAddress(bakAddress).select();
+                    }catch(e){}
+
+                }
+                this.fireEvent('sourcemodechanged', sourceMode);
+            },
+            queryCommandState: function (){
+                return sourceMode|0;
+            },
+            notNeedUndo : 1
+        };
+        var oldQueryCommandState = me.queryCommandState;
+
+
+        me.queryCommandState = function (cmdName){
+            cmdName = cmdName.toLowerCase();
+            if (sourceMode) {
+                //源码模式下可以开启的命令
+                return cmdName in {
+                    'source' : 1,
+                    'fullscreen' : 1
+                } ? oldQueryCommandState.apply(this, arguments)  : -1
+            }
+            return oldQueryCommandState.apply(this, arguments);
+        };
+
+    };
+
+})();
+///import core
+///import plugins/undo.js
+///commands 设置回车标签p或br
+///commandsName  EnterKey
+///commandsTitle  设置回车标签p或br
+/**
+ * @description 处理回车
+ * @author zhanyi
+ */
+UM.plugins['enterkey'] = function() {
+    var hTag,
+        me = this,
+        tag = me.options.enterTag;
+    me.addListener('keyup', function(type, evt) {
+
+        var keyCode = evt.keyCode || evt.which;
+        if (keyCode == 13) {
+            var range = me.selection.getRange(),
+                start = range.startContainer,
+                doSave;
+
+            //修正在h1-h6里边回车后不能嵌套p的问题
+            if (!browser.ie) {
+
+                if (/h\d/i.test(hTag)) {
+                    if (browser.gecko) {
+                        var h = domUtils.findParentByTagName(start, [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6','blockquote','caption','table'], true);
+                        if (!h) {
+                            me.document.execCommand('formatBlock', false, '<p>');
+                            doSave = 1;
+                        }
+                    } else {
+                        //chrome remove div
+                        if (start.nodeType == 1) {
+                            var tmp = me.document.createTextNode(''),div;
+                            range.insertNode(tmp);
+                            div = domUtils.findParentByTagName(tmp, 'div', true);
+                            if (div) {
+                                var p = me.document.createElement('p');
+                                while (div.firstChild) {
+                                    p.appendChild(div.firstChild);
+                                }
+                                div.parentNode.insertBefore(p, div);
+                                domUtils.remove(div);
+                                range.setStartBefore(tmp).setCursor();
+                                doSave = 1;
+                            }
+                            domUtils.remove(tmp);
+
+                        }
+                    }
+
+                    if (me.undoManger && doSave) {
+                        me.undoManger.save();
+                    }
+                }
+                //没有站位符，会出现多行的问题
+                browser.opera &&  range.select();
+            }else{
+                me.fireEvent('saveScene',true,true)
+            }
+        }
+    });
+
+    me.addListener('keydown', function(type, evt) {
+        var keyCode = evt.keyCode || evt.which;
+        if (keyCode == 13) {//回车
+            if(me.fireEvent('beforeenterkeydown')){
+                domUtils.preventDefault(evt);
+                return;
+            }
+            me.fireEvent('saveScene',true,true);
+            hTag = '';
+
+
+            var range = me.selection.getRange();
+
+            if (!range.collapsed) {
+                //跨td不能删
+                var start = range.startContainer,
+                    end = range.endContainer,
+                    startTd = domUtils.findParentByTagName(start, 'td', true),
+                    endTd = domUtils.findParentByTagName(end, 'td', true);
+                if (startTd && endTd && startTd !== endTd || !startTd && endTd || startTd && !endTd) {
+                    evt.preventDefault ? evt.preventDefault() : ( evt.returnValue = false);
+                    return;
+                }
+            }
+            if (tag == 'p') {
+
+
+                if (!browser.ie) {
+
+                    start = domUtils.findParentByTagName(range.startContainer, ['ol','ul','p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6','blockquote','caption'], true);
+
+                    //opera下执行formatblock会在table的场景下有问题，回车在opera原生支持很好，所以暂时在opera去掉调用这个原生的command
+                    //trace:2431
+                    if (!start && !browser.opera) {
+
+                        me.document.execCommand('formatBlock', false, '<p>');
+
+                        if (browser.gecko) {
+                            range = me.selection.getRange();
+                            start = domUtils.findParentByTagName(range.startContainer, 'p', true);
+                            start && domUtils.removeDirtyAttr(start);
+                        }
+
+
+                    } else {
+                        hTag = start.tagName;
+                        start.tagName.toLowerCase() == 'p' && browser.gecko && domUtils.removeDirtyAttr(start);
+                    }
+
+                }
+
+            }
+
+        }
+    });
+
+    browser.ie && me.addListener('setDisabled',function(){
+        $(me.body).find('p').each(function(i,p){
+            if(domUtils.isEmptyBlock(p)){
+                p.innerHTML = '&nbsp;'
+            }
+        })
+    })
+};
+
+///import core
+///commands 预览
+///commandsName  Preview
+///commandsTitle  预览
+/**
+ * 预览
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName     preview预览编辑器内容
+ */
+UM.commands['preview'] = {
+    execCommand : function(){
+        var w = window.open('', '_blank', ''),
+            d = w.document,
+            c = this.getContent(null,null,true),
+            path = this.getOpt('UMEDITOR_HOME_URL'),
+            formula = c.indexOf('mathquill-embedded-latex')!=-1 ?
+                '<link rel="stylesheet" href="' + path + 'third-party/mathquill/mathquill.css"/>' +
+                '<script src="' + path + 'third-party/jquery.min.js"></script>' +
+                '<script src="' + path + 'third-party/mathquill/mathquill.min.js"></script>':'';
+        d.open();
+        d.write('<html><head>' + formula + '</head><body><div>'+c+'</div></body></html>');
+        d.close();
+    },
+    notNeedUndo : 1
+};
+
+///import core
+///commands 加粗,斜体,上标,下标
+///commandsName  Bold,Italic,Subscript,Superscript
+///commandsTitle  加粗,加斜,下标,上标
+/**
+ * b u i等基础功能实现
+ * @function
+ * @name UM.execCommands
+ * @param    {String}    cmdName    bold加粗。italic斜体。subscript上标。superscript下标。
+*/
+UM.plugins['basestyle'] = function(){
+    var basestyles = ['bold','underline','superscript','subscript','italic','strikethrough'],
+        me = this;
+    //添加快捷键
+    me.addshortcutkey({
+        "Bold" : "ctrl+66",//^B
+        "Italic" : "ctrl+73", //^I
+        "Underline" : "ctrl+shift+85",//^U
+        "strikeThrough" : 'ctrl+shift+83' //^s
+    });
+    //过滤最后的产出数据
+    me.addOutputRule(function(root){
+        $.each(root.getNodesByTagName('b i u strike s'),function(i,node){
+            switch (node.tagName){
+                case 'b':
+                    node.tagName = 'strong';
+                    break;
+                case 'i':
+                    node.tagName = 'em';
+                    break;
+                case 'u':
+                    node.tagName = 'span';
+                    node.setStyle('text-decoration','underline');
+                    break;
+                case 's':
+                case 'strike':
+                    node.tagName = 'span';
+                    node.setStyle('text-decoration','line-through')
+            }
+        });
+    });
+    $.each(basestyles,function(i,cmd){
+        me.commands[cmd] = {
+            execCommand : function( cmdName ) {
+                var node, rng = this.selection.getRange();
+                if(rng.collapsed) {
+                    if (this.queryCommandState(cmdName) == 1) {
+                        node = this.document.createElement('span');
+                        node.appendChild(this.document.createTextNode(domUtils.fillChar));
+                        rng.insertNode(node);
+                        rng.selectNode(node).select();
+                        this.document.execCommand(cmdName);
+                        return true;
+                    } else if (this.queryCommandState(cmdName) != 1) {
+                        node = this.document.createElement({
+                            'bold':'strong',
+                            'underline':'u',
+                            'superscript':'sup',
+                            'subscript':'sub',
+                            'italic':'em',
+                            'strikethrough':'strike'
+                        }[cmdName]);
+                        rng.insertNode(node).setStart(node,0).setCursor(false);
+                        return true;
+                    }
+                }else{
+                    return this.document.execCommand(cmdName);
+                }
+
+            },
+            queryCommandState : function(cmdName) {
+                if(browser.gecko){
+                    return this.document.queryCommandState(cmdName)
+                }
+                var path = this.selection.getStartElementPath(),result = false;
+                $.each(path,function(i,n){
+                    switch (cmdName){
+                        case 'bold':
+                            if(n.nodeName == 'STRONG' || n.nodeName == 'B'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                        case 'underline':
+                            if(n.nodeName == 'U' || n.nodeName == 'SPAN' && $(n).css('text-decoration') == 'underline'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                        case 'superscript':
+                            if(n.nodeName == 'SUP'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                        case 'subscript':
+                            if(n.nodeName == 'SUB'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                        case 'italic':
+                            if(n.nodeName == 'EM' || n.nodeName == 'I'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                        case 'strikethrough':
+                            if(n.nodeName == 'S' || n.nodeName == 'STRIKE' || n.nodeName == 'SPAN' && $(n).css('text-decoration') == 'line-through'){
+                                result = 1;
+                                return false;
+                            }
+                            break;
+                    }
+                });
+                return result
+            }
+        };
+    })
+};
+
+
+///import core
+///import plugins/inserthtml.js
+///commands 视频
+///commandsName InsertVideo
+///commandsTitle  插入视频
+///commandsDialog  dialogs\video
+UM.plugins['video'] = function (){
+    var me =this,
+        div;
+
+    /**
+     * 创建插入视频字符窜
+     * @param url 视频地址
+     * @param width 视频宽度
+     * @param height 视频高度
+     * @param align 视频对齐
+     * @param toEmbed 是否以flash代替显示
+     * @param addParagraph  是否需要添加P 标签
+     */
+    function creatInsertStr(url,width,height,id,align,toEmbed){
+        return  !toEmbed ?
+
+                '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="edui-faked-video"'  +
+                ' src="' + me.options.UMEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UMEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
+
+                :
+                '<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer"' +
+                ' src="' + url + '" width="' + width  + '" height="' + height  + '"'  + (align ? ' style="float:' + align + '"': '') +
+                ' wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true" >';
+    }
+
+    function switchImgAndEmbed(root,img2embed){
+        utils.each(root.getNodesByTagName(img2embed ? 'img' : 'embed'),function(node){
+            if(node.getAttr('class') == 'edui-faked-video'){
+
+                var html = creatInsertStr( img2embed ? node.getAttr('_url') : node.getAttr('src'),node.getAttr('width'),node.getAttr('height'),null,node.getStyle('float') || '',img2embed);
+                node.parentNode.replaceChild(UM.uNode.createElement(html),node)
+            }
+        })
+    }
+
+    me.addOutputRule(function(root){
+        switchImgAndEmbed(root,true)
+    });
+    me.addInputRule(function(root){
+        switchImgAndEmbed(root)
+    });
+
+    me.commands["insertvideo"] = {
+        execCommand: function (cmd, videoObjs){
+            videoObjs = utils.isArray(videoObjs)?videoObjs:[videoObjs];
+            var html = [],id = 'tmpVedio';
+            for(var i=0,vi,len = videoObjs.length;i<len;i++){
+                 vi = videoObjs[i];
+                 html.push(creatInsertStr( vi.url, vi.width || 420,  vi.height || 280, id + i,vi.align,false));
+            }
+            me.execCommand("inserthtml",html.join(""),true);
+
+        },
+        queryCommandState : function(){
+            var img = me.selection.getRange().getClosedNode(),
+                flag = img && (img.className == "edui-faked-video");
+            return flag ? 1 : 0;
+        }
+    };
+};
+///import core
+///commands 全选
+///commandsName  SelectAll
+///commandsTitle  全选
+/**
+ * 选中所有
+ * @function
+ * @name UM.execCommand
+ * @param   {String}   cmdName    selectall选中编辑器里的所有内容
+ * @author zhanyi
+*/
+UM.plugins['selectall'] = function(){
+    var me = this;
+    me.commands['selectall'] = {
+        execCommand : function(){
+            //去掉了原生的selectAll,因为会出现报错和当内容为空时，不能出现闭合状态的光标
+            var me = this,body = me.body,
+                range = me.selection.getRange();
+            range.selectNodeContents(body);
+            if(domUtils.isEmptyBlock(body)){
+                //opera不能自动合并到元素的里边，要手动处理一下
+                if(browser.opera && body.firstChild && body.firstChild.nodeType == 1){
+                    range.setStartAtFirst(body.firstChild);
+                }
+                range.collapse(true);
+            }
+            range.select(true);
+        },
+        notNeedUndo : 1
+    };
+
+
+    //快捷键
+    me.addshortcutkey({
+         "selectAll" : "ctrl+65"
+    });
+};
+
+//UM.plugins['removeformat'] = function () {
+//    var me = this;
+//    me.commands['removeformat'] = {
+//        execCommand: function () {
+//            me.document.execCommand('removeformat');
+//
+//            /* 处理ie8和firefox选区有链接时,清除格式的bug */
+//            if (browser.gecko || browser.ie8 || browser.webkit) {
+//                var nativeRange = this.selection.getNative().getRangeAt(0),
+//                    common = nativeRange.commonAncestorContainer,
+//                    rng = me.selection.getRange(),
+//                    bk = rng.createBookmark();
+//
+//                function isEleInBookmark(node, bk){
+//                    if ( (domUtils.getPosition(node, bk.start) & domUtils.POSITION_FOLLOWING) &&
+//                        (domUtils.getPosition(bk.end, node) & domUtils.POSITION_FOLLOWING) ) {
+//                        return true;
+//                    } else if ( (domUtils.getPosition(node, bk.start) & domUtils.POSITION_CONTAINS) ||
+//                        (domUtils.getPosition(node, bk.end) & domUtils.POSITION_CONTAINS) ) {
+//                        return true;
+//                    }
+//                    return false;
+//                }
+//
+//                $(common).find('a').each(function (k, a) {
+//                    if ( isEleInBookmark(a, bk) ) {
+//                        a.removeAttribute('style');
+//                    }
+//                });
+//
+//            }
+//        }
+//    };
+//
+//};
+//
+
+
+UM.plugins['removeformat'] = function(){
+    var me = this;
+    me.setOpt({
+        'removeFormatTags': 'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var',
+        'removeFormatAttributes':'class,style,lang,width,height,align,hspace,valign'
+    });
+    me.commands['removeformat'] = {
+        execCommand : function( cmdName, tags, style, attrs,notIncludeA ) {
+
+            var tagReg = new RegExp( '^(?:' + (tags || this.options.removeFormatTags).replace( /,/g, '|' ) + ')$', 'i' ) ,
+                removeFormatAttributes = style ? [] : (attrs || this.options.removeFormatAttributes).split( ',' ),
+                range = new dom.Range( this.document ),
+                bookmark,node,parent,
+                filter = function( node ) {
+                    return node.nodeType == 1;
+                };
+
+            function isRedundantSpan (node) {
+                if (node.nodeType == 3 || node.tagName.toLowerCase() != 'span'){
+                    return 0;
+                }
+                if (browser.ie) {
+                    //ie 下判断实效，所以只能简单用style来判断
+                    //return node.style.cssText == '' ? 1 : 0;
+                    var attrs = node.attributes;
+                    if ( attrs.length ) {
+                        for ( var i = 0,l = attrs.length; i<l; i++ ) {
+                            if ( attrs[i].specified ) {
+                                return 0;
+                            }
+                        }
+                        return 1;
+                    }
+                }
+                return !node.attributes.length;
+            }
+            function doRemove( range ) {
+
+                var bookmark1 = range.createBookmark();
+                if ( range.collapsed ) {
+                    range.enlarge( true );
+                }
+
+                //不能把a标签切了
+                if(!notIncludeA){
+                    var aNode = domUtils.findParentByTagName(range.startContainer,'a',true);
+                    if(aNode){
+                        range.setStartBefore(aNode);
+                    }
+
+                    aNode = domUtils.findParentByTagName(range.endContainer,'a',true);
+                    if(aNode){
+                        range.setEndAfter(aNode);
+                    }
+
+                }
+
+
+                bookmark = range.createBookmark();
+
+                node = bookmark.start;
+
+                //切开始
+                while ( (parent = node.parentNode) && !domUtils.isBlockElm( parent ) ) {
+                    domUtils.breakParent( node, parent );
+                    domUtils.clearEmptySibling( node );
+                }
+                if ( bookmark.end ) {
+                    //切结束
+                    node = bookmark.end;
+                    while ( (parent = node.parentNode) && !domUtils.isBlockElm( parent ) ) {
+                        domUtils.breakParent( node, parent );
+                        domUtils.clearEmptySibling( node );
+                    }
+
+                    //开始去除样式
+                    var current = domUtils.getNextDomNode( bookmark.start, false, filter ),
+                        next;
+                    while ( current ) {
+                        if ( current == bookmark.end ) {
+                            break;
+                        }
+
+                        next = domUtils.getNextDomNode( current, true, filter );
+
+                        if ( !dtd.$empty[current.tagName.toLowerCase()] && !domUtils.isBookmarkNode( current ) ) {
+                            if ( tagReg.test( current.tagName ) ) {
+                                if ( style ) {
+                                    domUtils.removeStyle( current, style );
+                                    if ( isRedundantSpan( current ) && style != 'text-decoration'){
+                                        domUtils.remove( current, true );
+                                    }
+                                } else {
+                                    domUtils.remove( current, true );
+                                }
+                            } else {
+                                //trace:939  不能把list上的样式去掉
+                                if(!dtd.$tableContent[current.tagName] && !dtd.$list[current.tagName]){
+                                    domUtils.removeAttributes( current, removeFormatAttributes );
+                                    if ( isRedundantSpan( current ) ){
+                                        domUtils.remove( current, true );
+                                    }
+                                }
+
+                            }
+                        }
+                        current = next;
+                    }
+                }
+                //trace:1035
+                //trace:1096 不能把td上的样式去掉，比如边框
+                var pN = bookmark.start.parentNode;
+                if(domUtils.isBlockElm(pN) && !dtd.$tableContent[pN.tagName] && !dtd.$list[pN.tagName]){
+                    domUtils.removeAttributes(  pN,removeFormatAttributes );
+                }
+                pN = bookmark.end.parentNode;
+                if(bookmark.end && domUtils.isBlockElm(pN) && !dtd.$tableContent[pN.tagName]&& !dtd.$list[pN.tagName]){
+                    domUtils.removeAttributes(  pN,removeFormatAttributes );
+                }
+                range.moveToBookmark( bookmark ).moveToBookmark(bookmark1);
+                //清除冗余的代码 <b><bookmark></b>
+                var node = range.startContainer,
+                    tmp,
+                    collapsed = range.collapsed;
+                while(node.nodeType == 1 && domUtils.isEmptyNode(node) && dtd.$removeEmpty[node.tagName]){
+                    tmp = node.parentNode;
+                    range.setStartBefore(node);
+                    //trace:937
+                    //更新结束边界
+                    if(range.startContainer === range.endContainer){
+                        range.endOffset--;
+                    }
+                    domUtils.remove(node);
+                    node = tmp;
+                }
+
+                if(!collapsed){
+                    node = range.endContainer;
+                    while(node.nodeType == 1 && domUtils.isEmptyNode(node) && dtd.$removeEmpty[node.tagName]){
+                        tmp = node.parentNode;
+                        range.setEndBefore(node);
+                        domUtils.remove(node);
+
+                        node = tmp;
+                    }
+
+
+                }
+            }
+
+
+
+            range = this.selection.getRange();
+            if(!range.collapsed) {
+                doRemove( range );
+                range.select();
+            }
+
+        }
+
+    };
+
+};
+/*
+ *   处理特殊键的兼容性问题
+ */
+UM.plugins['keystrokes'] = function() {
+    var me = this;
+    var collapsed = true;
+    me.addListener('keydown', function(type, evt) {
+        var keyCode = evt.keyCode || evt.which,
+            rng = me.selection.getRange();
+
+        //处理全选的情况
+        if(!rng.collapsed && !(evt.ctrlKey || evt.shiftKey || evt.altKey || evt.metaKey) && (keyCode >= 65 && keyCode <=90
+            || keyCode >= 48 && keyCode <= 57 ||
+            keyCode >= 96 && keyCode <= 111 || {
+            13:1,
+            8:1,
+            46:1
+        }[keyCode])
+            ){
+
+            var tmpNode = rng.startContainer;
+            if(domUtils.isFillChar(tmpNode)){
+                rng.setStartBefore(tmpNode)
+            }
+            tmpNode = rng.endContainer;
+            if(domUtils.isFillChar(tmpNode)){
+                rng.setEndAfter(tmpNode)
+            }
+            rng.txtToElmBoundary();
+            //结束边界可能放到了br的前边，要把br包含进来
+            // x[xxx]<br/>
+            if(rng.endContainer && rng.endContainer.nodeType == 1){
+                tmpNode = rng.endContainer.childNodes[rng.endOffset];
+                if(tmpNode && domUtils.isBr(tmpNode)){
+                    rng.setEndAfter(tmpNode);
+                }
+            }
+            if(rng.startOffset == 0){
+                tmpNode = rng.startContainer;
+                if(domUtils.isBoundaryNode(tmpNode,'firstChild') ){
+                    tmpNode = rng.endContainer;
+                    if(rng.endOffset == (tmpNode.nodeType == 3 ? tmpNode.nodeValue.length : tmpNode.childNodes.length) && domUtils.isBoundaryNode(tmpNode,'lastChild')){
+                        me.fireEvent('saveScene');
+                        me.body.innerHTML = '<p>'+(browser.ie ? '' : '<br/>')+'</p>';
+                        rng.setStart(me.body.firstChild,0).setCursor(false,true);
+                        me._selectionChange();
+                        return;
+                    }
+                }
+            }
+        }
+
+        //处理backspace
+        if (keyCode == 8) {
+            rng = me.selection.getRange();
+            collapsed = rng.collapsed;
+            if(me.fireEvent('delkeydown',evt)){
+                return;
+            }
+            var start,end;
+            //避免按两次删除才能生效的问题
+            if(rng.collapsed && rng.inFillChar()){
+                start = rng.startContainer;
+
+                if(domUtils.isFillChar(start)){
+                    rng.setStartBefore(start).shrinkBoundary(true).collapse(true);
+                    domUtils.remove(start)
+                }else{
+                    start.nodeValue = start.nodeValue.replace(new RegExp('^' + domUtils.fillChar ),'');
+                    rng.startOffset--;
+                    rng.collapse(true).select(true)
+                }
+            }
+            //解决选中control元素不能删除的问题
+            if (start = rng.getClosedNode()) {
+                me.fireEvent('saveScene');
+                rng.setStartBefore(start);
+                domUtils.remove(start);
+                rng.setCursor();
+                me.fireEvent('saveScene');
+                domUtils.preventDefault(evt);
+                return;
+            }
+            //阻止在table上的删除
+            if (!browser.ie) {
+                start = domUtils.findParentByTagName(rng.startContainer, 'table', true);
+                end = domUtils.findParentByTagName(rng.endContainer, 'table', true);
+                if (start && !end || !start && end || start !== end) {
+                    evt.preventDefault();
+                    return;
+                }
+            }
+            start = rng.startContainer;
+            if(rng.collapsed && start.nodeType == 1){
+                var currentNode = start.childNodes[rng.startOffset-1];
+                if(currentNode && currentNode.nodeType == 1 && currentNode.tagName == 'BR'){
+                    me.fireEvent('saveScene');
+                    rng.setStartBefore(currentNode).collapse(true);
+                    domUtils.remove(currentNode);
+                    rng.select();
+                    me.fireEvent('saveScene');
+                }
+            }
+
+            //trace:3613
+            if(browser.chrome){
+                if(rng.collapsed){
+
+                    while(rng.startOffset == 0 && !domUtils.isEmptyBlock(rng.startContainer)){
+                        rng.setStartBefore(rng.startContainer)
+                    }
+                    var pre = rng.startContainer.childNodes[rng.startOffset-1];
+                    if(pre && pre.nodeName == 'BR'){
+                        rng.setStartBefore(pre);
+                        me.fireEvent('saveScene');
+                        $(pre).remove();
+                        rng.setCursor();
+                        me.fireEvent('saveScene');
+                    }
+
+                }
+            }
+        }
+        //trace:1634
+        //ff的del键在容器空的时候，也会删除
+        if(browser.gecko && keyCode == 46){
+            var range = me.selection.getRange();
+            if(range.collapsed){
+                start = range.startContainer;
+                if(domUtils.isEmptyBlock(start)){
+                    var parent = start.parentNode;
+                    while(domUtils.getChildCount(parent) == 1 && !domUtils.isBody(parent)){
+                        start = parent;
+                        parent = parent.parentNode;
+                    }
+                    if(start === parent.lastChild)
+                        evt.preventDefault();
+                    return;
+                }
+            }
+        }
+    });
+    me.addListener('keyup', function(type, evt) {
+        var keyCode = evt.keyCode || evt.which,
+            rng,me = this;
+        if(keyCode == 8){
+            if(me.fireEvent('delkeyup')){
+                return;
+            }
+            rng = me.selection.getRange();
+            if(rng.collapsed){
+                var tmpNode,
+                    autoClearTagName = ['h1','h2','h3','h4','h5','h6'];
+                if(tmpNode = domUtils.findParentByTagName(rng.startContainer,autoClearTagName,true)){
+                    if(domUtils.isEmptyBlock(tmpNode)){
+                        var pre = tmpNode.previousSibling;
+                        if(pre && pre.nodeName != 'TABLE'){
+                            domUtils.remove(tmpNode);
+                            rng.setStartAtLast(pre).setCursor(false,true);
+                            return;
+                        }else{
+                            var next = tmpNode.nextSibling;
+                            if(next && next.nodeName != 'TABLE'){
+                                domUtils.remove(tmpNode);
+                                rng.setStartAtFirst(next).setCursor(false,true);
+                                return;
+                            }
+                        }
+                    }
+                }
+                //处理当删除到body时，要重新给p标签展位
+                if(domUtils.isBody(rng.startContainer)){
+                    var tmpNode = domUtils.createElement(me.document,'p',{
+                        'innerHTML' : browser.ie ? domUtils.fillChar : '<br/>'
+                    });
+                    rng.insertNode(tmpNode).setStart(tmpNode,0).setCursor(false,true);
+                }
+            }
+
+
+            //chrome下如果删除了inline标签，浏览器会有记忆，在输入文字还是会套上刚才删除的标签，所以这里再选一次就不会了
+            if( !collapsed && (rng.startContainer.nodeType == 3 || rng.startContainer.nodeType == 1 && domUtils.isEmptyBlock(rng.startContainer))){
+                if(browser.ie){
+                    var span = rng.document.createElement('span');
+                    rng.insertNode(span).setStartBefore(span).collapse(true);
+                    rng.select();
+                    domUtils.remove(span)
+                }else{
+                    rng.select()
+                }
+
+            }
+        }
+
+    })
+};
+/**
+ * 自动保存草稿
+ */
+UM.plugins['autosave'] = function() {
+
+
+    var me = this,
+        //无限循环保护
+        lastSaveTime = new Date(),
+        //最小保存间隔时间
+        MIN_TIME = 20,
+        //auto save key
+        saveKey = null;
+
+
+    //默认间隔时间
+    me.setOpt('saveInterval', 500);
+
+    //存储媒介封装
+    var LocalStorage = UM.LocalStorage = ( function () {
+
+        var storage = window.localStorage || getUserData() || null,
+            LOCAL_FILE = "localStorage";
+
+        return {
+
+            saveLocalData: function ( key, data ) {
+
+                if ( storage && data) {
+                    storage.setItem( key, data  );
+                    return true;
+                }
+
+                return false;
+
+            },
+
+            getLocalData: function ( key ) {
+
+                if ( storage ) {
+                    return storage.getItem( key );
+                }
+
+                return null;
+
+            },
+
+            removeItem: function ( key ) {
+
+                storage && storage.removeItem( key );
+
+            }
+
+        };
+
+        function getUserData () {
+
+            var container = document.createElement( "div" );
+            container.style.display = "none";
+
+            if( !container.addBehavior ) {
+                return null;
+            }
+
+            container.addBehavior("#default#userdata");
+
+            return {
+
+                getItem: function ( key ) {
+
+                    var result = null;
+
+                    try {
+                        document.body.appendChild( container );
+                        container.load( LOCAL_FILE );
+                        result = container.getAttribute( key );
+                        document.body.removeChild( container );
+                    } catch ( e ) {
+                    }
+
+                    return result;
+
+                },
+
+                setItem: function ( key, value ) {
+
+                    document.body.appendChild( container );
+                    container.setAttribute( key, value );
+                    container.save( LOCAL_FILE );
+                    document.body.removeChild( container );
+
+                },
+//               暂时没有用到
+//                clear: function () {
+//
+//                    var expiresTime = new Date();
+//                    expiresTime.setFullYear( expiresTime.getFullYear() - 1 );
+//                    document.body.appendChild( container );
+//                    container.expires = expiresTime.toUTCString();
+//                    container.save( LOCAL_FILE );
+//                    document.body.removeChild( container );
+//
+//                },
+
+                removeItem: function ( key ) {
+
+                    document.body.appendChild( container );
+                    container.removeAttribute( key );
+                    container.save( LOCAL_FILE );
+                    document.body.removeChild( container );
+
+                }
+
+            };
+
+        }
+
+    } )();
+
+    function save ( editor ) {
+
+        var saveData = null;
+
+        if ( new Date() - lastSaveTime < MIN_TIME ) {
+            return;
+        }
+
+        if ( !editor.hasContents() ) {
+            //这里不能调用命令来删除， 会造成事件死循环
+            saveKey && LocalStorage.removeItem( saveKey );
+            return;
+        }
+
+        lastSaveTime = new Date();
+
+        editor._saveFlag = null;
+
+        saveData = me.body.innerHTML;
+
+        if ( editor.fireEvent( "beforeautosave", {
+            content: saveData
+        } ) === false ) {
+            return;
+        }
+
+        LocalStorage.saveLocalData( saveKey, saveData );
+
+        editor.fireEvent( "afterautosave", {
+            content: saveData
+        } );
+
+    }
+
+    me.addListener('ready', function(){
+        var _suffix = "-drafts-data",
+            key = null;
+
+        if ( me.key ) {
+            key = me.key + _suffix;
+        } else {
+            key = ( me.container.parentNode.id || 'ue-common' ) + _suffix;
+        }
+
+        //页面地址+编辑器ID 保持唯一
+        saveKey = ( location.protocol + location.host + location.pathname ).replace( /[.:\/]/g, '_' ) + key;
+    });
+
+    me.addListener('contentchange', function(){
+
+        if ( !saveKey ) {
+            return;
+        }
+
+        if ( me._saveFlag ) {
+            window.clearTimeout( me._saveFlag );
+        }
+
+        if ( me.options.saveInterval > 0 ) {
+
+            me._saveFlag = window.setTimeout( function () {
+
+                save( me );
+
+            }, me.options.saveInterval );
+
+        } else {
+
+            save(me);
+
+        }
+
+    })
+
+
+    me.commands['clearlocaldata'] = {
+        execCommand:function (cmd, name) {
+            if ( saveKey && LocalStorage.getLocalData( saveKey ) ) {
+                LocalStorage.removeItem( saveKey )
+            }
+        },
+        notNeedUndo: true,
+        ignoreContentChange:true
+    };
+
+    me.commands['getlocaldata'] = {
+        execCommand:function (cmd, name) {
+            return saveKey ? LocalStorage.getLocalData( saveKey ) || '' : '';
+        },
+        notNeedUndo: true,
+        ignoreContentChange:true
+    };
+
+    me.commands['drafts'] = {
+        execCommand:function (cmd, name) {
+            if ( saveKey ) {
+                me.body.innerHTML = LocalStorage.getLocalData( saveKey ) || '<p>'+(browser.ie ? '&nbsp;' : '<br/>')+'</p>';
+                me.focus(true);
+            }
+        },
+        queryCommandState: function () {
+            return saveKey ? ( LocalStorage.getLocalData( saveKey ) === null ? -1 : 0 ) : -1;
+        },
+        notNeedUndo: true,
+        ignoreContentChange:true
+    }
+
+};
+
+/**
+ * @description
+ * 1.拖放文件到编辑区域，自动上传并插入到选区
+ * 2.插入粘贴板的图片，自动上传并插入到选区
+ * @author Jinqn
+ * @date 2013-10-14
+ */
+UM.plugins['autoupload'] = function () {
+
+    var me = this;
+
+    me.setOpt('pasteImageEnabled', true);
+    me.setOpt('dropFileEnabled', true);
+    var sendAndInsertImage = function (file, editor) {
+        //模拟数据
+        var fd = new FormData();
+        fd.append(editor.options.imageFieldName || 'upfile', file, file.name || ('blob.' + file.type.substr('image/'.length)));
+        fd.append('type', 'ajax');
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", me.options.imageUrl, true);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.addEventListener('load', function (e) {
+            try {
+                var json = eval('('+e.target.response+')'),
+                    link = json.url,
+                    picLink = me.options.imagePath + link;
+                editor.execCommand('insertimage', {
+                    src: picLink,
+                    _src: picLink
+                });
+            } catch (er) {
+            }
+        });
+        xhr.send(fd);
+    };
+
+    function getPasteImage(e) {
+        return e.clipboardData && e.clipboardData.items && e.clipboardData.items.length == 1 && /^image\//.test(e.clipboardData.items[0].type) ? e.clipboardData.items : null;
+    }
+
+    function getDropImage(e) {
+        return  e.dataTransfer && e.dataTransfer.files ? e.dataTransfer.files : null;
+    }
+
+    me.addListener('ready', function () {
+        if (window.FormData && window.FileReader) {
+            var autoUploadHandler = function (e) {
+                var items;
+                //获取粘贴板文件列表或者拖放文件列表
+                items = e.type == 'paste' ? getPasteImage(e.originalEvent) : getDropImage(e.originalEvent);
+                if (items) {
+                    var len = items.length,
+                        file;
+                    while (len--) {
+                        file = items[len];
+                        if (file.getAsFile) file = file.getAsFile();
+                        if (file && file.size > 0 && /image\/\w+/i.test(file.type)) {
+                            sendAndInsertImage(file, me);
+                        }
+                    }
+                }
+
+            };
+            me.getOpt('pasteImageEnabled') && me.$body.on('paste', autoUploadHandler);
+            me.getOpt('dropFileEnabled') && me.$body.on('drop', autoUploadHandler);
+
+            //取消拖放图片时出现的文字光标位置提示
+            me.$body.on('dragover', function (e) {
+                if (e.originalEvent.dataTransfer.types[0] == 'Files') {
+                    e.preventDefault();
+                }
+            });
+        }
+    });
+
+    // 转存 base64 图片
+    me.addListener('transferBase64Image', function () {
+        utils.each(me.document.getElementsByTagName('img'), function (img, i){
+            var options = {}, base64, id;
+            if (base64 = getBase64ImageData(img)) {
+                id = img.id = 'base64img_' + (+new Date());
+                options['base64'] = true;
+                options[me.getOpt('imageFieldName')] = base64;
+                $.post(me.getOpt('imageUrl'), options, function(r){
+                    var json = eval('('+r+')'),
+                        $img = $('#' + id),
+                        link;
+                    if (json.state == 'SUCCESS' && json.url) {
+                        link = me.getOpt('imagePath') + json.url;
+                        $img.attr('src', link);
+                        $img.attr('_src', link);
+                    }
+                });
+            }
+        });
+    });
+
+    me.addListener('ready', function () {
+        function transferHandler(){
+            setTimeout(function (){
+                me.fireEvent('transferBase64Image');
+            });
+        }
+        me.$body.on('paste drop', transferHandler);
+    });
+
+    function getBase64ImageData(img){
+        var src = img.src, arr;
+        if (src.length > 60 && (arr = src.match(/^(data:[^;]*;base64,)/))) {
+            return src.substring(arr[1].length);
+        }
+    }
+
+};
+/**
+ * 公式插件
+ */
+UM.plugins['formula'] = function () {
+    var me = this;
+
+    function getActiveIframe() {
+        return me.$body.find('iframe.edui-formula-active')[0] || null;
+    }
+
+    function blurActiveIframe(){
+        var iframe = getActiveIframe();
+        iframe && iframe.contentWindow.formula.blur();
+    }
+
+    me.addInputRule(function (root) {
+        $.each(root.getNodesByTagName('span'), function (i, node) {
+            if (node.hasClass('mathquill-embedded-latex')) {
+                var firstChild, latex = '';
+                while(firstChild = node.firstChild()){
+                    latex += firstChild.data;
+                    node.removeChild(firstChild);
+                }
+                node.tagName = 'iframe';
+                node.setAttr({
+                    'frameborder': '0',
+                    'src': me.getOpt('UMEDITOR_HOME_URL') + 'dialogs/formula/formula.html',
+                    'data-latex': utils.unhtml(latex)
+                });
+            }
+        });
+    });
+    me.addOutputRule(function (root) {
+        $.each(root.getNodesByTagName('iframe'), function (i, node) {
+            if (node.hasClass('mathquill-embedded-latex')) {
+                node.tagName = 'span';
+                node.appendChild(UM.uNode.createText(node.getAttr('data-latex')));
+                node.setAttr({
+                    'frameborder': '',
+                    'src': '',
+                    'data-latex': ''
+                });
+            }
+        });
+    });
+    me.addListener('click', function(){
+        blurActiveIframe();
+    });
+    me.addListener('afterexeccommand', function(type, cmd){
+        if(cmd != 'formula') {
+            blurActiveIframe();
+        }
+    });
+
+    me.commands['formula'] = {
+        execCommand: function (cmd, latex) {
+            var iframe = getActiveIframe();
+            if (iframe) {
+                iframe.contentWindow.formula.insertLatex(latex);
+            } else {
+                me.execCommand('inserthtml', '<span class="mathquill-embedded-latex">' + latex + '</span>');
+                browser.ie && browser.ie9below && setTimeout(function(){
+                    var rng = me.selection.getRange(),
+                        startContainer = rng.startContainer;
+                    if(startContainer.nodeType == 1 && !startContainer.childNodes[rng.startOffset]){
+                        rng.insertNode(me.document.createTextNode(' '));
+                        rng.setCursor()
+                    }
+                },100)
+            }
+        },
+        queryCommandState: function (cmd) {
+            return 0;
+        },
+        queryCommandValue: function (cmd) {
+            var iframe = getActiveIframe();
+            return iframe && iframe.contentWindow.formula.getLatex();
+        }
+    }
+
+};
+
+(function ($) {
+    //对jquery的扩展
+    $.parseTmpl = function parse(str, data) {
+        var tmpl = 'var __p=[],print=function(){__p.push.apply(__p,arguments);};' + 'with(obj||{}){__p.push(\'' + str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/<%=([\s\S]+?)%>/g,function (match, code) {
+            return "'," + code.replace(/\\'/g, "'") + ",'";
+        }).replace(/<%([\s\S]+?)%>/g,function (match, code) {
+                return "');" + code.replace(/\\'/g, "'").replace(/[\r\n\t]/g, ' ') + "__p.push('";
+            }).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/\t/g, '\\t') + "');}return __p.join('');";
+        var func = new Function('obj', tmpl);
+        return data ? func(data) : func;
+    };
+    $.extend2 = function (t, s) {
+        var a = arguments,
+            notCover = $.type(a[a.length - 1]) == 'boolean' ? a[a.length - 1] : false,
+            len = $.type(a[a.length - 1]) == 'boolean' ? a.length - 1 : a.length;
+        for (var i = 1; i < len; i++) {
+            var x = a[i];
+            for (var k in x) {
+                if (!notCover || !t.hasOwnProperty(k)) {
+                    t[k] = x[k];
+                }
+            }
+        }
+        return t;
+    };
+
+    $.IE6 = !!window.ActiveXObject && parseFloat(navigator.userAgent.match(/msie (\d+)/i)[1]) == 6;
+
+    //所有ui的基类
+    var _eventHandler = [];
+    var _widget = function () {
+    };
+    var _prefix = 'edui';
+    _widget.prototype = {
+        on: function (ev, cb) {
+            this.root().on(ev, $.proxy(cb, this));
+            return this;
+        },
+        off: function (ev, cb) {
+            this.root().off(ev, $.proxy(cb, this));
+            return this;
+        },
+        trigger: function (ev, data) {
+            return  this.root().trigger(ev, data) === false ? false : this;
+        },
+        root: function ($el) {
+            return this._$el || (this._$el = $el);
+        },
+        destroy: function () {
+
+        },
+        data: function (key, val) {
+            if (val !== undefined) {
+                this.root().data(_prefix + key, val);
+                return this;
+            } else {
+                return this.root().data(_prefix + key)
+            }
+        },
+        register: function (eventName, $el, fn) {
+            _eventHandler.push({
+                'evtname': eventName,
+                '$els': $.isArray($el) ? $el : [$el],
+                handler: $.proxy(fn, $el)
+            })
+        }
+    };
+
+    //从jq实例上拿到绑定的widget实例
+    $.fn.edui = function (obj) {
+        return obj ? this.data('eduiwidget', obj) : this.data('eduiwidget');
+    };
+
+    function _createClass(ClassObj, properties, supperClass) {
+        ClassObj.prototype = $.extend2(
+            $.extend({}, properties),
+            (UM.ui[supperClass] || _widget).prototype,
+            true
+        );
+        ClassObj.prototype.supper = (UM.ui[supperClass] || _widget).prototype;
+        //父class的defaultOpt 合并
+        if( UM.ui[supperClass] && UM.ui[supperClass].prototype.defaultOpt ) {
+
+            var parentDefaultOptions = UM.ui[supperClass].prototype.defaultOpt,
+                subDefaultOptions = ClassObj.prototype.defaultOpt;
+
+            ClassObj.prototype.defaultOpt = $.extend( {}, parentDefaultOptions, subDefaultOptions || {} );
+
+        }
+        return ClassObj
+    }
+
+    var _guid = 1;
+
+    function mergeToJQ(ClassObj, className) {
+        $[_prefix + className] = ClassObj;
+        $.fn[_prefix + className] = function (opt) {
+            var result, args = Array.prototype.slice.call(arguments, 1);
+
+            this.each(function (i, el) {
+                var $this = $(el);
+                var obj = $this.edui();
+                if (!obj) {
+                    ClassObj(!opt || !$.isPlainObject(opt) ? {} : opt, $this);
+                    $this.edui(obj)
+                }
+                if ($.type(opt) == 'string') {
+                    if (opt == 'this') {
+                        result = obj;
+                    } else {
+                        result = obj[opt].apply(obj, args);
+                        if (result !== obj && result !== undefined) {
+                            return false;
+                        }
+                        result = null;
+                    }
+
+                }
+            });
+
+            return result !== null ? result : this;
+        }
+    }
+
+    UM.ui = {
+        define: function (className, properties, supperClass) {
+            var ClassObj = UM.ui[className] = _createClass(function (options, $el) {
+                    var _obj = function () {
+                    };
+                    $.extend(_obj.prototype, ClassObj.prototype, {
+                            guid: className + _guid++,
+                            widgetName: className
+                        }
+                    );
+                    var obj = new _obj;
+                    if ($.type(options) == 'string') {
+                        obj.init && obj.init({});
+                        obj.root().edui(obj);
+                        obj.root().find('a').click(function (evt) {
+                            evt.preventDefault()
+                        });
+                        return obj.root()[_prefix + className].apply(obj.root(), arguments)
+                    } else {
+                        $el && obj.root($el);
+                        obj.init && obj.init(!options || $.isPlainObject(options) ? $.extend2(options || {}, obj.defaultOpt || {}, true) : options);
+                        try{
+                            obj.root().find('a').click(function (evt) {
+                                evt.preventDefault()
+                            });
+                        }catch(e){
+                        }
+
+                        return obj.root().edui(obj);
+                    }
+
+                },properties, supperClass);
+
+            mergeToJQ(ClassObj, className);
+        }
+    };
+
+    $(function () {
+        $(document).on('click mouseup mousedown dblclick mouseover', function (evt) {
+            $.each(_eventHandler, function (i, obj) {
+                if (obj.evtname == evt.type) {
+                    $.each(obj.$els, function (i, $el) {
+                        if ($el[0] !== evt.target && !$.contains($el[0], evt.target)) {
+                            obj.handler(evt);
+                        }
+                    })
+                }
+            })
+        })
+    })
+})(jQuery);
+//button 类
+UM.ui.define('button', {
+    tpl: '<<%if(!texttype){%>div class="edui-btn edui-btn-<%=icon%> <%if(name){%>edui-btn-name-<%=name%><%}%>" unselectable="on" onmousedown="return false" <%}else{%>a class="edui-text-btn"<%}%><% if(title) {%> data-original-title="<%=title%>" <%};%>> ' +
+        '<% if(icon) {%><div unselectable="on" class="edui-icon-<%=icon%> edui-icon"></div><% }; %><%if(text) {%><span unselectable="on" onmousedown="return false" class="edui-button-label"><%=text%></span><%}%>' +
+        '<%if(caret && text){%><span class="edui-button-spacing"></span><%}%>' +
+        '<% if(caret) {%><span unselectable="on" onmousedown="return false" class="edui-caret"></span><% };%></<%if(!texttype){%>div<%}else{%>a<%}%>>',
+    defaultOpt: {
+        text: '',
+        title: '',
+        icon: '',
+        width: '',
+        caret: false,
+        texttype: false,
+        click: function () {
+        }
+    },
+    init: function (options) {
+        var me = this;
+
+        me.root($($.parseTmpl(me.tpl, options)))
+            .click(function (evt) {
+                me.wrapclick(options.click, evt)
+            });
+
+        me.root().hover(function () {
+            if(!me.root().hasClass("edui-disabled")){
+                me.root().toggleClass('edui-hover')
+            }
+        })
+
+        return me;
+    },
+    wrapclick: function (fn, evt) {
+        if (!this.disabled()) {
+            this.root().trigger('wrapclick');
+            $.proxy(fn, this, evt)()
+        }
+        return this;
+    },
+    label: function (text) {
+        if (text === undefined) {
+            return this.root().find('.edui-button-label').text();
+        } else {
+            this.root().find('.edui-button-label').text(text);
+            return this;
+        }
+    },
+    disabled: function (state) {
+        if (state === undefined) {
+            return this.root().hasClass('edui-disabled')
+        }
+        this.root().toggleClass('edui-disabled', state);
+        if(this.root().hasClass('edui-disabled')){
+            this.root().removeClass('edui-hover')
+        }
+        return this;
+    },
+    active: function (state) {
+        if (state === undefined) {
+            return this.root().hasClass('edui-active')
+        }
+        this.root().toggleClass('edui-active', state)
+
+        return this;
+    },
+    mergeWith: function ($obj) {
+        var me = this;
+        me.data('$mergeObj', $obj);
+        $obj.edui().data('$mergeObj', me.root());
+        if (!$.contains(document.body, $obj[0])) {
+            $obj.appendTo(me.root());
+        }
+        me.on('click',function () {
+            me.wrapclick(function () {
+                $obj.edui().show();
+            })
+        }).register('click', me.root(), function (evt) {
+                $obj.hide()
+            });
+    }
+});
+//toolbar 类
+(function () {
+    UM.ui.define('toolbar', {
+        tpl: '<div class="edui-toolbar"  ><div class="edui-btn-toolbar" unselectable="on" onmousedown="return false"  ></div></div>'
+          ,
+        init: function () {
+            var $root = this.root($(this.tpl));
+            this.data('$btnToolbar', $root.find('.edui-btn-toolbar'))
+        },
+        appendToBtnmenu : function(data){
+            var $cont = this.data('$btnToolbar');
+            data = $.isArray(data) ? data : [data];
+            $.each(data,function(i,$item){
+                $cont.append($item)
+            })
+        }
+    });
+})();
+
+//menu 类
+UM.ui.define('menu',{
+    show : function($obj,dir,fnname,topOffset,leftOffset){
+        fnname = fnname || 'position';
+        if(this.trigger('beforeshow') === false){
+            return;
+        }else{
+            this.root().css($.extend({display:'block'},$obj ? {
+                top : $obj[fnname]().top + ( dir == 'right' ? 0 : $obj.outerHeight()) - (topOffset || 0),
+                left : $obj[fnname]().left + (dir == 'right' ?  $obj.outerWidth() : 0) -  (leftOffset || 0)
+            }:{}));
+            this.trigger('aftershow');
+        }
+    },
+    hide : function(all){
+        var $parentmenu;
+        if(this.trigger('beforehide') === false){
+            return;
+        } else {
+
+            if($parentmenu = this.root().data('parentmenu')){
+                if($parentmenu.data('parentmenu')|| all)
+                    $parentmenu.edui().hide();
+            }
+            this.root().css('display','none');
+            this.trigger('afterhide');
+        }
+    },
+    attachTo : function($obj){
+        var me = this;
+        if(!$obj.data('$mergeObj')){
+            $obj.data('$mergeObj',me.root());
+            $obj.on('wrapclick',function(evt){
+                me.show();
+            });
+            me.register('click',$obj,function(evt){
+               me.hide();
+            });
+            me.data('$mergeObj',$obj);
+        }
+    }
+});
+//dropmenu 类
+UM.ui.define('dropmenu', {
+    tmpl: '<ul class="edui-dropdown-menu" aria-labelledby="dropdownMenu" >' +
+        '<%for(var i=0,ci;ci=data[i++];){%>' +
+        '<%if(ci.divider){%><li class="edui-divider"></li><%}else{%>' +
+        '<li <%if(ci.active||ci.disabled){%>class="<%= ci.active|| \'\' %> <%=ci.disabled||\'\' %>" <%}%> data-value="<%= ci.value%>">' +
+        '<a href="#" tabindex="-1"><em class="edui-dropmenu-checkbox"><i class="edui-icon-ok"></i></em><%= ci.label%></a>' +
+        '</li><%}%>' +
+        '<%}%>' +
+        '</ul>',
+    defaultOpt: {
+        data: [],
+        click: function () {
+
+        }
+    },
+    init: function (options) {
+        var me = this;
+        var eventName = {
+            click: 1,
+            mouseover: 1,
+            mouseout: 1
+        };
+
+        this.root($($.parseTmpl(this.tmpl, options))).on('click', 'li[class!="edui-disabled edui-divider edui-dropdown-submenu"]',function (evt) {
+            $.proxy(options.click, me, evt, $(this).data('value'), $(this))()
+        }).find('li').each(function (i, el) {
+                var $this = $(this);
+                if (!$this.hasClass("edui-disabled edui-divider edui-dropdown-submenu")) {
+                    var data = options.data[i];
+                    $.each(eventName, function (k) {
+                        data[k] && $this[k](function (evt) {
+                            $.proxy(data[k], el)(evt, data, me.root)
+                        })
+                    })
+                }
+            })
+
+    },
+    disabled: function (cb) {
+        $('li[class!=edui-divider]', this.root()).each(function () {
+            var $el = $(this);
+            if (cb === true) {
+                $el.addClass('edui-disabled')
+            } else if ($.isFunction(cb)) {
+                $el.toggleClass('edui-disabled', cb(li))
+            } else {
+                $el.removeClass('edui-disabled')
+            }
+
+        });
+    },
+    val: function (val) {
+        var currentVal;
+        $('li[class!="edui-divider edui-disabled edui-dropdown-submenu"]', this.root()).each(function () {
+            var $el = $(this);
+            if (val === undefined) {
+                if ($el.find('em.edui-dropmenu-checked').length) {
+                    currentVal = $el.data('value');
+                    return false
+                }
+            } else {
+                $el.find('em').toggleClass('edui-dropmenu-checked', $el.data('value') == val)
+            }
+        });
+        if (val === undefined) {
+            return currentVal
+        }
+    },
+    addSubmenu: function (label, menu, index) {
+        index = index || 0;
+
+        var $list = $('li[class!=edui-divider]', this.root());
+        var $node = $('<li class="edui-dropdown-submenu"><a tabindex="-1" href="#">' + label + '</a></li>').append(menu);
+
+        if (index >= 0 && index < $list.length) {
+            $node.insertBefore($list[index]);
+        } else if (index < 0) {
+            $node.insertBefore($list[0]);
+        } else if (index >= $list.length) {
+            $node.appendTo($list);
+        }
+    }
+}, 'menu');
+//splitbutton 类
+///import button
+UM.ui.define('splitbutton',{
+    tpl :'<div class="edui-splitbutton <%if (name){%>edui-splitbutton-<%= name %><%}%>"  unselectable="on" <%if(title){%>data-original-title="<%=title%>"<%}%>><div class="edui-btn"  unselectable="on" ><%if(icon){%><div  unselectable="on" class="edui-icon-<%=icon%> edui-icon"></div><%}%><%if(text){%><%=text%><%}%></div>'+
+            '<div  unselectable="on" class="edui-btn edui-dropdown-toggle" >'+
+                '<div  unselectable="on" class="edui-caret"><\/div>'+
+            '</div>'+
+        '</div>',
+    defaultOpt:{
+        text:'',
+        title:'',
+        click:function(){}
+    },
+    init : function(options){
+        var me = this;
+        me.root( $($.parseTmpl(me.tpl,options)));
+        me.root().find('.edui-btn:first').click(function(evt){
+            if(!me.disabled()){
+                $.proxy(options.click,me)();
+            }
+        });
+        me.root().find('.edui-dropdown-toggle').click(function(){
+            if(!me.disabled()){
+                me.trigger('arrowclick')
+            }
+        });
+        me.root().hover(function () {
+            if(!me.root().hasClass("edui-disabled")){
+                me.root().toggleClass('edui-hover')
+            }
+        });
+
+        return me;
+    },
+    wrapclick:function(fn,evt){
+        if(!this.disabled()){
+            $.proxy(fn,this,evt)()
+        }
+        return this;
+    },
+    disabled : function(state){
+        if(state === undefined){
+            return this.root().hasClass('edui-disabled')
+        }
+        this.root().toggleClass('edui-disabled',state).find('.edui-btn').toggleClass('edui-disabled',state);
+        return this;
+    },
+    active:function(state){
+        if(state === undefined){
+            return this.root().hasClass('edui-active')
+        }
+        this.root().toggleClass('edui-active',state).find('.edui-btn:first').toggleClass('edui-active',state);
+        return this;
+    },
+    mergeWith:function($obj){
+        var me = this;
+        me.data('$mergeObj',$obj);
+        $obj.edui().data('$mergeObj',me.root());
+        if(!$.contains(document.body,$obj[0])){
+            $obj.appendTo(me.root());
+        }
+        me.root().delegate('.edui-dropdown-toggle','click',function(){
+            me.wrapclick(function(){
+                $obj.edui().show();
+            })
+        });
+        me.register('click',me.root().find('.edui-dropdown-toggle'),function(evt){
+            $obj.hide()
+        });
+    }
+});
+/**
+ * Created with JetBrains PhpStorm.
+ * User: hn
+ * Date: 13-7-10
+ * Time: 下午3:07
+ * To change this template use File | Settings | File Templates.
+ */
+UM.ui.define('colorsplitbutton',{
+
+    tpl : '<div class="edui-splitbutton <%if (name){%>edui-splitbutton-<%= name %><%}%>"  unselectable="on" <%if(title){%>data-original-title="<%=title%>"<%}%>><div class="edui-btn"  unselectable="on" ><%if(icon){%><div  unselectable="on" class="edui-icon-<%=icon%> edui-icon"></div><%}%><div class="edui-splitbutton-color-label" <%if (color) {%>style="background: <%=color%>"<%}%>></div><%if(text){%><%=text%><%}%></div>'+
+            '<div  unselectable="on" class="edui-btn edui-dropdown-toggle" >'+
+            '<div  unselectable="on" class="edui-caret"><\/div>'+
+            '</div>'+
+            '</div>',
+    defaultOpt: {
+        color: ''
+    },
+    init: function( options ){
+
+        var me = this;
+
+        me.supper.init.call( me, options );
+
+    },
+    colorLabel: function(){
+        return this.root().find('.edui-splitbutton-color-label');
+    }
+
+}, 'splitbutton');
+//popup 类
+UM.ui.define('popup', {
+    tpl: '<div class="edui-dropdown-menu edui-popup"'+
+        '<%if(!<%=stopprop%>){%>onmousedown="return false"<%}%>'+
+        '><div class="edui-popup-body" unselectable="on" onmousedown="return false"><%=subtpl%></div>' +
+        '<div class="edui-popup-caret"></div>' +
+        '</div>',
+    defaultOpt: {
+        stopprop:false,
+        subtpl: '',
+        width: '',
+        height: ''
+    },
+    init: function (options) {
+        this.root($($.parseTmpl(this.tpl, options)));
+        return this;
+    },
+    mergeTpl: function (data) {
+        return $.parseTmpl(this.tpl, {subtpl: data});
+    },
+    show: function ($obj, posObj) {
+        if (!posObj) posObj = {};
+
+        var fnname = posObj.fnname || 'position';
+        if (this.trigger('beforeshow') === false) {
+            return;
+        } else {
+            this.root().css($.extend({display: 'block'}, $obj ? {
+                top: $obj[fnname]().top + ( posObj.dir == 'right' ? 0 : $obj.outerHeight()) - (posObj.offsetTop || 0),
+                left: $obj[fnname]().left + (posObj.dir == 'right' ? $obj.outerWidth() : 0) - (posObj.offsetLeft || 0),
+                position: 'absolute'
+            } : {}));
+
+            this.root().find('.edui-popup-caret').css({
+                top: posObj.caretTop || 0,
+                left: posObj.caretLeft || 0,
+                position: 'absolute'
+            }).addClass(posObj.caretDir || "up")
+
+        }
+        this.trigger("aftershow");
+    },
+    hide: function () {
+        this.root().css('display', 'none');
+        this.trigger('afterhide')
+    },
+    attachTo: function ($obj, posObj) {
+        var me = this
+        if (!$obj.data('$mergeObj')) {
+            $obj.data('$mergeObj', me.root());
+            $obj.on('wrapclick', function (evt) {
+                me.show($obj, posObj)
+            });
+            me.register('click', $obj, function (evt) {
+                me.hide()
+            });
+            me.data('$mergeObj', $obj)
+        }
+    },
+    getBodyContainer: function () {
+        return this.root().find(".edui-popup-body");
+    }
+});
+//scale 类
+UM.ui.define('scale', {
+    tpl: '<div class="edui-scale" unselectable="on">' +
+        '<span class="edui-scale-hand0"></span>' +
+        '<span class="edui-scale-hand1"></span>' +
+        '<span class="edui-scale-hand2"></span>' +
+        '<span class="edui-scale-hand3"></span>' +
+        '<span class="edui-scale-hand4"></span>' +
+        '<span class="edui-scale-hand5"></span>' +
+        '<span class="edui-scale-hand6"></span>' +
+        '<span class="edui-scale-hand7"></span>' +
+        '</div>',
+    defaultOpt: {
+        $doc: $(document),
+        $wrap: $(document)
+    },
+    init: function (options) {
+        if(options.$doc) this.defaultOpt.$doc = options.$doc;
+        if(options.$wrap) this.defaultOpt.$wrap = options.$wrap;
+        this.root($($.parseTmpl(this.tpl, options)));
+        this.initStyle();
+        this.startPos = this.prePos = {x: 0, y: 0};
+        this.dragId = -1;
+        return this;
+    },
+    initStyle: function () {
+        utils.cssRule('edui-style-scale', '.edui-scale{display:none;position:absolute;border:1px solid #38B2CE;cursor:hand;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}' +
+            '.edui-scale span{position:absolute;left:0;top:0;width:7px;height:7px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
+            + '.edui-scale .edui-scale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
+            + '.edui-scale .edui-scale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
+            + '.edui-scale .edui-scale-hand2{cursor:ne-resize;top:0;margin-top:-4px;left:100%;margin-left:-3px;}'
+            + '.edui-scale .edui-scale-hand3{cursor:w-resize;top:50%;margin-top:-4px;left:0;margin-left:-4px;}'
+            + '.edui-scale .edui-scale-hand4{cursor:e-resize;top:50%;margin-top:-4px;left:100%;margin-left:-3px;}'
+            + '.edui-scale .edui-scale-hand5{cursor:sw-resize;top:100%;margin-top:-3px;left:0;margin-left:-4px;}'
+            + '.edui-scale .edui-scale-hand6{cursor:s-resize;top:100%;margin-top:-3px;left:50%;margin-left:-4px;}'
+            + '.edui-scale .edui-scale-hand7{cursor:se-resize;top:100%;margin-top:-3px;left:100%;margin-left:-3px;}');
+    },
+    _eventHandler: function (e) {
+        var me = this,
+            $doc = me.defaultOpt.$doc;
+        switch (e.type) {
+            case 'mousedown':
+                var hand = e.target || e.srcElement, hand;
+                if (hand.className.indexOf('edui-scale-hand') != -1) {
+                    me.dragId = hand.className.slice(-1);
+                    me.startPos.x = me.prePos.x = e.clientX;
+                    me.startPos.y = me.prePos.y = e.clientY;
+                    $doc.bind('mousemove', $.proxy(me._eventHandler, me));
+                }
+                break;
+            case 'mousemove':
+                if (me.dragId != -1) {
+                    me.updateContainerStyle(me.dragId, {x: e.clientX - me.prePos.x, y: e.clientY - me.prePos.y});
+                    me.prePos.x = e.clientX;
+                    me.prePos.y = e.clientY;
+                    me.updateTargetElement();
+                }
+                break;
+            case 'mouseup':
+                if (me.dragId != -1) {
+                    me.dragId = -1;
+                    me.updateTargetElement();
+                    var $target = me.data('$scaleTarget');
+                    if ($target.parent()) me.attachTo(me.data('$scaleTarget'));
+                }
+                $doc.unbind('mousemove', $.proxy(me._eventHandler, me));
+                break;
+            default:
+                break;
+        }
+    },
+    updateTargetElement: function () {
+        var me = this,
+            $root = me.root(),
+            $target = me.data('$scaleTarget'),
+            w = $root.width(),
+            h = $root.height();
+        $target.attr('width', w).attr('height', h).css({width: w, height: h});
+        me.attachTo($target);
+    },
+    updateContainerStyle: function (dir, offset) {
+        var me = this,
+            $dom = me.root(),
+            tmp,
+            rect = [
+                //[left, top, width, height]
+                [0, 0, -1, -1],
+                [0, 0, 0, -1],
+                [0, 0, 1, -1],
+                [0, 0, -1, 0],
+                [0, 0, 1, 0],
+                [0, 0, -1, 1],
+                [0, 0, 0, 1],
+                [0, 0, 1, 1]
+            ];
+
+        if (rect[dir][0] != 0) {
+            tmp = parseInt($dom.offset().left) + offset.x;
+            $dom.css('left', me._validScaledProp('left', tmp));
+        }
+        if (rect[dir][1] != 0) {
+            tmp = parseInt($dom.offset().top) + offset.y;
+            $dom.css('top', me._validScaledProp('top', tmp));
+        }
+        if (rect[dir][2] != 0) {
+            tmp = $dom.width() + rect[dir][2] * offset.x;
+            $dom.css('width', me._validScaledProp('width', tmp));
+        }
+        if (rect[dir][3] != 0) {
+            tmp = $dom.height() + rect[dir][3] * offset.y;
+            $dom.css('height', me._validScaledProp('height', tmp));
+        }
+    },
+    _validScaledProp: function (prop, value) {
+        var $ele = this.root(),
+            $wrap = this.defaultOpt.$doc,
+            calc = function(val, a, b){
+                return (val + a) > b ? b - a : value;
+            };
+
+        value = isNaN(value) ? 0 : value;
+        switch (prop) {
+            case 'left':
+                return value < 0 ? 0 : calc(value, $ele.width(), $wrap.width());
+            case 'top':
+                return value < 0 ? 0 : calc(value, $ele.height(),$wrap.height());
+            case 'width':
+                return value <= 0 ? 1 : calc(value, $ele.offset().left, $wrap.width());
+            case 'height':
+                return value <= 0 ? 1 : calc(value, $ele.offset().top, $wrap.height());
+        }
+    },
+    show: function ($obj) {
+        var me = this;
+        if ($obj) me.attachTo($obj);
+        me.root().bind('mousedown', $.proxy(me._eventHandler, me));
+        me.defaultOpt.$doc.bind('mouseup', $.proxy(me._eventHandler, me));
+        me.root().show();
+        me.trigger("aftershow");
+    },
+    hide: function () {
+        var me = this;
+        me.root().unbind('mousedown', $.proxy(me._eventHandler, me));
+        me.defaultOpt.$doc.unbind('mouseup', $.proxy(me._eventHandler, me));
+        me.root().hide();
+        me.trigger('afterhide')
+    },
+    attachTo: function ($obj) {
+        var me = this,
+            imgPos = $obj.offset(),
+            $root = me.root(),
+            $wrap = me.defaultOpt.$wrap,
+            posObj = $wrap.offset();
+
+        me.data('$scaleTarget', $obj);
+        me.root().css({
+            position: 'absolute',
+            width: $obj.width(),
+            height: $obj.height(),
+            left: imgPos.left - posObj.left - parseInt($wrap.css('border-left-width')) - parseInt($root.css('border-left-width')),
+            top: imgPos.top - posObj.top - parseInt($wrap.css('border-top-width')) - parseInt($root.css('border-top-width'))
+        });
+    },
+    getScaleTarget: function () {
+        return this.data('$scaleTarget')[0];
+    }
+});
+//colorpicker 类
+UM.ui.define('colorpicker', {
+    tpl: function (opt) {
+        var COLORS = (
+            'ffffff,000000,eeece1,1f497d,4f81bd,c0504d,9bbb59,8064a2,4bacc6,f79646,' +
+                'f2f2f2,7f7f7f,ddd9c3,c6d9f0,dbe5f1,f2dcdb,ebf1dd,e5e0ec,dbeef3,fdeada,' +
+                'd8d8d8,595959,c4bd97,8db3e2,b8cce4,e5b9b7,d7e3bc,ccc1d9,b7dde8,fbd5b5,' +
+                'bfbfbf,3f3f3f,938953,548dd4,95b3d7,d99694,c3d69b,b2a2c7,92cddc,fac08f,' +
+                'a5a5a5,262626,494429,17365d,366092,953734,76923c,5f497a,31859b,e36c09,' +
+                '7f7f7f,0c0c0c,1d1b10,0f243e,244061,632423,4f6128,3f3151,205867,974806,' +
+                'c00000,ff0000,ffc000,ffff00,92d050,00b050,00b0f0,0070c0,002060,7030a0,').split(',');
+
+        var html = '<div unselectable="on" onmousedown="return false" class="edui-colorpicker<%if (name){%> edui-colorpicker-<%=name%><%}%>" >' +
+            '<table unselectable="on" onmousedown="return false">' +
+            '<tr><td colspan="10">'+opt.lang_themeColor+'</td> </tr>' +
+            '<tr class="edui-colorpicker-firstrow" >';
+
+        for (var i = 0; i < COLORS.length; i++) {
+            if (i && i % 10 === 0) {
+                html += '</tr>' + (i == 60 ? '<tr><td colspan="10">'+opt.lang_standardColor+'</td></tr>' : '') + '<tr' + (i == 60 ? ' class="edui-colorpicker-firstrow"' : '') + '>';
+            }
+            html += i < 70 ? '<td><a unselectable="on" onmousedown="return false" title="' + COLORS[i] + '" class="edui-colorpicker-colorcell"' +
+                ' data-color="#' + COLORS[i] + '"' +
+                ' style="background-color:#' + COLORS[i] + ';border:solid #ccc;' +
+                (i < 10 || i >= 60 ? 'border-width:1px;' :
+                    i >= 10 && i < 20 ? 'border-width:1px 1px 0 1px;' :
+                        'border-width:0 1px 0 1px;') +
+                '"' +
+                '></a></td>' : '';
+        }
+        html += '</tr></table></div>';
+        return html;
+    },
+    init: function (options) {
+        var me = this;
+        me.root($($.parseTmpl(me.supper.mergeTpl(me.tpl(options)),options)));
+
+        me.root().on("click",function (e) {
+            me.trigger('pickcolor',  $(e.target).data('color'));
+        });
+    }
+}, 'popup');
+/**
+ * Created with JetBrains PhpStorm.
+ * User: hn
+ * Date: 13-5-29
+ * Time: 下午8:01
+ * To change this template use File | Settings | File Templates.
+ */
+
+(function(){
+
+    var widgetName = 'combobox',
+        itemClassName = 'edui-combobox-item',
+        HOVER_CLASS = 'edui-combobox-item-hover',
+        ICON_CLASS = 'edui-combobox-checked-icon',
+        labelClassName = 'edui-combobox-item-label';
+
+    UM.ui.define( widgetName, ( function(){
+
+        return {
+            tpl: "<ul class=\"dropdown-menu edui-combobox-menu<%if (comboboxName!=='') {%> edui-combobox-<%=comboboxName%><%}%>\" unselectable=\"on\" onmousedown=\"return false\" role=\"menu\" aria-labelledby=\"dropdownMenu\">" +
+                "<%if(autoRecord) {%>" +
+                "<%for( var i=0, len = recordStack.length; i<len; i++ ) {%>" +
+                "<%var index = recordStack[i];%>" +
+                "<li class=\"<%=itemClassName%><%if( selected == index ) {%> edui-combobox-checked<%}%>\" data-item-index=\"<%=index%>\" unselectable=\"on\" onmousedown=\"return false\">" +
+                "<span class=\"edui-combobox-icon\" unselectable=\"on\" onmousedown=\"return false\"></span>" +
+                "<label class=\"<%=labelClassName%>\" style=\"<%=itemStyles[ index ]%>\" unselectable=\"on\" onmousedown=\"return false\"><%=items[index]%></label>" +
+                "</li>" +
+                "<%}%>" +
+                "<%if( i ) {%>" +
+                "<li class=\"edui-combobox-item-separator\"></li>" +
+                "<%}%>" +
+                "<%}%>" +
+                "<%for( var i=0, label; label = items[i]; i++ ) {%>" +
+                "<li class=\"<%=itemClassName%><%if( selected == i ) {%> edui-combobox-checked<%}%> edui-combobox-item-<%=i%>\" data-item-index=\"<%=i%>\" unselectable=\"on\" onmousedown=\"return false\">" +
+                "<span class=\"edui-combobox-icon\" unselectable=\"on\" onmousedown=\"return false\"></span>" +
+                "<label class=\"<%=labelClassName%>\" style=\"<%=itemStyles[ i ]%>\" unselectable=\"on\" onmousedown=\"return false\"><%=label%></label>" +
+                "</li>" +
+                "<%}%>" +
+                "</ul>",
+            defaultOpt: {
+                //记录栈初始列表
+                recordStack: [],
+                //可用项列表
+                items: [],
+		        //item对应的值列表
+                value: [],
+                comboboxName: '',
+                selected: '',
+                //自动记录
+                autoRecord: true,
+                //最多记录条数
+                recordCount: 5
+            },
+            init: function( options ){
+
+                var me = this;
+
+                $.extend( me._optionAdaptation( options ), me._createItemMapping( options.recordStack, options.items ), {
+                    itemClassName: itemClassName,
+                    iconClass: ICON_CLASS,
+                    labelClassName: labelClassName
+                } );
+
+                this._transStack( options );
+
+                me.root( $( $.parseTmpl( me.tpl, options ) ) );
+
+                this.data( 'options', options ).initEvent();
+
+            },
+            initEvent: function(){
+
+                var me = this;
+
+                me.initSelectItem();
+
+                this.initItemActive();
+
+            },
+            /**
+             * 初始化选择项
+             */
+            initSelectItem: function(){
+
+                var me = this,
+                    labelClass = "."+labelClassName;
+
+                me.root().delegate('.' + itemClassName, 'click', function(evt){
+
+                    var $li = $(this),
+                        index = $li.attr('data-item-index');
+
+                    me.trigger('comboboxselect', {
+                        index: index,
+                        label: $li.find(labelClass).text(),
+                        value: me.data('options').value[ index ]
+                    }).select( index );
+
+                    me.hide();
+
+                    evt.preventDefault();
+
+                });
+
+            },
+            initItemActive: function(){
+                var fn = {
+                    mouseenter: 'addClass',
+                    mouseleave: 'removeClass'
+                };
+                if ($.IE6) {
+                    this.root().delegate( '.'+itemClassName,  'mouseenter mouseleave', function( evt ){
+                        $(this)[ fn[ evt.type ] ]( HOVER_CLASS );
+                    }).one('afterhide', function(){
+                    });
+                }
+            },
+            /**
+             * 选择给定索引的项
+             * @param index 项索引
+             * @returns {*} 如果存在对应索引的项，则返回该项；否则返回null
+             */
+            select: function( index ){
+
+                var itemCount = this.data('options').itemCount,
+                    items = this.data('options').autowidthitem;
+
+                if ( items && !items.length ) {
+                    items = this.data('options').items;
+                }
+
+                if( itemCount == 0 ) {
+                    return null;
+                }
+
+                if( index < 0 ) {
+
+                    index = itemCount + index % itemCount;
+
+                } else if ( index >= itemCount ) {
+
+                    index = itemCount-1;
+
+                }
+
+                this.trigger( 'changebefore', items[ index ] );
+
+                this._update( index );
+
+                this.trigger( 'changeafter', items[ index ] );
+
+                return null;
+
+            },
+            selectItemByLabel: function( label ){
+
+                var itemMapping = this.data('options').itemMapping,
+                    me = this,
+                    index = null;
+
+                !$.isArray( label ) && ( label = [ label ] );
+
+                $.each( label, function( i, item ){
+
+                    index = itemMapping[ item ];
+
+                    if( index !== undefined ) {
+
+                        me.select( index );
+                        return false;
+
+                    }
+
+                } );
+
+            },
+            /**
+             * 转换记录栈
+             */
+            _transStack: function( options ) {
+
+                var temp = [],
+                    itemIndex = -1,
+                    selected = -1;
+
+                $.each( options.recordStack, function( index, item ){
+
+                    itemIndex = options.itemMapping[ item ];
+
+                    if( $.isNumeric( itemIndex ) ) {
+
+                        temp.push( itemIndex );
+
+                        //selected的合法性检测
+                        if( item == options.selected ) {
+                            selected = itemIndex;
+                        }
+
+                    }
+
+                } );
+
+                options.recordStack = temp;
+                options.selected = selected;
+                temp = null;
+
+            },
+            _optionAdaptation: function( options ) {
+
+                if( !( 'itemStyles' in options ) ) {
+
+                    options.itemStyles = [];
+
+                    for( var i = 0, len = options.items.length; i < len; i++ ) {
+                        options.itemStyles.push('');
+                    }
+
+                }
+
+                options.autowidthitem = options.autowidthitem || options.items;
+                options.itemCount = options.items.length;
+
+                return options;
+
+            },
+            _createItemMapping: function( stackItem, items ){
+
+                var temp = {},
+                    result = {
+                        recordStack: [],
+                        mapping: {}
+                    };
+
+                $.each( items, function( index, item ){
+                    temp[ item ] = index;
+                } );
+
+                result.itemMapping = temp;
+
+                $.each( stackItem, function( index, item ){
+
+                    if( temp[ item ] !== undefined ) {
+                        result.recordStack.push( temp[ item ] );
+                        result.mapping[ item ] = temp[ item ];
+                    }
+
+                } );
+
+                return result;
+
+            },
+            _update: function ( index ) {
+
+                var options = this.data("options"),
+                    newStack = [],
+                    newChilds = null;
+
+                $.each( options.recordStack, function( i, item ){
+
+                    if( item != index ) {
+                        newStack.push( item );
+                    }
+
+                } );
+
+                //压入最新的记录
+                newStack.unshift( index );
+
+                if( newStack.length > options.recordCount ) {
+                    newStack.length = options.recordCount;
+                }
+
+                options.recordStack = newStack;
+                options.selected = index;
+
+                newChilds = $( $.parseTmpl( this.tpl, options ) );
+
+                //重新渲染
+                this.root().html( newChilds.html() );
+
+                newChilds = null;
+                newStack = null;
+
+            }
+        };
+
+    } )(), 'menu' );
+
+})();
+
+/**
+ * Combox 抽象基类
+ * User: hn
+ * Date: 13-5-29
+ * Time: 下午8:01
+ * To change this template use File | Settings | File Templates.
+ */
+
+(function(){
+
+    var widgetName = 'buttoncombobox';
+
+    UM.ui.define( widgetName, ( function(){
+
+        return {
+            defaultOpt: {
+                //按钮初始文字
+                label: '',
+                title: ''
+            },
+            init: function( options ) {
+
+                var me = this;
+
+                var btnWidget = $.eduibutton({
+                    caret: true,
+                    name: options.comboboxName,
+                    title: options.title,
+                    text: options.label,
+                    click: function(){
+                        me.show( this.root() );
+                    }
+                });
+
+                me.supper.init.call( me, options );
+
+                //监听change， 改变button显示内容
+                me.on('changebefore', function( e, label ){
+                    btnWidget.eduibutton('label', label );
+                });
+
+                me.data( 'button', btnWidget );
+
+                me.attachTo(btnWidget)
+
+            },
+            button: function(){
+                return this.data( 'button' );
+            }
+        }
+
+    } )(), 'combobox' );
+
+})();
+
+/*modal 类*/
+UM.ui.define('modal', {
+    tpl: '<div class="edui-modal" tabindex="-1" >' +
+        '<div class="edui-modal-header">' +
+        '<div class="edui-close" data-hide="modal"></div>' +
+        '<h3 class="edui-title"><%=title%></h3>' +
+        '</div>' +
+        '<div class="edui-modal-body"  style="<%if(width){%>width:<%=width%>px;<%}%>' +
+        '<%if(height){%>height:<%=height%>px;<%}%>">' +
+        ' </div>' +
+        '<% if(cancellabel || oklabel) {%>' +
+        '<div class="edui-modal-footer">' +
+        '<div class="edui-modal-tip"></div>' +
+        '<%if(oklabel){%><div class="edui-btn edui-btn-primary" data-ok="modal"><%=oklabel%></div><%}%>' +
+        '<%if(cancellabel){%><div class="edui-btn" data-hide="modal"><%=cancellabel%></div><%}%>' +
+        '</div>' +
+        '<%}%></div>',
+    defaultOpt: {
+        title: "",
+        cancellabel: "",
+        oklabel: "",
+        width: '',
+        height: '',
+        backdrop: true,
+        keyboard: true
+    },
+    init: function (options) {
+        var me = this;
+
+        me.root($($.parseTmpl(me.tpl, options || {})));
+
+        me.data("options", options);
+        if (options.okFn) {
+            me.on('ok', $.proxy(options.okFn, me))
+        }
+        if (options.cancelFn) {
+            me.on('beforehide', $.proxy(options.cancelFn, me))
+        }
+
+        me.root().delegate('[data-hide="modal"]', 'click', $.proxy(me.hide, me))
+            .delegate('[data-ok="modal"]', 'click', $.proxy(me.ok, me));
+
+        $('[data-hide="modal"],[data-ok="modal"]',me.root()).hover(function(){
+            $(this).toggleClass('edui-hover')
+        });
+    },
+    toggle: function () {
+        var me = this;
+        return me[!me.data("isShown") ? 'show' : 'hide']();
+    },
+    show: function () {
+
+        var me = this;
+
+        me.trigger("beforeshow");
+
+        if (me.data("isShown")) return;
+
+        me.data("isShown", true);
+
+        me.escape();
+
+        me.backdrop(function () {
+            me.autoCenter();
+            me.root()
+                .show()
+                .focus()
+                .trigger('aftershow');
+        })
+    },
+    showTip: function ( text ) {
+        $( '.edui-modal-tip', this.root() ).html( text ).fadeIn();
+    },
+    hideTip: function ( text ) {
+        $( '.edui-modal-tip', this.root() ).fadeOut( function (){
+            $(this).html('');
+        } );
+    },
+    autoCenter: function () {
+        //ie6下不用处理了
+        !$.IE6 && this.root().css("margin-left", -(this.root().width() / 2));
+    },
+    hide: function () {
+        var me = this;
+
+        me.trigger("beforehide");
+
+        if (!me.data("isShown")) return;
+
+        me.data("isShown", false);
+
+        me.escape();
+
+        me.hideModal();
+    },
+    escape: function () {
+        var me = this;
+        if (me.data("isShown") && me.data("options").keyboard) {
+            me.root().on('keyup', function (e) {
+                e.which == 27 && me.hide();
+            })
+        }
+        else if (!me.data("isShown")) {
+            me.root().off('keyup');
+        }
+    },
+    hideModal: function () {
+        var me = this;
+        me.root().hide();
+        me.backdrop(function () {
+            me.removeBackdrop();
+            me.trigger('afterhide');
+        })
+    },
+    removeBackdrop: function () {
+        this.$backdrop && this.$backdrop.remove();
+        this.$backdrop = null;
+    },
+    backdrop: function (callback) {
+        var me = this;
+        if (me.data("isShown") && me.data("options").backdrop) {
+            me.$backdrop = $('<div class="edui-modal-backdrop" />').click(
+                me.data("options").backdrop == 'static' ?
+                    $.proxy(me.root()[0].focus, me.root()[0])
+                    : $.proxy(me.hide, me)
+            )
+        }
+        me.trigger('afterbackdrop');
+        callback && callback();
+
+    },
+    attachTo: function ($obj) {
+        var me = this
+        if (!$obj.data('$mergeObj')) {
+
+            $obj.data('$mergeObj', me.root());
+            $obj.on('click', function () {
+                me.toggle($obj)
+            });
+            me.data('$mergeObj', $obj)
+        }
+    },
+    ok: function () {
+        var me = this;
+        me.trigger('beforeok');
+        if (me.trigger("ok", me) === false) {
+            return;
+        }
+        me.hide();
+    },
+    getBodyContainer: function () {
+        return this.root().find('.edui-modal-body')
+    }
+});
+
+
+/*tooltip 类*/
+UM.ui.define('tooltip', {
+    tpl: '<div class="edui-tooltip" unselectable="on" onmousedown="return false">' +
+        '<div class="edui-tooltip-arrow" unselectable="on" onmousedown="return false"></div>' +
+        '<div class="edui-tooltip-inner" unselectable="on" onmousedown="return false"></div>' +
+        '</div>',
+    init: function (options) {
+        var me = this;
+        me.root($($.parseTmpl(me.tpl, options || {})));
+    },
+    content: function (e) {
+        var me = this,
+            title = $(e.currentTarget).attr("data-original-title");
+
+        me.root().find('.edui-tooltip-inner')['text'](title);
+    },
+    position: function (e) {
+        var me = this,
+            $obj = $(e.currentTarget);
+
+        me.root().css($.extend({display: 'block'}, $obj ? {
+            top: $obj.outerHeight(),
+            left: (($obj.outerWidth() - me.root().outerWidth()) / 2)
+        } : {}))
+    },
+    show: function (e) {
+        if ($(e.currentTarget).hasClass('edui-disabled')) return;
+
+        var me = this;
+        me.content(e);
+        me.root().appendTo($(e.currentTarget));
+        me.position(e);
+        me.root().css('display', 'block');
+    },
+    hide: function () {
+        var me = this;
+        me.root().css('display', 'none')
+    },
+    attachTo: function ($obj) {
+        var me = this;
+
+        function tmp($obj) {
+            var me = this;
+
+            if (!$.contains(document.body, me.root()[0])) {
+                me.root().appendTo($obj);
+            }
+
+            me.data('tooltip', me.root());
+
+            $obj.each(function () {
+                if ($(this).attr("data-original-title")) {
+                    $(this).on('mouseenter', $.proxy(me.show, me))
+                        .on('mouseleave click', $.proxy(me.hide, me))
+
+                }
+            });
+
+        }
+
+        if ($.type($obj) === "undefined") {
+            $("[data-original-title]").each(function (i, el) {
+                tmp.call(me, $(el));
+            })
+
+        } else {
+            if (!$obj.data('tooltip')) {
+                tmp.call(me, $obj);
+            }
+        }
+    }
+});
+
+/*tab 类*/
+UM.ui.define('tab', {
+    init: function (options) {
+        var me = this,
+            slr = options.selector;
+
+        if ($.type(slr)) {
+            me.root($(slr, options.context));
+            me.data("context", options.context);
+
+            $(slr, me.data("context")).on('click', function (e) {
+                me.show(e);
+            });
+        }
+    },
+    show: function (e) {
+
+        var me = this,
+            $cur = $(e.target),
+            $ul = $cur.closest('ul'),
+            selector,
+            previous,
+            $target,
+            e;
+
+        selector = $cur.attr('data-context');
+        selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '');
+
+        var $tmp = $cur.parent('li');
+
+        if (!$tmp.length || $tmp.hasClass('edui-active')) return;
+
+        previous = $ul.find('.edui-active:last a')[0];
+
+        e = $.Event('beforeshow', {
+            target: $cur[0],
+            relatedTarget: previous
+        });
+
+        me.trigger(e);
+
+        if (e.isDefaultPrevented()) return;
+
+        $target = $(selector, me.data("context"));
+
+        me.activate($cur.parent('li'), $ul);
+        me.activate($target, $target.parent(), function () {
+            me.trigger({
+                type: 'aftershow', relatedTarget: previous
+            })
+        });
+    },
+    activate: function (element, container, callback) {
+        if (element === undefined) {
+            return $(".edui-tab-item.edui-active",this.root()).index();
+        }
+
+        var $active = container.find('> .edui-active');
+
+        $active.removeClass('edui-active');
+
+        element.addClass('edui-active');
+
+        callback && callback();
+    }
+});
+
+
+//button 类
+UM.ui.define('separator', {
+    tpl: '<div class="edui-separator" unselectable="on" onmousedown="return false" ></div>',
+    init: function (options) {
+        var me = this;
+        me.root($($.parseTmpl(me.tpl, options)));
+        return me;
+    }
+});
+/**
+ * @file adapter.js
+ * @desc adapt ui to editor
+ * @import core/Editor.js, core/utils.js
+ */
+
+(function () {
+    var _editorUI = {},
+        _editors = {},
+        _readyFn = [],
+        _activeWidget = null,
+        _widgetData = {},
+        _widgetCallBack = {},
+        _cacheUI = {},
+        _maxZIndex = null;
+
+    utils.extend(UM, {
+        defaultWidth : 500,
+        defaultHeight : 500,
+        registerUI: function (name, fn) {
+            utils.each(name.split(/\s+/), function (uiname) {
+                _editorUI[uiname] = fn;
+            });
+        },
+
+        setEditor : function(editor){
+            !_editors[editor.id] && (_editors[editor.id] = editor);
+        },
+        registerWidget : function(name,pro,cb){
+            _widgetData[name] = $.extend2(pro,{
+                $root : '',
+                _preventDefault:false,
+                root:function($el){
+                    return this.$root || (this.$root = $el);
+                },
+                preventDefault:function(){
+                    this._preventDefault = true;
+                },
+                clear:false
+            });
+            if(cb){
+                _widgetCallBack[name] = cb;
+            }
+        },
+        getWidgetData : function(name){
+            return _widgetData[name];
+        },
+        setWidgetBody : function(name,$widget,editor){
+            if(!editor._widgetData){
+
+                utils.extend(editor,{
+                    _widgetData : {},
+                    getWidgetData : function(name){
+                        return this._widgetData[name];
+                    },
+                    getWidgetCallback : function(widgetName){
+                        var me = this;
+                        return function(){
+                            return  _widgetCallBack[widgetName].apply(me,[me,$widget].concat(Array.prototype.slice.call(arguments,0)));
+                        };
+                    }
+                });
+
+            }
+            var pro = _widgetData[name];
+            if(!pro){
+                return null;
+            }
+            pro = editor._widgetData[name];
+            if(!pro){
+                pro = _widgetData[name];
+                pro = editor._widgetData[name] = $.type(pro) == 'function' ? pro : utils.clone(pro);
+            }
+
+            pro.root($widget.edui().getBodyContainer());
+
+            pro.initContent(editor,$widget);
+            if(!pro._preventDefault){
+                pro.initEvent(editor,$widget);
+            }
+
+            pro.width &&  $widget.width(pro.width);
+
+
+        },
+        setActiveWidget : function($widget){
+            _activeWidget = $widget;
+        },
+        getEditor: function (id, options) {
+            var editor = _editors[id] || (_editors[id] = this.createEditor(id, options));
+            _maxZIndex = _maxZIndex ? Math.max(editor.getOpt('zIndex'), _maxZIndex):editor.getOpt('zIndex');
+            return editor;
+        },
+        setTopEditor: function(editor){
+            $.each(_editors, function(i, o){
+                if(editor == o) {
+                    editor.$container && editor.$container.css('zIndex', _maxZIndex + 1);
+                } else {
+                    o.$container && o.$container.css('zIndex', o.getOpt('zIndex'));
+                }
+            });
+        },
+        clearCache : function(id){
+            if ( _editors[id]) {
+                delete  _editors[id];
+            }
+        },
+        delEditor: function (id) {
+            var editor;
+            if (editor = _editors[id]) {
+                editor.destroy();
+            }
+        },
+        ready: function( fn ){
+            _readyFn.push( fn );
+        },
+        createEditor: function (id, opt) {
+            var editor = new UM.Editor(opt);
+            var T = this;
+
+            editor.langIsReady ? $.proxy(renderUI,T)() : editor.addListener("langReady", $.proxy(renderUI,T));
+            function renderUI(){
+
+
+                var $container = this.createUI('#' + id, editor);
+                editor.key=id;
+                editor.ready(function(){
+                    $.each( _readyFn, function( index, fn ){
+                        $.proxy( fn, editor )();
+                    } );
+                });
+                var options = editor.options;
+                if(options.initialFrameWidth){
+                    options.minFrameWidth = options.initialFrameWidth;
+                }else{
+                    options.minFrameWidth = options.initialFrameWidth = editor.$body.width() || UM.defaultWidth;
+                    var styleWidth = editor.$body[0].style.width;
+                    if(styleWidth.match(/%$/)) {
+                        options.initialFrameWidth = styleWidth;
+                    }
+                }
+
+                $container.css({
+                    width: options.initialFrameWidth,
+                    zIndex:editor.getOpt('zIndex')
+                });
+
+                //ie6下缓存图片
+                UM.browser.ie && UM.browser.version === 6 && document.execCommand("BackgroundImageCache", false, true);
+
+                editor.render(id);
+
+
+                //添加tooltip;
+                $.eduitooltip && $.eduitooltip('attachTo', $("[data-original-title]",$container)).css('z-index',editor.getOpt('zIndex')+1);
+
+                $container.find('a').click(function(evt){
+                    evt.preventDefault();
+                });
+
+                editor.fireEvent("afteruiready");
+            }
+
+            return editor;
+
+        },
+        createUI: function (id, editor) {
+            var $editorCont = $(id),
+                $container = $('<div class="edui-container"><div class="edui-editor-body"></div></div>').insertBefore($editorCont);
+            editor.$container = $container;
+            editor.container = $container[0];
+
+            editor.$body = $editorCont;
+
+            //修正在ie9+以上的版本中，自动长高收起时的，残影问题
+            if(browser.ie && browser.ie9above){
+                var $span = $('<span style="padding:0;margin:0;height:0;width:0"></span>');
+                $span.insertAfter($container);
+            }
+            //初始化注册的ui组件
+            $.each(_editorUI,function(n,v){
+                var widget = v.call(editor,n);
+                if(widget){
+                    _cacheUI[n] = widget;
+                }
+
+            });
+
+            $container.find('.edui-editor-body').append($editorCont).before(this.createToolbar(editor.options, editor));
+
+            $container.find('.edui-toolbar').append($('<div class="edui-dialog-container"></div>'));
+
+
+            return $container;
+        },
+        createToolbar: function (options, editor) {
+            var $toolbar = $.eduitoolbar(), toolbar = $toolbar.edui();
+            //创建下来菜单列表
+
+            if (options.toolbar && options.toolbar.length) {
+                var btns = [];
+                $.each(options.toolbar,function(i,uiNames){
+                    $.each(uiNames.split(/\s+/),function(index,name){
+                        if(name == '|'){
+                                $.eduiseparator && btns.push($.eduiseparator());
+                        }else{
+                            var ui = _cacheUI[name];
+                            if(name=="fullscreen"){
+                                ui&&btns.unshift(ui);
+                            }else{
+                                ui && btns.push(ui);
+                            }
+                        }
+
+                    });
+                    btns.length && toolbar.appendToBtnmenu(btns);
+                });
+            } else {
+                $toolbar.find('.edui-btn-toolbar').remove();
+            }
+            return $toolbar;
+        }
+
+    });
+
+
+})();
+
+
+
+UM.registerUI('bold italic redo undo underline strikethrough superscript subscript insertorderedlist insertunorderedlist ' +
+    'cleardoc selectall link unlink print preview justifyleft justifycenter justifyright justifyfull removeformat horizontal drafts',
+    function(name) {
+        var me = this;
+        var $btn = $.eduibutton({
+            icon : name,
+            click : function(){
+                me.execCommand(name);
+            },
+            title: this.getLang('labelMap')[name] || ''
+        });
+
+        this.addListener('selectionchange',function(){
+            var state = this.queryCommandState(name);
+            $btn.edui().disabled(state == -1).active(state == 1)
+        });
+        return $btn;
+    }
+);
+
+
+/**
+ * 全屏组件
+ */
+
+(function(){
+
+    //状态缓存
+    var STATUS_CACHE = {},
+    //状态值列表
+        STATUS_LIST = [ 'width', 'height', 'position', 'top', 'left', 'margin', 'padding', 'overflowX', 'overflowY' ],
+        CONTENT_AREA_STATUS = {},
+    //页面状态
+        DOCUMENT_STATUS = {},
+        DOCUMENT_ELEMENT_STATUS = {},
+
+        FULLSCREENS = {};
+
+
+    UM.registerUI('fullscreen', function( name ){
+
+        var me = this,
+            $button = $.eduibutton({
+                'icon': 'fullscreen',
+                'title': (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
+                'click': function(){
+                    //切换
+                    me.execCommand( name );
+                    UM.setTopEditor(me);
+                }
+            });
+
+        me.addListener( "selectionchange", function () {
+
+            var state = this.queryCommandState( name );
+            $button.edui().disabled( state == -1 ).active( state == 1 );
+
+        } );
+
+        //切换至全屏
+        me.addListener('ready', function(){
+
+            me.options.fullscreen && Fullscreen.getInstance( me ).toggle();
+
+        });
+
+        return $button;
+
+    });
+
+    UM.commands[ 'fullscreen' ] = {
+
+        execCommand: function (cmdName) {
+
+            Fullscreen.getInstance( this ).toggle();
+
+        },
+        queryCommandState: function (cmdName) {
+
+            return this._edui_fullscreen_status;
+        },
+        notNeedUndo: 1
+
+    };
+
+    function Fullscreen( editor ) {
+
+        var me = this;
+
+        if( !editor ) {
+            throw new Error('invalid params, notfound editor');
+        }
+
+        me.editor = editor;
+
+        //记录初始化的全屏组件
+        FULLSCREENS[ editor.uid ] = this;
+
+        editor.addListener('destroy', function(){
+            delete FULLSCREENS[ editor.uid ];
+            me.editor = null;
+        });
+
+    }
+
+    Fullscreen.prototype = {
+
+        /**
+         * 全屏状态切换
+         */
+        toggle: function(){
+
+            var editor = this.editor,
+            //当前编辑器的缩放状态
+                _edui_fullscreen_status = this.isFullState();
+            editor.fireEvent('beforefullscreenchange', !_edui_fullscreen_status );
+
+            //更新状态
+            this.update( !_edui_fullscreen_status );
+
+            !_edui_fullscreen_status ? this.enlarge() : this.revert();
+
+            editor.fireEvent('afterfullscreenchange', !_edui_fullscreen_status );
+            if(editor.body.contentEditable === 'true'){
+                editor.fireEvent( 'fullscreenchanged', !_edui_fullscreen_status );
+            }
+
+            editor.fireEvent( 'selectionchange' );
+
+        },
+        /**
+         * 执行放大
+         */
+        enlarge: function(){
+
+            this.saveSataus();
+
+            this.setDocumentStatus();
+
+            this.resize();
+
+        },
+        /**
+         * 全屏还原
+         */
+        revert: function(){
+
+            //还原CSS表达式
+            var options = this.editor.options,
+                height = /%$/.test(options.initialFrameHeight) ?  '100%' : (options.initialFrameHeight - this.getStyleValue("padding-top")- this.getStyleValue("padding-bottom") - this.getStyleValue('border-width'));
+
+            $.IE6 && this.getEditorHolder().style.setExpression('height', 'this.scrollHeight <= ' + height + ' ? "' + height + 'px" : "auto"');
+
+            //还原容器状态
+            this.revertContainerStatus();
+
+            this.revertContentAreaStatus();
+
+            this.revertDocumentStatus();
+
+        },
+        /**
+         * 更新状态
+         * @param isFull 当前状态是否是全屏状态
+         */
+        update: function( isFull ) {
+            this.editor._edui_fullscreen_status = isFull;
+        },
+        /**
+         * 调整当前编辑器的大小, 如果当前编辑器不处于全屏状态， 则不做调整
+         */
+        resize: function(){
+
+            var $win = null,
+                height = 0,
+                width = 0,
+                borderWidth = 0,
+                paddingWidth = 0,
+                editor = this.editor,
+                me = this,
+                bound = null,
+                editorBody = null;
+
+            if( !this.isFullState() ) {
+                return;
+            }
+
+            $win = $( window );
+            width = $win.width();
+            height = $win.height();
+            editorBody = this.getEditorHolder();
+            //文本编辑区border宽度
+            borderWidth = parseInt( domUtils.getComputedStyle( editorBody, 'border-width' ), 10 ) || 0;
+            //容器border宽度
+            borderWidth += parseInt( domUtils.getComputedStyle( editor.container, 'border-width' ), 10 ) || 0;
+            //容器padding
+            paddingWidth += parseInt( domUtils.getComputedStyle( editorBody, 'padding-left' ), 10 ) + parseInt( domUtils.getComputedStyle( editorBody, 'padding-right' ), 10 ) || 0;
+
+            //干掉css表达式
+            $.IE6 && editorBody.style.setExpression( 'height', null );
+
+            bound = this.getBound();
+
+            $( editor.container ).css( {
+                width: width + 'px',
+                height: height + 'px',
+                position: !$.IE6 ? 'fixed' : 'absolute',
+                top: bound.top,
+                left: bound.left,
+                margin: 0,
+                padding: 0,
+                overflowX: 'hidden',
+                overflowY: 'hidden'
+            } );
+
+            $( editorBody ).css({
+                width: width - 2*borderWidth - paddingWidth + 'px',
+                height: height - 2*borderWidth - ( editor.options.withoutToolbar ? 0 : $( '.edui-toolbar', editor.container ).outerHeight() ) - $( '.edui-bottombar', editor.container).outerHeight() + 'px',
+                overflowX: 'hidden',
+                overflowY: 'auto'
+            });
+
+        },
+        /**
+         * 保存状态
+         */
+        saveSataus: function(){
+
+            var styles = this.editor.container.style,
+                tmp = null,
+                cache = {};
+
+            for( var i= 0, len = STATUS_LIST.length; i<len; i++ ) {
+
+                tmp = STATUS_LIST[ i ];
+                cache[ tmp ] = styles[ tmp ];
+
+            }
+
+            STATUS_CACHE[ this.editor.uid ] = cache;
+
+            this.saveContentAreaStatus();
+            this.saveDocumentStatus();
+
+        },
+        saveContentAreaStatus: function(){
+
+            var $holder = $(this.getEditorHolder());
+
+            CONTENT_AREA_STATUS[ this.editor.uid ] = {
+                width: $holder.css("width"),
+                overflowX: $holder.css("overflowX"),
+                overflowY: $holder.css("overflowY"),
+                height: $holder.css("height")
+            };
+
+        },
+        /**
+         * 保存与指定editor相关的页面的状态
+         */
+        saveDocumentStatus: function(){
+
+            var $doc = $( this.getEditorDocumentBody() );
+
+            DOCUMENT_STATUS[ this.editor.uid ] = {
+                overflowX: $doc.css( 'overflowX' ),
+                overflowY: $doc.css( 'overflowY' )
+            };
+            DOCUMENT_ELEMENT_STATUS[ this.editor.uid ] = {
+                overflowX: $( this.getEditorDocumentElement() ).css( 'overflowX'),
+                overflowY: $( this.getEditorDocumentElement() ).css( 'overflowY' )
+            };
+
+        },
+        /**
+         * 恢复容器状态
+         */
+        revertContainerStatus: function(){
+            $( this.editor.container ).css( this.getEditorStatus() );
+        },
+        /**
+         * 恢复编辑区状态
+         */
+        revertContentAreaStatus: function(){
+            var holder = this.getEditorHolder(),
+                state = this.getContentAreaStatus();
+
+            if ( this.supportMin() ) {
+                delete state.height;
+                holder.style.height = null;
+            }
+
+            $( holder ).css( state );
+        },
+        /**
+         * 恢复页面状态
+         */
+        revertDocumentStatus: function() {
+
+            var status = this.getDocumentStatus();
+            $( this.getEditorDocumentBody() ).css( 'overflowX', status.body.overflowX );
+            $( this.getEditorDocumentElement() ).css( 'overflowY', status.html.overflowY );
+
+        },
+        setDocumentStatus: function(){
+            $(this.getEditorDocumentBody()).css( {
+                overflowX: 'hidden',
+                overflowY: 'hidden'
+            } );
+            $(this.getEditorDocumentElement()).css( {
+                overflowX: 'hidden',
+                overflowY: 'hidden'
+            } );
+        },
+        /**
+         * 检测当前编辑器是否处于全屏状态全屏状态
+         * @returns {boolean} 是否处于全屏状态
+         */
+        isFullState: function(){
+            return !!this.editor._edui_fullscreen_status;
+        },
+        /**
+         * 获取编辑器状态
+         */
+        getEditorStatus: function(){
+            return STATUS_CACHE[ this.editor.uid ];
+        },
+        getContentAreaStatus: function(){
+            return CONTENT_AREA_STATUS[ this.editor.uid ];
+        },
+        getEditorDocumentElement: function(){
+            return this.editor.container.ownerDocument.documentElement;
+        },
+        getEditorDocumentBody: function(){
+            return this.editor.container.ownerDocument.body;
+        },
+        /**
+         * 获取编辑区包裹对象
+         */
+        getEditorHolder: function(){
+            return this.editor.body;
+        },
+        /**
+         * 获取编辑器状态
+         * @returns {*}
+         */
+        getDocumentStatus: function(){
+            return {
+                'body': DOCUMENT_STATUS[ this.editor.uid ],
+                'html': DOCUMENT_ELEMENT_STATUS[ this.editor.uid ]
+            };
+        },
+        supportMin: function () {
+
+            var node = null;
+
+            if ( !this._support ) {
+
+                node = document.createElement("div");
+
+                this._support = "minWidth" in node.style;
+
+                node = null;
+
+            }
+
+            return this._support;
+
+        },
+        getBound: function () {
+
+            var tags = {
+                    html: true,
+                    body: true
+                },
+                result = {
+                    top: 0,
+                    left: 0
+                },
+                offsetParent = null;
+
+            if ( !$.IE6 ) {
+                return result;
+            }
+
+            offsetParent = this.editor.container.offsetParent;
+
+            if( offsetParent && !tags[ offsetParent.nodeName.toLowerCase() ] ) {
+                tags = offsetParent.getBoundingClientRect();
+                result.top = -tags.top;
+                result.left = -tags.left;
+            }
+
+            return result;
+
+        },
+        getStyleValue: function (attr) {
+            return parseInt(domUtils.getComputedStyle( this.getEditorHolder() ,attr));
+        }
+    };
+
+
+    $.extend( Fullscreen, {
+        /**
+         * 监听resize
+         */
+        listen: function(){
+
+            var timer = null;
+
+            if( Fullscreen._hasFullscreenListener ) {
+                return;
+            }
+
+            Fullscreen._hasFullscreenListener = true;
+
+            $( window ).on( 'resize', function(){
+
+                if( timer !== null ) {
+                    window.clearTimeout( timer );
+                    timer = null;
+                }
+
+                timer = window.setTimeout(function(){
+
+                    for( var key in FULLSCREENS ) {
+                        FULLSCREENS[ key ].resize();
+                    }
+
+                    timer = null;
+
+                }, 50);
+
+            } );
+
+        },
+
+        getInstance: function ( editor ) {
+
+            if ( !FULLSCREENS[editor.uid  ] ) {
+                new Fullscreen( editor );
+            }
+
+            return FULLSCREENS[editor.uid  ];
+
+        }
+
+    });
+
+    //开始监听
+    Fullscreen.listen();
+
+})();
+UM.registerUI('link image video map',function(name){
+
+    var me = this, currentRange, $dialog,
+        opt = {
+            title: (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
+            url: me.options.UMEDITOR_HOME_URL + 'dialogs/' + name + '/' + name + '.js'
+        };
+
+    var $btn = $.eduibutton({
+        icon: name,
+        title: this.getLang('labelMap')[name] || ''
+    });
+    //加载模版数据
+    utils.loadFile(document,{
+        src: opt.url,
+        tag: "script",
+        type: "text/javascript",
+        defer: "defer"
+    },function(){
+        //调整数据
+        var data = UM.getWidgetData(name);
+        if(!data) return;
+        if(data.buttons){
+            var ok = data.buttons.ok;
+            if(ok){
+                opt.oklabel = ok.label || me.getLang('ok');
+                if(ok.exec){
+                    opt.okFn = function(){
+                        return $.proxy(ok.exec,null,me,$dialog)();
+                    };
+                }
+            }
+            var cancel = data.buttons.cancel;
+            if(cancel){
+                opt.cancellabel = cancel.label || me.getLang('cancel');
+                if(cancel.exec){
+                    opt.cancelFn = function(){
+                        return $.proxy(cancel.exec,null,me,$dialog)();
+                    };
+                }
+            }
+        }
+        data.width && (opt.width = data.width);
+        data.height && (opt.height = data.height);
+
+        $dialog = $.eduimodal(opt);
+
+        $dialog.attr('id', 'edui-dialog-' + name).addClass('edui-dialog-' + name)
+            .find('.edui-modal-body').addClass('edui-dialog-' + name + '-body');
+
+        $dialog.edui().on('beforehide',function () {
+            var rng = me.selection.getRange();
+            if (rng.equals(currentRange)) {
+                rng.select();
+            }
+        }).on('beforeshow', function () {
+                var $root = this.root(),
+                    win = null,
+                    offset = null;
+                currentRange = me.selection.getRange();
+                if (!$root.parent()[0]) {
+                    me.$container.find('.edui-dialog-container').append($root);
+                }
+
+                //IE6下 特殊处理, 通过计算进行定位
+                if( $.IE6 ) {
+
+                    win = {
+                        width: $( window ).width(),
+                        height: $( window ).height()
+                    };
+                    offset = $root.parents(".edui-toolbar")[0].getBoundingClientRect();
+                    $root.css({
+                        position: 'absolute',
+                        margin: 0,
+                        left: ( win.width - $root.width() ) / 2 - offset.left,
+                        top: 100 - offset.top
+                    });
+
+                }
+                UM.setWidgetBody(name,$dialog,me);
+                UM.setTopEditor(me);
+        }).on('afterbackdrop',function(){
+            this.$backdrop.css('zIndex',me.getOpt('zIndex')+1).appendTo(me.$container.find('.edui-dialog-container'));
+            $dialog.css('zIndex',me.getOpt('zIndex')+2);
+        }).on('beforeok',function(){
+            try{
+                currentRange.select();
+            }catch(e){}
+        }).attachTo($btn);
+    });
+
+
+    me.addListener('selectionchange', function () {
+        var state = this.queryCommandState(name);
+        $btn.edui().disabled(state == -1).active(state == 1);
+    });
+    return $btn;
+});
+UM.registerUI( 'emotion formula', function( name ){
+    var me = this,
+        url  = me.options.UMEDITOR_HOME_URL + 'dialogs/' +name+ '/'+name+'.js';
+
+    var $btn = $.eduibutton({
+        icon: name,
+        title: this.getLang('labelMap')[name] || ''
+    });
+
+    //加载模版数据
+    utils.loadFile(document,{
+        src: url,
+        tag: "script",
+        type: "text/javascript",
+        defer: "defer"
+    },function(){
+        var opt = {
+            url : url
+        };
+        //调整数据
+        var data = UM.getWidgetData(name);
+
+        data.width && (opt.width = data.width);
+        data.height && (opt.height = data.height);
+
+        $.eduipopup(opt).css('zIndex',me.options.zIndex + 1)
+            .addClass('edui-popup-' + name)
+            .edui()
+            .on('beforeshow',function(){
+                var $root = this.root();
+                if(!$root.parent().length){
+                    me.$container.find('.edui-dialog-container').append($root);
+                }
+                UM.setWidgetBody(name,$root,me);
+                UM.setTopEditor(me);
+            }).attachTo($btn,{
+                offsetTop:-5,
+                offsetLeft:10,
+                caretLeft:11,
+                caretTop:-8
+            });
+        me.addListener('selectionchange', function () {
+            var state = this.queryCommandState(name);
+            $btn.edui().disabled(state == -1).active(state == 1);
+        });
+    });
+    return $btn;
+
+} );
+UM.registerUI('imagescale',function () {
+    var me = this,
+        $imagescale;
+
+    me.setOpt('imageScaleEnabled', true);
+
+    if (browser.webkit && me.getOpt('imageScaleEnabled')) {
+
+        me.addListener('click', function (type, e) {
+            var range = me.selection.getRange(),
+                img = range.getClosedNode(),
+                target = e.target;
+
+            /* 点击第一个图片的后面,八个角不消失 fix:3652 */
+            if (img && img.tagName == 'IMG' && target == img) {
+
+                if (!$imagescale) {
+                    $imagescale = $.eduiscale({'$wrap':me.$container}).css('zIndex', me.options.zIndex);
+                    me.$container.append($imagescale);
+
+                    var _keyDownHandler = function () {
+                        $imagescale.edui().hide();
+                    }, _mouseDownHandler = function (e) {
+                        var ele = e.target || e.srcElement;
+                        if (ele && ele.className.indexOf('edui-scale') == -1) {
+                            _keyDownHandler(e);
+                        }
+                    }, timer;
+
+                    $imagescale.edui()
+                        .on('aftershow', function () {
+                            $(document).bind('keydown', _keyDownHandler);
+                            $(document).bind('mousedown', _mouseDownHandler);
+                            me.selection.getNative().removeAllRanges();
+                        })
+                        .on('afterhide', function () {
+                            $(document).unbind('keydown', _keyDownHandler);
+                            $(document).unbind('mousedown', _mouseDownHandler);
+                            var target = $imagescale.edui().getScaleTarget();
+                            if (target.parentNode) {
+                                me.selection.getRange().selectNode(target).select();
+                            }
+                        })
+                        .on('mousedown', function (e) {
+                            me.selection.getNative().removeAllRanges();
+                            var ele = e.target || e.srcElement;
+                            if (ele && ele.className.indexOf('edui-scale-hand') == -1) {
+                                timer = setTimeout(function() {
+                                    $imagescale.edui().hide();
+                                }, 200);
+                            }
+                        })
+                        .on('mouseup', function (e) {
+                            var ele = e.target || e.srcElement;
+                            if (ele && ele.className.indexOf('edui-scale-hand') == -1) {
+                                clearTimeout(timer);
+                            }
+                        });
+                }
+                $imagescale.edui().show($(img));
+
+            } else {
+                if ($imagescale && $imagescale.css('display') != 'none') $imagescale.edui().hide();
+
+            }
+        });
+
+        me.addListener('click', function (type, e) {
+            if (e.target.tagName == 'IMG') {
+                var range = new dom.Range(me.document, me.body);
+                range.selectNode(e.target).select();
+            }
+        });
+
+    }
+});
+UM.registerUI('autofloat',function(){
+    var me = this,
+        lang = me.getLang();
+    me.setOpt({
+        autoFloatEnabled: true,
+        topOffset: 0
+    });
+    var optsAutoFloatEnabled = me.options.autoFloatEnabled !== false,
+        topOffset = me.options.topOffset;
+
+
+    //如果不固定toolbar的位置，则直接退出
+    if(!optsAutoFloatEnabled){
+        return;
+    }
+    me.ready(function(){
+        var LteIE6 = browser.ie && browser.version <= 6,
+            quirks = browser.quirks;
+
+        function checkHasUI(){
+            if(!UM.ui){
+                alert(lang.autofloatMsg);
+                return 0;
+            }
+            return 1;
+        }
+        function fixIE6FixedPos(){
+            var docStyle = document.body.style;
+            docStyle.backgroundImage = 'url("about:blank")';
+            docStyle.backgroundAttachment = 'fixed';
+        }
+        var	bakCssText,
+            placeHolder = document.createElement('div'),
+            toolbarBox,orgTop,
+            getPosition=function(element){
+                var bcr;
+                //trace  IE6下在控制编辑器显隐时可能会报错，catch一下
+                try{
+                    bcr = element.getBoundingClientRect();
+                }catch(e){
+                    bcr={left:0,top:0,height:0,width:0}
+                }
+                var rect = {
+                    left: Math.round(bcr.left),
+                    top: Math.round(bcr.top),
+                    height: Math.round(bcr.bottom - bcr.top),
+                    width: Math.round(bcr.right - bcr.left)
+                };
+                var doc;
+                while ((doc = element.ownerDocument) !== document &&
+                    (element = domUtils.getWindow(doc).frameElement)) {
+                    bcr = element.getBoundingClientRect();
+                    rect.left += bcr.left;
+                    rect.top += bcr.top;
+                }
+                rect.bottom = rect.top + rect.height;
+                rect.right = rect.left + rect.width;
+                return rect;
+            };
+        var isFullScreening = false;
+        function setFloating(){
+            if(isFullScreening){
+                return;
+            }
+            var toobarBoxPos = domUtils.getXY(toolbarBox),
+                origalFloat = domUtils.getComputedStyle(toolbarBox,'position'),
+                origalLeft = domUtils.getComputedStyle(toolbarBox,'left');
+            toolbarBox.style.width = toolbarBox.offsetWidth + 'px';
+            toolbarBox.style.zIndex = me.options.zIndex * 1 + 1;
+            toolbarBox.parentNode.insertBefore(placeHolder, toolbarBox);
+            if (LteIE6 || (quirks && browser.ie)) {
+                if(toolbarBox.style.position != 'absolute'){
+                    toolbarBox.style.position = 'absolute';
+                }
+                toolbarBox.style.top = (document.body.scrollTop||document.documentElement.scrollTop) - orgTop + topOffset  + 'px';
+            } else {
+                if(toolbarBox.style.position != 'fixed'){
+                    toolbarBox.style.position = 'fixed';
+                    toolbarBox.style.top = topOffset +"px";
+                    ((origalFloat == 'absolute' || origalFloat == 'relative') && parseFloat(origalLeft)) && (toolbarBox.style.left = toobarBoxPos.x + 'px');
+                }
+            }
+        }
+        function unsetFloating(){
+
+            if(placeHolder.parentNode){
+                placeHolder.parentNode.removeChild(placeHolder);
+            }
+            toolbarBox.style.cssText = bakCssText;
+        }
+
+        function updateFloating(){
+            var rect3 = getPosition(me.container);
+            var offset=me.options.toolbarTopOffset||0;
+            if (rect3.top < 0 && rect3.bottom - toolbarBox.offsetHeight > offset) {
+                setFloating();
+            }else{
+                unsetFloating();
+            }
+        }
+        var defer_updateFloating = utils.defer(function(){
+            updateFloating();
+        },browser.ie ? 200 : 100,true);
+
+        me.addListener('destroy',function(){
+            $(window).off('scroll resize',updateFloating);
+            me.removeListener('keydown', defer_updateFloating);
+        });
+
+        if(checkHasUI(me)){
+            toolbarBox = $('.edui-toolbar',me.container)[0];
+            me.addListener("afteruiready",function(){
+                setTimeout(function(){
+                    orgTop = $(toolbarBox).offset().top;
+                },100);
+            });
+            bakCssText = toolbarBox.style.cssText;
+            placeHolder.style.height = toolbarBox.offsetHeight + 'px';
+            if(LteIE6){
+                fixIE6FixedPos();
+            }
+
+            $(window).on('scroll resize',updateFloating);
+            me.addListener('keydown', defer_updateFloating);
+            me.addListener('resize', function(){
+                unsetFloating();
+                placeHolder.style.height = toolbarBox.offsetHeight + 'px';
+                updateFloating();
+            });
+
+            me.addListener('beforefullscreenchange', function (t, enabled){
+                if (enabled) {
+                    unsetFloating();
+                    isFullScreening = enabled;
+                }
+            });
+            me.addListener('fullscreenchanged', function (t, enabled){
+                if (!enabled) {
+                    updateFloating();
+                }
+                isFullScreening = enabled;
+            });
+            me.addListener('sourcemodechanged', function (t, enabled){
+                setTimeout(function (){
+                    updateFloating();
+                },0);
+            });
+            me.addListener("clearDoc",function(){
+                setTimeout(function(){
+                    updateFloating();
+                },0);
+
+            })
+        }
+    })
+
+
+});
+UM.registerUI('source',function(name){
+    var me = this;
+    me.addListener('fullscreenchanged',function(){
+        me.$container.find('textarea').width(me.$body.width() - 10).height(me.$body.height())
+
+    });
+    var $btn = $.eduibutton({
+        icon : name,
+        click : function(){
+            me.execCommand(name);
+            UM.setTopEditor(me);
+        },
+        title: this.getLang('labelMap')[name] || ''
+    });
+
+    this.addListener('selectionchange',function(){
+        var state = this.queryCommandState(name);
+        $btn.edui().disabled(state == -1).active(state == 1)
+    });
+    return $btn;
+});
+
+UM.registerUI('paragraph fontfamily fontsize', function( name ) {
+
+    var me = this,
+        label = (me.options.labelMap && me.options.labelMap[name]) || me.getLang("labelMap." + name),
+        options = {
+            label: label,
+            title: label,
+            comboboxName: name,
+            items: me.options[ name ] || [],
+            itemStyles: [],
+            value: [],
+            autowidthitem: []
+        },
+        $combox = null,
+        comboboxWidget = null;
+    if(options.items.length == 0){
+        return null;
+    }
+    switch ( name ) {
+
+        case 'paragraph':
+            options = transForParagraph( options );
+            break;
+
+        case 'fontfamily':
+            options = transForFontfamily( options );
+            break;
+
+        case 'fontsize':
+            options = transForFontsize( options );
+            break;
+
+    }
+
+    //实例化
+    $combox =  $.eduibuttoncombobox(options).css('zIndex',me.getOpt('zIndex') + 1);
+    comboboxWidget =  $combox.edui();
+
+    comboboxWidget.on('comboboxselect', function( evt, res ){
+                        me.execCommand( name, res.value );
+                    }).on("beforeshow", function(){
+                        if( $combox.parent().length === 0 ) {
+                            $combox.appendTo(  me.$container.find('.edui-dialog-container') );
+                        }
+                        UM.setTopEditor(me);
+                    });
+
+
+    //状态反射
+    this.addListener('selectionchange',function( evt ){
+
+        var state  = this.queryCommandState( name ),
+            value = this.queryCommandValue( name );
+
+        //设置按钮状态
+        comboboxWidget.button().edui().disabled( state == -1 ).active( state == 1 );
+        if(value){
+            //设置label
+            value = value.replace(/['"]/g, '').toLowerCase().split(/['|"]?\s*,\s*[\1]?/);
+
+            comboboxWidget.selectItemByLabel( value );
+        }
+
+
+    });
+
+    return comboboxWidget.button().addClass('edui-combobox');
+
+    /**
+     * 宽度自适应工具函数
+     * @param word 单词内容
+     * @param hasSuffix 是否含有后缀
+     */
+    function wordCountAdaptive ( word, hasSuffix ) {
+
+        var $tmpNode = $('<span>' ).html( word ).css( {
+                display: 'inline',
+                position: 'absolute',
+                top: -10000000,
+                left: -100000
+            } ).appendTo( document.body),
+            width = $tmpNode.width();
+
+        $tmpNode.remove();
+        $tmpNode = null;
+
+        if( width < 50 ) {
+
+            return word;
+
+        } else {
+
+            word = word.slice( 0, hasSuffix ? -4 : -1 );
+
+            if( !word.length ) {
+                return '...';
+            }
+
+            return wordCountAdaptive( word + '...', true );
+
+        }
+
+    }
+
+
+    //段落参数转换
+    function transForParagraph ( options ) {
+
+        var tempItems = [];
+
+        for( var key in options.items ) {
+
+            options.value.push( key );
+            tempItems.push( key );
+            options.autowidthitem.push( wordCountAdaptive( key ) );
+
+        }
+
+        options.items = tempItems;
+        options.autoRecord = false;
+
+        return options;
+
+    }
+
+    //字体参数转换
+    function transForFontfamily ( options ) {
+
+        var temp = null,
+            tempItems = [];
+
+        for( var i = 0, len = options.items.length; i < len; i++ ) {
+
+            temp = options.items[ i ].val;
+            tempItems.push( temp.split(/\s*,\s*/)[0] );
+            options.itemStyles.push('font-family: ' + temp);
+            options.value.push( temp );
+            options.autowidthitem.push( wordCountAdaptive( tempItems[ i ] ) );
+
+        }
+
+        options.items = tempItems;
+
+        return options;
+
+    }
+
+    //字体大小参数转换
+    function transForFontsize ( options ) {
+
+        var temp = null,
+            tempItems = [];
+
+        options.itemStyles = [];
+        options.value = [];
+
+        for( var i = 0, len = options.items.length; i < len; i++ ) {
+
+            temp = options.items[ i ];
+            tempItems.push( temp );
+            options.itemStyles.push('font-size: ' + temp +'px');
+
+        }
+
+        options.value = options.items;
+        options.items = tempItems;
+        options.autoRecord = false;
+
+        return options;
+
+    }
+
+});
+
+
+UM.registerUI('forecolor backcolor', function( name ) {
+    function getCurrentColor() {
+        return domUtils.getComputedStyle( $colorLabel[0], 'background-color' );
+    }
+
+    var me = this,
+        $colorPickerWidget = null,
+        $colorLabel = null,
+        $btn = null;
+
+    //querycommand
+    this.addListener('selectionchange', function(){
+
+        var state = this.queryCommandState( name );
+        $btn.edui().disabled( state == -1 ).active( state == 1 );
+
+    });
+
+    $btn = $.eduicolorsplitbutton({
+        icon: name,
+        caret: true,
+        name: name,
+        title: me.getLang("labelMap")[name],
+        click: function() {
+            me.execCommand( name, getCurrentColor() );
+        }
+    });
+
+    $colorLabel = $btn.edui().colorLabel();
+
+    $colorPickerWidget = $.eduicolorpicker({
+        name: name,
+        lang_clearColor: me.getLang('clearColor') || '',
+        lang_themeColor: me.getLang('themeColor') || '',
+        lang_standardColor: me.getLang('standardColor') || ''
+    })
+        .on('pickcolor', function( evt, color ){
+            window.setTimeout( function(){
+                $colorLabel.css("backgroundColor", color);
+                me.execCommand( name, color );
+            }, 0 );
+        })
+        .on('show',function(){
+            UM.setActiveWidget( colorPickerWidget.root() );
+        }).css('zIndex',me.getOpt('zIndex') + 1);
+
+    $btn.edui().on('arrowclick',function(){
+        if(!$colorPickerWidget.parent().length){
+            me.$container.find('.edui-dialog-container').append($colorPickerWidget);
+        }
+        $colorPickerWidget.edui().show($btn,{
+            caretDir:"down",
+            offsetTop:-5,
+            offsetLeft:8,
+            caretLeft:11,
+            caretTop:-8
+        });
+        UM.setTopEditor(me);
+    }).register('click', $btn, function () {
+            $colorPickerWidget.edui().hide()
+        });
+
+    return $btn;
+
+});
+/*! layer-v2.1 弹层组件 License LGPL  http://layer.layui.com/ By 贤心 */
+;!function(a,b){"use strict";var c,d,e={getPath:function(){var a=document.scripts,b=a[a.length-1],c=b.src;if(!b.getAttribute("merge"))return c.substring(0,c.lastIndexOf("/")+1)}(),enter:function(a){13===a.keyCode&&a.preventDefault()},config:{},end:{},btn:["&#x786E;&#x5B9A;","&#x53D6;&#x6D88;"],type:["dialog","page","iframe","loading","tips"]},f={v:"2.1",ie6:!!a.ActiveXObject&&!a.XMLHttpRequest,index:0,path:e.getPath,config:function(a,b){var d=0;return a=a||{},f.cache=e.config=c.extend(e.config,a),f.path=e.config.path||f.path,"string"==typeof a.extend&&(a.extend=[a.extend]),f.use("skin/layer.css",a.extend&&a.extend.length>0?function g(){var c=a.extend;f.use(c[c[d]?d:d-1],d<c.length?function(){return++d,g}():b)}():b),this},use:function(a,b,d){var e=c("head")[0],a=a.replace(/\s/g,""),g=/\.css$/.test(a),h=document.createElement(g?"link":"script"),i="layui_layer_"+a.replace(/\.|\//g,"");return f.path?(g&&(h.rel="stylesheet"),h[g?"href":"src"]=/^http:\/\//.test(a)?a:f.path+a,h.id=i,c("#"+i)[0]||e.appendChild(h),function j(){(g?1989===parseInt(c("#"+i).css("width")):f[d||i])?function(){b&&b();try{g||e.removeChild(h)}catch(a){}}():setTimeout(j,100)}(),this):void 0},ready:function(a,b){var d="function"==typeof a;return d&&(b=a),f.config(c.extend(e.config,function(){return d?{}:{path:a}}()),b),this},alert:function(a,b,d){var e="function"==typeof b;return e&&(d=b),f.open(c.extend({content:a,yes:d},e?{}:b))},confirm:function(a,b,d,g){var h="function"==typeof b;return h&&(g=d,d=b),f.open(c.extend({content:a,btn:e.btn,yes:d,cancel:g},h?{}:b))},msg:function(a,d,g){var i="function"==typeof d,j=e.config.skin,k=(j?j+" "+j+"-msg":"")||"layui-layer-msg",l=h.anim.length-1;return i&&(g=d),f.open(c.extend({content:a,time:3e3,shade:!1,skin:k,title:!1,closeBtn:!1,btn:!1,end:g},i&&!e.config.skin?{skin:k+" layui-layer-hui",shift:l}:function(){return d=d||{},(-1===d.icon||d.icon===b&&!e.config.skin)&&(d.skin=k+" "+(d.skin||"layui-layer-hui")),d}()))},load:function(a,b){return f.open(c.extend({type:3,icon:a||0,shade:.01},b))},tips:function(a,b,d){return f.open(c.extend({type:4,content:[a,b],closeBtn:!1,time:3e3,maxWidth:210},d))}},g=function(a){var b=this;b.index=++f.index,b.config=c.extend({},b.config,e.config,a),b.creat()};g.pt=g.prototype;var h=["layui-layer",".layui-layer-title",".layui-layer-main",".layui-layer-dialog","layui-layer-iframe","layui-layer-content","layui-layer-btn","layui-layer-close"];h.anim=["layui-anim","layui-anim-01","layui-anim-02","layui-anim-03","layui-anim-04","layui-anim-05","layui-anim-06"],g.pt.config={type:0,shade:.3,fix:!0,move:h[1],title:"&#x4FE1;&#x606F;",offset:"auto",area:"auto",closeBtn:1,time:0,zIndex:19891014,maxWidth:360,shift:0,icon:-1,scrollbar:!0,tips:2},g.pt.vessel=function(a,b){var c=this,d=c.index,f=c.config,g=f.zIndex+d,i="object"==typeof f.title,j=f.maxmin&&(1===f.type||2===f.type),k=f.title?'<div class="layui-layer-title" style="'+(i?f.title[1]:"")+'">'+(i?f.title[0]:f.title)+"</div>":"";return f.zIndex=g,b([f.shade?'<div class="layui-layer-shade" id="layui-layer-shade'+d+'" times="'+d+'" style="'+("z-index:"+(g-1)+"; background-color:"+(f.shade[1]||"#000")+"; opacity:"+(f.shade[0]||f.shade)+"; filter:alpha(opacity="+(100*f.shade[0]||100*f.shade)+");")+'"></div>':"",'<div class="'+h[0]+" "+(h.anim[f.shift]||"")+(" layui-layer-"+e.type[f.type])+(0!=f.type&&2!=f.type||f.shade?"":" layui-layer-border")+" "+(f.skin||"")+'" id="'+h[0]+d+'" type="'+e.type[f.type]+'" times="'+d+'" showtime="'+f.time+'" conType="'+(a?"object":"string")+'" style="z-index: '+g+"; width:"+f.area[0]+";height:"+f.area[1]+(f.fix?"":";position:absolute;")+'">'+(a&&2!=f.type?"":k)+'<div class="layui-layer-content'+(0==f.type&&-1!==f.icon?" layui-layer-padding":"")+(3==f.type?" layui-layer-loading"+f.icon:"")+'">'+(0==f.type&&-1!==f.icon?'<i class="layui-layer-ico layui-layer-ico'+f.icon+'"></i>':"")+(1==f.type&&a?"":f.content||"")+'</div><span class="layui-layer-setwin">'+function(){var a=j?'<a class="layui-layer-min" href="javascript:;"><cite></cite></a><a class="layui-layer-ico layui-layer-max" href="javascript:;"></a>':"";return f.closeBtn&&(a+='<a class="layui-layer-ico '+h[7]+" "+h[7]+(f.title?f.closeBtn:4==f.type?"1":"2")+'" href="javascript:;"></a>'),a}()+"</span>"+(f.btn?function(){var a="";"string"==typeof f.btn&&(f.btn=[f.btn]);for(var b=0,c=f.btn.length;c>b;b++)a+='<a class="'+h[6]+b+'">'+f.btn[b]+"</a>";return'<div class="'+h[6]+'">'+a+"</div>"}():"")+"</div>"],k),c},g.pt.creat=function(){var a=this,b=a.config,g=a.index,i=b.content,j="object"==typeof i;switch("string"==typeof b.area&&(b.area="auto"===b.area?["",""]:[b.area,""]),b.type){case 0:b.btn="btn"in b?b.btn:e.btn[0],f.closeAll("dialog");break;case 2:var i=b.content=j?b.content:[b.content||"http://layer.layui.com","auto"];b.content='<iframe scrolling="'+(b.content[1]||"auto")+'" allowtransparency="true" id="'+h[4]+g+'" name="'+h[4]+g+'" onload="this.className=\'\';" class="layui-layer-load" frameborder="0" src="'+b.content[0]+'"></iframe>';break;case 3:b.title=!1,b.closeBtn=!1,-1===b.icon&&0===b.icon,f.closeAll("loading");break;case 4:j||(b.content=[b.content,"body"]),b.follow=b.content[1],b.content=b.content[0]+'<i class="layui-layer-TipsG"></i>',b.title=!1,b.shade=!1,b.fix=!1,b.tips="object"==typeof b.tips?b.tips:[b.tips,!0],b.tipsMore||f.closeAll("tips")}a.vessel(j,function(d,e){c("body").append(d[0]),j?function(){2==b.type||4==b.type?function(){c("body").append(d[1])}():function(){i.parents("."+h[0])[0]||(i.show().addClass("layui-layer-wrap").wrap(d[1]),c("#"+h[0]+g).find("."+h[5]).before(e))}()}():c("body").append(d[1]),a.layero=c("#"+h[0]+g),b.scrollbar||h.html.css("overflow","hidden").attr("layer-full",g)}).auto(g),2==b.type&&f.ie6&&a.layero.find("iframe").attr("src",i[0]),c(document).off("keydown",e.enter).on("keydown",e.enter),a.layero.on("keydown",function(a){c(document).off("keydown",e.enter)}),4==b.type?a.tips():a.offset(),b.fix&&d.on("resize",function(){a.offset(),(/^\d+%$/.test(b.area[0])||/^\d+%$/.test(b.area[1]))&&a.auto(g),4==b.type&&a.tips()}),b.time<=0||setTimeout(function(){f.close(a.index)},b.time),a.move().callback()},g.pt.auto=function(a){function b(a){a=g.find(a),a.height(i[1]-j-k-2*(0|parseFloat(a.css("padding"))))}var e=this,f=e.config,g=c("#"+h[0]+a);""===f.area[0]&&f.maxWidth>0&&(/MSIE 7/.test(navigator.userAgent)&&f.btn&&g.width(g.innerWidth()),g.outerWidth()>f.maxWidth&&g.width(f.maxWidth));var i=[g.innerWidth(),g.innerHeight()],j=g.find(h[1]).outerHeight()||0,k=g.find("."+h[6]).outerHeight()||0;switch(f.type){case 2:b("iframe");break;default:""===f.area[1]?f.fix&&i[1]>=d.height()&&(i[1]=d.height(),b("."+h[5])):b("."+h[5])}return e},g.pt.offset=function(){var a=this,b=a.config,c=a.layero,e=[c.outerWidth(),c.outerHeight()],f="object"==typeof b.offset;a.offsetTop=(d.height()-e[1])/2,a.offsetLeft=(d.width()-e[0])/2,f?(a.offsetTop=b.offset[0],a.offsetLeft=b.offset[1]||a.offsetLeft):"auto"!==b.offset&&(a.offsetTop=b.offset,"rb"===b.offset&&(a.offsetTop=d.height()-e[1],a.offsetLeft=d.width()-e[0])),b.fix||(a.offsetTop=/%$/.test(a.offsetTop)?d.height()*parseFloat(a.offsetTop)/100:parseFloat(a.offsetTop),a.offsetLeft=/%$/.test(a.offsetLeft)?d.width()*parseFloat(a.offsetLeft)/100:parseFloat(a.offsetLeft),a.offsetTop+=d.scrollTop(),a.offsetLeft+=d.scrollLeft()),c.css({top:a.offsetTop,left:a.offsetLeft})},g.pt.tips=function(){var a=this,b=a.config,e=a.layero,f=[e.outerWidth(),e.outerHeight()],g=c(b.follow);g[0]||(g=c("body"));var i={width:g.outerWidth(),height:g.outerHeight(),top:g.offset().top,left:g.offset().left},j=e.find(".layui-layer-TipsG"),k=b.tips[0];b.tips[1]||j.remove(),i.autoLeft=function(){i.left+f[0]-d.width()>0?(i.tipLeft=i.left+i.width-f[0],j.css({right:12,left:"auto"})):i.tipLeft=i.left},i.where=[function(){i.autoLeft(),i.tipTop=i.top-f[1]-10,j.removeClass("layui-layer-TipsB").addClass("layui-layer-TipsT").css("border-right-color",b.tips[1])},function(){i.tipLeft=i.left+i.width+10,i.tipTop=i.top,j.removeClass("layui-layer-TipsL").addClass("layui-layer-TipsR").css("border-bottom-color",b.tips[1])},function(){i.autoLeft(),i.tipTop=i.top+i.height+10,j.removeClass("layui-layer-TipsT").addClass("layui-layer-TipsB").css("border-right-color",b.tips[1])},function(){i.tipLeft=i.left-f[0]-10,i.tipTop=i.top,j.removeClass("layui-layer-TipsR").addClass("layui-layer-TipsL").css("border-bottom-color",b.tips[1])}],i.where[k-1](),1===k?i.top-(d.scrollTop()+f[1]+16)<0&&i.where[2]():2===k?d.width()-(i.left+i.width+f[0]+16)>0||i.where[3]():3===k?i.top-d.scrollTop()+i.height+f[1]+16-d.height()>0&&i.where[0]():4===k&&f[0]+16-i.left>0&&i.where[1](),e.find("."+h[5]).css({"background-color":b.tips[1],"padding-right":b.closeBtn?"30px":""}),e.css({left:i.tipLeft,top:i.tipTop})},g.pt.move=function(){var a=this,b=a.config,e={setY:0,moveLayer:function(){var a=e.layero,b=parseInt(a.css("margin-left")),c=parseInt(e.move.css("left"));0===b||(c-=b),"fixed"!==a.css("position")&&(c-=a.parent().offset().left,e.setY=0),a.css({left:c,top:parseInt(e.move.css("top"))-e.setY})}},f=a.layero.find(b.move);return b.move&&f.attr("move","ok"),f.css({cursor:b.move?"move":"auto"}),c(b.move).on("mousedown",function(a){if(a.preventDefault(),"ok"===c(this).attr("move")){e.ismove=!0,e.layero=c(this).parents("."+h[0]);var f=e.layero.offset().left,g=e.layero.offset().top,i=e.layero.outerWidth()-6,j=e.layero.outerHeight()-6;c("#layui-layer-moves")[0]||c("body").append('<div id="layui-layer-moves" class="layui-layer-moves" style="left:'+f+"px; top:"+g+"px; width:"+i+"px; height:"+j+'px; z-index:2147483584"></div>'),e.move=c("#layui-layer-moves"),b.moveType&&e.move.css({visibility:"hidden"}),e.moveX=a.pageX-e.move.position().left,e.moveY=a.pageY-e.move.position().top,"fixed"!==e.layero.css("position")||(e.setY=d.scrollTop())}}),c(document).mousemove(function(a){if(e.ismove){var c=a.pageX-e.moveX,f=a.pageY-e.moveY;if(a.preventDefault(),!b.moveOut){e.setY=d.scrollTop();var g=d.width()-e.move.outerWidth(),h=e.setY;0>c&&(c=0),c>g&&(c=g),h>f&&(f=h),f>d.height()-e.move.outerHeight()+e.setY&&(f=d.height()-e.move.outerHeight()+e.setY)}e.move.css({left:c,top:f}),b.moveType&&e.moveLayer(),c=f=g=h=null}}).mouseup(function(){try{e.ismove&&(e.moveLayer(),e.move.remove(),b.moveEnd&&b.moveEnd()),e.ismove=!1}catch(a){e.ismove=!1}}),a},g.pt.callback=function(){function a(){var a=g.cancel&&g.cancel(b.index);a===!1||f.close(b.index)}var b=this,d=b.layero,g=b.config;b.openLayer(),g.success&&(2==g.type?d.find("iframe").on("load",function(){g.success(d,b.index)}):g.success(d,b.index)),f.ie6&&b.IE6(d),d.find("."+h[6]).children("a").on("click",function(){var e=c(this).index();g["btn"+(e+1)]&&g["btn"+(e+1)](b.index,d),0===e?g.yes?g.yes(b.index,d):f.close(b.index):1===e?a():g["btn"+(e+1)]||f.close(b.index)}),d.find("."+h[7]).on("click",a),g.shadeClose&&c("#layui-layer-shade"+b.index).on("click",function(){f.close(b.index)}),d.find(".layui-layer-min").on("click",function(){f.min(b.index,g),g.min&&g.min(d)}),d.find(".layui-layer-max").on("click",function(){c(this).hasClass("layui-layer-maxmin")?(f.restore(b.index),g.restore&&g.restore(d)):(f.full(b.index,g),g.full&&g.full(d))}),g.end&&(e.end[b.index]=g.end)},e.reselect=function(){c.each(c("select"),function(a,b){var d=c(this);d.parents("."+h[0])[0]||1==d.attr("layer")&&c("."+h[0]).length<1&&d.removeAttr("layer").show(),d=null})},g.pt.IE6=function(a){function b(){a.css({top:f+(e.config.fix?d.scrollTop():0)})}var e=this,f=a.offset().top;b(),d.scroll(b),c("select").each(function(a,b){var d=c(this);d.parents("."+h[0])[0]||"none"===d.css("display")||d.attr({layer:"1"}).hide(),d=null})},g.pt.openLayer=function(){var a=this;f.zIndex=a.config.zIndex,f.setTop=function(a){var b=function(){f.zIndex++,a.css("z-index",f.zIndex+1)};return f.zIndex=parseInt(a[0].style.zIndex),a.on("mousedown",b),f.zIndex}},e.record=function(a){var b=[a.outerWidth(),a.outerHeight(),a.position().top,a.position().left+parseFloat(a.css("margin-left"))];a.find(".layui-layer-max").addClass("layui-layer-maxmin"),a.attr({area:b})},e.rescollbar=function(a){h.html.attr("layer-full")==a&&(h.html[0].style.removeProperty?h.html[0].style.removeProperty("overflow"):h.html[0].style.removeAttribute("overflow"),h.html.removeAttr("layer-full"))},a.layer=f,f.getChildFrame=function(a,b){return b=b||c("."+h[4]).attr("times"),c("#"+h[0]+b).find("iframe").contents().find(a)},f.getFrameIndex=function(a){return c("#"+a).parents("."+h[4]).attr("times")},f.iframeAuto=function(a){if(a){var b=f.getChildFrame("html",a).outerHeight(),d=c("#"+h[0]+a),e=d.find(h[1]).outerHeight()||0,g=d.find("."+h[6]).outerHeight()||0;d.css({height:b+e+g}),d.find("iframe").css({height:b})}},f.iframeSrc=function(a,b){c("#"+h[0]+a).find("iframe").attr("src",b)},f.style=function(a,b){var d=c("#"+h[0]+a),f=d.attr("type"),g=d.find(h[1]).outerHeight()||0,i=d.find("."+h[6]).outerHeight()||0;(f===e.type[1]||f===e.type[2])&&(d.css(b),f===e.type[2]&&d.find("iframe").css({height:parseFloat(b.height)-g-i}))},f.min=function(a,b){var d=c("#"+h[0]+a),g=d.find(h[1]).outerHeight()||0;e.record(d),f.style(a,{width:180,height:g,overflow:"hidden"}),d.find(".layui-layer-min").hide(),"page"===d.attr("type")&&d.find(h[4]).hide(),e.rescollbar(a)},f.restore=function(a){var b=c("#"+h[0]+a),d=b.attr("area").split(",");b.attr("type");f.style(a,{width:parseFloat(d[0]),height:parseFloat(d[1]),top:parseFloat(d[2]),left:parseFloat(d[3]),overflow:"visible"}),b.find(".layui-layer-max").removeClass("layui-layer-maxmin"),b.find(".layui-layer-min").show(),"page"===b.attr("type")&&b.find(h[4]).show(),e.rescollbar(a)},f.full=function(a){var b,g=c("#"+h[0]+a);e.record(g),h.html.attr("layer-full")||h.html.css("overflow","hidden").attr("layer-full",a),clearTimeout(b),b=setTimeout(function(){var b="fixed"===g.css("position");f.style(a,{top:b?0:d.scrollTop(),left:b?0:d.scrollLeft(),width:d.width(),height:d.height()}),g.find(".layui-layer-min").hide()},100)},f.title=function(a,b){var d=c("#"+h[0]+(b||f.index)).find(h[1]);d.html(a)},f.close=function(a){var b=c("#"+h[0]+a),d=b.attr("type");if(b[0]){if(d===e.type[1]&&"object"===b.attr("conType")){b.children(":not(."+h[5]+")").remove();for(var g=0;2>g;g++)b.find(".layui-layer-wrap").unwrap().hide()}else{if(d===e.type[2])try{var i=c("#"+h[4]+a)[0];i.contentWindow.document.write(""),i.contentWindow.close(),b.find("."+h[5])[0].removeChild(i)}catch(j){}b[0].innerHTML="",b.remove()}c("#layui-layer-moves, #layui-layer-shade"+a).remove(),f.ie6&&e.reselect(),e.rescollbar(a),c(document).off("keydown",e.enter),"function"==typeof e.end[a]&&e.end[a](),delete e.end[a]}},f.closeAll=function(a){c.each(c("."+h[0]),function(){var b=c(this),d=a?b.attr("type")===a:1;d&&f.close(b.attr("times")),d=null})},e.run=function(){c=jQuery,d=c(a),h.html=c("html"),f.open=function(a){var b=new g(a);return b.index}},"function"==typeof define?define(function(){return e.run(),f}):function(){e.run(),f.use("skin/layer.css")}()}(window);
+/*! layer弹层组件拓展类 */
+;!function(){layer.use("skin/layer.ext.css",function(){layer.layui_layer_extendlayerextjs=!0});var a=layer.cache||{},b=function(b){return a.skin?" "+a.skin+" "+a.skin+"-"+b:""};layer.prompt=function(a,c){a=a||{},"function"==typeof a&&(c=a);var d,e=2==a.formType?'<textarea class="layui-layer-input">'+(a.value||"")+"</textarea>":function(){return'<input type="'+(1==a.formType?"password":"text")+'" class="layui-layer-input" value="'+(a.value||"")+'">'}();return layer.open($.extend({btn:["&#x786E;&#x5B9A;","&#x53D6;&#x6D88;"],content:e,skin:"layui-layer-prompt"+b("prompt"),success:function(a){d=a.find(".layui-layer-input"),d.focus()},yes:function(b){var e=d.val();""===e?d.focus():e.length>(a.maxlength||500)?layer.tips("&#x6700;&#x591A;&#x8F93;&#x5165;"+(a.maxlength||500)+"&#x4E2A;&#x5B57;&#x6570;",d,{tips:1}):c&&c(e,b,d)}},a))},layer.tab=function(a){a=a||{};var c=a.tab||{};return layer.open($.extend({type:1,skin:"layui-layer-tab"+b("tab"),title:function(){var a=c.length,b=1,d="";if(a>0)for(d='<span class="layui-layer-tabnow">'+c[0].title+"</span>";a>b;b++)d+="<span>"+c[b].title+"</span>";return d}(),content:'<ul class="layui-layer-tabmain">'+function(){var a=c.length,b=1,d="";if(a>0)for(d='<li class="layui-layer-tabli xubox_tab_layer">'+(c[0].content||"no content")+"</li>";a>b;b++)d+='<li class="layui-layer-tabli">'+(c[b].content||"no  content")+"</li>";return d}()+"</ul>",success:function(a){var b=a.find(".layui-layer-title").children(),c=a.find(".layui-layer-tabmain").children();b.on("mousedown",function(a){a.stopPropagation?a.stopPropagation():a.cancelBubble=!0;var b=$(this),d=b.index();b.addClass("layui-layer-tabnow").siblings().removeClass("layui-layer-tabnow"),c.eq(d).show().siblings().hide()})}},a))},layer.photos=function(a,c,d){function e(a,b,c){var d=new Image;d.onload=function(){d.onload=null,b(d)},d.onerror=function(a){d.onerror=null,c(a)},d.src=a}var f={};if(a=a||{},a.photos){var g=a.photos.constructor===Object,h=g?a.photos:{},i=h.data||[],j=h.start||0;if(f.imgIndex=j+1,g){if(0===i.length)return void layer.msg("&#x6CA1;&#x6709;&#x56FE;&#x7247;")}else{var k=$(a.photos),l=k.find(a.img||"img");if(0===l.length)return;if(c||k.find(h.img||"img").each(function(b){var c=$(this);i.push({alt:c.attr("alt"),pid:c.attr("layer-pid"),src:c.attr("layer-src")||c.attr("src"),thumb:c.attr("src")}),c.on("click",function(){layer.photos($.extend(a,{photos:{start:b,data:i,tab:a.tab},full:a.full}),!0)})}),!c)return}f.imgprev=function(a){f.imgIndex--,f.imgIndex<1&&(f.imgIndex=i.length),f.tabimg(a)},f.imgnext=function(a,b){f.imgIndex++,f.imgIndex>i.length&&(f.imgIndex=1,b)||f.tabimg(a)},f.keyup=function(a){if(!f.end){var b=a.keyCode;a.preventDefault(),37===b?f.imgprev(!0):39===b?f.imgnext(!0):27===b&&layer.close(f.index)}},f.tabimg=function(b){i.length<=1||(h.start=f.imgIndex-1,layer.close(f.index),layer.photos(a,!0,b))},f.event=function(){f.bigimg.hover(function(){f.imgsee.show()},function(){f.imgsee.hide()}),f.bigimg.find(".layui-layer-imgprev").on("click",function(a){a.preventDefault(),f.imgprev()}),f.bigimg.find(".layui-layer-imgnext").on("click",function(a){a.preventDefault(),f.imgnext()}),$(document).on("keyup",f.keyup)},f.loadi=layer.load(1,{shade:"shade"in a?!1:.9,scrollbar:!1}),e(i[j].src,function(c){layer.close(f.loadi),f.index=layer.open($.extend({type:1,area:function(){var b=[c.width,c.height],d=[$(window).width()-100,$(window).height()-100];return!a.full&&b[0]>d[0]&&(b[0]=d[0],b[1]=b[0]*d[1]/b[0]),[b[0]+"px",b[1]+"px"]}(),title:!1,shade:.9,shadeClose:!0,closeBtn:!1,move:".layui-layer-phimg img",moveType:1,scrollbar:!1,moveOut:!0,shift:5*Math.random()|0,skin:"layui-layer-photos"+b("photos"),content:'<div class="layui-layer-phimg"><img src="'+i[j].src+'" alt="'+(i[j].alt||"")+'" layer-pid="'+i[j].pid+'"><div class="layui-layer-imgsee">'+(i.length>1?'<span class="layui-layer-imguide"><a href="javascript:;" class="layui-layer-iconext layui-layer-imgprev"></a><a href="javascript:;" class="layui-layer-iconext layui-layer-imgnext"></a></span>':"")+'<div class="layui-layer-imgbar" style="display:'+(d?"block":"")+'"><span class="layui-layer-imgtit"><a href="javascript:;">'+(i[j].alt||"")+"</a><em>"+f.imgIndex+"/"+i.length+"</em></span></div></div></div>",success:function(b,c){f.bigimg=b.find(".layui-layer-phimg"),f.imgsee=b.find(".layui-layer-imguide,.layui-layer-imgbar"),f.event(b),a.tab&&a.tab(i[j],b)},end:function(){f.end=!0,$(document).off("keyup",f.keyup)}},a))},function(){layer.close(f.loadi),layer.msg("&#x5F53;&#x524D;&#x56FE;&#x7247;&#x5730;&#x5740;&#x5F02;&#x5E38;<br>&#x662F;&#x5426;&#x7EE7;&#x7EED;&#x67E5;&#x770B;&#x4E0B;&#x4E00;&#x5F20;&#xFF1F;",{time:3e4,btn:["下一张","不看了"],yes:function(){i.length>1&&f.imgnext(!0,!0)}})})}}}();
+'use strict';
 angular.module('app', [
     'ngAnimate',
     'ngCookies',
@@ -44811,220 +57504,229 @@ angular.module('app', [
     'ui.load',
     'ui.jq',
     'oc.lazyLoad',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'tm.pagination',
+    'angularFileUpload',
+    'textAngular'
+
+
 ]);
+
+// var _Api = "/api"; //when realse to server change it to : /api
+var _Api = "/api";
+
 // config
 
-var app =  
-angular.module('app')
-  .config(
-    [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
-    function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide) {
-        
-        // lazy controller, directive and service
-        app.controller = $controllerProvider.register;
-        app.directive  = $compileProvider.directive;
-        app.filter     = $filterProvider.register;
-        app.factory    = $provide.factory;
-        app.service    = $provide.service;
-        app.constant   = $provide.constant;
-        app.value      = $provide.value;
-    }
-  ])
-  .config(['$translateProvider', function($translateProvider){
-    // Register a loader for the static files
-    // So, the module will search missing translation tables under the specified urls.
-    // Those urls are [prefix][langKey][suffix].
-    $translateProvider.useStaticFilesLoader({
-      prefix: 'l10n/',
-      suffix: '.js'
-    });
-    // Tell the module what language to use by default
-    $translateProvider.preferredLanguage('en');
-    // Tell the module to store the language in the local storage
-    $translateProvider.useLocalStorage();
-  }]);
+var app =
+    angular.module('app')
+    .config(
+        ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
+            function($controllerProvider, $compileProvider, $filterProvider, $provide) {
+
+                // lazy controller, directive and service
+                app.controller = $controllerProvider.register;
+                app.directive = $compileProvider.directive;
+                app.filter = $filterProvider.register;
+                app.factory = $provide.factory;
+                app.service = $provide.service;
+                app.constant = $provide.constant;
+                app.value = $provide.value;
+            }
+        ])
+    .config(['$translateProvider', function($translateProvider) {
+        // Register a loader for the static files
+        // So, the module will search missing translation tables under the specified urls.
+        // Those urls are [prefix][langKey][suffix].
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'l10n/',
+            suffix: '.js'
+        });
+        // Tell the module what language to use by default
+        $translateProvider.preferredLanguage('en');
+        // Tell the module to store the language in the local storage
+        $translateProvider.useLocalStorage();
+    }]);
+
 // lazyload config
 
 angular.module('app')
     /**
-   * jQuery plugin config use ui-jq directive , config the js and css files that required
-   * key: function name of the jQuery plugin
-   * value: array of the css js file located
-   */
-  .constant('JQ_CONFIG', {
-      easyPieChart:   [   '../bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.fill.js'],
-      sparkline:      [   '../bower_components/jquery.sparkline/dist/jquery.sparkline.retina.js'],
-      plot:           [   '../bower_components/flot/jquery.flot.js',
-                          '../bower_components/flot/jquery.flot.pie.js', 
-                          '../bower_components/flot/jquery.flot.resize.js',
-                          '../bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
-                          '../bower_components/flot.orderbars/js/jquery.flot.orderBars.js',
-                          '../bower_components/flot-spline/js/jquery.flot.spline.js'],
-      moment:         [   '../bower_components/moment/moment.js'],
-      screenfull:     [   '../bower_components/screenfull/dist/screenfull.min.js'],
-      slimScroll:     [   '../bower_components/slimscroll/jquery.slimscroll.min.js'],
-      sortable:       [   '../bower_components/html5sortable/jquery.sortable.js'],
-      nestable:       [   '../bower_components/nestable/jquery.nestable.js',
-                          '../bower_components/nestable/jquery.nestable.css'],
-      filestyle:      [   '../bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js'],
-      slider:         [   '../bower_components/bootstrap-slider/bootstrap-slider.js',
-                          '../bower_components/bootstrap-slider/bootstrap-slider.css'],
-      chosen:         [   '../bower_components/chosen/chosen.jquery.min.js',
-                          '../bower_components/bootstrap-chosen/bootstrap-chosen.css'],
-      TouchSpin:      [   '../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js',
-                          '../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
-      wysiwyg:        [   '../bower_components/bootstrap-wysiwyg/bootstrap-wysiwyg.js',
-                          '../bower_components/bootstrap-wysiwyg/external/jquery.hotkeys.js'],
-      dataTable:      [   '../bower_components/datatables/media/js/jquery.dataTables.min.js',
-                          '../bower_components/plugins/integration/bootstrap/3/dataTables.bootstrap.js',
-                          '../bower_components/plugins/integration/bootstrap/3/dataTables.bootstrap.css'],
-      vectorMap:      [   '../bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js', 
-                          '../bower_components/bower-jvectormap/jquery-jvectormap-world-mill-en.js',
-                          '../bower_components/bower-jvectormap/jquery-jvectormap-us-aea-en.js',
-                          '../bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.css'],
-      footable:       [   '../bower_components/footable/dist/footable.all.min.js',
-                          '../bower_components/footable/css/footable.core.css'],
-      fullcalendar:   [   '../bower_components/moment/moment.js',
-                          '../bower_components/fullcalendar/dist/fullcalendar.min.js',
-                          '../bower_components/fullcalendar/dist/fullcalendar.css',
-                          '../bower_components/fullcalendar/dist/fullcalendar.theme.css'],
-      daterangepicker:[   '../bower_components/moment/moment.js',
-                          '../bower_components/bootstrap-daterangepicker/daterangepicker.js',
-                          '../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css'],
-      tagsinput:      [   '../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
-                          '../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css']
-                      
-    }
-  )
-  // oclazyload config
-  .config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
-      // We configure ocLazyLoad to use the lib script.js as the async loader
-      $ocLazyLoadProvider.config({
-          debug:  true,
-          events: true,
-          modules: [
-              {
-                  name: 'ngGrid',
-                  files: [
-                      '../bower_components/ng-grid/build/ng-grid.min.js',
-                      '../bower_components/ng-grid/ng-grid.min.css',
-                      '../bower_components/ng-grid/ng-grid.bootstrap.css'
-                  ]
-              },
-              {
-                  name: 'ui.grid',
-                  files: [
-                      '../bower_components/angular-ui-grid/ui-grid.min.js',
-                      '../bower_components/angular-ui-grid/ui-grid.min.css',
-                      '../bower_components/angular-ui-grid/ui-grid.bootstrap.css'
-                  ]
-              },
-              {
-                  name: 'ui.select',
-                  files: [
-                      '../bower_components/angular-ui-select/dist/select.min.js',
-                      '../bower_components/angular-ui-select/dist/select.min.css'
-                  ]
-              },
-              {
-                  name:'angularFileUpload',
-                  files: [
+     * jQuery plugin config use ui-jq directive , config the js and css files that required
+     * key: function name of the jQuery plugin
+     * value: array of the css js file located
+     */
+    .constant('JQ_CONFIG', {
+        easyPieChart: ['../bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.fill.js'],
+        sparkline: ['../bower_components/jquery.sparkline/dist/jquery.sparkline.retina.js'],
+        plot: ['../bower_components/flot/jquery.flot.js',
+            '../bower_components/flot/jquery.flot.pie.js',
+            '../bower_components/flot/jquery.flot.resize.js',
+            '../bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
+            '../bower_components/flot.orderbars/js/jquery.flot.orderBars.js',
+            '../bower_components/flot-spline/js/jquery.flot.spline.js'
+        ],
+        moment: ['../bower_components/moment/moment.js'],
+        screenfull: ['../bower_components/screenfull/dist/screenfull.min.js'],
+        slimScroll: ['../bower_components/slimscroll/jquery.slimscroll.min.js'],
+        sortable: ['../bower_components/html5sortable/jquery.sortable.js'],
+        nestable: ['../bower_components/nestable/jquery.nestable.js',
+            '../bower_components/nestable/jquery.nestable.css'
+        ],
+        filestyle: ['../bower_components/bootstrap-filestyle/src/bootstrap-filestyle.js'],
+        slider: ['../bower_components/bootstrap-slider/bootstrap-slider.js',
+            '../bower_components/bootstrap-slider/bootstrap-slider.css'
+        ],
+        chosen: ['../bower_components/chosen/chosen.jquery.min.js',
+            '../bower_components/bootstrap-chosen/bootstrap-chosen.css'
+        ],
+        TouchSpin: ['../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js',
+            '../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'
+        ],
+        wysiwyg: ['../bower_components/bootstrap-wysiwyg/bootstrap-wysiwyg.js',
+            '../bower_components/bootstrap-wysiwyg/external/jquery.hotkeys.js'
+        ],
+        dataTable: ['../bower_components/datatables/media/js/jquery.dataTables.min.js',
+            '../bower_components/plugins/integration/bootstrap/3/dataTables.bootstrap.js',
+            '../bower_components/plugins/integration/bootstrap/3/dataTables.bootstrap.css'
+        ],
+        vectorMap: ['../bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.min.js',
+            '../bower_components/bower-jvectormap/jquery-jvectormap-world-mill-en.js',
+            '../bower_components/bower-jvectormap/jquery-jvectormap-us-aea-en.js',
+            '../bower_components/bower-jvectormap/jquery-jvectormap-1.2.2.css'
+        ],
+        footable: ['../bower_components/footable/dist/footable.all.min.js',
+            '../bower_components/footable/css/footable.core.css'
+        ],
+        fullcalendar: ['../bower_components/moment/moment.js',
+            '../bower_components/fullcalendar/dist/fullcalendar.min.js',
+            '../bower_components/fullcalendar/dist/fullcalendar.css',
+            '../bower_components/fullcalendar/dist/fullcalendar.theme.css'
+        ],
+        daterangepicker: ['../bower_components/moment/moment.js',
+            '../bower_components/bootstrap-daterangepicker/daterangepicker.js',
+            '../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css'
+        ],
+        tagsinput: ['../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+            '../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css'
+        ],
+        nicevalidator: [
+            "js/vendor/nice-validator/jquery.validator.js",
+            "js/vendor/nice-validator/local/zh-Cn.js"
+        ],
+        umeditor: [
+            "../bower_components/umeditor/umeditor.config.js",
+            // "../bower_components/umeditor/_examples/editor_api.js",
+            "../bower_components/umeditor/lang/zh-cn/zh-cn.js"
+        ]
+    })
+    // oclazyload config
+    .config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+        // We configure ocLazyLoad to use the lib script.js as the async loader
+        $ocLazyLoadProvider.config({
+            debug: true,
+            events: true,
+            modules: [{
+                name: 'ngGrid',
+                files: [
+                    '../bower_components/ng-grid/build/ng-grid.min.js',
+                    '../bower_components/ng-grid/ng-grid.min.css',
+                    '../bower_components/ng-grid/ng-grid.bootstrap.css'
+                ]
+            }, {
+                name: 'ui.grid',
+                files: [
+                    '../bower_components/angular-ui-grid/ui-grid.min.js',
+                    '../bower_components/angular-ui-grid/ui-grid.min.css',
+                    '../bower_components/angular-ui-grid/ui-grid.bootstrap.css'
+                ]
+            }, {
+                name: 'ui.select',
+                files: [
+                    '../bower_components/angular-ui-select/dist/select.min.js',
+                    '../bower_components/angular-ui-select/dist/select.min.css'
+                ]
+            }, {
+                name: 'angularFileUpload',
+                files: [
                     '../bower_components/angular-file-upload/angular-file-upload.min.js'
-                  ]
-              },
-              {
-                  name:'ui.calendar',
-                  files: ['../bower_components/angular-ui-calendar/src/calendar.js']
-              },
-              {
-                  name: 'ngImgCrop',
-                  files: [
-                      '../bower_components/ngImgCrop/compile/minified/ng-img-crop.js',
-                      '../bower_components/ngImgCrop/compile/minified/ng-img-crop.css'
-                  ]
-              },
-              {
-                  name: 'angularBootstrapNavTree',
-                  files: [
-                      '../bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
-                      '../bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css'
-                  ]
-              },
-              {
-                  name: 'toaster',
-                  files: [
-                      '../bower_components/angularjs-toaster/toaster.js',
-                      '../bower_components/angularjs-toaster/toaster.css'
-                  ]
-              },
-              {
-                  name: 'textAngular',
-                  files: [
-                      '../bower_components/textAngular/dist/textAngular-sanitize.min.js',
-                      '../bower_components/textAngular/dist/textAngular.min.js'
-                  ]
-              },
-              {
-                  name: 'vr.directives.slider',
-                  files: [
-                      '../bower_components/venturocket-angular-slider/build/angular-slider.min.js',
-                      '../bower_components/venturocket-angular-slider/build/angular-slider.css'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular',
-                  files: [
-                      '../bower_components/videogular/videogular.min.js'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular.plugins.controls',
-                  files: [
-                      '../bower_components/videogular-controls/controls.min.js'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular.plugins.buffering',
-                  files: [
-                      '../bower_components/videogular-buffering/buffering.min.js'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular.plugins.overlayplay',
-                  files: [
-                      '../bower_components/videogular-overlay-play/overlay-play.min.js'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular.plugins.poster',
-                  files: [
-                      '../bower_components/videogular-poster/poster.min.js'
-                  ]
-              },
-              {
-                  name: 'com.2fdevs.videogular.plugins.imaads',
-                  files: [
-                      '../bower_components/videogular-ima-ads/ima-ads.min.js'
-                  ]
-              },
-              {
-                  name: 'xeditable',
-                  files: [
-                      '../bower_components/angular-xeditable/dist/js/xeditable.min.js',
-                      '../bower_components/angular-xeditable/dist/css/xeditable.css'
-                  ]
-              },
-              {
-                  name: 'smart-table',
-                  files: [
-                      '../bower_components/angular-smart-table/dist/smart-table.min.js'
-                  ]
-              }
-          ]
-      });
-  }])
-;
+                ]
+            }, {
+                name: 'ui.calendar',
+                files: ['../bower_components/angular-ui-calendar/src/calendar.js']
+            }, {
+                name: 'ngImgCrop',
+                files: [
+                    '../bower_components/ngImgCrop/compile/minified/ng-img-crop.js',
+                    '../bower_components/ngImgCrop/compile/minified/ng-img-crop.css'
+                ]
+            }, {
+                name: 'angularBootstrapNavTree',
+                files: [
+                    '../bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js',
+                    '../bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css'
+                ]
+            }, {
+                name: 'toaster',
+                files: [
+                    '../bower_components/angularjs-toaster/toaster.js',
+                    '../bower_components/angularjs-toaster/toaster.css'
+                ]
+            }, {
+                name: 'textAngular',
+                files: [
+                    '../bower_components/textAngular/dist/textAngular-sanitize.min.js',
+                    '../bower_components/textAngular/dist/textAngular.min.js'
+                ]
+            }, {
+                name: 'vr.directives.slider',
+                files: [
+                    '../bower_components/venturocket-angular-slider/build/angular-slider.min.js',
+                    '../bower_components/venturocket-angular-slider/build/angular-slider.css'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular',
+                files: [
+                    '../bower_components/videogular/videogular.min.js'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular.plugins.controls',
+                files: [
+                    '../bower_components/videogular-controls/controls.min.js'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular.plugins.buffering',
+                files: [
+                    '../bower_components/videogular-buffering/buffering.min.js'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular.plugins.overlayplay',
+                files: [
+                    '../bower_components/videogular-overlay-play/overlay-play.min.js'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular.plugins.poster',
+                files: [
+                    '../bower_components/videogular-poster/poster.min.js'
+                ]
+            }, {
+                name: 'com.2fdevs.videogular.plugins.imaads',
+                files: [
+                    '../bower_components/videogular-ima-ads/ima-ads.min.js'
+                ]
+            }, {
+                name: 'xeditable',
+                files: [
+                    '../bower_components/angular-xeditable/dist/js/xeditable.min.js',
+                    '../bower_components/angular-xeditable/dist/css/xeditable.css'
+                ]
+            }, {
+                name: 'smart-table',
+                files: [
+                    '../bower_components/angular-smart-table/dist/smart-table.min.js'
+                ]
+            }]
+        });
+    }]);
 
 'use strict';
 
@@ -45032,708 +57734,900 @@ angular.module('app')
  * Config for the router
  */
 angular.module('app')
-  .run(
-    [          '$rootScope', '$state', '$stateParams',
-      function ($rootScope,   $state,   $stateParams) {
-          $rootScope.$state = $state;
-          $rootScope.$stateParams = $stateParams;        
-      }
-    ]
-  )
-  .config(
-    [          '$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 
-      function ($stateProvider,   $urlRouterProvider, JQ_CONFIG) {
-          
-          $urlRouterProvider
-              .otherwise('/app/dashboard-v1');
-          $stateProvider
-              .state('app', {
-                  abstract: true,
-                  url: '/app',
-                  templateUrl: 'tpl/app.html'
-              })
-              .state('app.dashboard-v1', {
-                  url: '/dashboard-v1',
-                  templateUrl: 'tpl/app_dashboard_v1.html',
-                  resolve: {
-                    deps: ['$ocLazyLoad',
-                      function( $ocLazyLoad ){
-                        return $ocLazyLoad.load(['js/controllers/chart.js']);
-                    }]
-                  }
-              })
-              .state('app.dashboard-v2', {
-                  url: '/dashboard-v2',
-                  templateUrl: 'tpl/app_dashboard_v2.html',
-                  resolve: {
-                    deps: ['$ocLazyLoad',
-                      function( $ocLazyLoad ){
-                        return $ocLazyLoad.load(['js/controllers/chart.js']);
-                    }]
-                  }
-              })
-              .state('app.ui', {
-                  url: '/ui',
-                  template: '<div ui-view class="fade-in-up"></div>'
-              })
-              .state('app.ui.buttons', {
-                  url: '/buttons',
-                  templateUrl: 'tpl/ui_buttons.html'
-              })
-              .state('app.ui.icons', {
-                  url: '/icons',
-                  templateUrl: 'tpl/ui_icons.html'
-              })
-              .state('app.ui.grid', {
-                  url: '/grid',
-                  templateUrl: 'tpl/ui_grid.html'
-              })
-              .state('app.ui.widgets', {
-                  url: '/widgets',
-                  templateUrl: 'tpl/ui_widgets.html'
-              })          
-              .state('app.ui.bootstrap', {
-                  url: '/bootstrap',
-                  templateUrl: 'tpl/ui_bootstrap.html'
-              })
-              .state('app.ui.sortable', {
-                  url: '/sortable',
-                  templateUrl: 'tpl/ui_sortable.html'
-              })
-              .state('app.ui.scroll', {
-                  url: '/scroll',
-                  templateUrl: 'tpl/ui_scroll.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad){
-                          return uiLoad.load('js/controllers/scroll.js');
-                      }]
-                  }
-              })
-              .state('app.ui.portlet', {
-                  url: '/portlet',
-                  templateUrl: 'tpl/ui_portlet.html'
-              })
-              .state('app.ui.timeline', {
-                  url: '/timeline',
-                  templateUrl: 'tpl/ui_timeline.html'
-              })
-              .state('app.ui.tree', {
-                  url: '/tree',
-                  templateUrl: 'tpl/ui_tree.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('angularBootstrapNavTree').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/tree.js');
-                              }
-                          );
+    .run(
+        ['$rootScope', '$state', '$stateParams',
+            function($rootScope, $state, $stateParams) {
+                $rootScope.$state = $state;
+                $rootScope.$stateParams = $stateParams;
+            }
+        ]
+    )
+    .config(
+        ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
+            function($stateProvider, $urlRouterProvider, JQ_CONFIG) {
+                $urlRouterProvider
+                    .otherwise('/app/dashboard-v1');
+                $stateProvider
+                    .state('app', {
+                        abstract: true,
+                        url: '/app',
+                        templateUrl: 'tpl/app.html'
+                    })
+                    .state('app.dashboard-v1', {
+                        url: '/dashboard-v1',
+                        templateUrl: 'tpl/app_dashboard_v1.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/chart.js']);
+                                }
+                            ]
                         }
-                      ]
-                  }
-              })
-              .state('app.ui.toaster', {
-                  url: '/toaster',
-                  templateUrl: 'tpl/ui_toaster.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('toaster').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/toaster.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.ui.jvectormap', {
-                  url: '/jvectormap',
-                  templateUrl: 'tpl/ui_jvectormap.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('js/controllers/vectormap.js');
-                      }]
-                  }
-              })
-              .state('app.ui.googlemap', {
-                  url: '/googlemap',
-                  templateUrl: 'tpl/ui_googlemap.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( [
-                            'js/app/map/load-google-maps.js',
-                            'js/app/map/ui-map.js',
-                            'js/app/map/map.js'] ).then(
-                              function(){
-                                return loadGoogleMaps(); 
-                              }
-                            );
-                      }]
-                  }
-              })
-              .state('app.chart', {
-                  url: '/chart',
-                  templateUrl: 'tpl/ui_chart.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad){
-                          return uiLoad.load('js/controllers/chart.js');
-                      }]
-                  }
-              })
-              // table
-              .state('app.table', {
-                  url: '/table',
-                  template: '<div ui-view></div>'
-              })
-              .state('app.table.static', {
-                  url: '/static',
-                  templateUrl: 'tpl/table_static.html'
-              })
-              .state('app.table.datatable', {
-                  url: '/datatable',
-                  templateUrl: 'tpl/table_datatable.html'
-              })
-              .state('app.table.footable', {
-                  url: '/footable',
-                  templateUrl: 'tpl/table_footable.html'
-              })
-              .state('app.table.grid', {
-                  url: '/grid',
-                  templateUrl: 'tpl/table_grid.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('ngGrid').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/grid.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.table.uigrid', {
-                  url: '/uigrid',
-                  templateUrl: 'tpl/table_uigrid.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('ui.grid').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/uigrid.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.table.editable', {
-                  url: '/editable',
-                  templateUrl: 'tpl/table_editable.html',
-                  controller: 'XeditableCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('xeditable').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/xeditable.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.table.smart', {
-                  url: '/smart',
-                  templateUrl: 'tpl/table_smart.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('smart-table').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/table.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              // form
-              .state('app.form', {
-                  url: '/form',
-                  template: '<div ui-view class="fade-in"></div>',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load('js/controllers/form.js');
-                      }]
-                  }
-              })
-              .state('app.form.components', {
-                  url: '/components',
-                  templateUrl: 'tpl/form_components.html',
-                  resolve: {
-                      deps: ['uiLoad', '$ocLazyLoad',
-                        function( uiLoad, $ocLazyLoad ){
-                          return uiLoad.load( JQ_CONFIG.daterangepicker )
-                          .then(
-                              function(){
-                                return uiLoad.load('js/controllers/form.components.js');
-                              }
-                          ).then(
-                              function(){
-                                return $ocLazyLoad.load('ngBootstrap');
-                              }
-                          );
+                    })
+                    .state('app.dashboard-v2', {
+                        url: '/dashboard-v2',
+                        templateUrl: 'tpl/app_dashboard_v2.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load(['js/controllers/chart.js']);
+                                }
+                            ]
                         }
-                      ]
-                  }
-              })
-              .state('app.form.elements', {
-                  url: '/elements',
-                  templateUrl: 'tpl/form_elements.html'
-              })
-              .state('app.form.validation', {
-                  url: '/validation',
-                  templateUrl: 'tpl/form_validation.html'
-              })
-              .state('app.form.wizard', {
-                  url: '/wizard',
-                  templateUrl: 'tpl/form_wizard.html'
-              })
-              .state('app.form.fileupload', {
-                  url: '/fileupload',
-                  templateUrl: 'tpl/form_fileupload.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('angularFileUpload').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/file-upload.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.form.imagecrop', {
-                  url: '/imagecrop',
-                  templateUrl: 'tpl/form_imagecrop.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad){
-                          return $ocLazyLoad.load('ngImgCrop').then(
-                              function(){
-                                 return $ocLazyLoad.load('js/controllers/imgcrop.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.form.select', {
-                  url: '/select',
-                  templateUrl: 'tpl/form_select.html',
-                  controller: 'SelectCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('ui.select').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/select.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.form.slider', {
-                  url: '/slider',
-                  templateUrl: 'tpl/form_slider.html',
-                  controller: 'SliderCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('vr.directives.slider').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/slider.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.form.editor', {
-                  url: '/editor',
-                  templateUrl: 'tpl/form_editor.html',
-                  controller: 'EditorCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('textAngular').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/editor.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.form.xeditable', {
-                  url: '/xeditable',
-                  templateUrl: 'tpl/form_xeditable.html',
-                  controller: 'XeditableCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load('xeditable').then(
-                              function(){
-                                  return $ocLazyLoad.load('js/controllers/xeditable.js');
-                              }
-                          );
-                      }]
-                  }
-              })
-              // pages
-              .state('app.page', {
-                  url: '/page',
-                  template: '<div ui-view class="fade-in-down"></div>'
-              })
-              .state('app.page.profile', {
-                  url: '/profile',
-                  templateUrl: 'tpl/page_profile.html'
-              })
-              .state('app.page.post', {
-                  url: '/post',
-                  templateUrl: 'tpl/page_post.html'
-              })
-              .state('app.page.search', {
-                  url: '/search',
-                  templateUrl: 'tpl/page_search.html'
-              })
-              .state('app.page.invoice', {
-                  url: '/invoice',
-                  templateUrl: 'tpl/page_invoice.html'
-              })
-              .state('app.page.price', {
-                  url: '/price',
-                  templateUrl: 'tpl/page_price.html'
-              })
-              .state('app.docs', {
-                  url: '/docs',
-                  templateUrl: 'tpl/docs.html'
-              })
-              // others
-              .state('lockme', {
-                  url: '/lockme',
-                  templateUrl: 'tpl/page_lockme.html'
-              })
-              .state('access', {
-                  url: '/access',
-                  template: '<div ui-view class="fade-in-right-big smooth"></div>'
-              })
-              .state('access.signin', {
-                  url: '/signin',
-                  templateUrl: 'tpl/page_signin.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/controllers/signin.js'] );
-                      }]
-                  }
-              })
-              .state('access.signup', {
-                  url: '/signup',
-                  templateUrl: 'tpl/page_signup.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/controllers/signup.js'] );
-                      }]
-                  }
-              })
-              .state('access.forgotpwd', {
-                  url: '/forgotpwd',
-                  templateUrl: 'tpl/page_forgotpwd.html'
-              })
-              .state('access.404', {
-                  url: '/404',
-                  templateUrl: 'tpl/page_404.html'
-              })
+                    })
+                    .state('app.companys', {
+                        url: "/companys",
+                        templateUrl: "tpl/companys/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/companys.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.companys-edit', {
+                        url: "/companys/edit/:id",
+                        templateUrl: "tpl/companys/edit.html",
+                        resolve: {
+                            deps: ['$ocLazyLoad', 'uiLoad',
+                                function($ocLazyLoad, uiLoad) {
+                                    // return $ocLazyLoad.load('angularFileUpload').then(
+                                    //function() {
+                                    //return $ocLazyLoad.load('js/controllers/todaystart/companys-edit.js');
+                                    return uiLoad.load("js/controllers/todaystart/companys-edit.js");
+                                    //}
+                                    // );
+                                }
+                            ]
+                        }
+                    })
 
-              // fullCalendar
-              .state('app.calendar', {
-                  url: '/calendar',
-                  templateUrl: 'tpl/app_calendar.html',
-                  // use resolve to load other dependences
-                  resolve: {
-                      deps: ['$ocLazyLoad', 'uiLoad',
-                        function( $ocLazyLoad, uiLoad ){
-                          return uiLoad.load(
-                            JQ_CONFIG.fullcalendar.concat('js/app/calendar/calendar.js')
-                          ).then(
-                            function(){
-                              return $ocLazyLoad.load('ui.calendar');
+                .state('app.projects', {
+                    url: "/projects",
+                    templateUrl: "tpl/projects/list.html",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/projects.js');
                             }
-                          )
-                      }]
-                  }
-              })
+                        ]
+                    }
+                })
 
-              // mail
-              .state('app.mail', {
-                  abstract: true,
-                  url: '/mail',
-                  templateUrl: 'tpl/mail.html',
-                  // use resolve to load other dependences
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/app/mail/mail.js',
-                                               'js/app/mail/mail-service.js',
-                                               JQ_CONFIG.moment] );
-                      }]
-                  }
-              })
-              .state('app.mail.list', {
-                  url: '/inbox/{fold}',
-                  templateUrl: 'tpl/mail.list.html'
-              })
-              .state('app.mail.detail', {
-                  url: '/{mailId:[0-9]{1,4}}',
-                  templateUrl: 'tpl/mail.detail.html'
-              })
-              .state('app.mail.compose', {
-                  url: '/compose',
-                  templateUrl: 'tpl/mail.new.html'
-              })
+                .state('app.projects-edit', {
+                    url: "/projects/edit/:id",
+                    templateUrl: "tpl/projects/edit.html",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
+                                    return $ocLazyLoad.load("js/controllers/todaystart/projects-edit.js");
+                                });
+                            }
+                        ]
+                    }
+                })
 
-              .state('layout', {
-                  abstract: true,
-                  url: '/layout',
-                  templateUrl: 'tpl/layout.html'
-              })
-              .state('layout.fullwidth', {
-                  url: '/fullwidth',
-                  views: {
-                      '': {
-                          templateUrl: 'tpl/layout_fullwidth.html'
-                      },
-                      'footer': {
-                          templateUrl: 'tpl/layout_footer_fullwidth.html'
-                      }
-                  },
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/controllers/vectormap.js'] );
-                      }]
-                  }
-              })
-              .state('layout.mobile', {
-                  url: '/mobile',
-                  views: {
-                      '': {
-                          templateUrl: 'tpl/layout_mobile.html'
-                      },
-                      'footer': {
-                          templateUrl: 'tpl/layout_footer_mobile.html'
-                      }
-                  }
-              })
-              .state('layout.app', {
-                  url: '/app',
-                  views: {
-                      '': {
-                          templateUrl: 'tpl/layout_app.html'
-                      },
-                      'footer': {
-                          templateUrl: 'tpl/layout_footer_fullwidth.html'
-                      }
-                  },
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/controllers/tab.js'] );
-                      }]
-                  }
-              })
-              .state('apps', {
-                  abstract: true,
-                  url: '/apps',
-                  templateUrl: 'tpl/layout.html'
-              })
-              .state('apps.note', {
-                  url: '/note',
-                  templateUrl: 'tpl/apps_note.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/app/note/note.js',
-                                               JQ_CONFIG.moment] );
-                      }]
-                  }
-              })
-              .state('apps.contact', {
-                  url: '/contact',
-                  templateUrl: 'tpl/apps_contact.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/app/contact/contact.js'] );
-                      }]
-                  }
-              })
-              .state('app.weather', {
-                  url: '/weather',
-                  templateUrl: 'tpl/apps_weather.html',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load(
-                              {
-                                  name: 'angular-skycons',
-                                  files: ['js/app/weather/skycons.js',
-                                          'js/app/weather/angular-skycons.js',
-                                          'js/app/weather/ctrl.js',
-                                          JQ_CONFIG.moment ] 
-                              }
-                          );
-                      }]
-                  }
-              })
-              .state('app.todo', {
-                  url: '/todo',
-                  templateUrl: 'tpl/apps_todo.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/app/todo/todo.js',
-                                               JQ_CONFIG.moment] );
-                      }]
-                  }
-              })
-              .state('app.todo.list', {
-                  url: '/{fold}'
-              })
-              .state('music', {
-                  url: '/music',
-                  templateUrl: 'tpl/music.html',
-                  controller: 'MusicCtrl',
-                  resolve: {
-                      deps: ['$ocLazyLoad',
-                        function( $ocLazyLoad ){
-                          return $ocLazyLoad.load([
-                            'com.2fdevs.videogular', 
-                            'com.2fdevs.videogular.plugins.controls', 
-                            'com.2fdevs.videogular.plugins.overlayplay',
-                            'com.2fdevs.videogular.plugins.poster',
-                            'com.2fdevs.videogular.plugins.buffering',
-                            'js/app/music/ctrl.js', 
-                            'js/app/music/theme.css'
-                          ]);
-                      }]
-                  }
-              })
-                .state('music.home', {
-                    url: '/home',
-                    templateUrl: 'tpl/music.home.html'
+                .state('app.users', {
+                        url: "/users",
+                        templateUrl: "tpl/users/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/users.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.users-edit', {
+                        url: "/users/edit/:id",
+                        templateUrl: "tpl/users/edit.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/users-edit.js');
+                                }
+                            ]
+                        }
+                    })
+
+                .state('app.systems', {
+                    url: "/systems",
+                    templateUrl: "tpl/systems/list.html",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/systems.js');
+                            }
+                        ]
+                    }
+                }).
+                state('app.systems-edit', {
+                    url: "/systems/edit/:id",
+                    templateUrl: "tpl/systems/edit.html",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/systems-edit.js');
+                            }
+                        ]
+                    }
                 })
-                .state('music.genres', {
-                    url: '/genres',
-                    templateUrl: 'tpl/music.genres.html'
+
+
+                .state('app.operates', {
+                        url: "/operates",
+                        templateUrl: "tpl/operates/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/operates.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state("app.changepassword", {
+                        url: "/changepassword",
+                        templateUrl: "tpl/changepassword.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/changepassword.js');
+                                }
+                            ]
+                        }
+                    })
+
+                .state('app.ui', {
+                        url: '/ui',
+                        template: '<div ui-view class="fade-in-up"></div>'
+                    })
+                    .state('app.ui.buttons', {
+                        url: '/buttons',
+                        templateUrl: 'tpl/ui_buttons.html'
+                    })
+                    .state('app.ui.icons', {
+                        url: '/icons',
+                        templateUrl: 'tpl/ui_icons.html'
+                    })
+                    .state('app.ui.grid', {
+                        url: '/grid',
+                        templateUrl: 'tpl/ui_grid.html'
+                    })
+                    .state('app.ui.widgets', {
+                        url: '/widgets',
+                        templateUrl: 'tpl/ui_widgets.html'
+                    })
+                    .state('app.ui.bootstrap', {
+                        url: '/bootstrap',
+                        templateUrl: 'tpl/ui_bootstrap.html'
+                    })
+                    .state('app.ui.sortable', {
+                        url: '/sortable',
+                        templateUrl: 'tpl/ui_sortable.html'
+                    })
+                    .state('app.ui.scroll', {
+                        url: '/scroll',
+                        templateUrl: 'tpl/ui_scroll.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/scroll.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.ui.portlet', {
+                        url: '/portlet',
+                        templateUrl: 'tpl/ui_portlet.html'
+                    })
+                    .state('app.ui.timeline', {
+                        url: '/timeline',
+                        templateUrl: 'tpl/ui_timeline.html'
+                    })
+                    .state('app.ui.tree', {
+                        url: '/tree',
+                        templateUrl: 'tpl/ui_tree.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('angularBootstrapNavTree').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/tree.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.ui.toaster', {
+                        url: '/toaster',
+                        templateUrl: 'tpl/ui_toaster.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('toaster').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/toaster.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.ui.jvectormap', {
+                        url: '/jvectormap',
+                        templateUrl: 'tpl/ui_jvectormap.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('js/controllers/vectormap.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.ui.googlemap', {
+                        url: '/googlemap',
+                        templateUrl: 'tpl/ui_googlemap.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load([
+                                        'js/app/map/load-google-maps.js',
+                                        'js/app/map/ui-map.js',
+                                        'js/app/map/map.js'
+                                    ]).then(
+                                        function() {
+                                            return loadGoogleMaps();
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.chart', {
+                        url: '/chart',
+                        templateUrl: 'tpl/ui_chart.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/chart.js');
+                                }
+                            ]
+                        }
+                    })
+                    // table
+                    .state('app.table', {
+                        url: '/table',
+                        template: '<div ui-view></div>'
+                    })
+                    .state('app.table.static', {
+                        url: '/static',
+                        templateUrl: 'tpl/table_static.html'
+                    })
+                    .state('app.table.datatable', {
+                        url: '/datatable',
+                        templateUrl: 'tpl/table_datatable.html'
+                    })
+                    .state('app.table.footable', {
+                        url: '/footable',
+                        templateUrl: 'tpl/table_footable.html'
+                    })
+                    .state('app.table.grid', {
+                        url: '/grid',
+                        templateUrl: 'tpl/table_grid.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('ngGrid').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/grid.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.table.uigrid', {
+                        url: '/uigrid',
+                        templateUrl: 'tpl/table_uigrid.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('ui.grid').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/uigrid.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.table.editable', {
+                        url: '/editable',
+                        templateUrl: 'tpl/table_editable.html',
+                        controller: 'XeditableCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('xeditable').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/xeditable.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.table.smart', {
+                        url: '/smart',
+                        templateUrl: 'tpl/table_smart.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('smart-table').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/table.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    // form
+                    .state('app.form', {
+                        url: '/form',
+                        template: '<div ui-view class="fade-in"></div>',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/form.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.components', {
+                        url: '/components',
+                        templateUrl: 'tpl/form_components.html',
+                        resolve: {
+                            deps: ['uiLoad', '$ocLazyLoad',
+                                function(uiLoad, $ocLazyLoad) {
+                                    return uiLoad.load(JQ_CONFIG.daterangepicker)
+                                        .then(
+                                            function() {
+                                                return uiLoad.load('js/controllers/form.components.js');
+                                            }
+                                        ).then(
+                                            function() {
+                                                return $ocLazyLoad.load('ngBootstrap');
+                                            }
+                                        );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.elements', {
+                        url: '/elements',
+                        templateUrl: 'tpl/form_elements.html'
+                    })
+                    .state('app.form.validation', {
+                        url: '/validation',
+                        templateUrl: 'tpl/form_validation.html'
+                    })
+                    .state('app.form.wizard', {
+                        url: '/wizard',
+                        templateUrl: 'tpl/form_wizard.html'
+                    })
+                    .state('app.form.fileupload', {
+                        url: '/fileupload',
+                        templateUrl: 'tpl/form_fileupload.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('angularFileUpload').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/file-upload.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.imagecrop', {
+                        url: '/imagecrop',
+                        templateUrl: 'tpl/form_imagecrop.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('ngImgCrop').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/imgcrop.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.select', {
+                        url: '/select',
+                        templateUrl: 'tpl/form_select.html',
+                        controller: 'SelectCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('ui.select').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/select.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.slider', {
+                        url: '/slider',
+                        templateUrl: 'tpl/form_slider.html',
+                        controller: 'SliderCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('vr.directives.slider').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/slider.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.editor', {
+                        url: '/editor',
+                        templateUrl: 'tpl/form_editor.html',
+                        controller: 'EditorCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('textAngular').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/editor.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.form.xeditable', {
+                        url: '/xeditable',
+                        templateUrl: 'tpl/form_xeditable.html',
+                        controller: 'XeditableCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load('xeditable').then(
+                                        function() {
+                                            return $ocLazyLoad.load('js/controllers/xeditable.js');
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    // pages
+                    .state('app.page', {
+                        url: '/page',
+                        template: '<div ui-view class="fade-in-down"></div>'
+                    })
+                    .state('app.page.profile', {
+                        url: '/profile',
+                        templateUrl: 'tpl/page_profile.html'
+                    })
+                    .state('app.page.post', {
+                        url: '/post',
+                        templateUrl: 'tpl/page_post.html'
+                    })
+                    .state('app.page.search', {
+                        url: '/search',
+                        templateUrl: 'tpl/page_search.html'
+                    })
+                    .state('app.page.invoice', {
+                        url: '/invoice',
+                        templateUrl: 'tpl/page_invoice.html'
+                    })
+                    .state('app.page.price', {
+                        url: '/price',
+                        templateUrl: 'tpl/page_price.html'
+                    })
+                    .state('app.docs', {
+                        url: '/docs',
+                        templateUrl: 'tpl/docs.html'
+                    })
+                    // others
+                    .state('lockme', {
+                        url: '/lockme',
+                        templateUrl: 'tpl/page_lockme.html'
+                    })
+                    .state('access', {
+                        url: '/access',
+                        template: '<div ui-view class="fade-in-right-big smooth"></div>'
+                    })
+                    .state('access.signin', {
+                        url: '/signin',
+                        templateUrl: 'tpl/page_signin.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/controllers/signin.js']);
+                                }
+                            ]
+                        }
+                    })
+                    .state('access.signup', {
+                        url: '/signup',
+                        templateUrl: 'tpl/page_signup.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/controllers/signup.js']);
+                                }
+                            ]
+                        }
+                    })
+                    .state('access.forgotpwd', {
+                        url: '/forgotpwd',
+                        templateUrl: 'tpl/page_forgotpwd.html'
+                    })
+                    .state('access.404', {
+                        url: '/404',
+                        templateUrl: 'tpl/page_404.html'
+                    })
+
+                // fullCalendar
+                .state('app.calendar', {
+                    url: '/calendar',
+                    templateUrl: 'tpl/app_calendar.html',
+                    // use resolve to load other dependences
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(
+                                    JQ_CONFIG.fullcalendar.concat('js/app/calendar/calendar.js')
+                                ).then(
+                                    function() {
+                                        return $ocLazyLoad.load('ui.calendar');
+                                    }
+                                )
+                            }
+                        ]
+                    }
                 })
-                .state('music.detail', {
-                    url: '/detail',
-                    templateUrl: 'tpl/music.detail.html'
-                })
-                .state('music.mtv', {
-                    url: '/mtv',
-                    templateUrl: 'tpl/music.mtv.html'
-                })
-                .state('music.mtvdetail', {
-                    url: '/mtvdetail',
-                    templateUrl: 'tpl/music.mtv.detail.html'
-                })
-                .state('music.playlist', {
-                    url: '/playlist/{fold}',
-                    templateUrl: 'tpl/music.playlist.html'
-                })
-      }
-    ]
-  );
+
+                // mail
+                .state('app.mail', {
+                        abstract: true,
+                        url: '/mail',
+                        templateUrl: 'tpl/mail.html',
+                        // use resolve to load other dependences
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/app/mail/mail.js',
+                                        'js/app/mail/mail-service.js',
+                                        JQ_CONFIG.moment
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.mail.list', {
+                        url: '/inbox/{fold}',
+                        templateUrl: 'tpl/mail.list.html'
+                    })
+                    .state('app.mail.detail', {
+                        url: '/{mailId:[0-9]{1,4}}',
+                        templateUrl: 'tpl/mail.detail.html'
+                    })
+                    .state('app.mail.compose', {
+                        url: '/compose',
+                        templateUrl: 'tpl/mail.new.html'
+                    })
+
+                .state('layout', {
+                        abstract: true,
+                        url: '/layout',
+                        templateUrl: 'tpl/layout.html'
+                    })
+                    .state('layout.fullwidth', {
+                        url: '/fullwidth',
+                        views: {
+                            '': {
+                                templateUrl: 'tpl/layout_fullwidth.html'
+                            },
+                            'footer': {
+                                templateUrl: 'tpl/layout_footer_fullwidth.html'
+                            }
+                        },
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/controllers/vectormap.js']);
+                                }
+                            ]
+                        }
+                    })
+                    .state('layout.mobile', {
+                        url: '/mobile',
+                        views: {
+                            '': {
+                                templateUrl: 'tpl/layout_mobile.html'
+                            },
+                            'footer': {
+                                templateUrl: 'tpl/layout_footer_mobile.html'
+                            }
+                        }
+                    })
+                    .state('layout.app', {
+                        url: '/app',
+                        views: {
+                            '': {
+                                templateUrl: 'tpl/layout_app.html'
+                            },
+                            'footer': {
+                                templateUrl: 'tpl/layout_footer_fullwidth.html'
+                            }
+                        },
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/controllers/tab.js']);
+                                }
+                            ]
+                        }
+                    })
+                    .state('apps', {
+                        abstract: true,
+                        url: '/apps',
+                        templateUrl: 'tpl/layout.html'
+                    })
+                    .state('apps.note', {
+                        url: '/note',
+                        templateUrl: 'tpl/apps_note.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/app/note/note.js',
+                                        JQ_CONFIG.moment
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+                    .state('apps.contact', {
+                        url: '/contact',
+                        templateUrl: 'tpl/apps_contact.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/app/contact/contact.js']);
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.weather', {
+                        url: '/weather',
+                        templateUrl: 'tpl/apps_weather.html',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        name: 'angular-skycons',
+                                        files: ['js/app/weather/skycons.js',
+                                            'js/app/weather/angular-skycons.js',
+                                            'js/app/weather/ctrl.js',
+                                            JQ_CONFIG.moment
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.todo', {
+                        url: '/todo',
+                        templateUrl: 'tpl/apps_todo.html',
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load(['js/app/todo/todo.js',
+                                        JQ_CONFIG.moment
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.todo.list', {
+                        url: '/{fold}'
+                    })
+                    .state('music', {
+                        url: '/music',
+                        templateUrl: 'tpl/music.html',
+                        controller: 'MusicCtrl',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load([
+                                        'com.2fdevs.videogular',
+                                        'com.2fdevs.videogular.plugins.controls',
+                                        'com.2fdevs.videogular.plugins.overlayplay',
+                                        'com.2fdevs.videogular.plugins.poster',
+                                        'com.2fdevs.videogular.plugins.buffering',
+                                        'js/app/music/ctrl.js',
+                                        'js/app/music/theme.css'
+                                    ]);
+                                }
+                            ]
+                        }
+                    })
+                    .state('music.home', {
+                        url: '/home',
+                        templateUrl: 'tpl/music.home.html'
+                    })
+                    .state('music.genres', {
+                        url: '/genres',
+                        templateUrl: 'tpl/music.genres.html'
+                    })
+                    .state('music.detail', {
+                        url: '/detail',
+                        templateUrl: 'tpl/music.detail.html'
+                    })
+                    .state('music.mtv', {
+                        url: '/mtv',
+                        templateUrl: 'tpl/music.mtv.html'
+                    })
+                    .state('music.mtvdetail', {
+                        url: '/mtvdetail',
+                        templateUrl: 'tpl/music.mtv.detail.html'
+                    })
+                    .state('music.playlist', {
+                        url: '/playlist/{fold}',
+                        templateUrl: 'tpl/music.playlist.html'
+                    })
+            }
+        ]
+    );
 
 'use strict';
 
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
-    function(              $scope,   $translate,   $localStorage,   $window ) {
-      // add 'ie' classes to html
-      var isIE = !!navigator.userAgent.match(/MSIE/i);
-      isIE && angular.element($window.document.body).addClass('ie');
-      isSmartDevice( $window ) && angular.element($window.document.body).addClass('smart');
+    .controller('AppCtrl', ['$scope', '$rootScope', '$http', '$state', '$translate', '$localStorage', '$window',
+        function($scope, $rootScope, $http, $state, $translate, $localStorage, $window) {
+            // add 'ie' classes to html
+            var isIE = !!navigator.userAgent.match(/MSIE/i);
+            isIE && angular.element($window.document.body).addClass('ie');
+            isSmartDevice($window) && angular.element($window.document.body).addClass('smart');
 
-      // config
-      $scope.app = {
-        name: 'Angulr',
-        version: '2.0.1',
-        // for chart colors
-        color: {
-          primary: '#7266ba',
-          info:    '#23b7e5',
-          success: '#27c24c',
-          warning: '#fad733',
-          danger:  '#f05050',
-          light:   '#e8eff0',
-          dark:    '#3a3f51',
-          black:   '#1c2b36'
-        },
-        settings: {
-          themeID: 1,
-          navbarHeaderColor: 'bg-black',
-          navbarCollapseColor: 'bg-white-only',
-          asideColor: 'bg-black',
-          headerFixed: true,
-          asideFixed: false,
-          asideFolded: false,
-          asideDock: false,
-          container: false
+            // config
+            $scope.app = {
+                name: '今日开工',
+                version: '2.0.1',
+                // for chart colors
+                color: {
+                    primary: '#7266ba',
+                    info: '#23b7e5',
+                    success: '#27c24c',
+                    warning: '#fad733',
+                    danger: '#f05050',
+                    light: '#e8eff0',
+                    dark: '#3a3f51',
+                    black: '#1c2b36'
+                },
+                settings: {
+                    themeID: 1,
+                    navbarHeaderColor: 'bg-black',
+                    navbarCollapseColor: 'bg-white-only',
+                    asideColor: 'bg-black',
+                    headerFixed: true,
+                    asideFixed: false,
+                    asideFolded: false,
+                    asideDock: false,
+                    container: false
+                }
+            }
+
+            // save settings to local storage
+            if (angular.isDefined($localStorage.settings)) {
+                $scope.app.settings = $localStorage.settings;
+            } else {
+                $localStorage.settings = $scope.app.settings;
+            }
+            $scope.$watch('app.settings', function() {
+                if ($scope.app.settings.asideDock && $scope.app.settings.asideFixed) {
+                    // aside dock and fixed must set the header fixed.
+                    $scope.app.settings.headerFixed = true;
+                }
+                // save to local storage
+                $localStorage.settings = $scope.app.settings;
+            }, true);
+            if (!!$localStorage.username) {
+                $scope.app.currentUserName = $localStorage.username;
+            }
+
+            // angular translate
+            // $scope.lang = {
+            //     isopen: true
+            // };
+            // $scope.langs = {
+            //     en: 'English',
+            //     de_DE: 'German',
+            //     it_IT: 'Italian'
+            // };
+            // $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "English";
+            // $scope.setLang = function(langKey, $event) {
+            //     // set the current lang
+            //     $scope.selectLang = $scope.langs[langKey];
+            //     // You can change the language during runtime
+            //     $translate.use(langKey);
+            //     $scope.lang.isopen = !$scope.lang.isopen;
+            // };
+
+
+            function isSmartDevice($window) {
+                // Adapted from http://www.detectmobilebrowsers.com
+                var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
+                // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
+                return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
+            }
+
+            $rootScope.$on('$stateChangeStart',
+                function(event, toState, toParams, fromState, fromParams) {
+
+                    if (toState != "access.signin") {
+                        $http({
+                            method: "GET",
+                            url: _Api + "/admin/account/checklogin"
+                        }).success(function(data) {
+                            if (!data.result) {
+                                event.preventDefault();
+                                $state.go('access.signin');
+                            } else {
+
+                            }
+                        });
+                    }
+                });
+            $scope.ckLogout = function() {
+                $http({
+                    method: "GET",
+                    url: _Api + "/admin/account/Logout"
+                }).success(function(data) {
+                    $state.go('access.signin');
+                });
+
+            }
+
         }
-      }
-
-      // save settings to local storage
-      if ( angular.isDefined($localStorage.settings) ) {
-        $scope.app.settings = $localStorage.settings;
-      } else {
-        $localStorage.settings = $scope.app.settings;
-      }
-      $scope.$watch('app.settings', function(){
-        if( $scope.app.settings.asideDock  &&  $scope.app.settings.asideFixed ){
-          // aside dock and fixed must set the header fixed.
-          $scope.app.settings.headerFixed = true;
-        }
-        // save to local storage
-        $localStorage.settings = $scope.app.settings;
-      }, true);
-
-      // angular translate
-      $scope.lang = { isopen: false };
-      $scope.langs = {en:'English', de_DE:'German', it_IT:'Italian'};
-      $scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "English";
-      $scope.setLang = function(langKey, $event) {
-        // set the current lang
-        $scope.selectLang = $scope.langs[langKey];
-        // You can change the language during runtime
-        $translate.use(langKey);
-        $scope.lang.isopen = !$scope.lang.isopen;
-      };
-
-      function isSmartDevice( $window )
-      {
-          // Adapted from http://www.detectmobilebrowsers.com
-          var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
-          // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
-          return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
-      }
-
-  }]);
+    ]);
 
 angular.module('app')
   .directive('setNgAnimate', ['$animate', function ($animate) {
@@ -46179,6 +59073,154 @@ angular.module('app')
       return moment(date).fromNow();
     }
   });
+/*! nice Validator 0.8.1
+ * (c) 2012-2015 Jony Zhang <zj86@live.cn>, MIT Licensed
+ * http://niceue.com/validator/
+ */
+!function(e){"function"==typeof define&&(define.amd||define.cmd)?define([],function(){return e}):e(jQuery)}(function(e,t){"use strict";function i(t,n){function s(){a._init(a.$el[0],n)}var a=this;return a instanceof i?(a.$el=e(t),void(a.$el.length?i.loading?e(window).on("validatorready",s):s():X(t)&&(ee[t]=n))):new i(t,n)}function n(e,t){if(z(e)){var i,s=t?t===!0?this:t:n.prototype;for(i in e)m(i)&&(s[i]=a(e[i]))}}function s(e,t){if(z(e)){var i,n=t?t===!0?this:t:s.prototype;for(i in e)n[i]=e[i]}}function a(t){switch(e.type(t)){case"function":return t;case"array":var i=function(e){return t.msg=t[1],t[0].test(Y(e))||t[1]||!1};return i.msg=t[1],i;case"regexp":return function(e){return t.test(Y(e))}}}function r(t){var i,n,s;if(t&&t.tagName){switch(t.tagName){case"INPUT":case"SELECT":case"TEXTAREA":case"BUTTON":case"FIELDSET":i=t.form||e(t).closest("."+M);break;case"FORM":i=t;break;default:i=e(t).closest("."+M)}for(n in ee)if(e(i).is(n)){s=ee[n];break}return e(i).data(_)||e(i)[_](s).data(_)}}function l(e,t){var i,n=t||e.currentTarget;n.form&&null===K(n.form,N)&&(i=r(n),i?(i._parse(n),i._focusin(e),t&&i._focusout(e,t)):K(n,V,null))}function o(e,t){var i=J(K(e,V+"-"+t));if(i)return i=new Function("return "+i)(),i?a(i):void 0}function u(e,t,i){var n=t.msg,s=t._r;return z(n)&&(n=n[s]),X(n)||(n=K(e,C+"-"+s)||K(e,C)||(i?X(i)?i:i[s]:"")),n}function d(e){var t;return e&&(t=L.exec(e)),t&&t[1]}function c(e){return X(e)||z(e)&&("error"in e||"ok"in e)?e:void 0}function f(e){return"INPUT"===e.tagName&&"checkbox"===e.type||"radio"===e.type}function g(e){return Date.parse(e.replace(/\.|\-/g,"/"))}function m(e){return/^[\w\d]+$/.test(e)}function p(e){return"#"===e.charAt(0)?e.replace(/(:|\.|\[|\])/g,"\\$1"):'[name="'+e+'"]:input'}var h,v,_="validator",y="."+_,k=".rule",w=".field",b=".form",M="nice-"+_,$="msg-box",x="aria-required",O="aria-invalid",V="data-rule",C="data-msg",F="data-tip",T="data-ok",A="data-timely",E="data-target",j="data-display",R="data-must",N="novalidate",S=":verifiable",D=/(&)?(!)?\s?(\w+)(?:\[\s*(.*?\]?)\s*\]|\(\s*(.*?\)?)\s*\))?\s*(;|\||&)?/g,q=/(\w+)(?:\[\s*(.*?\]?)\s*\]|\(\s*(.*?\)?)\s*\))?/,I=/(?:([^:;\(\[]*):)?(.*)/,B=/[^\x00-\xff]/g,L=/^.*(top|right|bottom|left).*$/,U=/(?:(post|get):)?(.+)/i,H=/[<>'"`\\]|&#x?\d+[A-F]?;?|%3[A-F]/gim,P=e.noop,W=e.proxy,J=e.trim,Q=e.isFunction,X=function(e){return"string"==typeof e},z=function(e){return e&&"[object Object]"===Object.prototype.toString.call(e)},G=document.documentMode||+(navigator.userAgent.match(/MSIE (\d+)/)&&RegExp.$1),K=function(e,i,n){return e&&e.tagName?n===t?e.getAttribute(i):void(null===n?e.removeAttribute(i):e.setAttribute(i,""+n)):null},Y=function(t){return e(t).val()},Z=window.console||{log:P,info:P},ee={},te={debug:0,timely:1,theme:"default",ignore:"",focusInvalid:!0,beforeSubmit:P,msgWrapper:"span",msgMaker:function(t){var i;return i='<span role="alert" class="msg-wrap n-'+t.type+'">'+t.arrow,t.result?e.each(t.result,function(e,n){i+='<span class="n-'+n.type+'">'+t.icon+'<span class="n-msg">'+n.msg+"</span></span>"}):i+=t.icon+'<span class="n-msg">'+t.msg+"</span>",i+="</span>"},msgArrow:"",msgIcon:'<span class="n-icon"></span>',msgClass:"",validClass:"n-valid",invalidClass:"n-invalid"},ie={"default":{formClass:"n-default",msgClass:"n-right"}};e.fn[_]=function(t){var n=this,s=arguments;return n.is(":input")?n:(!n.is("form")&&(n=this.find("form")),!n.length&&(n=this),n.each(function(){var n=e(this).data(_);if(n)if(X(t)){if("_"===t.charAt(0))return;n[t].apply(n,Array.prototype.slice.call(s,1))}else t&&(n._reset(!0),n._init(this,t));else new i(this,t)}),this)},e.fn.isValid=function(e,t){var i,n,s=r(this[0]),a=Q(e);return s?(s.checkOnly=!!t,n=s.options,i=s._multiValidate(this.is(":input")?this:this.find(S),function(t){t||!n.focusInvalid||s.checkOnly||s.$el.find("["+O+"]:input:first").focus(),a&&e.call(null,t),s.checkOnly=!1}),a?this:i):!0},e.expr[":"].verifiable=function(e){var t=e.nodeName.toLowerCase();return("input"===t&&!{submit:1,button:1,reset:1,image:1}[e.type]||"select"===t||"textarea"===t)&&e.disabled===!1},e.expr[":"].filled=function(e){return!!J(Y(e))},i.prototype={_init:function(t,i){var a,r,l,o=this;Q(i)&&(i={valid:i}),i=i||{},l=K(t,"data-"+_+"-option"),l=l&&"{"===l.charAt(0)?new Function("return "+l)():{},r=ie[i.theme||l.theme||te.theme],a=o.options=e.extend({},te,r,o.options,i,l),o.rules=new n(a.rules,!0),o.messages=new s(a.messages,!0),o.elements=o.elements||{},o.deferred={},o.errors={},o.fields={},o._initFields(a.fields),o.msgOpt={type:"error",pos:d(a.msgClass),wrapper:a.msgWrapper,cls:a.msgClass,style:a.msgStyle,arrow:a.msgArrow,icon:a.msgIcon,show:a.msgShow,hide:a.msgHide},X(a.target)&&o.$el.find(a.target).addClass("msg-container"),o.$el.data(_)||(o.$el.data(_,o).addClass(M+" "+a.formClass).on("submit"+y+" validate"+y,W(o,"_submit")).on("reset"+y,W(o,"_reset")).on("showmsg"+y,W(o,"_showmsg")).on("hidemsg"+y,W(o,"_hidemsg")).on("focusin"+y+" click"+y,S,W(o,"_focusin")).on("focusout"+y+" validate"+y,S,W(o,"_focusout")),a.timely&&o.$el.on("keyup"+y+" input"+y,S,W(o,"_focusout")).on("click"+y,":radio,:checkbox","click",W(o,"_focusout")).on("change"+y,'select,input[type="file"]',"change",W(o,"_focusout")),o._novalidate=K(t,N),K(t,N,N))},_guessAjax:function(t){var i=this;if(!(i.isAjaxSubmit=!!i.options.valid)){var n=(e._data||e.data)(t,"events");n&&n.valid&&e.map(n.valid,function(e){return~e.namespace.indexOf("form")?1:null}).length&&(i.isAjaxSubmit=!0)}},_initFields:function(t){var i=this,n=null===t;n&&(t=i.fields),z(t)&&e.each(t,function(e,t){if(null===t||n){var s=i.elements[e];s&&i._resetElement(s,!0),delete i.fields[e]}else i.fields[e]=X(t)?{rule:t}:t}),i.$el.find(S).each(function(){i._parse(this)})},_parse:function(e){var t,i,n=this,s=n.options,a=e.name,r=K(e,V);r&&K(e,V,null),(e.id&&"#"+e.id in n.fields||!e.name)&&(a="#"+e.id),a&&(t=n.fields[a]||{},t.key=a,t.rule=t.rule||r||"",t.display||!(t.display=K(e,j))&&s.display&&(t.display=s.display),t.rule&&((null!==K(e,R)||/match\(|checked/.test(t.rule))&&(t.must=!0),~t.rule.indexOf("required")&&(t.required=!0,K(e,x,!0)),"showOk"in t||(t.showOk=s.showOk),i=K(e,A),i?t.timely=+i:"timely"in t&&K(e,A,+t.timely),t=n._parseRule(t),t.old={}),X(t.target)&&K(e,E,t.target),X(t.tip)&&K(e,F,t.tip),n.fields[a]=t)},_parseRule:function(i){var n=I.exec(i.rule);if(n)return i._i=0,n[1]&&(i.display=n[1]),n[2]&&(i.rules=[],n[2].replace(D,function(){var n=arguments;n[4]=n[4]||n[5],i.rules.push({and:"&"===n[1],not:"!"===n[2],or:"|"===n[6],method:n[3],params:n[4]?e.map(n[4].split(", "),function(e){return J(e)}):t})})),i},_multiValidate:function(i,n){var s=this,a=s.options;return s.hasError=!1,a.ignore&&(i=i.not(a.ignore)),i.each(function(e,t){var i=s.getField(t);return i&&(s._validate(t,i),s.hasError&&a.stopOnError)?!1:void 0}),n&&(s.verifying=!0,e.when.apply(null,e.map(s.deferred,function(e){return e})).done(function(){n.call(s,!s.hasError),s.verifying=!1})),e.isEmptyObject(s.deferred)?!s.hasError:t},_submit:function(i){function n(){var e,t;v=!0,h&&(e=h.name)?(h.name="",t=l.submit,a.$el.append('<input type="hidden" name="'+e+'" value="'+h.value+'">'),t.call(l)):l.submit()}var s,a=this,r=a.options,l=i.target,o=i.isDefaultPrevented();if(i.preventDefault(),!(v&&~(v=!1)||a.submiting||"validate"===i.type&&a.$el[0]!==l||r.beforeSubmit.call(a,l)===!1)){if(a.isAjaxSubmit===t&&a._guessAjax(l),s="submit"===i.type&&!o&&!a.isAjaxSubmit,i.isTrigger&&a.isValid&&s)return void n();r.debug&&Z.log("\n<<< "+(i.isTrigger?"trigger: ":"event: ")+i.type),a._reset(),a.submiting=!0,a._multiValidate(a.$el.find(S),function(t){var i,o=t||2===r.debug?"valid":"invalid";t||(r.focusInvalid&&a.$el.find("["+O+'="true"]:input:first').focus(),i=e.map(a.errors,function(e){return e})),a.submiting=!1,a.isValid=t,Q(r[o])&&r[o].call(a,l,i),a.$el.trigger(o+b,[l,i]),r.debug&&Z.log(">>> "+o),t&&s&&n()})}},_reset:function(e){var t=this;t.errors={},e&&(t.reseting=!0,t.$el.find(S).each(function(e,i){t._resetElement(i)}),delete t.reseting)},_resetElement:function(t,i){var n=this.options;e(t).removeClass(n.validClass+" "+n.invalidClass),this.hideMsg(t),i&&K(t,x,null)},_getTimely:function(e,t){var i=K(e,A);return null!==i?+i:+t.timely},_focusin:function(t){var i,n,s=this,a=s.options,r=t.target;s.verifying||"click"===t.type&&document.activeElement===r||(a.focusCleanup&&"true"===K(r,O)&&(e(r).removeClass(a.invalidClass),s.hideMsg(r)),n=K(r,F),n?s.showMsg(r,{type:"tip",msg:n}):(i=s._getTimely(r,a),(8===i||9===i)&&s._focusout(t)))},_focusout:function(i,n){var s,a,r,l,o,u,d=this,c=d.options,g=i.target,m=i.type,p="focusin"===m,h="validate"===m,v=d.getField(g),_=0;if(v){if(v._e=m,s=v.old,a=Y(g),!n&&f(g)&&(n=d.$el.find('input[name="'+g.name+'"]').get(0)),u=d._getTimely(n||g,c),!h)if("focusout"===m){if(2===u||8===u){if(!a)return;v.isValid&&!s.showOk?d.hideMsg(g):d._makeMsg(g,v,s)}}else{if(!u||2>u&&!i.data)return;if(r=+new Date,r-(g._ts||0)<100||"keyup"===m&&"input"===g._et)return;if(g._ts=r,g._et=m,"keyup"===m){if(l=i.keyCode,o={8:1,9:1,16:1,32:1,46:1},9===l&&!a)return;if(48>l&&!o[l])return}p||(_=u>=100?u:400)}c.ignore&&e(g).is(c.ignore)||(clearTimeout(v._t),u&&(h||!c.ignoreBlank||a||p)?(v.value=a,u!==t&&(v.timely=u),_?v._t=setTimeout(function(){d._validate(g,v)},_):(h&&(v.old={}),d._validate(g,v))):d.hideMsg(g))}},_showmsg:function(t,i,n){var s=this,a=t.target;e(a).is(":input")?s.showMsg(a,{type:i,msg:n}):"tip"===i&&s.$el.find(S+"["+F+"]",a).each(function(){s.showMsg(this,{type:i,msg:n})})},_hidemsg:function(t){var i=e(t.target);i.is(":input")&&this.hideMsg(i)},_validatedField:function(t,i,n){var s=this,a=s.options,r=i.isValid=n.isValid=!!n.isValid,l=r?"valid":"invalid";n.key=i.key,n.ruleName=i._r,n.id=t.id,n.value=Y(t),r?n.type="ok":(s.submiting&&(s.errors[i.key]=n.msg),s.isValid=!1,s.hasError=!0),s.elements[i.key]=n.element=t,s.$el[0].isValid=r?s.isFormValid():r,i.old=n,Q(i[l])&&i[l].call(s,t,n),Q(a.validation)&&a.validation.call(s,t,n),e(t).attr(O,r?null:!0).removeClass(r?a.invalidClass:a.validClass).addClass(n.skip?"":r?a.validClass:a.invalidClass).trigger(l+w,[n,s]),s.$el.triggerHandler("validation",[n,s]),s.checkOnly||s._makeMsg.apply(s,arguments)},_makeMsg:function(t,i,n){(i.msgMaker||this.options.msgMaker)&&(n=e.extend({},n),"focusin"===i._e&&(n.type="tip"),this[n.showOk||n.msg||"tip"===n.type?"showMsg":"hideMsg"](t,n,i))},_validatedRule:function(i,n,s,a){n=n||c.getField(i),a=a||{};var r,l,o,d,c=this,f=c.options,g=n._r,m=n.timely||f.timely,p=9===m||8===m,h=!1;if(null===s)return void c._validatedField(i,n,{isValid:!0,skip:!0});if(s===t?o=!0:s===!0||""===s?h=!0:X(s)?r=s:z(s)&&(s.error?r=s.error:(r=s.ok,h=!0)),l=n.rules[n._i],l.not&&(r=t,h="required"===g||!h),l.or)if(h)for(;n._i<n.rules.length&&n.rules[n._i].or;)n._i++;else o=!0;else l.and&&(n.isValid||(o=!0));o?h=!0:(h&&n.showOk!==!1&&(d=K(i,T),r=null===d?X(n.ok)?n.ok:r:d,!X(r)&&X(n.showOk)&&(r=n.showOk),X(r)&&(a.showOk=h)),(!h||p)&&(r=(u(i,n,r||l.msg||c.messages[g])||c.messages.fallback).replace(/\{0\|?([^\}]*)\}/,function(){return c._getDisplay(i,n.display)||arguments[1]})),h||(n.isValid=h),a.msg=r,e(i).trigger((h?"valid":"invalid")+k,[g,r])),!p||o&&!l.and||(h||n._m||(n._m=r),n._v=n._v||[],n._v.push({type:h?o?"tip":"ok":"error",msg:r||l.msg})),f.debug&&Z.log("   "+n._i+": "+g+" => "+(h||r)),(h||p)&&n._i<n.rules.length-1?(n._i++,c._checkRule(i,n)):(n._i=0,p?(a.isValid=n.isValid,a.result=n._v,a.msg=n._m||"",n.value||"focusin"!==n._e||(a.type="tip")):a.isValid=h,c._validatedField(i,n,a),delete n._m,delete n._v)},_checkRule:function(i,n){var s,a,r,l=this,u=n.key,d=n.rules[n._i],f=d.method,g=Y(i),m=d.params;l.submiting&&l.deferred[u]||(r=n.old,n._r=f,r&&!n.must&&d.result!==t&&r.ruleName===f&&r.id===i.id&&g&&r.value===g?s=d.result:(a=o(i,f)||l.rules[f]||P,s=a.call(l,i,m,n),a.msg&&(d.msg=a.msg)),z(s)&&Q(s.then)?(l.deferred[u]=s,n.isValid=t,!l.checkOnly&&l.showMsg(i,{type:"loading",msg:l.messages.loading},n),s.then(function(s,a,r){var o,u=r.responseText,f=n.dataFilter||l.options.dataFilter||c;/jsonp?/.test(this.dataType)?u=s:"{"===J(u).charAt(0)&&(u=e.parseJSON(u)),o=f.call(this,u,n),o===t&&(o=f.call(this,u.data,n)),d.result=n.old?o:t,l._validatedRule(i,n,o)},function(e,t){l._validatedRule(i,n,l.messages[t]||t)}).always(function(){delete l.deferred[u]})):l._validatedRule(i,n,s))},_validate:function(e,t){if(!e.disabled&&null===K(e,N)){var i=this;if(t=t||i.getField(e),t.isValid=!0,t.rules||i._parse(e),t.rules)return i.options.debug&&Z.info(t.key),t.required||t.must||Y(e)||f(e)?(i._checkRule(e,t),t.isValid):(i._validatedField(e,t,{isValid:!0}),!0)}},test:function(e,i){var n,s,a,r=this,l=q.exec(i);return l&&(s=l[1],s in r.rules&&(a=l[2]||l[3],a=a?a.split(", "):t,n=r.rules[s].call(r,e,a))),n===!0||n===t||null===n},getRangeMsg:function(e,t,i,n){if(t){var s,a=this,r=i.rules[i._i],l=a.messages[r.method]||"",o=t[0].split("~"),u=o[0],d=o[1],c="rg",f=[""],g=J(e)&&+e===+e;return 2===o.length?u&&d?(g&&e>=+u&&+d>=e&&(s=!0),f=f.concat(o)):u&&!d?(g&&e>=+u&&(s=!0),f.push(u),c="gte"):!u&&d&&(g&&+d>=e&&(s=!0),f.push(d),c="lte"):(e===+u&&(s=!0),f.push(u),c="eq"),l&&(n&&l[c+n]&&(c+=n),f[0]=l[c]),s||(r.msg=a.renderMsg.apply(null,f))}},renderMsg:function(){var e=arguments,t=e[0],i=e.length;if(t){for(;--i;)t=t.replace("{"+i+"}",e[i]);return t}},_getDisplay:function(e,t){return X(t)?t:Q(t)?t.call(this,e):""},_getMsgOpt:function(t){return e.extend({},this.msgOpt,X(t)?{msg:t}:t)},_getMsgDOM:function(t,i){var n,s,a,r,l=e(t);if(l.is(":input")?(a=i.target||K(t,E),a&&(a=Q(a)?a.call(this,t):this.$el.find(a),a.length&&(a.is(":input")?t=a.get(0):a.hasClass($)?n=a:r=a)),n||(s=f(t)&&t.name||!t.id?t.name:t.id,n=this.$el.find(i.wrapper+"."+$+'[for="'+s+'"]'))):n=l,!n.length)if(l=this.$el.find(a||t),n=e("<"+i.wrapper+">").attr({"class":$+(i.cls?" "+i.cls:""),style:i.style||"","for":s}),f(t)){var o=l.parent();n.appendTo(o.is("label")?o.parent():o)}else r?n.appendTo(r):n[i.pos&&"right"!==i.pos?"insertBefore":"insertAfter"](l);return n},showMsg:function(t,i,n){if(t){var s,a,r,l=this,o=l.options;if(z(t)&&!t.jquery&&!i)return void e.each(t,function(e,t){var i=l.elements[e]||l.$el.find(p(e))[0];l.showMsg(i,t)});i=l._getMsgOpt(i),t=e(t).get(0),i.msg||"error"===i.type||(a=K(t,"data-"+i.type),null!==a&&(i.msg=a)),X(i.msg)&&(e(t).is(S)&&(n=n||l.getField(t),n&&(i.style=n.msgStyle||i.style,i.cls=n.msgClass||i.cls,i.wrapper=n.msgWrapper||i.wrapper,i.target=n.target||o.target)),(s=(n||{}).msgMaker||o.msgMaker)&&(r=l._getMsgDOM(t,i),!L.test(r[0].className)&&r.addClass(i.cls),6===G&&"bottom"===i.pos&&(r[0].style.marginTop=e(t).outerHeight()+"px"),r.html(s.call(l,i))[0].style.display="",Q(i.show)&&i.show.call(l,r,i.type)))}},hideMsg:function(t,i,n){var s,a=this,r=a.options;t=e(t).get(0),i=a._getMsgOpt(i),e(t).is(S)&&(n=n||a.getField(t),n&&((n.isValid||a.reseting)&&K(t,O,null),i.wrapper=n.msgWrapper||i.wrapper,i.target=n.target||r.target)),s=a._getMsgDOM(t,i),s.length&&(Q(i.hide)?i.hide.call(a,s,i.type):(s[0].style.display="none",s[0].innerHTML=null))},getField:function(e){var t,i=this;return X(e)?t=e:(t=e.id&&"#"+e.id in i.fields||!e.name?"#"+e.id:e.name,K(e,V)&&i._parse(e)),i.fields[t]},setField:function(e,t){var i={};e&&(X(e)?i[e]=t:i=e,this._initFields(i))},isFormValid:function(){var e,t,i=this.fields;for(e in i)if(t=i[e],t.rules&&(t.required||t.must||Y(p(e)))&&!t.isValid)return t.isValid;return!0},holdSubmit:function(e){this.submiting=e===t||e},cleanUp:function(){this._reset(1)},destroy:function(){this._reset(1),this.$el.off(y).removeData(_),K(this.$el[0],N,this._novalidate)}},e(window).on("beforeunload",function(){this.focus()}),e(document).on("focusin","["+V+"]:input",function(e){l(e)}).on("click","input,button",function(e){var t,i,n=this,s=n.name;n.form&&("submit"===n.type?(h=n,t=n.getAttributeNode("formnovalidate"),(t&&null!==t.nodeValue||null!==K(n,N))&&(v=!0)):null===K(n.form,N)&&(s&&f(n)?(i=n.form.elements[s],i.length&&(i=i[0]),K(i,V)&&l(e,i)):l(e)))}).on("submit validate","form",function(t){if(null===K(this,N)){var i,n=e(this);n.data(_)||(i=r(this),e.isEmptyObject(i.fields)?(K(this,N,N),n.off(y).removeData(_)):i._submit(t))}}),new s({fallback:"This field is not valid.",loading:"Validating..."}),new n({required:function(t,i,n){var s=this,a=J(Y(t)),r=!0;if(i)if(1===i.length){if(m(i[0])){if(s.rules[i[0]]){if(!a&&!s.test(t,i[0]))return K(t,x,null),null;K(t,x,!0)}}else if(!a&&!e(i[0],s.$el).length)return null}else if("not"===i[0])e.each(i.slice(1),function(){return r=a!==J(this)});else if("from"===i[0]){var l,o=s.$el.find(i[1]),d="_validated_";return r=o.filter(function(){return!!J(Y(this))}).length>=(i[2]||1),r?a||(l=null):l=u(o[0],n)||!1,e(t).data(d)||o.data(d,1).each(function(){t!==this&&s._checkRule(this,s.getField(this))}).removeData(d),l}return r&&!!a},integer:function(e,t){var i,n="0|",s="[1-9]\\d*",a=t?t[0]:"*";switch(a){case"+":i=s;break;case"-":i="-"+s;break;case"+0":i=n+s;break;case"-0":i=n+"-"+s;break;default:i=n+"-?"+s}return i="^(?:"+i+")$",new RegExp(i).test(Y(e))||this.messages.integer[a]},match:function(t,i,n){if(i){var s,a,r,l,o,u,d,c,f=this,m="eq";if(1===i.length?r=i[0]:(m=i[0],r=i[1]),u=p(r),d=f.$el.find(u)[0]){if(c=f.getField(d),s=Y(t),a=Y(d),n._match||(f.$el.on("valid"+w+y,u,function(){e(t).trigger("validate")}),n._match=c._match=1),!n.required&&""===s&&""===a)return null;if(o=i[2],o&&(/^date(time)?$/i.test(o)?(s=g(s),a=g(a)):"time"===o&&(s=+s.replace(/:/g,""),a=+a.replace(/:/g,""))),"eq"!==m&&!isNaN(+s)&&isNaN(+a))return!0;switch(l=f.messages.match[m].replace("{1}",f._getDisplay(t,c.display||r)),m){case"lt":return+a>+s||l;case"lte":return+a>=+s||l;case"gte":return+s>=+a||l;case"gt":return+s>+a||l;case"neq":return s!==a||l;default:return s===a||l}}}},range:function(e,t,i){return this.getRangeMsg(Y(e),t,i)},checked:function(e,t,i){if(f(e)){var n,s,a=this;return e.name?s=a.$el.find('input[name="'+e.name+'"]').filter(function(){var e=this;return!n&&f(e)&&(n=e),!e.disabled&&e.checked}).length:(n=e,s=n.checked),t?a.getRangeMsg(s,t,i):!!s||u(n,i,"")||a.messages.required}},length:function(e,t,i){var n=Y(e),s=(t[1]?n.replace(B,"xx"):n).length;return this.getRangeMsg(s,t,i,t[1]?"_2":"")},remote:function(t,i){if(i){var n,s=this,a=U.exec(i[0]),r={},l="";return r[t.name]=Y(t),i[1]&&e.map(i.slice(1),function(e){var t,i;~e.indexOf("=")?l+="&"+e:(t=e.split(":"),e=J(t[0]),i=J(t[1])||e,r[e]=s.$el.find(p(i)).val())}),/^https?:/.test(a[2])&&!~a[2].indexOf(location.host)&&(n="jsonp"),e.ajax({url:a[2],type:a[1]||"POST",data:e.param(r)+l,dataType:n,cache:!1})}},validate:function(t,i){var n="_validated_";i&&!e(t).data(n)&&this.$el.find(e.map(i,function(e){return p(e)}).join(",")).data(n,1).trigger("validate").removeData(n)},filter:function(e,t){var i,n=Y(e);i=n.replace(t?new RegExp("["+t[0]+"]","gm"):H,""),i!==n&&(e.value=i)}}),i.config=function(t){e.each(t,function(e,t){"rules"===e?new n(t):"messages"===e?new s(t):te[e]=t})},i.setTheme=function(t,i){z(t)?e.extend(!0,ie,t):X(t)&&z(i)&&(ie[t]=e.extend(ie[t],i))},e[_]=i,function(t){var n,s,a,r,l,o,u=document,d=u.getElementsByTagName("script");if(t)s=d[0],n=t.match(/(.*)\/local\/([\w\-]{2,5})\.js/);else for(a=d.length,r=/(.*validator.js)\?.*local=([\w\-]*)/;a--&&!n;)s=d[a],n=(s.hasAttribute?s.src:s.getAttribute("src",4)||"").match(r);n&&(l=n[0].split("/").slice(0,-1).join("/").replace(/\/(local|src)$/,"")+"/",o=u.createElement("link"),o.rel="stylesheet",o.href=l+"jquery.validator.css",s.parentNode.insertBefore(o,s),t||(i.loading=1,o=u.createElement("script"),o.src=l+"local/"+(n[2]||u.documentElement.lang||"en").replace("_","-")+".js",a="onload"in o?"onload":"onreadystatechange",o[a]=function(){(!o.readyState||/loaded|complete/.test(o.readyState))&&(e(window).trigger("validatorready"),delete i.loading,o=o[a]=null)},s.parentNode.insertBefore(o,s)))}(e._VALIDATOR_URI)});
+/*********************************
+ * Themes, rules, and i18n support
+ * Locale: Chinese; 中文
+ *********************************/
+(function(factory) {
+    'function' === typeof define && (define.amd || define.cmd) ? define(function(require, exports, module){
+        var $ = require('jquery')||jQuery; $._VALIDATOR_URI = module.uri;
+        require('../jquery.validator')($);
+        factory($);
+    }) : factory(jQuery);
+}(function($) {
+
+    /* Global configuration
+     */
+    $.validator.config({
+        //stopOnError: true,
+        //focusCleanup: true,
+        //theme: 'yellow_right',
+        //timely: 2,
+        
+        // Custom rules
+        rules: {
+            digits: [/^\d+$/, "请填写数字"]
+            ,letters: [/^[a-z]+$/i, "请填写字母"]
+            ,date: [/^\d{4}-\d{2}-\d{2}$/, "请填写有效的日期，格式:yyyy-mm-dd"]
+            ,time: [/^([01]\d|2[0-3])(:[0-5]\d){1,2}$/, "请填写有效的时间，00:00到23:59之间"]
+            ,email: [/^[\w\+\-]+(\.[\w\+\-]+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.([a-z]{2,4})$/i, "请填写有效的邮箱"]
+            ,url: [/^(https?|s?ftp):\/\/\S+$/i, "请填写有效的网址"]
+            ,qq: [/^[1-9]\d{4,}$/, "请填写有效的QQ号"]
+            ,IDcard: [/^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/, "请填写正确的身份证号码"]
+            ,tel: [/^(?:(?:0\d{2,3}[\- ]?[1-9]\d{6,7})|(?:[48]00[\- ]?[1-9]\d{6}))$/, "请填写有效的电话号码"]
+            ,mobile: [/^1[3-9]\d{9}$/, "请填写有效的手机号"]
+            ,zipcode: [/^\d{6}$/, "请检查邮政编码格式"]
+            ,chinese: [/^[\u0391-\uFFE5]+$/, "请填写中文字符"]
+            ,username: [/^\w{3,12}$/, "请填写3-12位数字、字母、下划线"]
+            ,password: [/^[\S]{6,16}$/, "请填写6-16位字符，不能包含空格"]
+            ,accept: function (element, params){
+                if (!params) return true;
+                var ext = params[0],
+                    value = $(element).val();
+                return (ext === '*') ||
+                       (new RegExp(".(?:" + ext + ")$", "i")).test(value) ||
+                       this.renderMsg("只接受{1}后缀的文件", ext.replace(/\|/g, ','));
+            }
+            
+        },
+
+        // Default error messages
+        messages: {
+            fallback: "{0}格式不正确",
+            loading: "正在验证...",
+            error: "网络异常",
+            timeout: "请求超时",
+            required: "{0}不能为空",
+            remote: "{0}已被使用",
+            integer: {
+                '*': "请填写整数",
+                '+': "请填写正整数",
+                '+0': "请填写正整数或0",
+                '-': "请填写负整数",
+                '-0': "请填写负整数或0"
+            },
+            match: {
+                eq: "{0}与{1}不一致",
+                neq: "{0}与{1}不能相同",
+                lt: "{0}必须小于{1}",
+                gt: "{0}必须大于{1}",
+                lte: "{0}不能大于{1}",
+                gte: "{0}不能小于{1}"
+            },
+            range: {
+                rg: "请填写{1}到{2}的数",
+                gte: "请填写不小于{1}的数",
+                lte: "请填写最大{1}的数"
+            },
+            checked: {
+                eq: "请选择{1}项",
+                rg: "请选择{1}到{2}项",
+                gte: "请至少选择{1}项",
+                lte: "请最多选择{1}项"
+            },
+            length: {
+                eq: "请填写{1}个字符",
+                rg: "请填写{1}到{2}个字符",
+                gte: "请至少填写{1}个字符",
+                lte: "请最多填写{1}个字符",
+                eq_2: "",
+                rg_2: "",
+                gte_2: "",
+                lte_2: ""
+            }
+        }
+    });
+
+    /* Themes
+     */
+    var TPL_ARROW = '<span class="n-arrow"><b>◆</b><i>◆</i></span>';
+    $.validator.setTheme({
+        'simple_right': {
+            formClass: 'n-simple',
+            msgClass: 'n-right'
+        },
+        'simple_bottom': {
+            formClass: 'n-simple',
+            msgClass: 'n-bottom'
+        },
+        'yellow_top': {
+            formClass: 'n-yellow',
+            msgClass: 'n-top',
+            msgArrow: TPL_ARROW
+        },
+        'yellow_right': {
+            formClass: 'n-yellow',
+            msgClass: 'n-right',
+            msgArrow: TPL_ARROW
+        },
+        'yellow_right_effect': {
+            formClass: 'n-yellow',
+            msgClass: 'n-right',
+            msgArrow: TPL_ARROW,
+            msgShow: function($msgbox, type){
+                var $el = $msgbox.children();
+                if ($el.is(':animated')) return;
+                if (type === 'error') {
+                    $el.css({left: '20px', opacity: 0})
+                        .delay(100).show().stop()
+                        .animate({left: '-4px', opacity: 1}, 150)
+                        .animate({left: '3px'}, 80)
+                        .animate({left: 0}, 80);
+                } else {
+                    $el.css({left: 0, opacity: 1}).fadeIn(200);
+                }
+            },
+            msgHide: function($msgbox, type){
+                var $el = $msgbox.children();
+                $el.stop().delay(100).show()
+                    .animate({left: '20px', opacity: 0}, 300, function(){
+                        $msgbox.hide();
+                    });
+            }
+        }
+    });
+}));
 'use strict';
 
 /* Controllers */
@@ -46486,3 +59528,202 @@ angular.module('app')
       $scope.mytime = null;
     };
   }]);
+/**
+ * name: tm.pagination
+ * Version: 0.0.2
+ */
+angular.module('tm.pagination', []).directive('tmPagination', [function() {
+    return {
+        restrict: 'EA',
+        template: '<div class="page-list">' +
+            '<ul class="pagination pagination-lg" ng-show="conf.totalItems > 0">' +
+            '<li ng-class="{disabled: conf.currentPage == 1}" ng-click="prevPage()"><span>上一页</span></li>' +
+            '<li ng-repeat="item in pageList track by $index" ng-class="{active: item == conf.currentPage, separate: item == \'...\'}" ' +
+            'ng-click="changeCurrentPage(item)">' +
+            '<span>{{ item }}</span>' +
+            '</li>' +
+            '<li ng-class="{disabled: conf.currentPage == conf.numberOfPages}" ng-click="nextPage()"><span>上一页</span></li>' +
+            '</ul>' +
+            '<div class="page-total hide" ng-show="conf.totalItems > 0">' +
+            '第<input type="text" ng-model="jumpPageNum"  ng-keyup="jumpToPage($event)"/>页 ' +
+            '每页<select ng-model="conf.itemsPerPage" ng-options="option for option in conf.perPageOptions "></select>' +
+            '/共<strong>{{ conf.totalItems }}</strong>条' +
+            '</div>' +
+            '<div class="no-items" ng-show="conf.totalItems <= 0">暂无数据</div>' +
+            '</div>',
+        replace: true,
+        scope: {
+            conf: '='
+        },
+        link: function(scope, element, attrs) {
+
+            // 变更当前页
+            scope.changeCurrentPage = function(item) {
+                if (item == '...') {
+                    return;
+                } else {
+                    scope.conf.currentPage = item;
+                }
+            };
+
+            // 定义分页的长度必须为奇数 (default:9)
+            scope.conf.pagesLength = parseInt(scope.conf.pagesLength) ? parseInt(scope.conf.pagesLength) : 9;
+            if (scope.conf.pagesLength % 2 === 0) {
+                // 如果不是奇数的时候处理一下
+                scope.conf.pagesLength = scope.conf.pagesLength - 1;
+            }
+
+            // conf.erPageOptions
+            if (!scope.conf.perPageOptions) {
+                scope.conf.perPageOptions = [10, 15, 20, 30, 50];
+            }
+
+            // pageList数组
+            function getPagination(newValue, oldValue) {
+
+
+                // conf.currentPage
+                scope.conf.currentPage = parseInt(scope.conf.currentPage) ? parseInt(scope.conf.currentPage) : 1;
+
+
+
+                // conf.totalItems
+                scope.conf.totalItems = parseInt(scope.conf.totalItems) ? parseInt(scope.conf.totalItems) : 0;
+
+                // conf.itemsPerPage (default:15)
+                scope.conf.itemsPerPage = parseInt(scope.conf.itemsPerPage) ? parseInt(scope.conf.itemsPerPage) : 15;
+
+
+                // numberOfPages
+                scope.conf.numberOfPages = Math.ceil(scope.conf.totalItems / scope.conf.itemsPerPage);
+
+                // judge currentPage > scope.numberOfPages
+                if (scope.conf.currentPage < 1) {
+                    scope.conf.currentPage = 1;
+                }
+
+                // 如果分页总数>0，并且当前页大于分页总数
+                if (scope.conf.numberOfPages > 0 && scope.conf.currentPage > scope.conf.numberOfPages) {
+                    scope.conf.currentPage = scope.conf.numberOfPages;
+                }
+
+                // jumpPageNum
+                scope.jumpPageNum = scope.conf.currentPage;
+
+                // 如果itemsPerPage在不在perPageOptions数组中，就把itemsPerPage加入这个数组中
+                var perPageOptionsLength = scope.conf.perPageOptions.length;
+                // 定义状态
+                var perPageOptionsStatus;
+                for (var i = 0; i < perPageOptionsLength; i++) {
+                    if (scope.conf.perPageOptions[i] == scope.conf.itemsPerPage) {
+                        perPageOptionsStatus = true;
+                    }
+                }
+                // 如果itemsPerPage在不在perPageOptions数组中，就把itemsPerPage加入这个数组中
+                if (!perPageOptionsStatus) {
+                    scope.conf.perPageOptions.push(scope.conf.itemsPerPage);
+                }
+
+                // 对选项进行sort
+                scope.conf.perPageOptions.sort(function(a, b) {
+                    return a - b
+                });
+
+                scope.pageList = [];
+                if (scope.conf.numberOfPages <= scope.conf.pagesLength) {
+                    // 判断总页数如果小于等于分页的长度，若小于则直接显示
+                    for (i = 1; i <= scope.conf.numberOfPages; i++) {
+                        scope.pageList.push(i);
+                    }
+                } else {
+                    // 总页数大于分页长度（此时分为三种情况：1.左边没有...2.右边没有...3.左右都有...）
+                    // 计算中心偏移量
+                    var offset = (scope.conf.pagesLength - 1) / 2;
+                    if (scope.conf.currentPage <= offset) {
+                        // 左边没有...
+                        for (i = 1; i <= offset + 1; i++) {
+                            scope.pageList.push(i);
+                        }
+                        scope.pageList.push('...');
+                        scope.pageList.push(scope.conf.numberOfPages);
+                    } else if (scope.conf.currentPage > scope.conf.numberOfPages - offset) {
+                        scope.pageList.push(1);
+                        scope.pageList.push('...');
+                        for (i = offset + 1; i >= 1; i--) {
+                            scope.pageList.push(scope.conf.numberOfPages - i);
+                        }
+                        scope.pageList.push(scope.conf.numberOfPages);
+                    } else {
+                        // 最后一种情况，两边都有...
+                        scope.pageList.push(1);
+                        scope.pageList.push('...');
+
+                        for (i = Math.ceil(offset / 2); i >= 1; i--) {
+                            scope.pageList.push(scope.conf.currentPage - i);
+                        }
+                        scope.pageList.push(scope.conf.currentPage);
+                        for (i = 1; i <= offset / 2; i++) {
+                            scope.pageList.push(scope.conf.currentPage + i);
+                        }
+
+                        scope.pageList.push('...');
+                        scope.pageList.push(scope.conf.numberOfPages);
+                    }
+                }
+
+                if (scope.conf.onChange) {
+
+
+                    // 防止初始化两次请求问题
+                    if (!(oldValue != newValue && oldValue[0] == 0)) {
+                        scope.conf.onChange();
+                    }
+
+                }
+                scope.$parent.conf = scope.conf;
+            }
+
+            // prevPage
+            scope.prevPage = function() {
+                if (scope.conf.currentPage > 1) {
+                    scope.conf.currentPage -= 1;
+                }
+            };
+            // nextPage
+            scope.nextPage = function() {
+                if (scope.conf.currentPage < scope.conf.numberOfPages) {
+                    scope.conf.currentPage += 1;
+                }
+            };
+
+            // 跳转页
+            scope.jumpToPage = function() {
+                scope.jumpPageNum = scope.jumpPageNum.replace(/[^0-9]/g, '');
+                if (scope.jumpPageNum !== '') {
+                    scope.conf.currentPage = scope.jumpPageNum;
+                }
+            };
+
+
+
+            scope.$watch(function() {
+
+
+                if (!scope.conf.totalItems) {
+                    scope.conf.totalItems = 0;
+                }
+
+
+                var newValue = scope.conf.totalItems + ' ' + scope.conf.currentPage + ' ' + scope.conf.itemsPerPage;
+
+
+                return newValue;
+
+
+
+
+            }, getPagination);
+
+        }
+    };
+}]);

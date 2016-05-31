@@ -147,7 +147,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                                 "product_address": data.product_address,
                                 'is_product': data.is_product,
                                 'type_id': data.type_id,
-                                'content': data.content,
+                                'content': data.content.replace(/font-family/ig, "fon2t-fa-mily"),
                                 'main_image_path': data.main_image_path,
                                 'company_id': data.company_id,
                                 'is_company_intro': data.is_company_intro,
@@ -217,7 +217,7 @@ app.controller('ProjectsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             stopOnError: false,
             timely: true,
             fields: {
-                'title': 'required;length[1~14];',
+                'title': 'required;',
                 'descript': "length[2~200]",
                 'type_id': "required;",
                 'content': "required;length[20~]",

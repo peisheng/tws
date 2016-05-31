@@ -2,4 +2,8 @@
 /dist
 /.tmp
 /.sass-cache
-/bower_components
+#/bower_components
+/angular
+/angular2
+/html
+/admin.zip
