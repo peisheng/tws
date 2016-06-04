@@ -1,5 +1,5 @@
 app.controller('SystemsCtrl', ['$scope', "$http", "$state", "$localStorage", function($scope, $http, $state, $localStorage) {
-    var page_size = 10;
+    var page_size = 20;
     $scope.group = "";
     var getDataList = function() {
         var params = {
@@ -9,23 +9,16 @@ app.controller('SystemsCtrl', ['$scope', "$http", "$state", "$localStorage", fun
         };
         var q = $http({
             method: "GET",
-            url: _Api + "/admin/dictionary/list",
+            url: _Api + "/admin/setting/list",
             params: params
         });
         q.success(function(data) {
-            $scope.paginationConf.totalItems = data.total_count;
-            $scope.items = data.items;
+            //$scope.paginationConf.totalItems = data.total_count;
+            $scope.items = data;
         });
     }
 
-    $scope.groupList = [];
-
-    $http({
-        method: "GET",
-        url: _Api + "/admin/dictionary/grouplist"
-    }).success(function(data) {
-        $scope.groupList = data;
-    });
+   
 
     $scope.ckAdd = function() {
         $localStorage.edit = true;
@@ -45,39 +38,9 @@ app.controller('SystemsCtrl', ['$scope', "$http", "$state", "$localStorage", fun
             id: id
         });
     };
-    $scope.ckDelete = function(id) {
-        if (!!id) {
-            layer.confirm("确定要删除这个配置吗？", {
-                btn: ["确定", "取消"]
-            }, function() {
-                $http({
-                    method: "GET",
-                    url: _Api + "/admin/dictionary/delete",
-                    params: {
-                        id: id
-                    }
-                }).success(function(data) {
-                    if (data.result) {
-                        layer.msg("删除成功");
-                        getDataList();
-                    } else {
-                        layer.msg("删除失败,已被别的表引用，请联系管理员");
-                    }
-                });
-
-            }, function() {
-                layer.closeAll();
-            });
-
-        }
-
-    }
+    
 
 
-    $scope.ckSearch = function() {
-        $scope.paginationConf.currentPage = 1;
-        getDataList();
-    }
 
     $scope.paginationConf = {
         currentPage: 1,

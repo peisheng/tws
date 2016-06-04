@@ -1,33 +1,30 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">配置管理</h1>
+    <h1 class="m-n font-thin h3">系统配置</h1>
 </div>
 <div class="wrapper-md text-center" ng-controller="SystemsCtrl">
-    <div class="input-group" style="width: 500px;">
-        <label>请选择字典分类：</label>
-        <select ng-options="item as item for item in groupList" ng-model="group" ng-change="ckSearch()">
-        </select>
-        <button type="button" ng-click="ckAdd()" class="btn btn-primary pull-right">新建配置</button>
+    <div class="input-group" style="width: 500px;">       
+        <button type="button" class="btn btn-primary pull-right" ng-click="ckAdd()">系统配置</button>
     </div>
     <table class="table table-striped">
         <thead>
             <tr align="center">
                 <td style="width:50px;">ID</td>
-                <td>名称</td>
-                <td>值</td>
-                <td>分组</td>
+                <td>设置名称</td>
+                <td>键名</td>
+                <td>值</td>               
                 <td style="width:200px;">操作</td>
             </tr>
         </thead>
         <tbody align="center">
             <tr ng-repeat="item in items">
                 <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.value}}</td>
                 <td>{{item.group}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.value}}</td>                
                 <td>
-                    <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看</button>
-                    <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
-                    <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
+                    <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>                   
                 </td>
             </tr>
         </tbody>

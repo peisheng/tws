@@ -84,7 +84,6 @@ angular.module('app')
 
             $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams) {
-
                     if (toState != "access.signin") {
                         $http({
                             method: "GET",
@@ -94,7 +93,6 @@ angular.module('app')
                                 event.preventDefault();
                                 $state.go('access.signin');
                             } else {
-
                             }
                         });
                     }

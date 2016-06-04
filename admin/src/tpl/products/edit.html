@@ -1,0 +1,171 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">产品管理</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="ProductsEditCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading font-bold">
+            产品信息
+            <div class="pull-right" style="font-size:24px;margin-right: 30px;" onclick="history.back()"><span class="icon-action-undo" title="返回"></span></div>
+            <div class="pull-right" style="font-size:24px;" ng-show="isView" ng-click="isView=!isView"><span class="glyphicon glyphicon-edit" title="编辑">&nbsp;</span></div>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal" id="projectForm">
+                <fieldset ng-disabled="isView">
+                    <div class="form-group">
+                        <!-- Text input-->
+                        <label class="col-sm-2 control-label" for="input01">产品名称</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="产品名称" ng-model="form.product_name" name="product_name" class="form-control rounded">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Search input-->
+                        <label class="col-sm-2 control-label">产品简介</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="产品简介" ng-model="form.product_desc" name="product_desc" class="form-control rounded search-query">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">所属分类</label>
+                        <div class="col-sm-8">
+                            <select class="form-control rounded" name="category_id" ng-model="form.categoryid" ng-options="it.id as it.category_name for it in category_list">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">亚玛迅URL</label>
+                        <div class="col-sm-8">
+                             <input type="text" placeholder="亚玛迅URL" ng-model="form.amazon_url" name="amazon_url" class="form-control rounded search-query">
+                             <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">SEO标题</label>
+                        <div class="col-sm-8">
+                             <input type="text" placeholder="SEO标题" ng-model="form.seo_title" name="seo_title" class="form-control rounded search-query">
+                             <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">SEO关键字</label>
+                        <div class="col-sm-8">
+                             <input type="text" placeholder="SEO关键字" ng-model="form.seo_keyword" name="seo_keyword" class="form-control rounded search-query">
+                             <p class="help-block"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">SEO描述</label>
+                        <div class="col-sm-8">
+                             <input type="text" placeholder="SEO描述" ng-model="form.seo_desc" name="seo_desc" class="form-control rounded search-query">
+                             <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">产品features</label>
+                        <div class="col-sm-8">                            
+                            <div>
+                                <script id="product_features" name="product_features" type="text/plain" style="width:100%;height:100%;min-height:200px;">
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">产品Specification</label>
+                        <div class="col-sm-8">                            
+                            <div >
+                                <script id="product_specification" name="product_specification" type="text/plain" style="width:100%;height:100%;min-height:200px;">
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <!-- Select Basic -->
+                        <label class="col-sm-2 control-label">图片列表</label>
+                        <div class="col-sm-8">                            
+                            <ul>
+                                <li ng-repeat="img in imgList" style="list-style: none">
+                                    <img src="{{img.small_path}}" alt="" style="width:350px; margin-right:20px;" ng-click="openBigImg(img.image_path)">
+                                    <input type="radio" name="main_image_id" ng-checked="img.id==form.main_image_id"  value="{{img.id}}" ng-click="setMainImage(img.id)">
+                                    <span>设为主图</span>
+                                    <botton class="btn btn-danger" style="margin-left:20px;color:red;cursor:pointer;" ng-click="removeImg(img.id)">删除</botton>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"></label>
+                        <!-- File Upload -->
+                        <div class="col-sm-8">
+                            <button ng-click="ckUpload()" class="btn btn-primary form-control btn-lg">上传</button>
+                            <input type="file" class="btn btn-primary hide" id="myUpload" nv-file-select="" uploader="uploader" multiple />
+                            <div class="progress bg-light dker">
+                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                            <div class="wrapper-md hide">
+                                <table class="table bg-white-only b-a">
+                                    <tbody>
+                                        <tr ng-repeat="item in uploader.queue">
+                                            <td><strong>{{ item.file.name }}</strong></td>
+                                            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                            <td ng-show="uploader.isHTML5">
+                                                <div class="progress progress-sm m-b-none m-t-xs">
+                                                    <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span ng-show="item.isSuccess" class="text-success"><i class="glyphicon glyphicon-ok"></i></span>
+                                                <span ng-show="item.isCancel" class="text-warning"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                <span ng-show="item.isError" class="text-danger"><i class="glyphicon glyphicon-remove"></i></span>
+                                            </td>
+                                            <td nowrap>
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                    Upload
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                                    Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="item.remove()">
+                                                    Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="form-group">
+                        <button type="button" ng-click="ckSave()" class="btn btn-success">保存</button>
+                        <button type="button" ng-show="showPublishBtn" ng-click="ckPublish(1)" class="btn btn-success">马上发布</button>
+                        <button type="button" ng-show="showNoPublishBtn" ng-click="ckPublish(0)" class="btn btn-success">撤消发布</button>
+                        <a class="btn btn-default" onclick="history.back()">返回</a>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

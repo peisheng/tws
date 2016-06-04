@@ -1,0 +1,42 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">产品管理</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="ProductsCtrl">
+    <div class="input-group" style="width: 500px;">
+        <input type="text" ng-model="keyword" class="form-control" placeholder="搜索产品" aria-describedby="basic-addon2">
+        <span class="input-group-addon" id="basic-addon2" ng-click="ckSearch()">搜索</span>
+        <button type="button" class="btn btn-primary pull-right" ng-click="ckAdd()">新建产品</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr align="center">
+                <td style="width:50px;">ID</td>
+                <td>名称</td>               
+                <td>分类</td>
+                <td style="width:120px;">SOE标题</td>
+                <td style="width:120px;">SEO关键字</td>
+                <td style="width:120px;">发布状态</td>
+                <td style="width:200px;">操作</td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr ng-repeat="item in items">
+                <td>{{item.id}}</td>
+                <td>{{item.product_name}}</td>            
+                <td>{{item.category_name}}</td>
+                <td>{{item.seo_title}}</td>
+                <td>{{item.seo_keyword}}</td>
+                <td>{{item.is_publish}}</td>               
+                <td>
+                    <button type="button" class="btn btn-primary" ng-click="ckView(item.id)">查看
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="ckEdit(item.id)">编辑</button>
+                    <button type="button" class="btn btn-danger" ng-click="ckDelete(item.id)">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>

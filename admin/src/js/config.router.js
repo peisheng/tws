@@ -99,6 +99,62 @@ angular.module('app')
                     }
                 })
 
+                .state('app.products', {
+                    url: "/products",
+                    templateUrl: "tpl/products/list.html",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/products.js');
+                            }
+                        ]
+                    }
+                })
+
+                .state('app.products-edit', {
+                    url: "/products/edit/:id",
+                    templateUrl: "tpl/products/edit.html",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
+                                    return $ocLazyLoad.load("js/controllers/todaystart/products-edit.js");
+                                });
+                            }
+                        ]
+                    }
+                })
+
+                 .state('app.category', {
+                    url: "/category",
+                    templateUrl: "tpl/categorys/list.html",
+                    resolve: {
+                       deps: ['uiLoad',
+                            function(uiLoad) {
+                                return uiLoad.load('js/controllers/todaystart/categorys.js');
+                            }
+                        ]
+                    }
+                })
+
+                   .state('app.category-edit', {
+                    url: "/category/edit/:id",
+                    templateUrl: "tpl/categorys/edit.html",
+                    resolve: {
+                        deps: ['$ocLazyLoad', 'uiLoad',
+                            function($ocLazyLoad, uiLoad) {
+                                return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
+                                    return $ocLazyLoad.load("js/controllers/todaystart/categorys-edit.js");
+                                });
+                            }
+                        ]
+                    }
+                })
+
+
+
+
+
                 .state('app.users', {
                         url: "/users",
                         templateUrl: "tpl/users/list.html",
@@ -169,7 +225,7 @@ angular.module('app')
                         }
                     })
 
-                .state('app.ui', {
+                    .state('app.ui', {
                         url: '/ui',
                         template: '<div ui-view class="fade-in-up"></div>'
                     })
