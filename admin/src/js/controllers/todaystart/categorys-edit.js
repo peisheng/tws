@@ -2,15 +2,10 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
     "$stateParams", "$state", "$localStorage",
     function($scope, $http, $timeout, $stateParams, $state, $localStorage, $window) {
         $scope.form = {
-            "id": 0,
-            'user_name': '',
-            'real_name': "",
-            'qq_number': "",
-            'phone': "",
-            'mobile': "",
-            'email': "",
-            'isAdmin': "",
-            'company_id': null
+            id: 0,
+            category_name: "",
+            parent_id: "",
+            sort: ""
         };
         $scope.isView = !$localStorage.edit;
 
@@ -18,12 +13,8 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
             stopOnError: false,
             timely: true,
             fields: {
-                'user_name': 'required;length[2~14];',
-                'real_name': "required;",
-                'phone': "required;",
-                'mobile': "required;mobile;",
-                'email': "required;email;",
-                'is_admin': "required;"
+                "category_name": 'required;length[2~14];',
+                "sort": "number"
             }
         });
 
@@ -31,46 +22,65 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
         if (!!$stateParams.id) {
             $http({
                 method: "GET",
-                url: _Api + "/admin/user/get",
+                url: _Api + "/admin/category/get",
                 params: {
                     id: $stateParams.id
                 }
             }).success(function(data) {
                 $scope.form = {
-                     id:data.id,
-                     category_name:data.category_name,
-                     parent_id:data.parent_id,
-                     sort:data.sort             
+                    id: data.id,
+                    category_name: data.category_name,
+                    parent_id: data.parent_id,
+                    sort: data.sort
                 };
-            });
 
-        };
+                $http({
+                    method: "GET",
+                    url: _Api + "/admin/category/list"
+                }).success(function(data) {
+                    $scope.category_list = data;
+                });
+            });
+        }
+        else
+        {
+        	 $http({
+                    method: "GET",
+                    url: _Api + "/admin/category/list"
+                }).success(function(data) {
+                    $scope.category_list = data;
+                });
+        }
+
+
+
 
 
         $scope.ckSave = function() {
-            var company_id = $localStorage.company_id;
-            if (!company_id) {
-                layer.msg("参数不合法，企业Id不能为空");
-                return;
-            }
-            $scope.form.company_id = company_id;
+            
             $("#UserForm").isValid(function(v) {
                 if (v) {
+                    if ($scope.form.id>0&&($scope.form.id == $scope.form.parent_id)) {
+                        layer.msg("你选择的父分类是当前分类，请重新选择或者选择空", { time: 2000 });
+                        return;
+                    };
                     var postData = $scope.form;
                     var q = $http({
                         method: "POST",
                         url: _Api + "/admin/category/save",
                         data: {
-                            
+                            category_name: $scope.form.category_name,
+                            parent_id: $scope.form.parent_id,
+                            sort: $scope.form.sort,
+                            id: $scope.form.id
                         }
                     });
                     q.success(function(data) {
-                        if (data.result) {
+                        if (data) {
                             layer.msg("保存成功", {
                                 time: 1000
                             });
-                            $scope.form.id = data.user_id;
-
+                            $scope.form.id = data.id;
                         } else {
                             layer.msg("保存失败", {
                                 time: 1000

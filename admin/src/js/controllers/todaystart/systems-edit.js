@@ -8,6 +8,11 @@
              value: "",
              group: ""
          };
+
+         $scope.link1 = "";
+         $scope.link2 = "";
+         $scope.link3 = "";
+         $scope.link4 = "";
          $scope.isView = !$localStorage.edit;
          $scope.imgList = [];
 
@@ -17,7 +22,11 @@
              fields: {
                  name: "required;",
                  value: "required;",
-                 group: "required;"
+                 group: "required;",
+                 link1: "required;",
+                 link2: "required;",
+                 link3: "required;",
+                 link4: "required;",
              }
          });
 
@@ -32,7 +41,7 @@
              name: 'customFilter',
              fn: function(item /*{File|FileLikeObject}*/ , options) {
                  //$scope.currentImageList = [];
-                 return this.queue.length < 30;
+                 return this.queue.length < 5;
              }
          });
 
@@ -45,8 +54,9 @@
          };
          uploader.onAfterAddingFile = function(fileItem) {
              // console.info('onAfterAddingFile', fileItem);
-             uploader.uploadAll();
-
+             if ($scope.imgList.length < 4) {
+                 uploader.uploadAll();
+             }
          };
          uploader.onAfterAddingAll = function(addedFileItems) {
              // console.info('onAfterAddingAll', addedFileItems);
@@ -62,15 +72,18 @@
          };
          uploader.onSuccessItem = function(fileItem, response, status, headers) {
              if (response.length > 0) {
-                 $scope.imgList.push(response[0]);
-                 var obj = [];
-                 if ($scope.form.value)
-                     obj = $scope.form.value.split(',');
-                 obj.push(response[0].id);
-                 $scope.form.value = obj.join(',');
-                 $scope.$apply();
+                 if ($scope.imgList.length < 4) {
+                     $scope.imgList.push(response[0]);
+                     var obj = [];
+                     if ($scope.form.value)
+                         obj = $scope.form.value.split(',');
+                     obj.push(response[0].id);
+                     $scope.form.value = obj.join(',');
+                     setTimeout(function() {
+                         $scope.$apply();
+                     }, 30);
+                 }
              }
-
          };
          uploader.onErrorItem = function(fileItem, response, status, headers) {
              // console.info('onErrorItem', fileItem, response, status, headers);
@@ -97,23 +110,50 @@
                      value: data.value,
                      group: data.group
                  };
+                 var idslinks = data.value.split('|');
+                 var ids = [];
+                 var links = [];
+                 if (idslinks.length == 2) {
+
+                     $scope.form.value = idslinks[0];
+                     ids = idslinks[0].split(',');
+                     links = idslinks[1].split(',');
+                     if (links.length == 4) {
+                         $scope.link1 = links[0];
+                         $scope.link2 = links[1];
+                         $scope.link3 = links[2];
+                         $scope.link4 = links[3];
+                     }
+                 }
                  if (data.name.indexOf("logo") > -1 || data.name.indexOf("image") > -1) {
                      $scope.isImage = true;
-                     $http({
-                         method: "GET",
-                         url: _Api + "/file/get",
-                         params: {
-                             ids: data.value.split(',')
-                         }
-                     }).success(function(resData) {
-                         $scope.imgList = resData;
-                         $scope.$apply();
-                     });
+                     if (ids.length > 0) {
+                         $http({
+                             method: "GET",
+                             url: _Api + "/file/get",
+                             params: {
+                                 ids: ids
+                             }
+                         }).success(function(resData) {
+                             $scope.imgList = resData;
+                             setTimeout(function() {
+                                 $scope.$apply();
+                             }, 30);
+                         });
+                     }
+
+                     if (data.name.indexOf("image") > -1) {
+                         $scope.isShowExtend = true;
+                     } else {
+                         $scope.isShowExtend = false;
+                     }
 
                  } else {
                      $scope.isImage = false;
                  }
-                 $scope.$apply();
+                 setTimeout(function() {
+                     $scope.$apply();
+                 }, 30);
 
              });
          };
@@ -124,7 +164,26 @@
 
              $("#dictForm").isValid(function(v) {
                  if (v) {
-                     var postData = $scope.form;
+                     var postData = angular.copy($scope.form);
+                     if ($scope.isShowExtend) {
+                         if (postData.value.split(',').length != 4) {
+                             layer.msg("请上传四张图片并填写对应的链接", { time: 2000 });
+                             return;
+                         }
+                         $scope.link1 = $("#link1").val();
+                         $scope.link2 = $("#link2").val();
+                         $scope.link3 = $("#link3").val();
+                         $scope.link4 = $("#link4").val();
+                         if (!$scope.link1 || !$scope.link2 || !$scope.link3 || !$scope.link4) {
+                             layer.msg("请上传四张图片并填写对应的链接", { time: 2000 });
+                             return;
+                         }
+
+                         postData.value = postData.value + "|" + $scope.link1 + "," + $scope.link2 + "," + $scope.link3 + "," + $scope.link4;
+
+
+                     }
+
                      var q = $http({
                          method: "POST",
                          url: _Api + "/admin/setting/save",
@@ -150,7 +209,6 @@
          }
 
          $scope.removeImg = function(id) {
-
              layer.confirm("确定要删除当前图片吗？", {
                  btn: ["确定", "取消"]
              }, function() {
@@ -165,10 +223,12 @@
                  var obj = [];
                  if (list.length > 0) {
                      for (var i = 0; i < list.length; i++) {
-                        var item=list[i];                      
+                         var item = list[i];
                          obj.push(item.id);
                      }
                      $scope.form.value = obj.join(',');
+                 } else {
+                     $scope.form.value = "";
                  }
                  $scope.$apply();
                  layer.closeAll();
@@ -176,7 +236,6 @@
                  layer.closeAll();
              });
          }
-
          $scope.openBigImg = function(imagePath) {
              window.open(imagePath);
          }

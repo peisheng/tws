@@ -27,6 +27,11 @@ app.controller('CategoryCtrl', ['$scope', "$http","$localStorage","$stateParams"
         onChange: function(e) {}
     };
 
+    $scope.ckAdd = function() {
+        $localStorage.edit = true;
+        $state.go("app.category-edit");
+    }
+
     $scope.ckView = function(id) {
         $localStorage.edit = false;
         $state.go("app.category-edit", {
