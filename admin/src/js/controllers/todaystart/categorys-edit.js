@@ -38,18 +38,26 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
                     method: "GET",
                     url: _Api + "/admin/category/list"
                 }).success(function(data) {
+                    // var obj = [];
+                    // var len = data.length;
+                    // if (len > 0) {
+                    //     for (var i = 0; i < data.length; i++) {
+                    //         if(!data[i].parent_id)
+                    //         {
+                    //             obj.push(data[i]);
+                    //         }
+                    //     }
+                    // }
                     $scope.category_list = data;
                 });
             });
-        }
-        else
-        {
-        	 $http({
-                    method: "GET",
-                    url: _Api + "/admin/category/list"
-                }).success(function(data) {
-                    $scope.category_list = data;
-                });
+        } else {
+            $http({
+                method: "GET",
+                url: _Api + "/admin/category/list"
+            }).success(function(data) {
+                $scope.category_list = data;
+            });
         }
 
 
@@ -57,14 +65,18 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
 
 
         $scope.ckSave = function() {
-            
+
             $("#UserForm").isValid(function(v) {
                 if (v) {
-                    if ($scope.form.id>0&&($scope.form.id == $scope.form.parent_id)) {
+                    if ($scope.form.id > 0 && ($scope.form.id == $scope.form.parent_id)) {
                         layer.msg("你选择的父分类是当前分类，请重新选择或者选择空", { time: 2000 });
                         return;
                     };
                     var postData = $scope.form;
+                    if(!$scope.form.sort)
+                    {
+                        $scope.form.sort=0;
+                    }
                     var q = $http({
                         method: "POST",
                         url: _Api + "/admin/category/save",
@@ -80,7 +92,10 @@ app.controller('CategoryEditCtrl', ['$scope', "$http", "$timeout",
                             layer.msg("保存成功", {
                                 time: 1000
                             });
-                            $scope.form.id = data.id;
+                            if(!$scope.form.id)
+                            {
+                                history.back();
+                            }                            
                         } else {
                             layer.msg("保存失败", {
                                 time: 1000

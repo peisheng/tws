@@ -12,7 +12,7 @@ angular.module('app')
 
             // config
             $scope.app = {
-                name: '今日开工',
+                name: '管理后台',
                 version: '2.0.1',
                 // for chart colors
                 color: {
