@@ -11,6 +11,12 @@ app.controller('ProductsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
             'product_desc': "",
             'categoryid': "",
             'amazon_url': "",
+            'germany_amazon_url': "",
+            "franch_amazon_url": "",
+            "Italy_amazon_url": "",
+            "spanish_amazon_url": "",
+            "japan_amazon_url": "",
+            "uk_amazon_url": "",
             'seo_title': "",
             'seo_keyword': '',
             'seo_desc': "",
@@ -129,6 +135,12 @@ app.controller('ProductsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                                 'product_desc': data.product_desc,
                                 'categoryid': data.categoryid,
                                 'amazon_url': data.amazon_url,
+                                'germany_amazon_url': data.germany_amazon_url,
+                                "franch_amazon_url": data.franch_amazon_url,
+                                "Italy_amazon_url": data.Italy_amazon_url,
+                                "spanish_amazon_url": data.spanish_amazon_url,
+                                "japan_amazon_url": data.japan_amazon_url,
+                                "uk_amazon_url": data.uk_amazon_url,
                                 'seo_title': data.seo_title,
                                 'seo_keyword': data.seo_keyword,
                                 'seo_desc': data.seo_desc,
@@ -136,7 +148,7 @@ app.controller('ProductsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                                 'product_specification': data.product_specification,
                                 'main_image_id': data.main_image_id
                             };
-                            $scope.imgList=data.images;
+                            $scope.imgList = data.images;
                             sepecialEditor.setContent(data.product_specification);
                             featureEditor.setContent(data.product_features);
                             $scope.showMore = true;
@@ -208,8 +220,14 @@ app.controller('ProductsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
                 'product_name': 'required',
                 'product_desc': "required;length[2~200]",
                 'category_id': "required",
-                'amazon_url': "required;length[2~500]",
-                'seo_title': "length[~50]",
+                'amazon_url': "length[5~500]",
+                'germany_amazon_url': "length[5~500]",
+                "franch_amazon_url": "length[5~500]",
+                "Italy_amazon_url": "length[5~500]",
+                "spanish_amazon_url": "length[5~500]",
+                "japan_amazon_url": "length[5~500]",
+                "uk_amazon_url": "length[5~500]",
+                'seo_title': "length[~150]",
                 'seo_keyword': 'length[~200]',
                 'seo_desc': "length[~255]",
                 'product_features': "required;length[20~]",
@@ -220,27 +238,25 @@ app.controller('ProductsEditCtrl', ['$scope', "$http", "taSelection", "FileUploa
         $scope.ckSave = function() {
             $("#projectForm").isValid(function(v) {
                 if (v) {
-                    if(!$scope.form.main_image_id)
-                    {
+                    if (!$scope.form.main_image_id) {
                         layer.msg("必须先设置一张主图", {
-                                time: 1000
-                            });
+                            time: 1000
+                        });
                         return;
                     }
                     var postData = $scope.form;
                     postData.product_features = featureEditor.getContent();
                     postData.product_specification = sepecialEditor.getContent();
-                    var imageIds=[];
-                    for(var i=0;i<$scope.imgList.length;i++)
-                    {
-                        var item=$scope.imgList[i];
+                    var imageIds = [];
+                    for (var i = 0; i < $scope.imgList.length; i++) {
+                        var item = $scope.imgList[i];
                         imageIds.push(item.id);
                     }
                     if (!!$stateParams.id) {
                         postData.id = $stateParams.id;
                     } else {
                         var isAdd = true;
-                        postData.id=0;
+                        postData.id = 0;
                     }
                     var q = $http({
                         method: "POST",
