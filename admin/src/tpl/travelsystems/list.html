@@ -1,0 +1,44 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">产品注册</h1>
+</div>
+<div class="wrapper-md text-center" ng-controller="TravelSystemCtrl">
+
+    <table class="table table-striped">
+        <thead>
+            <tr align="center">
+                <td style="width:50px;">ID</td>
+                <td>姓名</td>
+                <td style="width:90px;">国家</td>
+                <td style="width:80px;">地址</td>
+                <td>电话</td>
+                <td style="width:90px;">邮箱</td>
+                <td style="width:90px;">产品分类 </td>
+                <td style="width:90px;">型号</td>
+                <td style="width:90px;"> 质检号</td>
+                <td style="width:90px;"> 序列号</td>
+                <td style="width:90px;"> 生产日期</td>
+                <td style="width:200px;">操作</td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr ng-repeat="item in items">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.country}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.model}}</td>
+                <td>{{item.qtyno}}</td>
+                <td>{{item.serial}}</td>
+                <td>{{item.manufacture_date}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" ng-click="ckTravelSystemDelete(item.id)">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>

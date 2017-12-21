@@ -125,11 +125,11 @@ angular.module('app')
                     }
                 })
 
-                 .state('app.category', {
+                .state('app.category', {
                     url: "/category",
                     templateUrl: "tpl/categorys/list.html",
                     resolve: {
-                       deps: ['uiLoad',
+                        deps: ['uiLoad',
                             function(uiLoad) {
                                 return uiLoad.load('js/controllers/todaystart/categorys.js');
                             }
@@ -137,9 +137,9 @@ angular.module('app')
                     }
                 })
 
-                 
 
-                   .state('app.category-edit', {
+
+                .state('app.category-edit', {
                     url: "/category/edit/:id",
                     templateUrl: "tpl/categorys/edit.html",
                     resolve: {
@@ -153,11 +153,11 @@ angular.module('app')
                     }
                 })
 
-                    .state('app.pages', {
+                .state('app.pages', {
                     url: "/pages",
                     templateUrl: "tpl/pages/list.html",
                     resolve: {
-                       deps: ['uiLoad',
+                        deps: ['uiLoad',
                             function(uiLoad) {
                                 return uiLoad.load('js/controllers/todaystart/pages.js');
                             }
@@ -166,42 +166,42 @@ angular.module('app')
                 })
 
                 .state('app.pages-edit', {
-                    url: "/pages/edit/:id",
-                    templateUrl: "tpl/pages/edit.html",
-                    resolve: {
-                        deps: ['$ocLazyLoad', 'uiLoad',
-                            function($ocLazyLoad, uiLoad) {
-                                return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
-                                    return $ocLazyLoad.load("js/controllers/todaystart/pages-edit.js");
-                                });
-                            }
-                        ]
-                    }
-                })
-                .state('app.messages', {
-                    url: "/messages",
-                    templateUrl: "tpl/messages/list.html",
-                    resolve: {
-                       deps: ['uiLoad',
-                            function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/messages.js');
-                            }
-                        ]
-                    }
-                })
+                        url: "/pages/edit/:id",
+                        templateUrl: "tpl/pages/edit.html",
+                        resolve: {
+                            deps: ['$ocLazyLoad', 'uiLoad',
+                                function($ocLazyLoad, uiLoad) {
+                                    return uiLoad.load(JQ_CONFIG.umeditor).then(function() {
+                                        return $ocLazyLoad.load("js/controllers/todaystart/pages-edit.js");
+                                    });
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.messages', {
+                        url: "/messages",
+                        templateUrl: "tpl/messages/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/messages.js');
+                                }
+                            ]
+                        }
+                    })
 
-                  .state('app.messages-edit', {
-                    url: "/messages/edit/:id",
-                    templateUrl: "tpl/messages/edit.html",
-                    resolve: {
-                       deps: ['uiLoad',
-                            function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/messages-edit.js');
-                            }
-                        ]
-                    }
-                })
-                .state('app.users', {
+                .state('app.messages-edit', {
+                        url: "/messages/edit/:id",
+                        templateUrl: "tpl/messages/edit.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/messages-edit.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.users', {
                         url: "/users",
                         templateUrl: "tpl/users/list.html",
                         resolve: {
@@ -225,23 +225,35 @@ angular.module('app')
                     })
 
                 .state('app.systems', {
-                    url: "/systems",
-                    templateUrl: "tpl/systems/list.html",
+                        url: "/systems",
+                        templateUrl: "tpl/systems/list.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/systems.js');
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.systems-edit', {
+                        url: "/systems/edit/:id",
+                        templateUrl: "tpl/systems/edit.html",
+                        resolve: {
+                            deps: ['uiLoad',
+                                function(uiLoad) {
+                                    return uiLoad.load('js/controllers/todaystart/systems-edit.js');
+                                }
+                            ]
+                        }
+                    })
+
+                .state('app.travelsystem', {
+                    url: "/travelsystem",
+                    templateUrl: "tpl/travelsystems/list.html",
                     resolve: {
                         deps: ['uiLoad',
                             function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/systems.js');
-                            }
-                        ]
-                    }
-                }).
-                state('app.systems-edit', {
-                    url: "/systems/edit/:id",
-                    templateUrl: "tpl/systems/edit.html",
-                    resolve: {
-                        deps: ['uiLoad',
-                            function(uiLoad) {
-                                return uiLoad.load('js/controllers/todaystart/systems-edit.js');
+                                return uiLoad.load('js/controllers/todaystart/travelsystem.js');
                             }
                         ]
                     }
@@ -271,7 +283,7 @@ angular.module('app')
                         }
                     })
 
-                    .state('app.ui', {
+                .state('app.ui', {
                         url: '/ui',
                         template: '<div ui-view class="fade-in-up"></div>'
                     })
